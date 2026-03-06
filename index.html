@@ -7,6 +7,7 @@
   <meta name="description" content="AI Product Manager crafting intelligent products that scale. 5+ years across B2B SaaS, IoT, and Healthcare AI.">
   
   <!-- Theme detection - prevents flash -->
+ 
   <script>
     (function() {
       const savedTheme = localStorage.getItem('theme');
@@ -37,14 +38,20 @@
     .container {
       margin-left: 0;
       margin-right: 0;
+					  
+						 
       max-width: 100%;
     }
     
-    /* Override section title alignment */
-    .section-title,
-    .section-subtitle {
-      text-align: left !important;
-      margin-left: 0 !important;
+    /* Hero Content - Left aligned EXACTLY with Featured Projects header */
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 600px; /* Reduced to prevent overlap with globe */
+      margin-left: 0; /* Align to left edge of container */
+      margin-right: auto;
+      text-align: left;
+      padding-right: 3rem; /* Increased space for globe */
     }
     
     /* Hero Background Image with Rhode Skin Aesthetic */
@@ -118,12 +125,14 @@
       margin-bottom: 1.5rem;
       line-height: 1.6;
     }
+	
     .hero-human {
       font-size: 0.95rem;     /* Smaller than description */
       color: var(--text-secondary);
       opacity: 0.8;
       margin-bottom: 2rem;    /* Space before the tags */
       font-style: italic;
+					   
     }
     .tag {
       display: inline-flex;
@@ -489,6 +498,7 @@
       
       .hero-content {
         max-width: 100%;
+		text-align: left;				 
       }
     }
     
