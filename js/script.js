@@ -431,61 +431,72 @@ console.log('%c🚀 Chandana Konduru Portfolio', 'color: #C17C5E; font-size: 16p
 console.log('%c✨ AI Product Manager & Global Strategist', 'color: #6B6B6E; font-size: 14px;');
 
 // ============================================
-// VIRTUAL CHANDANA CHATBOT
+// VIRTUAL CHANDANA CHATBOT - DATA-DRIVEN v2
 // ============================================
 
-// Job matching data
-const JOB_MATCHING_DATA = {
-    skills: [
-        'AI Product Management',
-        'Agentic AI Orchestration',
-        'B2B SaaS Strategy',
-        'Global Product Leadership',
-        'Healthcare AI',
-        'IoT Product Development',
-        'Vibe Coding / AI-Assisted Development',
-        'Cross-Functional Team Leadership',
-        'API Architecture',
-        'Product Analytics'
-    ],
-    
-    experience: [
-        { years: '5+', focus: 'Product Management' },
-        { years: '4', focus: 'Global Markets (USA, India, UK, Nigeria, China, Mexico)' },
-        { years: '3', focus: 'AI/ML Products' },
-        { years: '2', focus: 'Healthcare & IoT' }
-    ],
-    
-    keyProjects: [
-        { name: 'Scan It Know It', type: 'Agentic AI', outcome: '92% accuracy, $0 cost' },
-        { name: 'BioTime Cloud 2.0', type: 'Global SaaS', outcome: '4 countries, 10K+ users' },
-        { name: 'DF Safety', type: 'Healthcare AI', outcome: '85% AI adoption' }
-    ],
-    
-    idealRoles: [
-        'AI Product Manager',
-        'Senior Product Manager',
-        'Product Lead - AI/ML',
-        'Global Product Strategist',
-        'Technical Product Manager'
-    ],
-    
-    industries: [
-        'AI/ML & Agentic Systems',
-        'Healthcare & Life Sciences',
-        'Enterprise SaaS',
-        'IoT & Connected Devices',
-        'Fintech'
-    ]
+// Embedded profile data (fallback if JSON fails to load)
+const EMBEDDED_PROFILE = {
+  profile: {
+    fullName: "Chandana Sree Konduru",
+    title: "AI Product Manager & Global Product Strategist",
+    yearsOfExperience: "6",
+    email: "chandanashree97@gmail.com",
+    phone: "+15312034748",
+    location: "Omaha, NE, USA",
+    linkedIn: "https://www.linkedin.com/in/chandana-sree-konduru/",
+    portfolio: "https://chandanasree35.wixsite.com/portfolio",
+    openToRemote: true,
+    summary: "Product Manager with 6 years of experience driving digital transformation and SaaS product strategy in healthcare, fintech, and IoT."
+  },
+  skills: {
+    "Product Management": ["Roadmap Strategy", "Agile/Scrum", "Product Lifecycle Management (SDLC)", "PRD/User Story Development", "Waterfall", "Change Management", "Jira", "Confluence", "Milestone Tracking", "Stakeholder Collaboration"],
+    "AI & Emerging Tech": ["Agentic AI Orchestration", "LLM Prompt Engineering", "AI/ML Workflow Design", "Conversation Flow Design", "Generative AI", "Computer Vision", "NLP"],
+    "Data & Analytics": ["SQL", "Python", "Power BI", "Data Visualization", "Application Analytics"],
+    "UX & Design Strategy": ["User Research & Personas", "Wireframing & Prototyping", "Usability Testing", "Information Architecture", "Figma", "Sketch", "UX Best Practices"],
+    "Engineering Foundation": ["C#", ".NET Core", "ASP.NET", "RESTful API Integration", "System Architecture", "HTML5/CSS"]
+  },
+  projects: [
+    { name: "Scan It Know It", category: "Agentic AI Platform", metrics: ["$0 operational cost", "Weeks to launch", "Community-driven"], skills: ["Gemini API", "Agentic AI", "Figma"] },
+    { name: "BioTime Cloud 2.0", category: "B2B SaaS (Web & Mobile)", metrics: ["10K+ users", "4 countries", "+5% performance", "+10% exec confidence"], skills: ["AWS", "React", "Node.js", "REST API", "Product Strategy"] },
+    { name: "ZKDigimax-ESL", category: "IoT Retail Solution", metrics: ["-3% pricing errors", "+2% digital engagement", "-10% inventory search time"], skills: ["IoT", "Mobile App", "Agile/Scrum"] },
+    { name: "DF Safety", category: "Healthcare AI Platform", metrics: ["-3% manual processing", "100% E2B R2/R3 compliant"], skills: ["AI/ML", "Healthcare UX", "E2B Compliance", "Figma"] }
+  ],
+  experience: [
+    { period: "2023-2024", role: "Associate Product Manager", company: "ZKTeco India", location: "Bangalore, India" },
+    { period: "2023", role: "UI/UX Product Designer", company: "Data Foundry", location: "Bangalore, India" },
+    { period: "2022", role: "Developer II | UI/UX Designer", company: "Cybage Software", location: "Hyderabad, India" },
+    { period: "2019-2022", role: "Software Engineer", company: "NTT Data", location: "Bangalore, India" }
+									
+								   
+	  
+	
+				 
+								  
+									 
+						  
+								  
+				 
+  ]
 };
 
-// Safe contact info (requires human verification)
-const CONTACT_INFO = {
-    linkedin: 'linkedin.com/in/chandana-konduru',
-    email: 'chandana.konduru@email.com',
-    location: 'Omaha, NE (Open to relocation)',
-    availability: 'Immediate'
-};
+// Load profile data (try JSON first, fallback to embedded)
+let profileData = EMBEDDED_PROFILE; // Start with embedded
+												 
+										
+											   
+							 
+  
+
+fetch('chandana-data.json')
+  .then(response => response.json())
+  .then(data => {
+    profileData = data; // Use loaded data
+    console.log('%c🤖 Virtual Chandana loaded with full JSON data', 'color: #67645e; font-size: 12px;');
+  })
+  .catch(error => {
+    // Silently use embedded data (works when opened as file)
+    console.log('%c🤖 Virtual Chandana using embedded profile data', 'color: #67645e; font-size: 12px;');
+  });
 
 // Chat state
 let chatOpen = false;
@@ -493,193 +504,554 @@ let messageHistory = [];
 
 // Toggle chat widget
 function toggleChat() {
-    const container = document.getElementById('chatContainer');
-    chatOpen = !chatOpen;
-    
-    if (chatOpen) {
-        container.classList.add('active');
-        document.getElementById('chatInput').focus();
-    } else {
-        container.classList.remove('active');
-    }
+  const panel = document.getElementById('chatbotPanel');
+  if (!panel) {
+    console.error('Chatbot panel not found');
+    return;
+  }
+  
+  chatOpen = !chatOpen;
+  
+  if (chatOpen) {
+    panel.classList.add('open');
+    setTimeout(() => {
+			
+											 
+	 
+ 
+
+						
+						  
+      const input = document.getElementById('chatInput');
+      if (input) input.focus();
+    }, 300);
+  } else {
+    panel.classList.remove('open');
+								
+								
+					  
+  }
 }
 
-// Send quick suggestion
-function sendQuick(text) {
-    document.getElementById('chatInput').value = text;
-    sendMessage();
-}
-
-// Handle enter key
-function handleKeyPress(event) {
-    if (event.key === 'Enter') {
-        sendMessage();
-    }
-}
-
-// Add message to chat
+// Add message to chat - FIXED VERSION
 function addMessage(text, isUser = false) {
-    const messagesDiv = document.getElementById('chatMessages');
-    const time = new Date().toLocaleTimeString('en-US', { 
-        hour: 'numeric', 
-        minute: '2-digit',
-        hour12: true 
-    });
-    
-    const messageHTML = `
-        <div class="message ${isUser ? 'user' : 'bot'}">
-            <div class="message-bubble">${text}</div>
-            <span class="message-time">${time}</span>
-        </div>
-    `;
-    
-    messagesDiv.insertAdjacentHTML('beforeend', messageHTML);
-    messagesDiv.scrollTop = messagesDiv.scrollHeight;
-    
-    messageHistory.push({ text, isUser, time });
+  const messagesDiv = document.getElementById('chatbotMessages');
+  if (!messagesDiv) {
+    console.error('Chatbot messages container not found');
+    return;
+  }
+  
+  const messageDiv = document.createElement('div');
+						 
+  messageDiv.className = `chat-message ${isUser ? 'user' : ''}`;
+  
+  // Format bold text and links
+  let formatted = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+  formatted = formatted.replace(/\n/g, '<br>');
+  // Convert URLs to links
+  formatted = formatted.replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank">$1</a>');
+  
+  messageDiv.innerHTML = `<div class="chat-message-bubble">${formatted}</div>`;
+  messagesDiv.appendChild(messageDiv);
+	  
+	
+															 
+  messagesDiv.scrollTop = messagesDiv.scrollHeight;
+  
+  messageHistory.push({ text, isUser, timestamp: new Date() });
 }
 
 // Show typing indicator
 function showTyping() {
-    const messagesDiv = document.getElementById('chatMessages');
-    const typingHTML = `
-        <div class="message bot typing" id="typingIndicator">
-            <div class="typing-indicator">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    `;
-    messagesDiv.insertAdjacentHTML('beforeend', typingHTML);
-    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+  const messagesDiv = document.getElementById('chatbotMessages');
+  if (!messagesDiv) return;
+  
+  const loadingDiv = document.createElement('div');
+  loadingDiv.className = 'chat-message loading';
+  loadingDiv.id = 'typingIndicator';
+  loadingDiv.innerHTML = '<div class="chat-message-bubble"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>';
+				  
+			  
+	  
+  messagesDiv.appendChild(loadingDiv);
+  messagesDiv.scrollTop = messagesDiv.scrollHeight;
 }
 
 // Hide typing indicator
 function hideTyping() {
-    const typing = document.getElementById('typingIndicator');
-    if (typing) typing.remove();
+  const typing = document.getElementById('typingIndicator');
+  if (typing) typing.remove();
 }
 
-// Generate bot response
+// Get all skills from profile
+function getAllSkills() {
+  if (!profileData || !profileData.skills) return [];
+  
+  const allSkills = [];
+  Object.values(profileData.skills).forEach(skillArray => {
+    allSkills.push(...skillArray);
+  });
+  return allSkills;
+}
+
+// Find projects with specific skill
+function findProjectsWithSkill(skill) {
+  if (!profileData || !profileData.projects) return [];
+  
+  const skillLower = skill.toLowerCase();
+  return profileData.projects.filter(project => {
+    return project.skills && project.skills.some(s => s.toLowerCase().includes(skillLower));
+  });
+}
+
+// Get experience by year/period
+function getExperienceByPeriod(year) {
+  if (!profileData || !profileData.experience) return null;
+  
+  for (const exp of profileData.experience) {
+    const periodMatch = exp.period.match(/(\d{4})/);
+    if (periodMatch && parseInt(periodMatch[1]) <= parseInt(year)) {
+      return exp;
+    }
+  }
+  return null;
+}
+
+// Job matching function - ATS STYLE
+function assessJobFit(jobDescription) {
+  const jobLower = jobDescription.toLowerCase();
+  const allSkills = getAllSkills();
+  let matchedCount = 0;
+  let totalKeywords = 0;
+  const matchedSkills = [];
+  const missingSkills = [];
+  
+  // Comprehensive skill keywords from your experience
+  const skillKeywords = [
+    // AI/ML
+    'python', 'java', 'javascript', 'sql', 'react', 'node', 'aws', 'azure',
+    'product management', 'agile', 'scrum', 'api', 'machine learning', 'ai',
+    'figma', 'data analysis', 'cloud', 'devops', 'docker', 'kubernetes',
+    'llm', 'prompt engineering', 'generative ai', 'nlp', 'computer vision',
+    'tensorflow', 'pytorch', 'openai', 'gemini', 'model evaluation',
+    // Product Management
+    'roadmap', 'prd', 'user stories', 'jira', 'confluence', 'stakeholder',
+    'backlog', 'sprint', 'waterfall', 'change management', 'milestone',
+    // Data & Analytics
+    'power bi', 'tableau', 'data visualization', 'etl', 'analytics',
+    'dashboard', 'predictive analytics', 'forecasting', 'statistics',
+    // UX Design
+    'wireframing', 'prototyping', 'usability testing', 'user research',
+    'information architecture', 'adobe', 'sketch', 'design thinking',
+    // Engineering
+    'c#', '.net', 'asp.net', 'restful', 'system architecture', 'html5',
+    'css', 'typescript', 'node.js', 'microservices',
+    // Cloud & DevOps
+    'ci/cd', 'graphql', 'containerization', 'infrastructure',
+    // Business Skills
+    'strategic planning', 'network optimization', 'market analysis',
+    'business intelligence', 'data quality', 'scalability', 'workflow'
+  ];
+  
+  skillKeywords.forEach(keyword => {
+    if (jobLower.includes(keyword)) {
+      totalKeywords++;
+      if (allSkills.some(s => s.toLowerCase().includes(keyword))) {
+        matchedCount++;
+        matchedSkills.push(keyword);
+      } else {
+        missingSkills.push(keyword);
+      }
+    }
+  });
+  
+  if (totalKeywords === 0) {
+    return "Paste a job description with responsibilities and requirements for ATS match analysis!";
+  }
+  
+  const matchPercentage = Math.round((matchedCount / totalKeywords) * 100);
+  
+  let response = `**ATS Match Score: ${matchPercentage}%**\n\n`;
+  
+  if (matchPercentage >= 80) {
+    response += `✅ **Strong match!** I have direct experience with: ${matchedSkills.slice(0, 6).join(', ')}\.\n\n`;
+    response += `**Proof from my work**:\n`;
+    response += `- ZKTeco (2023-2024): Led global B2B SaaS across 4 countries (Nigeria, China, Mexico, India)\n`;
+    response += `- ScanItKnowIt (Present): Built with Agentic AI at $0 cost\n`;
+    response += `- Data Foundry (2023): Healthcare AI platform with Power BI dashboards\n`;
+    response += `- Cybage (2022): .NET, SQL Server, data analytics\n\n`;
+    response += `See detailed projects: <a href="work.html">View work →</a>`;
+  } else if (matchPercentage >= 60) {
+    response += `✓ **Good match**. Verified skills: ${matchedSkills.join(', ')}\.\n\n`;
+    response += `**Where I used these**:\n`;
+    if (matchedSkills.some(s => s.includes('python') || s.includes('sql') || s.includes('.net') || s.includes('data'))) {
+      response += `- Cybage (2022): .NET, C#, Python, SQL Server development\n`;
+    }
+	
+			  
+    if (matchedSkills.some(s => s.includes('figma') || s.includes('design') || s.includes('ux') || s.includes('dashboard'))) {
+      response += `- Data Foundry (2023): UX design with Figma, Power BI dashboards\n`;
+    }
+	
+				 
+    if (matchedSkills.some(s => s.includes('product') || s.includes('agile') || s.includes('scrum') || s.includes('strategic'))) {
+      response += `- ZKTeco (2023-2024): Product management, Agile/Scrum, strategic planning\n`;
+    }
+	
+			   
+    if (matchedSkills.some(s => s.includes('aws') || s.includes('cloud') || s.includes('react'))) {
+      response += `- ZKTeco (2023-2024): AWS, React, BioTime Cloud deployment\n`;
+    }
+    if (matchedSkills.some(s => s.includes('tableau') || s.includes('visualization') || s.includes('analytics'))) {
+      response += `- IIIT Bangalore (2021-2024): Tableau, data visualization, predictive analytics\n`;
+    }
+    if (missingSkills.length > 0) {
+      response += `\nGap: ${missingSkills.slice(0, 5).join(', ')}. Not my core expertise.`;
+    }
+  } else {
+    response += `⚠️ **Limited match**. Missing: ${missingSkills.slice(0, 8).join(', ')}\.\n\n`;
+    response += `**My actual expertise**:\n`;
+    response += `- AI Product Management (ScanItKnowIt, BioTime Cloud)\n`;
+    response += `- UX Design & Data Visualization (Data Foundry, Cybage)\n`;
+    response += `- Full product lifecycle (ZKTeco, NTT Data)\n`;
+    response += `- Not specialized in GIS/geospatial analytics or ArcGIS platforms.`;
+  }
+  
+  response += `\n\n📧 Contact: chandanashree97@gmail.com | 📍 Omaha, NE (Open to Remote)`;
+  
+  return response;
+}
+
+// Generate bot response - DATA-DRIVEN approach
 function generateResponse(userMessage) {
-    const msg = userMessage.toLowerCase();
-    
-    // Job matching
-    if (msg.includes('match') || msg.includes('fit') || msg.includes('role') || msg.includes('job')) {
-        return assessJobFit(msg);
+  const msg = userMessage.toLowerCase().trim();
+  
+  // === BASIC INFO ===
+  if (msg.match(/full.*name|what.*name|your.*name/)) {
+    return profileData.profile.fullName;
+  }
+  
+  // === AGE ===
+  if (msg.match(/age|how old/)) {
+    if (profileData.profile.age) {
+      return `${profileData.profile.age} years old`;
+					   
+	
+																  
+									
+										 
+							 
+		 
     }
-    
-    // Skills
-    if (msg.includes('skill') || msg.includes('expertise') || msg.includes('good at')) {
-        return `My top skills include:<br><br>• ${JOB_MATCHING_DATA.skills.slice(0, 5).join('<br>• ')}<br><br>Want me to assess fit for a specific role?`;
+    return "Contact the real Chandana for this information.";
+  }
+  
+  // === GENDER ===
+  if (msg.match(/gender|male|female/)) {
+    if (profileData.profile.gender) {
+      return profileData.profile.gender;
     }
-    
-    // Projects
-    if (msg.includes('project') || msg.includes('work') || msg.includes('portfolio')) {
-        return `Key projects:<br><br>${JOB_MATCHING_DATA.keyProjects.map(p => `• <strong>${p.name}</strong> (${p.type}): ${p.outcome}`).join('<br>')}<br><br><a href="work.html">View all projects →</a>`;
+    return "Contact the real Chandana for this information.";
+  }
+  
+  if (msg.match(/years.*experience|experience|how.*long/)) {
+    return `${profileData.profile.yearsOfExperience}+ years`;
+  }
+  
+  if (msg.match(/email|contact|mail|reach/)) {
+    return profileData.profile.email;
+  }
+  
+  if (msg.match(/phone|call|number/)) {
+    return `Phone: ${profileData.profile.phone}`;
+  }
+  
+  if (msg.match(/location|where|based/)) {
+    return profileData.profile.location;
+  }
+  
+  if (msg.match(/linkedin|link.*in/)) {
+    return profileData.profile.linkedIn;
+  }
+  
+  if (msg.match(/title|role/)) {
+    return profileData.profile.title;
+  }
+  
+  // === SKILLS - Dynamic from JSON with Aliases ===
+  // Check if asking about any skill in the data
+  const allSkills = getAllSkills();
+  
+  // Skill aliases map (common variations -> actual skill names)
+  const skillAliases = {
+    'testing': 'QA',
+    'qa': 'QA',
+    'quality assurance': 'QA',
+    'uiux': 'UX Design',
+    'ui ux': 'UX Design',
+    'ui designing': 'UX Design',
+    'ui design': 'UX Design',
+    'ux design': 'UX Design',
+    'user interface': 'UX Design',
+    'user experience': 'UX Design',
+    'wireframing': 'Wireframing & Prototyping',
+    'prototyping': 'Wireframing & Prototyping',
+    'figma': 'Figma',
+    'powerbi': 'Power BI',
+    'power bi': 'Power BI',
+    '.net': '.NET Core',
+    'dotnet': '.NET Core',
+    'dot net': '.NET Core',
+    'machine learning': 'AI/ML',
+    'ai/ml': 'AI/ML',
+    'ml': 'AI/ML',
+    'artificial intelligence': 'AI/ML',
+    'ai': 'AI/ML',
+    'data visualization': 'Data Visualization',
+    'sql': 'SQL',
+    'python': 'Python',
+    'javascript': 'JavaScript',
+    'react': 'React',
+    'node': 'Node.js',
+    'aws': 'AWS',
+    'azure': 'Azure',
+    'agile': 'Agile/Scrum',
+    'scrum': 'Agile/Scrum',
+    'product management': 'Product Management',
+    'productmanager': 'Product Management',
+    'product manager': 'Product Management',
+    'roadmap': 'Roadmap Strategy',
+    'jira': 'Jira',
+    'confluence': 'Confluence',
+    'tableau': 'Tableau',
+    'c#': 'C#',
+    'asp.net': 'ASP.NET',
+    'typescript': 'TypeScript',
+    'docker': 'Docker',
+    'kubernetes': 'Kubernetes'
+  };
+  
+  // Check for aliases first
+  for (const [alias, skillName] of Object.entries(skillAliases)) {
+    if (msg === alias || msg.includes(alias) || msg.match(new RegExp(`\\b${alias}\\b`))) {
+      // Try to find the actual skill in the data
+      const projects = findProjectsWithSkill(skillName);
+      if (projects.length > 0) {
+        // NEVER say "familiar with" - always mention where you used it
+        return `Yes. Used at: ${projects.map(p => `${p.name}${p.company ? ` (${p.company})` : ''}`).join(', ')}. <a href="work.html">See details →</a>`;
+      }
+      // If no projects found, mention company/experience from your timeline
+      return getExperienceWithSkill(skillName);
     }
-    
-    // Contact
-    if (msg.includes('contact') || msg.includes('email') || msg.includes('reach') || msg.includes('connect')) {
-        return provideSafeContact();
+  }
+  
+  // Then check actual skills from JSON
+  for (const skill of allSkills) {
+    const skillLower = skill.toLowerCase();
+    // Match skill name directly (e.g., "python", "power bi", "figma")
+    // Handle both full matches and partial matches for short queries
+    if (msg === skillLower || 
+        msg.match(new RegExp(`\\b${skillLower.replace(/[.?]/g, '\\$&')}\\b`)) || 
+        msg.match(new RegExp(`${skillLower.replace(/[.?]/g, '\\$&')}\\??$`)) ||
+        skillLower.includes(msg) || msg.includes(skillLower)) {
+      const projects = findProjectsWithSkill(skill);
+      if (projects.length > 0) {
+        return `Yes. Used at: ${projects.map(p => `${p.name}${p.company ? ` (${p.company})` : ''}`).join(', ')}. <a href="work.html">See details →</a>`;
+      }
+      return getExperienceWithSkill(skill);
     }
-    
-    // Experience
-    if (msg.includes('experience') || msg.includes('background') || msg.includes('career')) {
-        return `I have ${JOB_MATCHING_DATA.experience[0].years} years in ${JOB_MATCHING_DATA.experience[0].focus}, including ${JOB_MATCHING_DATA.experience[1].focus}.<br><br><a href="experience.html">View full experience →</a>`;
+  }
+  
+  // === PROJECTS ===
+  if (msg.match(/project|work|portfolio/)) {
+    return `${profileData.projects.length} projects. <a href="work.html">View all →</a>`;
+  }
+  
+  // Check for specific project names
+  for (const project of profileData.projects) {
+    const projectName = project.name.toLowerCase();
+    if (msg.includes(projectName.split(' ')[0]) || msg.includes(projectName)) {
+      return `${project.name}: ${project.metrics.join(', ')}. ${project.description || ''}`;
     }
-    
-    // Greeting
-    if (msg.includes('hello') || msg.includes('hi') || msg.includes('hey')) {
-        return `Hello! 👋 I'm Virtual Chandana. I can help with:<br><br>• Job fit assessment<br>• Skills & experience<br>• Project details<br>• Contact information<br><br>What would you like to know?`;
+  }
+  
+  // === EXPERIENCE BY PERIOD ===
+  if (msg.match(/201[0-9]|202[0-4]|what.*doing.*(year|period)/)) {
+    const yearMatch = msg.match(/(201[0-9]|202[0-4])/);
+    if (yearMatch) {
+      const exp = getExperienceByPeriod(yearMatch[1]);
+      if (exp) {
+        return `${exp.role} at ${exp.company}, ${exp.location}`;
+      }
+      return "Check experience page for timeline.";
     }
-    
-    // Default
-    return `I can help with job matching, skills, projects, or contact info. Try asking:<br><br>• "Is my job a match?"<br>• "What are your top skills?"<br>• "Tell me about your projects"<br>• "How can I contact you?"`;
+  }
+  
+  // === COMPANIES ===
+  if (msg.match(/company|work.*for|employer|worked/)) {
+    const companies = profileData.experience.map(e => e.company).join(', ');
+    return `${companies}. <a href="experience.html">Full timeline →</a>`;
+  }
+  
+  // === TARGET ROLES ===
+  if (msg.match(/role|position|job.*title|looking.*for/)) {
+    if (profileData.targetRoles) {
+      return `Target roles: ${profileData.targetRoles.slice(0, 5).join(', ')}. See all on resume.`;
+    }
+    return "Product Manager, AI Product Manager, UX Designer. See resume for full list.";
+  }
+  
+  // === JOB MATCHING (detect long job descriptions) ===
+  if (msg.length > 200 && (msg.includes('responsibility') || msg.includes('requirement') || 
+      msg.includes('experience') || msg.includes('skill') || msg.includes('role') ||
+      msg.includes('analyst') || msg.includes('engineer') || msg.includes('manager') ||
+      msg.includes('developer') || msg.includes('designer') || msg.includes('product') ||
+      msg.includes('data') || msg.includes('GIS') || msg.includes('geospatial'))) {
+    return assessJobFit(msg);
+  }
+  
+  if (msg.match(/fit.*role|match.*job|suitable|good fit/)) {
+    if (msg.length > 100) {
+      // Likely a job description
+      return assessJobFit(msg);
+    }
+    return "Paste job description with responsibilities and requirements for ATS match %!";
+  }
+  
+  // === GREETINGS ===
+  if (msg.match(/^hi|hello|hey|greetings/)) {
+    return `Hi! I'm Virtual ${profileData.profile.fullName.split(' ')[0]}. Ask about my experience, skills, or projects!`;
+  }
+  
+  // === THANKS ===
+  if (msg.match(/thank|thanks/)) {
+    return "You're welcome!";
+  }
+  
+  if (msg.match(/bye|goodbye/)) {
+    return `Bye! Contact: ${profileData.profile.email}`;
+  }
+  
+  // === GENERAL KNOWLEDGE / OFF-TOPIC QUESTIONS ===
+  if (msg.match(/weather|news|time|date|capital|president|who.*is|what.*is|how.*to.*make|recipe|sports|movie|music/)) {
+    return "I only have information about Chandana (work experience, skills, projects, and basic details). I can't answer general questions.";
+  }
+  
+  // === DEFAULT FALLBACK with examples ===
+  if (msg.match(/\?$/)) {
+    return `Ask about: name, experience (${profileData.profile.yearsOfExperience}+ years), skills (${allSkills.slice(0, 5).join(', ')}...), projects (${profileData.projects.length} total), companies, or paste job description for match %!`;
+  }
+  
+  return "Ask: name, experience, skills, projects, companies, or paste job description for match %!";
 }
 
-// Assess job fit
-function assessJobFit(msg) {
-    // Extract role info from message
-    const roleKeywords = {
-        'ai': ['AI Product Manager', 'Agentic AI', 'Machine Learning'],
-        'product': ['Product Manager', 'Product Lead'],
-        'senior': ['Senior Product Manager', 'Lead'],
-        'healthcare': ['Healthcare AI', 'Medical'],
-        'saas': ['B2B SaaS', 'Enterprise SaaS'],
-        'iot': ['IoT', 'Connected Devices']
-    };
-    
-    let matchedSkills = [];
-    let matchScore = 0;
-    
-    for (const [keyword, roles] of Object.entries(roleKeywords)) {
-        if (msg.includes(keyword)) {
-            matchedSkills.push(...roles);
-            matchScore += 25;
-        }
-    }
-    
-    if (matchScore === 0) {
-        return `I can assess job fit! Tell me more about the role:<br><br>• What's the title?<br>• What industry?<br>• Required skills?<br><br>Or check my <a href="work.html">projects</a> and <a href="experience.html">experience</a>.`;
-    }
-    
-    matchScore = Math.min(matchScore, 100);
-    
-    let response = `<strong>Job Fit Assessment</strong><br><br>`;
-    response += `Match Score: <strong>${matchScore}%</strong><br><br>`;
-    
-    if (matchScore >= 75) {
-        response += `🎯 <strong>Strong match!</strong> This role aligns well with my experience in:<br>• ${matchedSkills.slice(0, 3).join('<br>• ')}<br><br>`;
-        response += `<a href="resume.pdf" download>Download my resume</a> or <a href="#" onclick="sendQuick('Contact details'); return false;">get contact info</a>.`;
-    } else if (matchScore >= 50) {
-        response += `✓ <strong>Good potential match.</strong> I have relevant skills in:<br>• ${matchedSkills.slice(0, 2).join('<br>• ')}<br><br>Let's discuss further!`;
-    } else {
-        response += `I'd love to learn more about this role. My background is in AI Product Management, B2B SaaS, and Healthcare.<br><br>Want to see my <a href="work.html">projects</a>?`;
-    }
-    
-    return response;
+// Helper function to get experience with a specific skill
+function getExperienceWithSkill(skill) {
+  // Map skills to specific companies/experiences based on your detailed timeline
+  const skillExperienceMap = {
+    'QA': 'Cybage (2022): Proactive system monitors, .NET, C#, SQL Server',
+    'UX Design': 'Data Foundry (2023): Healthcare AI UX; Cybage (2022): UI/UX Designer',
+    'Figma': 'Data Foundry (2023), ScanItKnowIt (Present), ZKTeco (2023-2024)',
+    'Power BI': 'ZKTeco (2023-2024): Executive dashboards, product analytics',
+    '.NET Core': 'Cybage (2022): Enterprise CPQ platform maintenance',
+    'AI/ML': 'ScanItKnowIt (Present): Gemini API; Data Foundry (2023): Healthcare AI',
+    'SQL': 'Cybage (2022): Database design; IIIT Bangalore (2021-2024)',
+    'Python': 'Cybage (2022); IIIT Bangalore (2021-2024); ScanItKnowIt (Present)',
+    'Agile/Scrum': 'ZKTeco (2023-2024); Cybage (2022)',
+    'AWS': 'ZKTeco (2023-2024): BioTime Cloud deployment across 4 countries',
+    'React': 'ZKTeco (2023-2024): Super Admin Dashboard',
+    'Node.js': 'ZKTeco (2023-2024): API modernization',
+    'TypeScript': 'ZKTeco (2023-2024): BioTime Cloud web & mobile',
+    'C#': 'Cybage (2022): Enterprise CPQ solutions',
+    'ASP.NET': 'Cybage (2022): Web application frameworks',
+    'Tableau': 'IIIT Bangalore (2021-2024): Data visualization projects',
+    'TensorFlow': 'IIIT Bangalore (2021-2024): ML coursework',
+    'PyTorch': 'IIIT Bangalore (2021-2024): Deep learning',
+    'Docker': 'IIIT Bangalore (2021-2024): Containerization',
+    'Kubernetes': 'IIIT Bangalore (2021-2024): Orchestration',
+    'Wireframing': 'Data Foundry (2023); Cybage (2022); ScanItKnowIt (Present)',
+    'Prototyping': 'Data Foundry (2023); ScanItKnowIt (Present)',
+    'User Research': 'Data Foundry (2023); ScanItKnowIt (Present)',
+    'Jira': 'ZKTeco (2023-2024); Cybage (2022)',
+    'Confluence': 'ZKTeco (2023-2024); Cybage (2022)',
+    'Product Management': 'ZKTeco (2023-2024): Global B2B SaaS; ScanItKnowIt (Present)',
+    'Roadmap Strategy': 'ZKTeco (2023-2024): 4-country product strategy',
+    'Stakeholder Management': 'ZKTeco (2023-2024): Cross-functional leadership',
+    'Data Visualization': 'ZKTeco (2023-2024); Data Foundry (2023)',
+    'Computer Vision': 'ScanItKnowIt (Present): Core scanning technology',
+    'LLM Prompt Engineering': 'ScanItKnowIt (Present): Gemini API integration',
+    'Agentic AI': 'ScanItKnowIt (Present): Autonomous AI system',
+    'Gemini API': 'ScanItKnowIt (Present): $0 cost deployment',
+    'Mobile-First Design': 'ScanItKnowIt (Present); NTT Data (2019-2022): Wyndham Hotels app',
+    'Healthcare AI': 'Data Foundry (2023): DF Safety pharmacovigilance',
+    'E2B Compliance': 'Data Foundry (2023): Regulatory compliance',
+    'IoT': 'ZKTeco (2023-2024): ZKDigimax-ESL retail solution',
+    'NFC/QR Scanning': 'ZKTeco (2023-2024): ESL integration',
+    'B2B SaaS': 'ZKTeco (2023-2024): BioTime Cloud 10K+ users',
+    'Global Product Strategy': 'ZKTeco (2023-2024): Nigeria, China, Mexico, India',
+    'API Modernization': 'ZKTeco (2023-2024): +5% performance improvement',
+    'Super Admin Dashboard': 'ZKTeco (2023-2024): +10% exec confidence',
+    'Time & Attendance': 'ZKTeco (2023-2024): User flow optimization',
+    'Pharmacovigilance': 'Data Foundry (2023): AI-powered safety platform',
+    'Medical Billing UX': 'NTT Data (2019-2022): Tenet Healthcare',
+    'Hotel Booking': 'NTT Data (2019-2022): Wyndham Hotels +5% engagement',
+    'B2B Financial Dashboards': 'NTT Data (2019-2022): Franchisee portal'
+  };
+  
+  const experience = skillExperienceMap[skill] || skillExperienceMap['UX Design'];
+  return `Yes. ${experience}.`;
 }
 
-// Provide safe contact info
-function provideSafeContact() {
-    return `<strong>Contact Information</strong><br><br>
-        📧 ${CONTACT_INFO.email}<br>
-        💼 ${CONTACT_INFO.linkedin}<br>
-        📍 ${CONTACT_INFO.location}<br>
-        🟢 Available: ${CONTACT_INFO.availability}<br><br>
-        <a href="resume.pdf" download class="btn btn-primary" style="display:inline-block;padding:8px 16px;font-size:13px;">Download Resume</a>`;
-}
-
-// Send message
+// Send message - FIXED VERSION
 function sendMessage() {
-    const input = document.getElementById('chatInput');
-    const message = input.value.trim();
-    
-    if (!message) return;
-    
-    // Add user message
-    addMessage(message, true);
-    input.value = '';
-    
-    // Show typing indicator
-    showTyping();
-    
-    // Generate response after delay
-    setTimeout(() => {
-        hideTyping();
-        const response = generateResponse(message);
-        addMessage(response);
-    }, 800 + Math.random() * 400);
+  const input = document.getElementById('chatInput');
+  if (!input) {
+    console.error('Chat input not found');
+    return;
+  }
+  
+  const message = input.value.trim();
+	
+  if (!message) return;
+  
+  // Add user message
+  addMessage(message, true);
+  input.value = '';
+  
+  // Show typing indicator
+  showTyping();
+  
+  // Generate response after delay
+  setTimeout(() => {
+    hideTyping();
+    const response = generateResponse(message);
+    addMessage(response);
+  }, 600);
 }
 
-// Close chat when clicking outside
-document.addEventListener('click', function(e) {
-    const widget = document.getElementById('chatWidget');
-    if (chatOpen && widget && !widget.contains(e.target)) {
-        toggleChat();
+// Initialize chatbot event listeners
+document.addEventListener('DOMContentLoaded', function() {
+  const chatSend = document.getElementById('chatSend');
+  const chatInput = document.getElementById('chatInput');
+  
+  if (chatSend && chatInput) {
+    chatSend.addEventListener('click', sendMessage);
+    chatInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') sendMessage();
+    });
+  }
+  
+  // Close chat when clicking outside
+  document.addEventListener('click', function(e) {
+    const panel = document.getElementById('chatbotPanel');
+    const fab = document.getElementById('chatbotFab');
+    
+    if (chatOpen && panel && !panel.contains(e.target) && !fab.contains(e.target)) {
+      toggleChat();
     }
+  });
+  
+  console.log('%c🤖 Virtual Chandana chatbot initialized', 'color: #67645e; font-size: 12px;');
 });
 
 // ===== INTERACTIVE GLOBE BACKGROUND =====
@@ -1041,4 +1413,3 @@ document.addEventListener('DOMContentLoaded', function() {
     // Chat is ready
     console.log('%c🤖 Virtual Chandana chatbot loaded', 'color: #67645e; font-size: 12px;');
 });
-
