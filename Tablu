@@ -952,12 +952,12 @@
                 </div>
                 <div class="featured-content">
                   <p class="featured-category">Software Engineer</p>
-				  <p class="featured-category">Hospatality</p>
+				  <p class="featured-category">Hospitality</p>
                   <h3 class="featured-title">Wyndham Hotels & Resorts</h3>
                   <p class="featured-description">>Mobile and web booking application with offline capability, improved staff managment by 10%, improving guest booking rate by 5% and reducing support tickets by 10%.</p>
                   <div class="featured-metrics">
                     <span class="tag">📱 Mobile-first</span>
-                    <span class="tag">📈 5% staff managment</span>
+                    <span class="tag">📈 10% staff managment</span>
                     <span class="tag">🎫 10% fewer tickets</span>
                   </div>
                   <a href="projects/wyndham-hotels.html" class="featured-link">View Case Study</a>
@@ -1016,7 +1016,7 @@
 				  <p class="featured-category">Product Manager & AI Specialist</p>
 				  <p class="featured-category">AI Enterprise</p>
                   <h3 class="featured-title">Budget Management</h3>
-                  <p class="featured-description">AI finance platform with 60% AI-generated code. 10% user spending reduction, 68% retention.</p>
+                  <p class="featured-description">AI finance platform with 70% AI-generated code. 10% user spending reduction, 68% retention.</p>
                   <div class="featured-metrics">
 					<span class="tag">🤖 70% AI code</span>
                     <span class="tag">📉 40% savings</span>
@@ -1063,13 +1063,13 @@
           <div class="skill-card">
             <div class="skill-icon">🤖</div>
             <h4 class="skill-name">AI/ML</h4>
-            <p class="skill-level">Agentic AI, AI Training, OpenAI, LLM & Prompt Engineering, Natural Language Processing, Computer Vision, LLM Orchestration</p>
+            <p class="skill-level">Agentic AI, Model Evaluation, LLM Fine-Tuning, OpenAI, LLM & Prompt Engineering, Natural Language Processing, Computer Vision, LLM Orchestration</p>
           </div>
           
           <div class="skill-card">
             <div class="skill-icon">☁️</div>
             <h4 class="skill-name">Data Science</h4>
-            <p class="skill-level">PowerBI, ETL, Tablu, data visualization, business intelligence, statistical analysis</p>
+            <p class="skill-level">PowerBI, ETL, Tableau, data visualization, business intelligence, statistical analysis</p>
           </div>
           
           <div class="skill-card">
