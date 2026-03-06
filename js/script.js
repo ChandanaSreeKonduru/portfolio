@@ -1041,3 +1041,4 @@ document.addEventListener('DOMContentLoaded', function() {
     // Chat is ready
     console.log('%c🤖 Virtual Chandana chatbot loaded', 'color: #67645e; font-size: 12px;');
 });
+
