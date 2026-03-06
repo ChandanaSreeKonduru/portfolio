@@ -1,0 +1,2142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chandana Konduru — AI Product Manager</title>
+  <meta name="description" content="AI Product Manager crafting intelligent products that scale. 5+ years across B2B SaaS, IoT, and Healthcare AI.">
+  
+  <!-- Theme detection - prevents flash -->
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const theme = savedTheme || (prefersDark ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="referal/Kimi_Agent_响应式导航设计/styles.css">
+  <style>
+    /* Homepage Specific Styles */
+    .hero {
+      min-height: calc(100vh - 70px);
+      display: flex;
+      align-items: center;
+      padding: 4rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    /* Override container alignment for left-aligned UX */
+    .container {
+      margin-left: 0;
+      margin-right: 0;
+      max-width: 100%;
+    }
+    
+    /* Override section title alignment */
+    .section-title,
+    .section-subtitle {
+      text-align: left !important;
+      margin-left: 0 !important;
+    }
+    
+    /* Hero Background Image with Rhode Skin Aesthetic */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at center, rgba(212, 165, 116, 0.08) 0%, transparent 70%);
+      z-index: 0;
+    }
+    
+    /* Interactive Globe Container */
+    .globe-container {
+      position: absolute;
+      top: 50%;
+      right: -15%;  /* Move further right */
+      transform: translateY(-50%);
+      width: 800px;  /* Increased from 600px */
+      height: 800px; /* Increased from 600px */
+      z-index: 0;
+      opacity: 0.5;  /* Slightly more transparent */
+      pointer-events: auto; /* Enable interaction */
+    }
+    
+    #globeCanvas {
+      width: 100%;
+      height: 100%;
+      cursor: grab;
+    }
+    
+    #globeCanvas:active {
+      cursor: grabbing;
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 1; /* Ensure content is above background */
+      max-width: 700px; /* Reduced from 800px to move content left */
+      margin-right: auto; /* Push content to left */
+      text-align: left; /* Align text to left */
+    }
+    
+    .hero-micro {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 1.5rem;
+    }
+    
+    .hero-title {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 600;
+      line-height: 1.1;
+      color: var(--text-primary);
+      margin-bottom: 1.5rem;
+    }
+    
+    .hero-title span {
+      color: var(--accent);
+    }
+    
+    .hero-description {
+      font-size: 1.25rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+    .hero-human {
+      font-size: 0.95rem;     /* Smaller than description */
+      color: var(--text-secondary);
+      opacity: 0.8;
+      margin-bottom: 2rem;    /* Space before the tags */
+      font-style: italic;
+    }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 14px;
+      border: 1.5px solid rgba(0, 0, 0, 0.1); /* Subtle border */
+      border-radius: 100px;                  /* Perfect rounded corners */
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      background: transparent;
+      transition: all 0.2s ease;
+    }
+    
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    
+    /* Featured Projects - Multi-item Carousel */
+    .featured-section {
+      padding: 6rem 2rem;
+      background: var(--bg-secondary);
+      overflow: hidden;
+    }
+    
+    .featured-header {
+      display: flex;
+      justify-content: flex-start; /* Align to left */
+      align-items: flex-start; /* Align items to top-left */
+      margin-bottom: 2.5rem;
+      max-width: var(--container-max);
+      margin-left: 0; /* Remove auto margin - align left */
+      margin-right: auto;
+      gap: 2rem; /* Space between title and controls */
+    }
+    
+    .carousel-controls {
+      display: flex;
+      gap: 0.75rem;
+      flex-shrink: 0; /* Prevent shrinking */
+    }
+    
+    .carousel-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-primary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.125rem;
+      transition: all var(--transition-fast);
+    }
+    
+    .carousel-btn:hover {
+      border-color: var(--text-primary);
+      background: var(--text-primary);
+      color: var(--bg-secondary);
+    }
+    
+    .carousel-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+    
+    .carousel-container {
+      position: relative;
+      max-width: var(--container-max);
+      margin: 0 auto;
+    }
+    
+    .carousel-wrapper {
+      overflow: hidden;
+      margin: 0 -1rem;
+    }
+    
+    .carousel-track {
+      display: flex;
+      transition: transform var(--transition-slow);
+      padding: 0.5rem 1rem;
+    }
+    
+    .carousel-item {
+      flex: 0 0 calc(33.333% - 1.333rem);
+      margin-right: 2rem;
+      min-width: 300px;
+    }
+    
+    .carousel-item:last-child {
+      margin-right: 0;
+    }
+    
+    .featured-card {
+      background: var(--bg-card);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transition: all var(--transition-base);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .featured-card:hover {
+      border-color: var(--border-strong);
+      box-shadow: 0 12px 40px var(--shadow-hover);
+      transform: translateY(-6px);
+    }
+    
+    .featured-image {
+      height: 180px;
+      background: var(--bg-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .featured-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top; /* Keep top visible, crop bottom if needed */
+      transition: transform var(--transition-slow);
+    }
+    
+    .featured-card:hover .featured-image img {
+      transform: scale(1.05);
+    }
+    
+    .featured-image::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.03) 100%);
+      z-index: 1;
+      pointer-events: none;
+    }
+    
+    .featured-content {
+      padding: 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .featured-category {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.5rem;
+    }
+    
+    .featured-title {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+    }
+    
+    .featured-description {
+      font-size: 0.9375rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+      flex: 1;
+    }
+    
+    .featured-metrics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.375rem;
+      margin-bottom: 1rem;
+    }
+    
+    .featured-link {
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+      transition: color var(--transition-fast);
+      margin-top: auto;
+    }
+    
+    .featured-link:hover {
+      color: var(--accent);
+    }
+    
+    .featured-link::after {
+      content: '→';
+      transition: transform var(--transition-fast);
+    }
+    
+    .featured-link:hover::after {
+      transform: translateX(4px);
+    }
+    
+    /* Carousel Dots */
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 2rem;
+    }
+    
+    .carousel-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      border: none;
+      background: var(--border-strong);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+    
+    .carousel-dot.active {
+      background: var(--text-primary);
+      width: 24px;
+      border-radius: 4px;
+    }
+    
+    /* Skills Section */
+    .skills-section {
+      padding: 6rem 2rem;
+    }
+    
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+    
+    .skill-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      text-align: center;
+      transition: all var(--transition-base);
+    }
+    
+    .skill-card:hover {
+      border-color: var(--border-strong);
+      transform: translateY(-4px);
+    }
+    
+    .skill-icon {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 1rem;
+      background: var(--bg-primary);
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+    
+    .skill-name {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.25rem;
+    }
+    
+    .skill-level {
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+    }
+    
+    /* Trust Bar */
+    .trust-section {
+      padding: 4rem 2rem;
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .trust-label {
+      text-align: center;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    
+    .trust-logos {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+    
+    .trust-logo {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      opacity: 0.6;
+      transition: opacity var(--transition-fast);
+    }
+    
+    .trust-logo:hover {
+      opacity: 1;
+    }
+    
+    /* CTA Section */
+    .cta-section {
+      padding: 6rem 2rem;
+      text-align: center;
+    }
+    
+    .cta-title {
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+    }
+    
+    .cta-description {
+      font-size: 1.125rem;
+      color: var(--text-secondary);
+      max-width: 500px;
+      margin: 0 auto 2rem;
+    }
+    
+    /* Responsive */
+    @media (max-width: 1100px) {
+      .carousel-item {
+        flex: 0 0 calc(50% - 1rem);
+      }
+    }
+    
+    @media (max-width: 900px) {
+      .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .carousel-item {
+        flex: 0 0 calc(100% - 0rem);
+        margin-right: 1.5rem;
+      }
+      
+      /* Globe responsive */
+      .globe-container {
+        right: -25%;
+        opacity: 0.35;
+        width: 500px;
+        height: 500px;
+      }
+      
+      .hero-content {
+        max-width: 100%;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .hero {
+        padding: 3rem 1rem;
+      }
+      
+      .hero-actions {
+        flex-direction: column;
+      }
+      
+      .hero-actions .btn {
+        width: 100%;
+        justify-content: center;
+      }
+      
+      .featured-header {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+      }
+      
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .trust-logos {
+        gap: 1.5rem;
+      }
+      
+      .cta-title {
+        font-size: 1.75rem;
+      }
+      
+      .carousel-item {
+        min-width: 260px;
+      }
+    }
+    
+    /* ===== CHATBOT STYLES ===== */
+        /* ===== CHATBOT STYLES - CLEANED ===== */
+    .chatbot-fab {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(196, 148, 100, 0.3);
+      transition: all var(--transition-fast);
+      padding: 0;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+    
+    .chatbot-fab:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 24px rgba(196, 148, 100, 0.4);
+    }
+    
+    .chatbot-fab img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+    
+    .chatbot-panel {
+      position: fixed;
+      bottom: 6rem;
+      right: 2rem;
+      width: 380px;
+      max-height: 500px;
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(20px) scale(0.95);
+      pointer-events: none;
+      transition: all var(--transition-base);
+      z-index: 999;
+      border: 1px solid var(--border);
+    }
+    
+    .chatbot-panel.open {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+    }
+    
+    .chatbot-header {
+      padding: 1.25rem;
+      background: var(--bg-secondary);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    
+    .chatbot-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+      border: 2px solid var(--accent);
+    }
+    
+    .chatbot-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .chatbot-info h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin: 0;
+    }
+    
+    .chatbot-info p {
+      font-size: 0.8125rem;
+      color: var(--text-secondary);
+      margin: 0.25rem 0 0;
+    }
+    
+    .chatbot-messages {
+      flex: 1;
+      padding: 1rem;
+      overflow-y: auto;
+      max-height: 340px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    
+    .chat-message {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      max-width: 85%;
+      animation: fadeIn 0.3s ease;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .chat-message.user {
+      align-self: flex-end;
+      flex-direction: row-reverse;
+    }
+    
+    .chat-message-bubble {
+      padding: 0.75rem 1rem;
+      border-radius: 1rem;
+      font-size: 0.9375rem;
+      line-height: 1.5;
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+      word-wrap: break-word;
+    }
+    
+    .chat-message.user .chat-message-bubble {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+      border-bottom-right-radius: 0.25rem;
+    }
+        .chat-message-bubble strong {
+      font-weight: 600;
+      color: var(--accent);
+    }
+    
+    .chat-message.user .chat-message-bubble strong {
+      color: white;
+    }
+    
+    /* ATS Score styling */
+    .chat-message-bubble {
+      white-space: pre-line;
+      line-height: 1.6;
+    }
+    .chat-message:not(.user) .chat-message-bubble {
+      border-bottom-left-radius: 0.25rem;
+    }
+    
+    .chatbot-input {
+      padding: 1rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      gap: 0.5rem;
+      background: var(--bg-card);
+    }
+    
+    .chatbot-input input {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 2rem;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      font-size: 0.9375rem;
+      outline: none;
+      font-family: inherit;
+    }
+    
+    .chatbot-input input:focus {
+      border-color: var(--accent);
+    }
+    
+    .chatbot-input button {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: white;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+    
+    .chatbot-input button:hover {
+      background: var(--text-primary);
+      transform: scale(1.05);
+    }
+    
+    /* Loading indicator */
+    .chat-message.loading .chat-message-bubble {
+      display: flex;
+      gap: 4px;
+      padding: 1rem 1.25rem;
+      background: var(--bg-secondary);
+    }
+    
+    .chat-message.loading .dot {
+      width: 8px;
+      height: 8px;
+      background: var(--text-muted);
+      border-radius: 50%;
+      animation: bounce 1.4s infinite ease-in-out both;
+    }
+    
+    .chat-message.loading .dot:nth-child(1) { animation-delay: -0.32s; }
+    .chat-message.loading .dot:nth-child(2) { animation-delay: -0.16s; }
+    
+    @keyframes bounce {
+      0%, 80%, 100% { transform: scale(0); }
+      40% { transform: scale(1); }
+    }
+    
+    /* Mobile responsiveness */
+    @media (max-width: 480px) {
+      .chatbot-panel {
+        right: 1rem;
+        left: 1rem;
+        width: auto;
+        bottom: 5rem;
+      }
+      
+      .chatbot-fab {
+        right: 1rem;
+        bottom: 1rem;
+        width: 56px;
+        height: 56px;
+      }
+    }
+    /* Loading indicator */
+    .chat-message.loading .chat-message-bubble {
+      display: flex;
+      gap: 4px;
+      padding: 1rem 1.25rem;
+    }
+    
+    .chat-message.loading .dot {
+      width: 8px;
+      height: 8px;
+      background: var(--text-muted);
+      border-radius: 50%;
+      animation: bounce 1.4s infinite ease-in-out both;
+    }
+    
+    .chat-message.loading .dot:nth-child(1) { animation-delay: -0.32s; }
+    .chat-message.loading .dot:nth-child(2) { animation-delay: -0.16s; }
+    
+    @keyframes bounce {
+      0%, 80%, 100% { transform: scale(0); }
+      40% { transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">Chandana<span>.</span></a>
+      
+      <nav class="nav-main" id="navMain">
+        <a href="work.html" class="nav-link">Work</a>
+        <a href="experience.html" class="nav-link">Experience</a>
+        <a href="about.html" class="nav-link">About</a>
+      </nav>
+      
+      <div class="header-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <span id="themeIcon">🌙</span>
+        </button>
+		<a href="resume.pdf" class="btn btn-primary btn-sm" download>Resume</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <p class="hero-micro">AI Product Manager & Global Product Strategist</p>
+          <h1 class="hero-title">
+            Crafting <span>intelligent products</span> that scale
+          </h1>
+          <p class="hero-description">
+            I bridge the gap between cutting-edge AI technology and human-centered design, 
+            building products that solve real problems and drive measurable business impact. 6+ years shipping B2B SaaS, IoT, and healthcare AI across USA, India, and UK.
+          </p>
+          <p class="hero-human">
+            When I'm not orchestrating AI roadmaps, I'm building community-led no-code tools for my neighbors in Omaha.
+        </p>
+          <div class="hero-actions">
+            <a href="work.html" class="btn btn-primary">View My Work</a>
+            <a href="about.html" class="btn btn-secondary">Learn More</a>
+          </div>
+        </div>
+        
+        <!-- Interactive Globe Background -->
+        <div class="globe-container">
+          <canvas id="globeCanvas"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Projects - Multi-item Carousel -->
+    <section class="featured-section">
+      <div class="featured-header">
+        <div>
+          <h2 class="section-title" style="margin-bottom: 0.25rem;">Featured Projects</h2>
+          <p class="section-subtitle" style="margin-bottom: 0;">A selection of my recent work in AI, cloud, and enterprise products.</p>
+        </div>
+        <div class="carousel-controls">
+          <button class="carousel-btn" id="carouselPrev" aria-label="Previous">←</button>
+          <button class="carousel-btn" id="carouselNext" aria-label="Next">→</button>
+        </div>
+      </div>
+      
+      <div class="carousel-container">
+        <div class="carousel-wrapper">
+          <div class="carousel-track" id="carouselTrack">
+            <!-- Project 1 -->
+            <article class="carousel-item">
+              <div class="featured-card">
+                <div class="featured-image">
+                  <img src="images\Biotime-cloude.jpg" alt="BioTime Cloud 2.0 - B2B SaaS Platform" />
+                </div>
+                <div class="featured-content">
+                  <p class="featured-category">Senior Product Manager — ZKTeco</p>
+                  <p class="featured-category">B2B SaaS Lifecycle Management</p>
+                  <h3 class="featured-title">BioTime Cloud 2.0</h3>
+                  <p class="featured-description">Led 4-country SaaS transformation serving 10,000+ enterprise users. Improved system performance by 5%.</p>
+                  <div class="featured-metrics">
+					<span class="tag">🌐 4 countries</span>
+                    <span class="tag">👥 10K+ users</span>
+                    <span class="tag">📈 +5% perf</span>
+                  </div>
+                  <a href="projects/biotime-cloud.html" class="featured-link">View Case Study</a>
+                </div>
+              </div>
+            </article>
+            
+            <!-- Project 2 -->
+            <article class="carousel-item">
+              <div class="featured-card">
+                <div class="featured-image">
+                  <img src="images/Scan-it-know-it.png" alt="Scan It Know It - AI Product Recognition App" />
+                </div>
+                <div class="featured-content">
+                  <p class="featured-category">Product Manager & AI Architect</p>
+				  <p class="featured-category">Agentic AI</p>
+                  <h3 class="featured-title">Scan It Know It</h3>
+                  <p class="featured-description">AI-powered product recognition app with 92% accuracy using computer vision.</p>
+                  <div class="featured-metrics">
+                    
+                    <span class="tag">⚡ &lt;5s response</span>
+					<span class="tag">⚡ 3 week build</span>
+                    <span class="tag">🎯 92% accuracy</span>
+                    <span class="tag">💰 $0 cost</span>
+                  </div>
+                  <a href="projects/scan-it-know-it.html" class="featured-link">View Case Study</a>
+                </div>
+              </div>
+            </article>
+            
+            <!-- Project 3 -->
+            <article class="carousel-item">
+              <div class="featured-card">
+                <div class="featured-image">
+                  <img src="images/digimax.jpg" alt="ZK Digimax - ESL Digital Signage System" />
+                </div>
+                <div class="featured-content">
+                  <p class="featured-category">Product Manager</p>
+				  <p class="featured-category">IoT</p>
+                  <h3 class="featured-title">ZKDigiMax-ESL</h3>
+                  <p class="featured-description">IoT Electronic Shelf Label solution reducing pricing errors 3%, cutting inventory search time 10%. Cross-functional PM leadership in retail tech.</p>
+                  <div class="featured-metrics">
+                    <span class="tag">📡 IoT hardware</span>
+                    <span class="tag">📉 3% pricing errors</span>
+                    <span class="tag">⏱️ 10% time saved</span>
+                  </div>
+                  <a href="projects/zk-digimax.html" class="featured-link">View Case Study</a>
+                </div>
+              </div>
+            </article>
+            
+            <!-- Project 4 -->
+            <article class="carousel-item">
+              <div class="featured-card">
+                <div class="featured-image">
+                  <img src="images/wyndham_hotel.jpg" alt="Wyndham Hotels & Resorts - Hospitality Management System" />
+                </div>
+                <div class="featured-content">
+                  <p class="featured-category">Software Engineer</p>
+				  <p class="featured-category">Hospatality</p>
+                  <h3 class="featured-title">Wyndham Hotels & Resorts</h3>
+                  <p class="featured-description">>Mobile and web booking application with offline capability, improved staff managment by 10%, improving guest booking rate by 5% and reducing support tickets by 10%.</p>
+                  <div class="featured-metrics">
+                    <span class="tag">📱 Mobile-first</span>
+                    <span class="tag">📈 5% staff managment</span>
+                    <span class="tag">🎫 10% fewer tickets</span>
+                  </div>
+                  <a href="projects/wyndham-hotels.html" class="featured-link">View Case Study</a>
+                </div>
+              </div>
+            </article>
+            
+            <!-- Project 5 -->
+            <article class="carousel-item">
+              <div class="featured-card">
+                <div class="featured-image">
+                  <img src="images/Experlogix_Logo.jpg" alt="Experlogix CPQ - Enterprise Configure Price Quote Platform" />
+                </div>
+                <div class="featured-content">
+                  <p class="featured-category">Senior Product Engineer</p>
+				  <p class="featured-category">Enterprise</p>
+                  <h3 class="featured-title">Experlogix CPQ</h3>
+                  <p class="featured-description">Cloud-based configure-price-quote platform maintenance, C# .NET development, proactive monitoring, and feature engineering.</p>
+                  <div class="featured-metrics">
+                    <span class="tag">☁️ Cloud-native</span>
+                    <span class="tag">💻 C# .NET</span>
+                    <span class="tag">🔄 DevOps</span>
+                  </div>
+                  <a href="projects/experlogix-cpq.html" class="featured-link">View Case Study</a>
+                </div>
+              </div>
+            </article>
+            
+            <!-- Project 6 -->
+            <article class="carousel-item">
+              <div class="featured-card">
+                <div class="featured-image">
+                  <img src="images/df safety.jpg" alt="DF Safety - AI-Powered Pharmacovigilance Platform" />
+                </div>
+                <div class="featured-content">
+                  <p class="featured-category">Product Designer — AI/ML</p>
+				  <p class="featured-category">Healthcare</p>
+                  <h3 class="featured-title">DF Safety</h3>
+                  <p class="featured-description">AI-powered pharmacovigilance platform. Increased AI acceptance from 30% to 85% regulatory compliance.</p>
+                  <div class="featured-metrics">
+                    <span class="tag"> E2B R2/R3</span>
+					<span class="tag">🤖 85% AI adoption</span>
+                    <span class="tag">✓ 100% compliant</span>
+                  </div>
+                  <a href="projects/df-safety.html" class="featured-link">View Case Study</a>
+                </div>
+              </div>
+            </article>
+			<!-- Project 7 -->
+            <article class="carousel-item">
+              <div class="featured-card">
+                <div class="featured-image">
+                  <img src="images/budget managment.jpg" alt="Budget Management - AI Finance Platform" />
+                </div>
+                <div class="featured-content">
+				  <p class="featured-category">Product Manager & AI Specialist</p>
+				  <p class="featured-category">AI Enterprise</p>
+                  <h3 class="featured-title">Budget Management</h3>
+                  <p class="featured-description">AI finance platform with 60% AI-generated code. 10% user spending reduction, 68% retention.</p>
+                  <div class="featured-metrics">
+					<span class="tag">🤖 70% AI code</span>
+                    <span class="tag">📉 40% savings</span>
+                    <span class="tag">📊 68% retention</span>
+                  </div>
+                  <a href="projects/experlogix-cpq.html" class="featured-link">View Case Study</a>
+                </div>
+              </div>
+            </article>
+			<!-- Project 8 -->
+            <article class="carousel-item">
+              <div class="featured-card">
+                <div class="featured-image">
+                  <img src="images/tenet.jpeg" alt="Tenet Healthcare - Medical Billing System" />
+                </div>
+                <div class="featured-content">
+                  <p class="featured-category">Senior Product Engineer</p>
+				  <p class="featured-category">HEALTHCARE</p>
+                  <h3 class="featured-title">Tenet Healthcare</h3>
+                  <p class="featured-description">Simplified medical billing UX, reducing processing time by 10% and improving staff satisfaction scores by 5%.</p>
+                  <div class="featured-metrics">
+					<span class="tag">⏱️ 10% faster</span>
+                    <span class="tag">😊 5% happier</span>
+                    <span class="tag">📋 Streamlined</span>
+                  </div>
+                  <a href="projects/tenet-healthcare.html" class="featured-link">View Case Study</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+        
+        <div class="carousel-dots" id="carouselDots"></div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills-section">
+      <div class="container">
+        <h2 class="section-title" style="text-align: left; margin-bottom: 0.5rem;">Skills & Expertise</h2>
+        <p class="section-subtitle" style="text-align: left; margin: 0 0 2.5rem;">Technologies and methodologies I work with daily</p>
+        
+        <div class="skills-grid">
+          <div class="skill-card">
+            <div class="skill-icon">🤖</div>
+            <h4 class="skill-name">AI/ML</h4>
+            <p class="skill-level">Agentic AI, AI Training, OpenAI, LLM & Prompt Engineering, Natural Language Processing, Computer Vision, LLM Orchestration</p>
+          </div>
+          
+          <div class="skill-card">
+            <div class="skill-icon">☁️</div>
+            <h4 class="skill-name">Data Science</h4>
+            <p class="skill-level">PowerBI, ETL, Tablu, data visualization, business intelligence, statistical analysis</p>
+          </div>
+          
+          <div class="skill-card">
+            <div class="skill-icon">📊</div>
+            <h4 class="skill-name">Product</h4>
+            <p class="skill-level">Strategy, Analytics, Agile, Scrum, Stakeholder Management, Requirements Gathering, Product Roadmapping, Competitive Analysis</p>
+          </div>
+          
+          <div class="skill-card">
+            <div class="skill-icon">🎨</div>
+            <h4 class="skill-name">UX/Product Design</h4>
+            <p class="skill-level">Figma, User Research, Prototyping, Human-Centered UX, Design Thinking, Usability Testing, Wireframing</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trust Bar -->
+    <section class="trust-section">
+      <div class="container">
+        <p class="trust-label">Trusted by innovative companies</p>
+        <div class="trust-logos">
+          <span class="trust-logo">ZKTeco</span>
+          <span class="trust-logo">BioTime</span>
+          <span class="trust-logo">Wyndham</span>
+          <span class="trust-logo">Tenet</span>
+          <span class="trust-logo">NTT DATA</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+<!--    <section class="cta-section">
+      <div class="container">
+        <h2 class="cta-title">Let's build something amazing</h2>
+        <p class="cta-description">
+          I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
+        </p>
+        <a href="mailto:chandanashree97@gmail.com" class="btn btn-primary">Get In Touch</a>
+		<a href="resume.pdf" class="btn btn-secondary" download>View Full Resume</a>
+      </div>
+    </section> -->
+  </main>
+
+  <!-- Floating Chatbot FAB -->
+  <button class="chatbot-fab" id="chatbotFab" aria-label="Chat with Virtual Chandana">
+    <img src="images/profile image.png" alt="Chandana Konduru" />
+  </button>
+  
+  <div class="chatbot-panel" id="chatbotPanel">
+    <div class="chatbot-header">
+      <div class="chatbot-avatar">
+        <img src="images/profile image.png" alt="Chandana Konduru" />
+      </div>
+      <div class="chatbot-info">
+        <h4>Virtual Chandana</h4>
+        <p>Ask me anything!</p>
+      </div>
+    </div>
+    <div class="chatbot-messages" id="chatbotMessages">
+      <div class="chat-message">
+        <div class="chat-message-bubble">
+          Hi there! I'm Virtual Chandana. Ask me about my experience, skills, or how I fit a role.
+        </div>
+      </div>
+    </div>
+    <div class="chatbot-input">
+      <input type="text" id="chatInput" placeholder="Type your message..." autocomplete="off">
+      <button id="chatSend">➤</button>
+    </div>
+  </div>
+  
+      <!-- CONTACT MODAL -->
+  <!--  <div class="modal" id="contactModal">
+        <div class="modal-overlay" onclick="closeModal()"></div>
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <h2>Get In Touch</h2>
+            <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                <div class="form-group">
+                    <input type="text" name="name" placeholder="Your name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" placeholder="Your email" required>
+                </div>
+                <div class="form-group">
+                    <textarea name="message" placeholder="Tell me about the opportunity..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+            </form>
+        </div>
+    </div> -->
+  
+      <!-- FOOTER -->
+    <!-- Footer Component -->
+    <footer class="site-footer">
+      <!-- Background watermark text -->
+      <div class="footer-watermark">Chandu</div>
+      
+      <!-- Decorative strokes -->
+      <div class="footer-stroke footer-stroke-left"></div>
+      <div class="footer-stroke footer-stroke-right"></div>
+      <div class="footer-stroke footer-stroke-bottom"></div>
+      
+      <!-- Main footer content -->
+      <div class="footer-content">
+        <!-- Left side - Logo/Name and copyright -->
+        <div class="footer-left">
+          <div class="footer-logo">Chandana.</div>
+          <p class="footer-copyright">
+            ©2025 Chandana Konduru<br>
+            Built with AI in Omaha, NE
+          </p>
+        </div>
+        
+        <!-- Right side - Social links -->
+        <div class="footer-right">
+          <div class="footer-socials">
+            <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener" aria-label="LinkedIn" class="social-link">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+            </a>
+            <a href="https://twitter.com/yourhandle" target="_blank" rel="noopener" aria-label="Twitter" class="social-link">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+            <a href="https://instagram.com/yourusername" target="_blank" rel="noopener" aria-label="Instagram" class="social-link">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
+              </svg>
+            </a>
+            <a href="mailto:your-email@example.com" aria-label="Email" class="social-link">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.278 24 3.433 24 5.457z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+     themeToggle.addEventListener('click', () => {
+      const currentTheme = html.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      updateThemeIcon(newTheme);
+    });
+    <style>
+/* Footer Styles */
+.site-footer {
+  position: relative;
+  width: 100%;
+  padding: 160px 2rem 32px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-primary);
+  border-top: 1px solid var(--border);
+}
+
+/* Background watermark text - "Chandu" */
+.footer-watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: clamp(100px, 18vw, 260px);
+  font-weight: 700;
+  color: var(--text-primary);
+  opacity: 0.04;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  letter-spacing: -0.02em;
+}
+
+/* Decorative strokes */
+.footer-stroke {
+  position: absolute;
+  background-color: var(--text-primary);
+  opacity: 0.15;
+}
+
+.footer-stroke-left {
+  left: 5%;
+  top: 25%;
+  width: 1px;
+  height: 50%;
+}
+
+.footer-stroke-right {
+  right: 5%;
+  top: 25%;
+  width: 1px;
+  height: 50%;
+}
+
+.footer-stroke-bottom {
+  bottom: 32px;
+  left: 10%;
+  width: 80%;
+  height: 1px;
+}
+
+/* Main footer content */
+.footer-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* Left side */
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer-logo {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.footer-copyright {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Right side - Socials */
+.footer-right {
+  display: flex;
+  align-items: center;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.social-link {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  transition: all 0.2s ease;
+}
+
+.social-link:hover {
+  color: var(--bg-secondary);
+  background: var(--text-primary);
+  border-color: var(--text-primary);
+  transform: translateY(-3px);
+}
+
+.social-link svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .site-footer {
+    padding: 100px 1.5rem 32px;
+  }
+  
+  .footer-watermark {
+    font-size: 70px;
+    opacity: 0.06;
+  }
+  
+  .footer-stroke-left,
+  .footer-stroke-right {
+    display: none;
+  }
+  
+  .footer-stroke-bottom {
+    left: 5%;
+    width: 90%;
+  }
+  
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+  }
+  
+  .footer-left {
+    align-items: center;
+  }
+  
+  .footer-socials {
+    gap: 0.625rem;
+  }
+  
+  .social-link {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-footer {
+    padding: 80px 1rem 24px;
+  }
+  
+  .footer-logo {
+    font-size: 1.25rem;
+  }
+  
+  .footer-copyright {
+    font-size: 0.8125rem;
+  }
+  
+  .social-link {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .social-link svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+    </style>
+    
+    <!-- CONTACT MODAL -->
+ <!--   <div class="modal" id="contactModal">
+        <div class="modal-overlay" onclick="closeModal()"></div>
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <h2>Get In Touch</h2>
+            <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                <div class="form-group">
+                    <input type="text" name="name" placeholder="Your name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" placeholder="Your email" required>
+                </div>
+                <div class="form-group">
+                    <textarea name="message" placeholder="Tell me about the opportunity..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+            </form>
+        </div>
+    </div> -->
+    
+    <!-- JAVASCRIPT -->
+    <script>
+        // Theme Toggle
+        function toggleTheme() {
+            const html = document.documentElement;
+            const isDark = html.getAttribute('data-theme') === 'dark';
+            
+            if (isDark) {
+                html.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+                updateThemeLabel('Dark');
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                updateThemeLabel('Light');
+            }
+        }
+        
+        function updateThemeLabel(label) {
+            const labelEl = document.getElementById('themeLabel');
+            if (labelEl) labelEl.textContent = label;
+        }
+        
+        // Check system preference on load
+        if (localStorage.getItem('theme') === 'dark' || 
+            (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            updateThemeLabel('Light');
+        }
+        
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const toggle = document.querySelector('.menu-toggle');
+            menu.classList.toggle('active');
+            toggle.classList.toggle('active');
+        }
+        
+        // Modal
+        function openModal() {
+            document.getElementById('contactModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal() {
+            document.getElementById('contactModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        // Close modal on Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+        
+        // Active nav state
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        document.querySelectorAll('.nav-link').forEach(link => {
+            if (link.getAttribute('href') === currentPage) {
+                link.classList.add('active');
+            }
+        });
+    </script>
+
+  <script>
+    // Mobile Menu
+    const menuToggle = document.getElementById('menuToggle');
+    const navMain = document.getElementById('navMain');
+    
+    menuToggle.addEventListener('click', () => {
+      navMain.classList.toggle('open');
+    });
+    
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        navMain.classList.remove('open');
+      });
+    });
+    
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.site-header')) {
+        navMain.classList.remove('open');
+      }
+    });
+    
+    // Multi-item Carousel - Wrapped in IIFE to avoid conflicts
+    (function() {
+      const carouselTrack = document.getElementById('carouselTrack');
+      const carouselPrev = document.getElementById('carouselPrev');
+      const carouselNext = document.getElementById('carouselNext');
+      const carouselDots = document.getElementById('carouselDots');
+      const items = document.querySelectorAll('.carousel-item');
+      
+      if (!carouselTrack || !carouselDots) return;
+      
+      let currentIndex = 0;
+      let itemsPerView = getItemsPerView();
+      const totalItems = items.length;
+      const maxIndex = Math.ceil(totalItems / itemsPerView) - 1;
+      
+      function getItemsPerView() {
+        if (window.innerWidth <= 900) return 1;
+        if (window.innerWidth <= 1100) return 2;
+        return 3;
+      }
+      
+      function getItemWidth() {
+        const item = items[0];
+        const style = window.getComputedStyle(item);
+        const width = item.offsetWidth;
+        const marginRight = parseFloat(style.marginRight);
+        return width + marginRight;
+      }
+      
+      function createDots() {
+        carouselDots.innerHTML = '';
+        const dotsCount = Math.ceil(totalItems / itemsPerView);
+        for (let i = 0; i < dotsCount; i++) {
+          const dot = document.createElement('button');
+          dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+          dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+          dot.addEventListener('click', () => goToSlide(i));
+          carouselDots.appendChild(dot);
+        }
+      }
+      
+      function updateCarousel() {
+        const itemWidth = getItemWidth();
+        const offset = currentIndex * itemWidth * itemsPerView;
+        carouselTrack.style.transform = `translateX(-${offset}px)`;
+        
+        document.querySelectorAll('.carousel-dot').forEach((dot, i) => {
+          dot.classList.toggle('active', i === currentIndex);
+        });
+        
+        carouselPrev.disabled = currentIndex === 0;
+        carouselNext.disabled = currentIndex >= maxIndex;
+      }
+      
+      function goToSlide(index) {
+        currentIndex = Math.max(0, Math.min(index, maxIndex));
+        updateCarousel();
+      }
+      
+      carouselPrev.addEventListener('click', () => {
+        if (currentIndex > 0) {
+          currentIndex--;
+          updateCarousel();
+        }
+      });
+      
+      carouselNext.addEventListener('click', () => {
+        if (currentIndex < maxIndex) {
+          currentIndex++;
+          updateCarousel();
+        }
+      });
+      
+      window.addEventListener('resize', () => {
+        const newItemsPerView = getItemsPerView();
+        if (newItemsPerView !== itemsPerView) {
+          itemsPerView = newItemsPerView;
+          currentIndex = 0;
+          createDots();
+          updateCarousel();
+        }
+      });
+      
+      createDots();
+      updateCarousel();
+      
+      // Touch/swipe support
+      let touchStartX = 0;
+      let touchEndX = 0;
+      
+      carouselTrack.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      }, { passive: true });
+      
+      carouselTrack.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        const diff = touchStartX - touchEndX;
+        if (Math.abs(diff) > 50) {
+          if (diff > 0 && currentIndex < maxIndex) {
+            currentIndex++;
+          } else if (diff < 0 && currentIndex > 0) {
+            currentIndex--;
+          }
+          updateCarousel();
+        }
+      }, { passive: true });
+    })();
+    
+    // Chatbot FAB - Wrapped in IIFE
+    // Chatbot FAB
+      // Chatbot FAB
+    const chatbotFab = document.getElementById('chatbotFab');
+    const chatbotPanel = document.getElementById('chatbotPanel');
+    const chatInput = document.getElementById('chatInput');
+    const chatSend = document.getElementById('chatSend');
+    const chatbotMessages = document.getElementById('chatbotMessages');
+    
+    chatbotFab.addEventListener('click', () => {
+      chatbotPanel.classList.toggle('open');
+    });
+    
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.chatbot-panel') && !e.target.closest('.chatbot-fab')) {
+        chatbotPanel.classList.remove('open');
+      }
+    });
+    
+     // ===== VIRTUAL CHANDANA + ATS SCANNER =====
+    
+    let chandanaData = null;
+    let atsMode = false;
+							
+    
+    // EMBEDDED DATA - No fetch needed, works immediately!
+    const EMBEDDED_DATA = {
+      "profile": {
+        "fullName": "Chandana Sree Konduru",
+        "title": "AI Product Manager & Global Product Strategist",
+				   
+										   
+									 
+						
+					
+											  
+        "yearsOfExperience": "6",
+        "email": "chandanashree97@gmail.com",
+        "phone": "5312034748",
+        "location": "Omaha, NE, USA",
+        "linkedIn": "https://www.linkedin.com/in/chandana-sree-konduru/",
+        "portfolio": "https://chandanasree35.wixsite.com/portfolio",
+        "openToRemote": true,
+        "summary": "Strategic Product Manager with over 5 years of experience driving Digital Transformation across Fintech, Healthcare, and Consumer Retail (IoT) industries. Proven expert in leading the Full Software Product Lifecycle for global B2B SaaS and Agentic AI platforms.",
+        "highlights": [
+          "Led global transformation across 4 countries (Nigeria, China, Mexico, India)",
+          "Built ScanItKnowIt with Gemini API at $0 operational cost",
+          "Increased executive decision-making confidence by 10%",
+          "Improved system performance by 5% through API modernization",
+          "Reduced manual safety case processing by 3%"
+        ]
+      },
+      "skills": {
+        "Product Management": ["Roadmap Strategy", "Agile/Scrum", "Product Lifecycle Management (SDLC)", "PRD/User Story Development", "Waterfall", "Change Management", "Jira", "Confluence", "Milestone Tracking", "Stakeholder Management"],
+        "AI & Emerging Tech": ["Agentic AI Orchestration", "LLM Prompt Engineering", "AI/ML Workflow Design", "Conversation Flow Design", "Generative AI", "Computer Vision", "NLP", "TensorFlow", "PyTorch", "OpenAI API", "Model Evaluation"],
+        "Data & Analytics": ["SQL", "Python", "Power BI", "Data Visualization", "Application Analytics", "Tableau", "ETL"],
+        "UX & Design Strategy": ["User Research & Personas", "Wireframing & Prototyping", "Usability Testing", "Information Architecture", "Adobe Creative Suite", "Figma", "Sketch", "Human-Centered UX", "Design Thinking"],
+																				   
+        "Engineering Foundation": ["C#", ".NET Core", "ASP.NET", "RESTful API Integration", "System Architecture", "HTML5/CSS", "JavaScript", "TypeScript", "React"],
+        "Cloud & DevOps": ["AWS", "Azure", "Docker", "Kubernetes", "CI/CD", "GraphQL"]
+      },
+      "experience": [
+        {
+          "period": "2025–Present",
+          "role": "Founder & Lead Product Developer",
+          "company": "Community Projects",
+          "location": "Omaha, NE, USA",
+          "type": "AI Product Development",
+          "highlights": [
+            "Built ScanItKnowIt with Gemini API and vibe coding → functional app in weeks at $0 cost",
+            "Developed Budget Management tool using AI-assisted prototyping",
+            "Demonstrated end-to-end product ownership from ideation to deployment"
+          ]
+        },
+        {
+          "period": "2024–2025",
+          "role": "Associate Product Manager - Global R&D",
+          "company": "ZKTeco India",
+          "location": "Bangalore, India",
+          "type": "B2B SaaS & IoT",
+          "highlights": [
+            "Led global transformation across 4 countries (Nigeria, China, Mexico, India)",
+            "Boosted exec confidence by 10% with Super Admin Dashboard",
+            "Improved system performance by 5% through API modernization",
+            "Directed BioTime Cloud 2.0 (Web & Mobile) serving 10K+ users",
+            "Launched ZKDigimax-ESL IoT retail solution reducing pricing errors by 3%"
+          ]
+        },
+        {
+          "period": "2023–2024",
+          "role": "Post-Graduation in Data Science",
+          "company": "IIIT Bangalore",
+          "location": "Bangalore, India & Liverpool, UK",
+          "type": "Academic",
+          "highlights": [
+            "Advanced studies in ML, AI, and data systems",
+            "Applied academic insights to real-world product challenges",
+            "Cross-cultural academic collaboration"
+          ]
+        },
+        {
+          "period": "2023",
+          "role": "UI/UX Product Designer",
+          "company": "Data Foundry",
+          "location": "Bangalore, India",
+          "type": "Healthcare AI",
+          "highlights": [
+            "Redesigned AI-powered pharmacovigilance platform (DF Safety)",
+            "Reduced manual case processing by 3%",
+            "Ensured E2B R2/R3 regulatory compliance",
+            "Designed Explainable AI interface for medical reviewers"
+          ]
+        },
+        {
+          "period": "2021–2022",
+          "role": "Developer II | UI/UX Designer",
+          "company": "Cybage Software",
+          "location": "Hyderabad & Pune, India",
+          "type": "Enterprise CPQ",
+          "highlights": [
+            "Engineered proactive system monitors for CPQ platform",
+            "Managed maintenance using C#, .NET, SQL Server",
+            "Bridged technical implementation with user experience design"
+          ]
+        },
+        {
+          "period": "2019–2021",
+          "role": "Software Engineer",
+          "company": "NTT Data",
+          "location": "Bangalore, India",
+          "type": "Hospitality & Healthcare",
+          "highlights": [
+            "Led mobile booking app for Wyndham Hotels (+5% engagement)",
+            "Simplified medical billing UX for Tenet Health (-5% user confusion)",
+            "Architected seamless hotel booking portal (+3% conversion)"
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "name": "Scan It Know It",
+          "category": "Agentic AI Platform",
+          "role": "Founder & Lead Product Developer",
+          "skills": ["Gemini API", "Agentic AI", "Vibe Coding", "Figma", "Mobile-First Design"],
+          "metrics": ["$0 operational cost", "Weeks to launch", "Community-driven"],
+          "description": "Orchestrated end-to-end product lifecycle of mobile-responsive web application using Agentic AI to provide instant, data-driven insights with zero operational cost."
+        },
+        {
+          "name": "BioTime Cloud 2.0",
+          "category": "B2B SaaS (Web & Mobile)",
+          "role": "Associate Product Manager",
+          "company": "ZKTeco",
+          "skills": ["AWS", "React", "Node.js", "REST API", "Product Strategy", "Global Customization"],
+          "metrics": ["10K+ users", "4 countries", "+5% performance", "+10% exec confidence"],
+          "description": "Directed global SaaS transformation across 4 countries with region-specific customizations. Architected Super Admin Dashboard and modernized API architecture."
+        },
+        {
+          "name": "ZKDigimax-ESL",
+          "category": "IoT Retail Solution",
+          "role": "Associate Product Manager",
+          "company": "ZKTeco",
+          "skills": ["IoT", "Mobile App", "Agile/Scrum", "Cross-functional Leadership"],
+          "metrics": ["-3% pricing errors", "+2% digital engagement", "-10% inventory search time"],
+          "description": "IoT Electronic Shelf Label solution with QR/NFC scanning. Led agile sprints and design thinking workshops with in-store staff."
+        },
+        {
+          "name": "DF Safety",
+          "category": "Healthcare AI Platform",
+          "role": "UI/UX Product Designer",
+          "company": "Data Foundry",
+          "skills": ["AI/ML", "Healthcare UX", "E2B Compliance", "Data Visualization", "Figma"],
+          "metrics": ["-3% manual processing", "100% E2B R2/R3 compliant", "Multi-vigilance unified"],
+          "description": "AI-powered pharmacovigilance platform with explainable AI interface. Transformed complex ML outputs into human-centered UI for medical reviewers."
+        }
+      ],  
+	"atsKeywords": {
+		"product management": ["product strategy", "roadmapping", "agile", "scrum", "jira", "confluence", "prd", "user stories", "stakeholder management"],
+		"ai/ml": ["machine learning", "artificial intelligence", "llm", "prompt engineering", "tensorflow", "pytorch", "computer vision", "nlp", "gemini", "openai"],
+		"data": ["sql", "python", "power bi", "tableau", "analytics", "data visualization", "etl"],
+		"design": ["figma", "user research", "ux design", "prototyping", "wireframing", "usability testing"],
+		"engineering": ["rest api", "system architecture", "c#", ".net", "react", "node.js", "cloud"],
+		"soft skills": ["cross-functional", "leadership", "communication", "analytical", "problem-solving"]
+		}
+	};
+
+    // Initialize data immediately
+    chandanaData = EMBEDDED_DATA;						 
+    
+    //loadChandanaData();
+    
+    // ===== ATS SCANNER FUNCTIONS =====
+    
+    function calculateATSScore(jobDesc) {
+      const data = chandanaData;
+      if (!data) return null;
+      
+      const jobText = jobDesc.toLowerCase();
+      const scores = {};
+      let totalMatched = 0;
+      let totalKeywords = 0;
+      
+      // Check each category
+      for (const [category, keywords] of Object.entries(data.atsKeywords)) {
+        let matched = 0;
+        const found = [];
+        const missing = [];
+        
+        for (const keyword of keywords) {
+          totalKeywords++;
+          if (jobText.includes(keyword.toLowerCase())) {
+            matched++;
+            totalMatched++;
+            found.push(keyword);
+          } else {
+            missing.push(keyword);
+          }
+        }
+        
+        const percentage = Math.round((matched / keywords.length) * 100);
+        scores[category] = {
+          percentage,
+          matched,
+          total: keywords.length,
+          found: found.slice(0, 3), // Top 3 found
+          missing: missing.slice(0, 3) // Top 3 missing
+        };
+      }  
+      
+      const overallScore = Math.round((totalMatched / totalKeywords) * 100);
+      
+      // Calculate experience match
+      const expMatch = jobText.includes('6') || jobText.includes('5') || jobText.includes('senior') ? 100 : 
+                      jobText.includes('3') || jobText.includes('4') || jobText.includes('mid') ? 90 : 85;
+      
+      // Check education
+      const eduMatch = jobText.includes('bachelor') || jobText.includes('b.tech') || jobText.includes('computer science') ? 100 : 90;
+      
+      return {
+        overall: overallScore,
+        categoryScores: scores,
+        experienceMatch: expMatch,
+        educationMatch: eduMatch,
+        finalScore: Math.round((overallScore * 0.6) + (expMatch * 0.25) + (eduMatch * 0.15)),
+        gaps: identifyGaps(jobText, data),
+        strengths: identifyStrengths(jobText, data)
+      };
+    }
+    
+    function identifyGaps(jobText, data) {
+      const gaps = [];
+      
+      // Check for missing skills
+      const allSkills = [];
+      for (const cat in data.skills) allSkills.push(...data.skills[cat]);
+      
+      const commonRequirements = ["mba", "master", "phd", "google cloud", "gcp", "java", "go", "rust", "blockchain", "web3"];
+      for (const req of commonRequirements) {
+        if (jobText.includes(req) && !hasSkill(req, allSkills)) {
+          gaps.push(req);
+        }
+      }
+      
+      return gaps.slice(0, 3);
+    }
+    
+    function identifyStrengths(jobText, data) {
+      const strengths = [];
+      
+      // Direct matches
+      if (jobText.includes('ai') || jobText.includes('machine learning')) strengths.push("Agentic AI expertise");
+      if (jobText.includes('global') || jobText.includes('international')) strengths.push("4-country global experience");
+      if (jobText.includes('healthcare') || jobText.includes('medical')) strengths.push("Healthcare AI (DF Safety)");
+      if (jobText.includes('iot') || jobText.includes('retail')) strengths.push("IoT Retail (ZK Digimax)");
+      if (jobText.includes('b2b') || jobText.includes('saas')) strengths.push("B2B SaaS at scale (10K+ users)");
+      
+      return strengths.slice(0, 3);
+    }
+    
+    function hasSkill(keyword, skills) {
+      return skills.some(s => s.toLowerCase().includes(keyword.toLowerCase()));
+    }
+    
+    function formatATSScore(score) {
+      let emoji = score.finalScore >= 85 ? '🎯' : score.finalScore >= 70 ? '✅' : score.finalScore >= 50 ? '⚠️' : '❌';
+      let rating = score.finalScore >= 85 ? 'EXCELLENT MATCH' : score.finalScore >= 70 ? 'GOOD MATCH' : score.finalScore >= 50 ? 'MODERATE MATCH' : 'LOW MATCH';
+      
+      let response = `${emoji} **ATS SCORE: ${score.finalScore}%** - ${rating}\n\n`;
+      
+      // Category breakdown
+      response += `**Category Breakdown:**\n`;
+      for (const [cat, data] of Object.entries(score.categoryScores)) {
+        const bar = '█'.repeat(Math.round(data.percentage / 10)) + '░'.repeat(10 - Math.round(data.percentage / 10));
+        response += `• ${cat}: ${bar} ${data.percentage}%\n`;
+      }
+      
+      // Experience & Education
+      response += `\n**Experience:** ${score.experienceMatch}% match\n`;
+      response += `**Education:** ${score.educationMatch}% match\n`;
+      
+      // Strengths
+      if (score.strengths.length > 0) {
+        response += `\n**💪 Key Strengths:**\n`;
+        score.strengths.forEach(s => response += `• ${s}\n`);
+      }
+      
+      // Gaps
+      if (score.gaps.length > 0) {
+        response += `\n**⚠️ Gaps to Address:**\n`;
+        score.gaps.forEach(g => response += `• ${g}\n`);
+      }
+      
+      response += `\n**Next Step:** Email ${chandanaData.profile.email}`;
+      
+      return response;
+    }
+    
+    // ===== REGULAR CHAT FUNCTIONS =====
+    
+    function getAllSkills() {
+      if (!chandanaData || !chandanaData.skills) return [];
+      const allSkills = [];
+      for (const category in chandanaData.skills) {
+        allSkills.push(...chandanaData.skills[category]);
+      }
+      return allSkills;
+    }
+    
+    function findProjectsWithSkill(skill) {
+      if (!chandanaData || !chandanaData.projects) return [];
+      const skillLower = skill.toLowerCase();
+      return chandanaData.projects.filter(p => 
+        p.skills && p.skills.some(s => s.toLowerCase().includes(skillLower))
+      );
+    }
+    
+    const OFF_TOPIC = ['weather', 'news', 'sports', 'movie', 'music', 'game', 'politics', 'stock', 'bitcoin', 'crypto', 'recipe', 'food', 'restaurant', 'cricket', 'football'];
+    
+    function getBotResponse(input) {
+      const lower = input.toLowerCase().trim();
+      const data = chandanaData;
+      
+      if (!data) return "Loading...";
+      
+      // ===== ATS MODE ACTIVATION =====
+      if (lower.includes('ats') || lower.includes('scan job') || lower.includes('job description') || lower.includes('match score')) {
+        atsMode = true;
+        return "🎯 **ATS SCANNER ACTIVATED**\n\nPaste the job description (title, requirements, responsibilities) and I'll analyze your match score!";
+      }
+      
+      // ===== ATS PROCESSING =====
+      if (atsMode && input.length > 50) {
+        const score = calculateATSScore(input);
+        atsMode = false; // Reset after scan
+        
+        if (score) {
+          return formatATSScore(score);
+        } else {
+          return "Error analyzing. Please try again or email: " + data.profile.email;
+        }
+      }
+      
+      // 1. Name
+      if (lower.match(/name|who are you/)) {
+        return data.profile.fullName;
+      }
+      
+      // 2. Experience (NOW 6 YEARS)
+      if (lower.match(/year|experience.*year|how long/)) {
+        return `${data.profile.yearsOfExperience} years`;
+      }
+      
+      // 3. Email/Contact
+      if (lower.match(/email|contact|reach/)) {
+        return data.profile.email;
+      }
+      
+      // 4. Phone
+      if (lower.match(/phone|call|number/)) {
+        return data.profile.phone;
+      }
+      
+      // 5. Location
+      if (lower.match(/location|where|based|from/)) {
+        return data.profile.location;
+      }
+      
+      // 6. Skills list
+      if (lower.match(/^(skills?|what.*skills|list.*skills)$/)) {
+        return "AI/ML, Product, Design, Data, Cloud, Engineering. Ask about a specific one.";
+      }
+      
+      // 7. Skills by category
+      if (lower.match(/ai.*skills|ml.*skills|product.*skills|design.*skills|data.*skills|cloud.*skills/)) {
+        let category = null;
+        if (lower.includes('ai') || lower.includes('ml')) category = 'AI & Emerging Tech';
+        else if (lower.includes('product')) category = 'Product Management';
+        else if (lower.includes('design')) category = 'UX & Design Strategy';
+        else if (lower.includes('data')) category = 'Data & Analytics';
+        else if (lower.includes('cloud')) category = 'Cloud & DevOps';
+        
+        if (category && data.skills[category]) {
+          return data.skills[category].slice(0, 5).join(', ');
+        }
+      }
+      
+      // 8. Specific skill check
+      const allSkills = getAllSkills();
+      for (const skill of allSkills) {
+        const skillLower = skill.toLowerCase();
+        if (lower === skillLower || lower.includes(skillLower)) {
+          const projects = findProjectsWithSkill(skill);
+          if (projects.length > 0) {
+            return `Yes. Used on: ${projects.map(p => p.name).join(', ')}`;
+          }
+          return `Yes. I have experience with ${skill}.`;
+        }
+      }
+      
+      // 9. Projects list
+      if (lower.match(/projects?|works?|portfolio/)) {
+        return `${data.projects.length} projects. View all on Work page.`;
+      }
+      
+      // 10. Specific project
+      if (data.projects) {
+        for (const project of data.projects) {
+          if (lower.includes(project.name.toLowerCase()) || 
+              (project.name === "BioTime Cloud 2.0" && lower.includes('biotime')) ||
+              (project.name === "Scan It Know It" && lower.includes('scan')) ||
+              (project.name === "ZK Digimax" && lower.includes('digi')) ||
+              (project.name === "DF Safety" && lower.includes('df'))) {
+            return `${project.name}: ${project.category}. ${project.metrics.join(', ')}`;
+          }
+        }
+      }
+      
+      // 11. Experience/Companies
+      if (lower.match(/work|company|career|zkt|cybage|ntt/)) {
+        if (lower.includes('zkt')) return "ZKTeco: Global R&D, 4 countries, 10K+ users";
+        if (lower.includes('cybage')) return "Cybage: CPQ Platform, C# .NET";
+        if (lower.includes('ntt')) return "NTT Data: Wyndham, Tenet Healthcare";
+        if (lower.includes('data foundry')) return "Data Foundry: Healthcare AI, E2B";
+        return "ZKTeco, Data Foundry, Cybage, NTT Data. Ask about any.";
+      }
+      
+      // 12. Availability
+      if (lower.match(/available|open|looking|hire|job/)) {
+        return `Open to roles. Email: ${data.profile.email}`;
+      }
+      
+      // 13. Summary
+      if (lower.match(/about|summary|who/)) {
+        return data.profile.summary;
+      }
+      
+      // 14. ATS Help
+      if (lower.match(/how.*ats|what.*ats|help.*scan/)) {
+        return "Type 'ATS scan' then paste job description for match score!";
+      }
+      
+      // 15. Off-topic
+      for (const topic of OFF_TOPIC) {
+        if (lower.includes(topic)) {
+          return "Ask about my work or skills!";
+        }
+      }
+      
+      // 16. Greetings
+      if (lower.match(/^(hi|hello|hey)$/)) {
+        return "Hi! Ask about experience, skills, or type 'ATS scan' to analyze a job!";
+      }
+      
+      // 17. Thanks/Bye
+      if (lower.match(/thank|thanks/)) return "You're welcome!";
+      if (lower.match(/bye|goodbye/)) return "Bye! " + data.profile.email;
+      
+      // Default
+      return "Ask: name, experience, skills, projects, or type 'ATS scan'";
+    }
+    
+    function addMessage(text, isUser = false) {
+      const messageDiv = document.createElement('div');
+      messageDiv.className = `chat-message ${isUser ? 'user' : ''}`;
+      
+      // Format bold text
+      const formatted = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+      
+      messageDiv.innerHTML = `<div class="chat-message-bubble">${formatted}</div>`;
+      chatbotMessages.appendChild(messageDiv);
+      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+    
+    function sendMessage() {
+      const text = chatInput.value.trim();
+      if (!text) return;
+      
+      addMessage(text, true);
+      chatInput.value = '';
+      
+	 // Show loading
+      const loadingDiv = document.createElement('div');
+      loadingDiv.className = 'chat-message loading';
+      loadingDiv.innerHTML = '<div class="chat-message-bubble"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>';
+      chatbotMessages.appendChild(loadingDiv);
+      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+      setTimeout(() => {
+		loadingDiv.remove();					
+        const response = getBotResponse(text);
+        addMessage(response);
+      }, atsMode ? 800 : 300); // Slightly longer delay for ATS analysis
+    }
+    
+    chatSend.addEventListener('click', sendMessage);
+    chatInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') sendMessage();
+    });
+    </script>
+  
+  <!-- Main JavaScript -->
+  <script src="js/script.js"></script>
+  
+</body>
+</html>
