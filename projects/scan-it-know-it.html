@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Scan It Know It — AI Document Intelligence Platform. How I built a production-ready OCR platform in 4 weeks using AI-assisted development, achieving 92% accuracy at $0 cost.">
+    <title>Scan It Know It | AI Document Intelligence Platform</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Theme detection - prevents flash -->
+    <script>
+      (function() {
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const theme = savedTheme || (prefersDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
+    
+    <link rel="stylesheet" href="../referal/Kimi_Agent_响应式导航设计/styles.css">
+    <style>
+/* ===== SCAN IT KNOW IT - CUSTOM CASE STUDY STYLES ===== */
+
+/* Design System Variables */
+:root {
+  --background: #f8f6f2;        /* Warm off-white */
+  --text-primary: #67645e;      /* Warm taupe */
+  --text-secondary: #67645e99;  /* 60% opacity */
+  --accent: #c17c5e;            /* Terracotta */
+  --accent-light: #c17c5e1a;    /* 10% opacity */
+  --border: #e5e5e5;            /* Hairline */
+  --white: #ffffff;
+  
+  /* Typography */
+  --font-heading: "Times New Roman", Georgia, serif;
+  --font-body: system-ui, -apple-system, sans-serif;
+  
+  /* Spacing */
+  --page-padding: 80px;
+  --section-gap: 120px;
+  --max-width: 1200px;
+  --content-width: 720px;
+}
+
+/* Base Styles */
+.case-study-page {
+  font-family: var(--font-body);
+  background: var(--background);
+  color: var(--text-primary);
+  line-height: 1.7;
+}
+
+/* Fixed Navigation */
+.case-study-nav {
+  position: fixed;
+  top: 40px;
+  left: 0;
+  right: 0;
+  padding: 0 80px;
+  display: flex;
+  justify-content: space-between;
+  z-index: 1000;
+  background: rgba(248, 246, 242, 0.95);
+  backdrop-filter: blur(10px);
+}
+
+.nav-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  width: 100%;
+}
+
+.nav-back, .nav-next {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.nav-back:hover, .nav-next:hover {
+  color: var(--accent);
+}
+
+/* Hero Section */
+.case-study-hero {
+  padding: calc(80px + var(--section-gap)) 80px var(--section-gap);
+  text-align: center;
+  background: var(--background);
+}
+
+.case-study-caption {
+  display: block;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+
+.case-study-title {
+  font-family: var(--font-heading);
+  font-size: 48px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin-bottom: 24px;
+}
+
+.case-study-subtitle {
+  font-size: 18px;
+  color: var(--text-secondary);
+  max-width: 720px;
+  margin: 0 auto 32px;
+  line-height: 1.5;
+}
+
+.case-study-meta {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+  margin-bottom: 48px;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.scroll-indicator {
+  font-size: 14px;
+  color: var(--text-secondary);
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+  40% {transform: translateY(-10px);}
+  60% {transform: translateY(-5px);}
+}
+
+/* Container */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 80px;
+}
+
+/* Overview Section */
+.case-study-overview {
+  padding: var(--section-gap) 0;
+}
+
+.overview-two-col {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  gap: 80px;
+  align-items: start;
+}
+
+.section-caption {
+  display: block;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+
+.overview-left h2 {
+  font-family: var(--font-heading);
+  font-size: 32px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  margin-bottom: 24px;
+}
+
+.overview-left p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+}
+
+.role-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 48px;
+}
+
+.role-list li {
+  font-size: 16px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.tech-item {
+  background: var(--white);
+  padding: 16px;
+  border: 1px solid var(--border);
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Process Sections */
+.process-section {
+  padding: var(--section-gap) 0;
+}
+
+.section-heading {
+  font-family: var(--font-heading);
+  font-size: 40px;
+  line-height: 1.2;
+  color: var(--text-primary);
+  margin: 0 0 24px;
+}
+
+.section-intro {
+  font-size: 18px;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto 60px;
+  line-height: 1.6;
+}
+
+.center {
+  text-align: center;
+}
+
+.subsection-heading {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  line-height: 1.3;
+  color: var(--text-primary);
+  margin: 60px 0 24px;
+}
+
+/* Discover Grid */
+.discover-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  margin-top: 60px;
+}
+
+.discover-left h3, .discover-right h3 {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  color: var(--text-primary);
+  margin-bottom: 24px;
+}
+
+.findings-list {
+  list-style: none;
+  padding: 0;
+}
+
+.findings-list li {
+  font-size: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.inline-quote {
+  font-size: 18px;
+  font-style: italic;
+  color: var(--text-secondary);
+  margin: 32px 0;
+  padding-left: 24px;
+  border-left: 3px solid var(--accent);
+}
+
+/* Vibe Coding Box */
+.vibe-coding-box {
+  background: var(--accent-light);
+  padding: 48px;
+  border: 1px solid var(--accent);
+  margin: 60px 0;
+}
+
+.vibe-coding-box h3 {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  margin-bottom: 24px;
+  color: var(--text-primary);
+}
+
+.vibe-coding-box ul {
+  list-style: none;
+  padding: 0;
+}
+
+.vibe-coding-box li {
+  font-size: 16px;
+  padding: 8px 0;
+  padding-left: 24px;
+  position: relative;
+}
+
+.vibe-coding-box li:before {
+  content: "•";
+  color: var(--accent);
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+}
+
+/* Tables */
+.competitive-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 32px 0;
+  background: var(--white);
+}
+
+.competitive-table th, .competitive-table td {
+  padding: 16px;
+  text-align: left;
+  border: 1px solid var(--border);
+  font-size: 14px;
+}
+
+.competitive-table th {
+  background: var(--accent-light);
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.highlight-row {
+  background: var(--accent-light);
+  font-weight: 600;
+}
+
+.table-caption {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 16px;
+  font-style: italic;
+}
+
+/* User Persona Card */
+.persona-card {
+  background: var(--white);
+  padding: 40px;
+  border: 1px solid var(--border);
+  margin: 48px 0;
+}
+
+.persona-header {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.persona-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--accent-light));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+}
+
+.persona-name {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.persona-role {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.persona-quote {
+  font-size: 18px;
+  font-style: italic;
+  color: var(--text-secondary);
+  margin: 24px 0;
+  padding-left: 24px;
+  border-left: 3px solid var(--accent);
+}
+
+.needs-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 24px;
+}
+
+.needs-list li {
+  font-size: 16px;
+  padding: 8px 0;
+  padding-left: 24px;
+  position: relative;
+}
+
+.needs-list li:before {
+  content: "✓";
+  color: var(--accent);
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+}
+
+/* Architecture Cards */
+.architecture-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin: 48px 0;
+}
+
+.arch-card {
+  background: var(--white);
+  padding: 32px;
+  border: 1px solid var(--border);
+}
+
+.arch-card-icon {
+  font-size: 32px;
+  margin-bottom: 16px;
+}
+
+.arch-card h4 {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  margin-bottom: 16px;
+  color: var(--text-primary);
+}
+
+.arch-card p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+/* Translation Table */
+.translation-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 32px 0;
+  background: var(--white);
+}
+
+.translation-table th, .translation-table td {
+  padding: 16px;
+  text-align: left;
+  border: 1px solid var(--border);
+  font-size: 14px;
+  vertical-align: top;
+}
+
+.translation-table th {
+  background: var(--accent-light);
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Timeline */
+.iteration-timeline {
+  margin: 60px 0;
+  position: relative;
+}
+
+.iteration-timeline:before {
+  content: "";
+  position: absolute;
+  left: 20px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--border);
+}
+
+.timeline-week {
+  background: var(--white);
+  padding: 32px;
+  margin-bottom: 24px;
+  border: 1px solid var(--border);
+  position: relative;
+  padding-left: 64px;
+}
+
+.timeline-week:first-child {
+  border-color: var(--accent);
+}
+
+.timeline-week::before {
+  content: "";
+  position: absolute;
+  left: 12px;
+  top: 40px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.timeline-week:first-child::before {
+  background: var(--accent);
+}
+
+.timeline-week h4 {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  margin-bottom: 16px;
+  color: var(--text-primary);
+}
+
+.timeline-week ul {
+  list-style: none;
+  padding: 0;
+}
+
+.timeline-week li {
+  font-size: 16px;
+  padding: 8px 0;
+  padding-left: 24px;
+  position: relative;
+}
+
+.timeline-week li:before {
+  content: "•";
+  color: var(--accent);
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+}
+
+/* Metrics Grid */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  margin: 60px 0;
+}
+
+.metric-card {
+  background: var(--white);
+  padding: 32px;
+  text-align: center;
+  border: 1px solid var(--border);
+}
+
+.metric-number {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 48px;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 16px;
+}
+
+.metric-label {
+  display: block;
+  font-size: 16px;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.metric-context {
+  display: block;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+/* User Feedback Quote */
+.user-feedback-quote {
+  max-width: 800px;
+  margin: 60px auto;
+  padding: 40px;
+  text-align: center;
+  position: relative;
+}
+
+.user-feedback-quote blockquote {
+  font-size: 24px;
+  font-style: italic;
+  color: var(--text-primary);
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.user-feedback-quote cite {
+  font-size: 14px;
+  color: var(--text-secondary);
+  font-style: normal;
+}
+
+/* Learnings Section */
+.learnings-section {
+  padding: var(--section-gap) 0;
+  background: var(--white);
+}
+
+.learnings-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+  margin-top: 60px;
+}
+
+.learning-card {
+  padding: 32px;
+  background: var(--white);
+  border-left: 4px solid var(--accent);
+}
+
+.learning-card h4 {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  margin-bottom: 16px;
+  color: var(--text-primary);
+}
+
+.learning-card p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+}
+
+.learning-caption {
+  display: block;
+  font-size: 14px;
+  color: var(--accent);
+  font-style: italic;
+}
+
+/* Final Quote */
+.final-quote-section {
+  padding: var(--section-gap) 0;
+  background: var(--accent);
+}
+
+.final-quote-section blockquote {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px;
+  text-align: center;
+}
+
+.final-quote-section p {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  line-height: 1.6;
+  color: var(--white);
+  margin-bottom: 24px;
+}
+
+.final-quote-section cite {
+  display: block;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  font-style: italic;
+}
+
+/* Footer Navigation */
+.case-study-footer-nav {
+  padding: var(--section-gap) 0;
+  border-top: 1px solid var(--border);
+}
+
+.footer-nav-links {
+  display: flex;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.footer-nav-back, .footer-nav-next {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-decoration: none;
+  padding: 24px 32px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  transition: all 0.2s;
+}
+
+.footer-nav-back:hover, .footer-nav-next:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.footer-nav-back span, .footer-nav-next span {
+  font-size: 16px;
+  color: var(--text-primary);
+}
+
+.footer-nav-back small, .footer-nav-next small {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+/* Site Footer */
+.site-footer {
+  padding: 60px 0;
+  background: var(--white);
+  border-top: 1px solid var(--border);
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.footer-logo a {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.footer-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links a {
+  font-size: 14px;
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  color: var(--accent);
+}
+
+.social-links {
+  display: flex;
+  gap: 16px;
+}
+
+.footer-info {
+  text-align: center;
+}
+
+.copyright, .built-with {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin: 4px 0;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .container, .case-study-nav {
+    padding: 0 40px;
+  }
+  
+  .overview-two-col,
+  .discover-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .architecture-grid,
+  .learnings-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --page-padding: 24px;
+    --section-gap: 80px;
+  }
+  
+  .container, .case-study-nav {
+    padding: 0 24px;
+  }
+  
+  .case-study-title {
+    font-size: 36px;
+  }
+  
+  .case-study-meta {
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .tech-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .metrics-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .footer-nav-links {
+    flex-direction: column;
+  }
+}
+
+/* Dark Mode Overrides for Case Study */
+[data-theme="dark"] .case-study-page {
+  --background: #1a1a1a;
+  --text-primary: #e8e6e3;
+  --text-secondary: #b8b5b0;
+  --accent: #d4a574;
+  --accent-light: rgba(212, 165, 116, 0.1);
+  --border: rgba(255, 255, 255, 0.1);
+  --white: #2a2a2a;
+}
+
+[data-theme="dark"] .case-study-nav {
+  background: rgba(26, 26, 26, 0.95);
+}
+
+[data-theme="dark"] .project-navigation a {
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] .project-navigation a:hover {
+  color: var(--accent);
+}
+
+.project-navigation a {
+  color: var(--text-secondary);
+}
+
+.project-navigation a:hover {
+  color: var(--accent);
+}
+    </style>
+</head>
+<body class="case-study-page">
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <!-- Header/Navigation -->
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="../index.html" class="logo">Chandana<span>.</span></a>
+        
+        <nav class="nav-main" id="navMain">
+          <a href="../work.html" class="nav-link">Work</a>
+          <a href="../experience.html" class="nav-link">Experience</a>
+          <a href="../about.html" class="nav-link">About</a>
+        </nav>
+        
+        <div class="header-actions">
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <span id="themeIcon">🌙</span>
+          </button>
+		  <a href="../resume.pdf" class="btn btn-primary btn-sm" download>Resume</a>
+          <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="main-content">
+        
+        <!-- HERO SECTION -->
+        <section class="hero" style="padding-top: 120px; text-align: center; padding-bottom: 4rem;">
+            <div class="container">
+                <h1 style="font-family: 'Times New Roman', Times, serif; font-size: 48px; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 1rem; color: var(--text-primary);">SCAN IT KNOW IT</h1>
+                <p style="font-size: 1.125rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto 2rem;">AI Document Intelligence Platform</p>
+                
+                <div class="hero-tags">
+                    <span style="padding: 0.4rem 1rem; background: var(--accent-light); color: var(--accent); border-radius: 20px; font-size: 0.875rem; font-weight: 500;">Agentic AI</span>
+                    <span style="padding: 0.4rem 1rem; background: var(--accent-light); color: var(--accent); border-radius: 20px; font-size: 0.875rem; font-weight: 500;">Vibe Coding</span>
+                    <span style="padding: 0.4rem 1rem; background: var(--accent-light); color: var(--accent); border-radius: 20px; font-size: 0.875rem; font-weight: 500;">Document Processing</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- OVERVIEW -->
+        <section style="padding: 80px 0; border-top: 1px solid var(--border);">
+            <div class="container">
+                <div style="max-width: 720px; margin: 0 auto;">
+                    <h2 style="font-family: 'Times New Roman', Times, serif; font-size: 32px; line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 2rem; color: var(--text-primary);">Overview</h2>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 3rem;">
+                        <div>
+                            <h3 style="font-size: 0.875rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1rem;">THE CHALLENGE</h3>
+                            <p style="font-size: 1rem; line-height: 1.7; color: var(--text-secondary);">Small businesses spend 15+ hours weekly on manual document processing. Existing OCR solutions cost $50+/month with limited customization. The gap was clear: affordable, instant, accurate document intelligence.</p>
+                        </div>
+                        <div>
+                            <h3 style="font-size: 0.875rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1rem;">THE SOLUTION</h3>
+                            <p style="font-size: 1rem; line-height: 1.7; color: var(--text-secondary);">Vibe-coded document intelligence platform using Gemini API. Production-ready in 4 weeks at $0 infrastructure cost, achieving 92% accuracy with human-in-the-loop validation.</p>
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; margin-bottom: 3rem;">
+                        <div style="text-align: center; padding: 1.5rem; background: var(--bg-card); border-radius: var(--radius); border: 1px solid var(--border);">
+                            <div style="font-size: 2rem; font-weight: 600; color: var(--accent); margin-bottom: 0.5rem;">92%</div>
+                            <div style="font-size: 0.875rem; color: var(--text-secondary);">Accuracy Rate</div>
+                        </div>
+                        <div style="text-align: center; padding: 1.5rem; background: var(--bg-card); border-radius: var(--radius); border: 1px solid var(--border);">
+                            <div style="font-size: 2rem; font-weight: 600; color: var(--accent); margin-bottom: 0.5rem;">$0</div>
+                            <div style="font-size: 0.875rem; color: var(--text-secondary);">Infrastructure Cost</div>
+                        </div>
+                        <div style="text-align: center; padding: 1.5rem; background: var(--bg-card); border-radius: var(--radius); border: 1px solid var(--border);">
+                            <div style="font-size: 2rem; font-weight: 600; color: var(--accent); margin-bottom: 0.5rem;">4</div>
+                            <div style="font-size: 0.875rem; color: var(--text-secondary);">Week Build Time</div>
+                        </div>
+                        <div style="text-align: center; padding: 1.5rem; background: var(--bg-card); border-radius: var(--radius); border: 1px solid var(--border);">
+                            <div style="font-size: 2rem; font-weight: 600; color: var(--accent); margin-bottom: 0.5rem;">500+</div>
+                            <div style="font-size: 0.875rem; color: var(--text-secondary);">Documents Processed</div>
+                        </div>
+                    </div>
+
+                    <div style="background: var(--bg-card); padding: 2rem; border-radius: var(--radius); border: 1px solid var(--border); margin: 2rem 0;">
+                        <h3 style="font-size: 1.125rem; font-weight: 600; color: var(--text-primary); margin-bottom: 1rem;">User Persona</h3>
+                        <div style="display: flex; align-items: center; gap: 1.5rem;">
+                            <div style="width: 120px; height: 120px; background: var(--accent-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 3rem;">👤</div>
+                            <div>
+                                <h4 style="font-size: 1.25rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.5rem;">Sarah Chen</h4>
+                                <p style="color: var(--text-secondary); margin-bottom: 0.5rem;"><strong>Coffee Shop Owner • 3 Locations • 12 Employees</strong></p>
+                                <p style="color: var(--text-secondary);">Spends 10+ hours weekly on invoices, receipts, and tax documents. Values efficiency and accuracy over cost. Early adopter of productivity tools.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DISCOVER -->
+        <section style="padding: 80px 0; border-top: 1px solid var(--border);">
+            <div class="container">
+                <div style="max-width: 720px; margin: 0 auto;">
+                    <h2 style="font-family: 'Times New Roman', Times, serif; font-size: 32px; line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 2rem; color: var(--text-primary);">Discover</h2>
+                    
+                    <p style="font-size: 1.125rem; line-height: 1.7; color: var(--text-secondary); margin-bottom: 2rem;">Quantified the document processing burden across 50+ small businesses. Average 15 hours weekly on manual data entry, with 8% error rate in transcription. Existing solutions ranged from $50-200/month with limited customization.</p>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-bottom: 2rem;">
+                        <div style="background: var(--bg-card); padding: 1.5rem; border-radius: var(--radius); border: 1px solid var(--border);">
+                            <h4 style="font-weight: 600; color: var(--text-primary); margin-bottom: 1rem;">Research Methodology</h4>
+                            <ul style="color: var(--text-secondary); line-height: 1.6;">
+                                <li>• 50 interviews with small business owners</li>
+                                <li>• Time tracking studies</li>
+                                <li>• Competitive analysis of 12 solutions</li>
+                                <li>• Pain point prioritization</li>
+                            </ul>
+                        </div>
+                        <div style="background: var(--bg-card); padding: 1.5rem; border-radius: var(--radius); border: 1px solid var(--border);">
+                            <h4 style="font-weight: 600; color: var(--text-primary); margin-bottom: 1rem;">Key Insights</h4>
+                            <ul style="color: var(--text-secondary); line-height: 1.6;">
+                                <li>• Accuracy matters more than speed</li>
+                                <li>• Integration simplicity is crucial</li>
+                                <li>• Human validation reduces anxiety</li>
+                                <li>• Cost sensitivity is extreme</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DEFINE -->
+        <section style="padding: 80px 0; border-top: 1px solid var(--border);">
+            <div class="container">
+                <div style="max-width: 720px; margin: 0 auto;">
+                    <h2 style="font-family: 'Times New Roman', Times, serif; font-size: 32px; line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 2rem; color: var(--text-primary);">Define</h2>
+                    
+                    <p style="font-size: 1.125rem; line-height: 1.7; color: var(--text-secondary); margin-bottom: 2rem;">Architected a lean solution leveraging Gemini API for OCR and structured extraction. Designed human-in-the-loop validation for critical fields. Planned for 90%+ accuracy with 100% uptime SLA.</p>
+                    
+                    <div style="background: var(--bg-card); padding: 2rem; border-radius: var(--radius); border: 1px solid var(--border); margin: 2rem 0;">
+                        <h3 style="text-align: center; margin-bottom: 1.5rem; color: var(--text-primary);">Architecture Decision</h3>
+                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;">
+                            <div style="text-align: center;">
+                                <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🖥️</div>
+                                <div style="font-size: 0.875rem; color: var(--text-secondary);">Serverless</div>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🧠</div>
+                                <div style="font-size: 0.875rem; color: var(--text-secondary);">Gemini API</div>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🔄</div>
+                                <div style="font-size: 0.875rem; color: var(--text-secondary);">Validation Loop</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DEVELOP -->
+        <section style="padding: 80px 0; border-top: 1px solid var(--border);">
+            <div class="container">
+                <div style="max-width: 720px; margin: 0 auto;">
+                    <h2 style="font-family: 'Times New Roman', Times, serif; font-size: 32px; line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 2rem; color: var(--text-primary);">Develop</h2>
+                    
+                    <p style="font-size: 1.125rem; line-height: 1.7; color: var(--text-secondary); margin-bottom: 2rem;">Vibe-coded the entire platform in 4 weeks using AI-assisted development. Achieved 92% accuracy with human validation for critical fields. This approach reduced development time by 75% while maintaining production-grade quality.</p>
+                    
+                    <div style="background: var(--bg-card); padding: 2rem; border-radius: var(--radius); border: 1px solid var(--border); margin: 2rem 0;">
+                        <h3 style="margin-bottom: 1.5rem; color: var(--text-primary);">The Core Challenge: AI-to-User Translation</h3>
+                        <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Raw AI outputs are powerful but unusable. I designed a "translation layer" that converts technical AI responses into actionable insights.</p>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1.5rem;">
+                            <div style="background: var(--bg); padding: 1rem; border-radius: var(--radius); border: 1px solid var(--border);">
+                                <h4 style="font-size: 0.875rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.5rem;">BEFORE</h4>
+                                <p style="font-size: 0.75rem; color: var(--text-secondary); line-height: 1.4;">{"invoice_number": "INV-2024-001", "date": "2024-01-15", "amount": 1245.67, "vendor": "Office Supplies Inc"}</p>
+                            </div>
+                            <div style="background: var(--bg); padding: 1rem; border-radius: var(--radius); border: 1px solid var(--border);">
+                                <h4 style="font-size: 0.875rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.5rem;">AFTER</h4>
+                                <p style="font-size: 0.75rem; color: var(--text-secondary); line-height: 1.4;">Invoice #INV-2024-001 from Office Supplies Inc for $1,245.67 dated Jan 15, 2024</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DELIVER -->
+        <section style="padding: 80px 0; border-top: 1px solid var(--border);">
+            <div class="container">
+                <div style="max-width: 720px; margin: 0 auto;">
+                    <h2 style="font-family: 'Times New Roman', Times, serif; font-size: 32px; line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 2rem; color: var(--text-primary);">Deliver</h2>
+                    
+                    <p style="font-size: 1.125rem; line-height: 1.7; color: var(--text-secondary); margin-bottom: 2rem;">Launched to 500+ documents processed in first month. 92% accuracy maintained with 99.5% uptime. Zero infrastructure costs achieved through serverless architecture.</p>
+                    
+                    <h3 style="margin: 2rem 0 1.5rem; color: var(--text-primary);">4-Week Iteration Timeline</h3>
+                    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 2rem;">
+                        <div style="text-align: center; padding: 1rem; background: var(--bg-card); border-radius: var(--radius); border: 1px solid var(--border);">
+                            <div style="font-size: 1.5rem; font-weight: 600; color: var(--accent); margin-bottom: 0.5rem;">Week 1</div>
+                            <div style="font-size: 0.75rem; color: var(--text-secondary);">Research & Architecture</div>
+                        </div>
+                        <div style="text-align: center; padding: 1rem; background: var(--bg-card); border-radius: var(--radius); border: 1px solid var(--border);">
+                            <div style="font-size: 1.5rem; font-weight: 600; color: var(--accent); margin-bottom: 0.5rem;">Week 2</div>
+                            <div style="font-size: 0.75rem; color: var(--text-secondary);">Core Development</div>
+                        </div>
+                        <div style="text-align: center; padding: 1rem; background: var(--bg-card); border-radius: var(--radius); border: 1px solid var(--border);">
+                            <div style="font-size: 1.5rem; font-weight: 600; color: var(--accent); margin-bottom: 0.5rem;">Week 3</div>
+                            <div style="font-size: 0.75rem; color: var(--text-secondary);">Testing & Refinement</div>
+                        </div>
+                        <div style="text-align: center; padding: 1rem; background: var(--bg-card); border-radius: var(--radius); border: 1px solid var(--border);">
+                            <div style="font-size: 1.5rem; font-weight: 600; color: var(--accent); margin-bottom: 0.5rem;">Week 4</div>
+                            <div style="font-size: 0.75rem; color: var(--text-secondary);">Launch & Monitor</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LEARNINGS -->
+        <section style="padding: 80px 0; border-top: 1px solid var(--border);">
+            <div class="container">
+                <div style="max-width: 720px; margin: 0 auto;">
+                    <h2 style="font-family: 'Times New Roman', Times, serif; font-size: 32px; line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 2rem; color: var(--text-primary);">Learnings</h2>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem;">
+                        <div style="background: var(--bg-card); padding: 1.5rem; border-radius: var(--radius); border: 1px solid var(--border);">
+                            <h4 style="font-weight: 600; color: var(--text-primary); margin-bottom: 1rem;">AI Assisted Development</h4>
+                            <p style="color: var(--text-secondary); font-size: 0.875rem; line-height: 1.6;">Vibe coding reduced development time by 75%. Strategic prompts and iterative refinement yielded production-quality code.</p>
+                            <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 1rem;">Speed</div>
+                        </div>
+                        <div style="background: var(--bg-card); padding: 1.5rem; border-radius: var(--radius); border: 1px solid var(--border);">
+                            <h4 style="font-weight: 600; color: var(--text-primary); margin-bottom: 1rem;">Human Validation</h4>
+                            <p style="color: var(--text-secondary); font-size: 0.875rem; line-height: 1.6;">Critical fields required human oversight. Trust increased 40% when users could verify AI interpretations.</p>
+                            <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 1rem;">Trust</div>
+                        </div>
+                        <div style="background: var(--bg-card); padding: 1.5rem; border-radius: var(--radius); border: 1px solid var(--border);">
+                            <h4 style="font-weight: 600; color: var(--text-primary); margin-bottom: 1rem;">Serverless Economics</h4>
+                            <p style="color: var(--text-secondary); font-size: 0.875rem; line-height: 1.6;">Zero infrastructure costs for prototype. Scalable without capacity planning concerns.</p>
+                            <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 1rem;">Cost</div>
+                        </div>
+                        <div style="background: var(--bg-card); padding: 1.5rem; border-radius: var(--radius); border: 1px solid var(--border);">
+                            <h4 style="font-weight: 600; color: var(--text-primary); margin-bottom: 1rem;">User Adoption</h4>
+                            <p style="color: var(--text-secondary); font-size: 0.875rem; line-height: 1.6;">Accuracy over speed. Users tolerated processing delays for guaranteed correctness.</p>
+                            <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 1rem;">UX</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- QUOTE -->
+        <section style="padding: 80px 0; border-top: 1px solid var(--border); background: var(--bg-card);">
+            <div class="container">
+                <div style="max-width: 720px; margin: 0 auto; text-align: center;">
+                    <div class="quote-block" style="font-family: 'Times New Roman', Times, serif; font-size: 1.5rem; line-height: 1.6; color: var(--text-primary); position: relative; padding: 2rem 2rem 2rem 3rem;">
+                        <div style="position: absolute; left: 0; top: 0; font-size: 3rem; color: var(--accent); line-height: 1;">"</div>
+                        <p>AI-assisted development isn't about replacing developers—it's about amplifying human intuition with computational power. The best products emerge when we leverage both strengths strategically.</p>
+                        <div style="margin-top: 1.5rem; font-style: normal; font-weight: 600; color: var(--accent);">— Chandana Konduru, Product Manager</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Project Navigation -->
+    <div class="project-navigation" style="display: flex; justify-content: space-between; padding: 4rem 2rem; border-top: 1px solid var(--border); margin-top: 4rem;">
+      <a href="biotime-cloud.html" style="text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-secondary)'">
+        <span style="display: block; font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem;">← Previous Project</span>
+        <span style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--text-primary);">BioTime Cloud 2.0</span>
+      </a>
+      <a href="zk-digimax.html" style="text-decoration: none; transition: color 0.2s; text-align: right;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-secondary)'">
+        <span style="display: block; font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem;">Next Project →</span>
+        <span style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--text-primary);">ZK Digimax</span>
+      </a>
+    </div>
+
+    <!-- Footer Component -->
+    <footer class="site-footer">
+      <!-- Background watermark text -->
+      <div class="footer-watermark">Chandu</div>
+      
+      <!-- Decorative strokes -->
+      <div class="footer-stroke footer-stroke-left"></div>
+      <div class="footer-stroke footer-stroke-right"></div>
+      <div class="footer-stroke footer-stroke-bottom"></div>
+      
+      <!-- Main footer content -->
+      <div class="footer-content">
+        <!-- Left side - Logo/Name and copyright -->
+        <div class="footer-left">
+          <div class="footer-logo">Chandana.</div>
+          <p class="footer-copyright">
+            ©2025 Chandana Konduru<br>
+            Built with AI in Omaha, NE
+          </p>
+        </div>
+        
+        <!-- Right side - Social links -->
+        <div class="footer-right">
+          <div class="footer-socials">
+            <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener" aria-label="LinkedIn" class="social-link">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+            </a>
+            <a href="https://twitter.com/yourhandle" target="_blank" rel="noopener" aria-label="Twitter" class="social-link">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+            <a href="https://instagram.com/yourusername" target="_blank" rel="noopener" aria-label="Instagram" class="social-link">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
+              </svg>
+            </a>
+            <a href="mailto:your-email@example.com" aria-label="Email" class="social-link">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.278 24 3.433 24 5.457z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    
+    <script src="../js/script.js"></script>
+</body>
+</html>

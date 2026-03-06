@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | Chandana - AI Product Manager</title>
+  <meta name="description" content="Learn about Chandana's journey, approach to product management, and what drives her passion for building AI-powered products.">
+  
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const theme = savedTheme || (prefersDark ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* About Page Styles */
+    .about-hero {
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+    
+    .about-avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+      margin: 0 auto 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+    }
+    
+    .about-title {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+    }
+    
+    .about-tagline {
+      font-size: 1.25rem;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+    }
+    
+    .about-intro {
+      font-size: 1.125rem;
+      color: var(--text-secondary);
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+    
+    /* Story Section */
+    .story-section {
+      padding: 4rem 2rem;
+      background: var(--bg-secondary);
+    }
+    
+    .story-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      max-width: 1000px;
+      margin: 0 auto;
+      align-items: center;
+    }
+    
+    .story-content h2 {
+      font-size: 1.75rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 1.5rem;
+    }
+    
+    .story-content p {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+    
+    .story-visual {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      text-align: center;
+    }
+    
+    .story-visual-icon {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+    }
+    
+    .story-visual-text {
+      font-size: 1rem;
+      color: var(--text-secondary);
+    }
+    
+    /* Superpowers Section */
+    .superpowers-section {
+      padding: 4rem 2rem;
+    }
+    
+    .superpowers-title {
+      font-size: 1.75rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+    
+    .superpowers-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    .superpower-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: all var(--transition-base);
+    }
+    
+    .superpower-card:hover {
+      border-color: var(--border-strong);
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px var(--shadow-hover);
+    }
+    
+    .superpower-icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 1.25rem;
+      background: var(--bg-primary);
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+    }
+    
+    .superpower-name {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.75rem;
+    }
+    
+    .superpower-description {
+      font-size: 0.9375rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    
+    /* Approach Section */
+    .approach-section {
+      padding: 4rem 2rem;
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border);
+    }
+    
+    .approach-title {
+      font-size: 1.75rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+    
+    .approach-steps {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    
+    .approach-step {
+      flex: 1;
+      min-width: 200px;
+      max-width: 250px;
+      text-align: center;
+    }
+    
+    .approach-number {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--text-primary);
+      color: var(--bg-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 0 auto 1rem;
+    }
+    
+    .approach-step h3 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+    }
+    
+    .approach-step p {
+      font-size: 0.9375rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    
+    /* Values Section */
+    .values-section {
+      padding: 4rem 2rem;
+    }
+    
+    .values-title {
+      font-size: 1.75rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+    
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .value-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      transition: all var(--transition-base);
+    }
+    
+    .value-card:hover {
+      border-color: var(--accent);
+    }
+    
+    .value-card h3 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .value-card p {
+      font-size: 0.9375rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    
+    /* CTA Section */
+    .about-cta {
+      padding: 4rem 2rem;
+      text-align: center;
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border);
+    }
+    
+    .about-cta h2 {
+      font-size: 1.75rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+    }
+    
+    .about-cta p {
+      font-size: 1.125rem;
+      color: var(--text-secondary);
+      max-width: 500px;
+      margin: 0 auto 1.5rem;
+    }
+    
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    
+    .social-link {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      transition: all var(--transition-fast);
+    }
+    
+    .social-link:hover {
+      border-color: var(--accent);
+      background: var(--accent);
+      transform: translateY(-2px);
+    }
+    
+    /* Responsive */
+    @media (max-width: 900px) {
+      .story-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      
+      .superpowers-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .values-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .approach-steps {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .about-hero {
+        padding: 3rem 1rem;
+      }
+      
+      .about-avatar {
+        width: 100px;
+        height: 100px;
+        font-size: 2.5rem;
+      }
+      
+      .story-section,
+      .superpowers-section,
+      .approach-section,
+      .values-section,
+      .about-cta {
+        padding: 3rem 1rem;
+      }
+      
+      .superpower-card {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">Chandana<span>.</span></a>
+      
+      <nav class="nav-main" id="navMain">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="work.html" class="nav-link">Work</a>
+        <a href="experience.html" class="nav-link">Experience</a>
+        <a href="about.html" class="nav-link active">About</a>
+      </nav>
+      
+      <div class="header-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <span id="themeIcon">🌙</span>
+        </button>
+        <a href="mailto:chandana@example.com" class="btn-contact">Contact</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- About Hero -->
+    <section class="about-hero">
+      <div class="about-avatar">👩‍💼</div>
+      <h1 class="about-title">Hi, I'm Chandana</h1>
+      <p class="about-tagline">AI Product Manager • Builder • Problem Solver</p>
+      <p class="about-intro">
+        I bridge the gap between cutting-edge AI technology and human-centered design. 
+        With 5+ years of experience building products that matter, I've learned that the best 
+        solutions come from deeply understanding both the technology and the people who use it.
+      </p>
+    </section>
+
+    <!-- Story Section -->
+    <section class="story-section">
+      <div class="story-grid">
+        <div class="story-content">
+          <h2>My Journey</h2>
+          <p>
+            My path into product management wasn't traditional. I started as a software engineer, 
+            writing code and building features. But I kept finding myself asking "why" — why are we 
+            building this? Who is it for? What problem does it solve?
+          </p>
+          <p>
+            That curiosity led me to product management, where I discovered my true passion: 
+            translating complex technical capabilities into products that make people's lives easier.
+          </p>
+          <p>
+            Today, I specialize in AI-powered products. I believe artificial intelligence is 
+            most powerful when it's invisible — when it just works, making experiences smoother 
+            and more intuitive without users even noticing.
+          </p>
+        </div>
+        <div class="story-visual">
+          <div class="story-visual-icon">🚀</div>
+          <p class="story-visual-text">
+            "The best products don't just solve problems — they anticipate needs before users even realize they have them."
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Superpowers Section -->
+    <section class="superpowers-section">
+      <h2 class="superpowers-title">My Superpowers</h2>
+      <div class="superpowers-grid">
+        <div class="superpower-card">
+          <div class="superpower-icon">🎯</div>
+          <h3 class="superpower-name">Strategic Thinking</h3>
+          <p class="superpower-description">
+            I see the big picture while never losing sight of the details that matter. 
+            Every feature ties back to business goals and user needs.
+          </p>
+        </div>
+        
+        <div class="superpower-card">
+          <div class="superpower-icon">🤝</div>
+          <h3 class="superpower-name">Cross-Functional Leadership</h3>
+          <p class="superpower-description">
+            I speak the language of engineers, designers, and executives. 
+            I bring teams together around a shared vision and clear goals.
+          </p>
+        </div>
+        
+        <div class="superpower-card">
+          <div class="superpower-icon">⚡</div>
+          <h3 class="superpower-name">Rapid Execution</h3>
+          <p class="superpower-description">
+            I believe in shipping fast and learning faster. 
+            MVPs, iterative improvements, and data-driven decisions are my mantra.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Approach Section -->
+    <section class="approach-section">
+      <h2 class="approach-title">How I Work</h2>
+      <div class="approach-steps">
+        <div class="approach-step">
+          <div class="approach-number">1</div>
+          <h3>Discover</h3>
+          <p>Deep dive into user needs, market research, and technical constraints to understand the problem space.</p>
+        </div>
+        
+        <div class="approach-step">
+          <div class="approach-number">2</div>
+          <h3>Define</h3>
+          <p>Craft clear requirements, success metrics, and a roadmap that balances quick wins with long-term vision.</p>
+        </div>
+        
+        <div class="approach-step">
+          <div class="approach-number">3</div>
+          <h3>Deliver</h3>
+          <p>Work closely with engineering and design to build, iterate, and ship products that users love.</p>
+        </div>
+        
+        <div class="approach-step">
+          <div class="approach-number">4</div>
+          <h3>Optimize</h3>
+          <p>Analyze data, gather feedback, and continuously improve the product based on real user behavior.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section">
+      <h2 class="values-title">What I Believe</h2>
+      <div class="values-grid">
+        <div class="value-card">
+          <h3>🙋‍♀️ User-First Always</h3>
+          <p>Technology should serve people, not the other way around. Every decision starts with understanding user needs.</p>
+        </div>
+        
+        <div class="value-card">
+          <h3>📊 Data-Driven Decisions</h3>
+          <p>Intuition is valuable, but data is essential. I measure everything and let insights guide the roadmap.</p>
+        </div>
+        
+        <div class="value-card">
+          <h3>🚀 Ship Fast, Learn Faster</h3>
+          <p>Perfect is the enemy of good. I believe in rapid iteration and continuous improvement based on feedback.</p>
+        </div>
+        
+        <div class="value-card">
+          <h3>🤖 AI as Augmentation</h3>
+          <p>AI should enhance human capabilities, not replace them. The best AI products feel invisible and intuitive.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="about-cta">
+      <h2>Let's Connect</h2>
+      <p>
+        I'm always open to discussing new opportunities, interesting projects, 
+        or just chatting about the future of AI and product management.
+      </p>
+      <a href="mailto:chandana@example.com" class="btn btn-primary">Get In Touch</a>
+      
+      <div class="social-links">
+        <a href="#" class="social-link" aria-label="LinkedIn">💼</a>
+        <a href="#" class="social-link" aria-label="GitHub">💻</a>
+        <a href="#" class="social-link" aria-label="Twitter">🐦</a>
+        <a href="#" class="social-link" aria-label="Email">✉️</a>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const html = document.documentElement;
+    
+    function updateThemeIcon(theme) {
+      themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+    }
+    
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = html.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      updateThemeIcon(newTheme);
+    });
+    
+    updateThemeIcon(html.getAttribute('data-theme'));
+    
+    const menuToggle = document.getElementById('menuToggle');
+    const navMain = document.getElementById('navMain');
+    
+    menuToggle.addEventListener('click', () => {
+      navMain.classList.toggle('open');
+    });
+    
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        navMain.classList.remove('open');
+      });
+    });
+    
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.site-header')) {
+        navMain.classList.remove('open');
+      }
+    });
+  </script>
+</body>
+</html>

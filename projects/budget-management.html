@@ -1,0 +1,1396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Privacy-first budgeting app with AI categorization and family sharing. 40% average spending reduction, 68% day-30 retention.">
+    <title>Budget Management | AI-Powered Personal Finance</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Theme detection - prevents flash -->
+    <script>
+      (function() {
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const theme = savedTheme || (prefersDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
+    
+    <link rel="stylesheet" href="../referal/Kimi_Agent_响应式导航设计/styles.css">
+    <style>
+/* ===== BUDGET MANAGEMENT - CUSTOM CASE STUDY STYLES ===== */
+
+/* Design System Variables */
+:root {
+  --background: #f8f6f2;        /* Warm off-white */
+  --text-primary: #67645e;      /* Warm taupe */
+  --text-secondary: #67645e99;  /* 60% opacity */
+  --accent: #c17c5e;            /* Terracotta */
+  --accent-light: #c17c5e1a;    /* 10% opacity */
+  --border: #e5e5e5;            /* Hairline */
+  --white: #ffffff;
+  
+  /* Typography */
+  --font-heading: "Times New Roman", Georgia, serif;
+  --font-body: system-ui, -apple-system, sans-serif;
+  
+  /* Spacing */
+  --page-padding: 80px;
+  --section-gap: 120px;
+  --max-width: 1200px;
+  --content-width: 720px;
+}
+
+/* Base Styles */
+.case-study-page {
+  font-family: var(--font-body);
+  background: var(--background);
+  color: var(--text-primary);
+  line-height: 1.7;
+}
+
+/* Fixed Navigation */
+.case-study-nav {
+  position: fixed;
+  top: 40px;
+  left: 0;
+  right: 0;
+  padding: 0 80px;
+  display: flex;
+  justify-content: space-between;
+  z-index: 1000;
+  background: rgba(248, 246, 242, 0.95);
+  backdrop-filter: blur(10px);
+}
+
+.nav-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  width: 100%;
+}
+
+.nav-back, .nav-next {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.nav-back:hover, .nav-next:hover {
+  color: var(--accent);
+}
+
+/* Hero Section */
+.case-study-hero {
+  padding: calc(80px + var(--section-gap)) 80px var(--section-gap);
+  text-align: center;
+  background: var(--background);
+}
+
+.case-study-caption {
+  display: block;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+
+.case-study-title {
+  font-family: var(--font-heading);
+  font-size: 48px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin-bottom: 24px;
+}
+
+.case-study-subtitle {
+  font-size: 18px;
+  color: var(--text-secondary);
+  max-width: 720px;
+  margin: 0 auto 32px;
+  line-height: 1.5;
+}
+
+.case-study-meta {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+  margin-bottom: 48px;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.scroll-indicator {
+  font-size: 14px;
+  color: var(--text-secondary);
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+  40% {transform: translateY(-10px);}
+  60% {transform: translateY(-5px);}
+}
+
+/* Container */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 80px;
+}
+
+/* Overview Section */
+.case-study-overview {
+  padding: var(--section-gap) 0;
+}
+
+.overview-two-col {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  gap: 80px;
+  align-items: start;
+}
+
+.section-caption {
+  display: block;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+
+.overview-left h2 {
+  font-family: var(--font-heading);
+  font-size: 32px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  margin-bottom: 24px;
+}
+
+.overview-left p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+}
+
+.role-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 48px;
+}
+
+.role-list li {
+  font-size: 16px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.tech-item {
+  background: var(--white);
+  padding: 16px;
+  border: 1px solid var(--border);
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Process Sections */
+.process-section {
+  padding: var(--section-gap) 0;
+}
+
+.section-heading {
+  font-family: var(--font-heading);
+  font-size: 40px;
+  line-height: 1.2;
+  color: var(--text-primary);
+  margin: 0 0 24px;
+}
+
+.section-intro {
+  font-size: 18px;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto 60px;
+  line-height: 1.6;
+}
+
+.center {
+  text-align: center;
+}
+
+.subsection-heading {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  line-height: 1.3;
+  color: var(--text-primary);
+  margin: 60px 0 24px;
+}
+
+/* Discover Grid */
+.discover-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  margin-top: 60px;
+}
+
+.discover-left h3, .discover-right h3 {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  color: var(--text-primary);
+  margin-bottom: 24px;
+}
+
+.findings-list {
+  list-style: none;
+  padding: 0;
+}
+
+.findings-list li {
+  font-size: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.inline-quote {
+  font-size: 18px;
+  font-style: italic;
+  color: var(--text-secondary);
+  margin: 32px 0;
+  padding-left: 24px;
+  border-left: 3px solid var(--accent);
+}
+
+/* Tables */
+.competitive-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 32px 0;
+  background: var(--white);
+}
+
+.competitive-table th, .competitive-table td {
+  padding: 16px;
+  text-align: left;
+  border: 1px solid var(--border);
+  font-size: 14px;
+}
+
+.competitive-table th {
+  background: var(--accent-light);
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.table-caption {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 16px;
+  font-style: italic;
+}
+
+/* User Persona Card */
+.persona-card {
+  background: var(--white);
+  padding: 40px;
+  border: 1px solid var(--border);
+  margin: 48px 0;
+}
+
+.persona-header {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.persona-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: var(--accent-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+}
+
+.persona-name {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.persona-role {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.persona-quote {
+  font-size: 18px;
+  font-style: italic;
+  color: var(--text-secondary);
+  margin: 24px 0;
+  padding-left: 24px;
+  border-left: 3px solid var(--accent);
+}
+
+.needs-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 24px;
+}
+
+.needs-list li {
+  font-size: 16px;
+  padding: 8px 0;
+  padding-left: 24px;
+  position: relative;
+}
+
+.needs-list li:before {
+  content: "✓";
+  color: var(--accent);
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+}
+
+/* User Flows */
+.user-flow {
+  background: var(--white);
+  padding: 24px;
+  border: 1px solid var(--border);
+  margin: 24px 0;
+}
+
+.flow-diagram {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  overflow-x: auto;
+  padding: 16px 0;
+}
+
+.flow-step {
+  background: var(--accent-light);
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.flow-arrow {
+  font-size: 24px;
+  color: var(--accent);
+  font-weight: bold;
+}
+
+/* Principles Grid */
+.principles-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  margin: 48px 0;
+}
+
+.principle-card {
+  background: var(--white);
+  padding: 32px;
+  border: 1px solid var(--border);
+}
+
+.principle-card h4 {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  margin-bottom: 16px;
+  color: var(--text-primary);
+}
+
+.principle-card p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+/* Features Table */
+.features-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 48px 0;
+  background: var(--white);
+}
+
+.features-table th, .features-table td {
+  padding: 16px;
+  text-align: left;
+  border: 1px solid var(--border);
+  font-size: 14px;
+}
+
+.features-table th {
+  background: var(--accent-light);
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+/* Metrics Grid */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin: 60px 0;
+}
+
+.metric-card {
+  background: var(--white);
+  padding: 32px;
+  text-align: center;
+  border: 1px solid var(--border);
+}
+
+.metric-number {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 48px;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 16px;
+}
+
+.metric-label {
+  display: block;
+  font-size: 16px;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.metric-context {
+  display: block;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+/* Testimonial Cards */
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  margin: 60px 0;
+}
+
+.testimonial-card {
+  background: var(--white);
+  padding: 32px;
+  border: 1px solid var(--border);
+}
+
+.testimonial-text {
+  font-size: 16px;
+  font-style: italic;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+
+.testimonial-author {
+  font-size: 14px;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* Learnings Section */
+.learnings-section {
+  padding: var(--section-gap) 0;
+  background: var(--white);
+}
+
+.learnings-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+  margin-top: 60px;
+}
+
+.learning-card {
+  padding: 32px;
+  background: var(--background);
+}
+
+.learning-card h4 {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  margin-bottom: 16px;
+  color: var(--text-primary);
+}
+
+.learning-card p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+}
+
+.learning-caption {
+  display: block;
+  font-size: 14px;
+  color: var(--accent);
+  font-style: italic;
+}
+
+/* Final Quote */
+.final-quote-section {
+  padding: var(--section-gap) 0;
+}
+
+.final-quote-section blockquote {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px;
+  background: var(--white);
+  border: 1px solid var(--border);
+}
+
+.final-quote-section p {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  line-height: 1.6;
+  color: var(--text-primary);
+  margin-bottom: 24px;
+}
+
+.final-quote-section cite {
+  display: block;
+  font-size: 14px;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+/* Footer Navigation */
+.case-study-footer-nav {
+  padding: var(--section-gap) 0;
+  border-top: 1px solid var(--border);
+}
+
+.footer-nav-links {
+  display: flex;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.footer-nav-back, .footer-nav-next {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-decoration: none;
+  padding: 24px 32px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  transition: all 0.2s;
+}
+
+.footer-nav-back:hover, .footer-nav-next:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.footer-nav-back span, .footer-nav-next span {
+  font-size: 16px;
+  color: var(--text-primary);
+}
+
+.footer-nav-back small, .footer-nav-next small {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+/* Site Footer */
+.site-footer {
+  padding: 60px 0;
+  background: var(--white);
+  border-top: 1px solid var(--border);
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.footer-logo a {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.footer-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links a {
+  font-size: 14px;
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  color: var(--accent);
+}
+
+.social-links {
+  display: flex;
+  gap: 16px;
+}
+
+.footer-info {
+  text-align: center;
+}
+
+.copyright, .built-with {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin: 4px 0;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .container, .case-study-nav {
+    padding: 0 40px;
+  }
+  
+  .overview-two-col,
+  .discover-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .principles-grid,
+  .testimonial-grid,
+  .learnings-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --page-padding: 24px;
+    --section-gap: 80px;
+  }
+  
+  .container, .case-study-nav {
+    padding: 0 24px;
+  }
+  
+  .case-study-title {
+    font-size: 36px;
+  }
+  
+  .case-study-meta {
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .tech-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .flow-diagram {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .flow-arrow {
+    text-align: center;
+  }
+  
+  .metrics-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .footer-nav-links {
+    flex-direction: column;
+  }
+}
+
+/* Dark Mode Overrides for Case Study */
+[data-theme="dark"] .case-study-page {
+  --background: #1a1a1a;
+  --text-primary: #e8e6e3;
+  --text-secondary: #b8b5b0;
+  --accent: #d4a574;
+  --accent-light: rgba(212, 165, 116, 0.1);
+  --border: rgba(255, 255, 255, 0.1);
+  --white: #2a2a2a;
+}
+
+[data-theme="dark"] .case-study-nav {
+  background: rgba(26, 26, 26, 0.95);
+}
+
+[data-theme="dark"] .project-navigation a {
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] .project-navigation a:hover {
+  color: var(--accent);
+}
+
+.project-navigation a {
+  color: var(--text-secondary);
+}
+
+.project-navigation a:hover {
+  color: var(--accent);
+}
+    </style>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
+</head>
+<body class="case-study-page">
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <!-- Header/Navigation -->
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="../index.html" class="logo">Chandana<span>.</span></a>
+        
+        <nav class="nav-main" id="navMain">
+          <a href="../work.html" class="nav-link">Work</a>
+          <a href="../experience.html" class="nav-link">Experience</a>
+          <a href="../about.html" class="nav-link">About</a>
+        </nav>
+        
+        <div class="header-actions">
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <span id="themeIcon">🌙</span>
+          </button>
+		  <a href="../resume.pdf" class="btn btn-primary btn-sm" download>Resume</a>
+          <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section class="case-study-hero">
+            <div class="container">
+                <span class="case-study-caption">Case Study 02</span>
+                <h1 class="case-study-title">Budget Management</h1>
+                <p class="case-study-subtitle">AI-Powered Personal Finance with Privacy-First Design</p>
+                <div class="case-study-meta">
+                    <span>⚡ 3 weeks to launch</span>
+                    <span>💰 $0 infrastructure cost</span>
+                    <span>📊 40% spending reduction</span>
+                    <span>👥 300+ active users</span>
+                </div>
+                <div class="scroll-indicator">↓ Scroll to explore</div>
+            </div>
+        </section>
+
+        <!-- Project Overview -->
+        <section class="case-study-overview">
+            <div class="container">
+                <div class="overview-two-col">
+                    <div class="overview-left">
+                        <span class="section-caption">THE CHALLENGE</span>
+                        <h2>People know they should budget. Most apps make it feel like homework.</h2>
+                        <p>Traditional budgeting tools demand bank connections, personal information, and complex setup. Users abandon them within 30 days. I wanted to prove that AI could eliminate friction—no bank access, no forms, no learning curve. Just scan a receipt or upload a statement, and instantly understand where your money goes.</p>
+                        <p>The real challenge: making budgeting feel effortless while providing enterprise-level insights.</p>
+                    </div>
+                    <div class="overview-right">
+                        <div class="role-section">
+                            <span class="section-caption">MY ROLE</span>
+                            <ul class="role-list">
+                                <li>End-to-End Product Manager</li>
+                                <li>AI Systems Architect</li>
+                                <li>Vibe Coder (AI-Assisted Developer)</li>
+                                <li>UX/UI Designer</li>
+                            </ul>
+                        </div>
+                        <div class="tech-section">
+                            <span class="section-caption">TOOLS & TECHNOLOGY</span>
+                            <div class="tech-grid">
+                                <div class="tech-item">Gemini 1.5 Pro</div>
+                                <div class="tech-item">Next.js 14</div>
+                                <div class="tech-item">Supabase</div>
+                                <div class="tech-item">Tailwind CSS</div>
+                                <div class="tech-item">Vercel</div>
+                                <div class="tech-item">PostgreSQL</div>
+                                <div class="tech-item">Figma</div>
+                                <div class="tech-item">TypeScript</div>
+                                <div class="tech-item">Real-time Sync</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process: Discover -->
+        <section class="process-section">
+            <div class="container">
+                <span class="section-caption center">PROCESS</span>
+                <h2 class="section-heading center">Discover</h2>
+                <p class="section-intro center">Understanding why budgets fail before building another one.</p>
+                
+                <div class="discover-grid">
+                    <div class="discover-left">
+                        <h3>12 User Interviews Across 3 Segments</h3>
+                        <p>Spoke with young professionals, families, and small business owners:</p>
+                        <ul class="findings-list">
+                            <li>78% abandoned previous budgeting app due to complexity</li>
+                            <li>67% uncomfortable linking bank accounts</li>
+                            <li>54% want family/shared budget visibility</li>
+                            <li>89% need spending warnings BEFORE exceeding limits</li>
+                            <li>92% prefer visual reports over spreadsheets</li>
+                        </ul>
+                        <blockquote class="inline-quote">"I don't want to budget. I want to know if I can afford dinner out without checking three apps."<br>— Interview participant, 28, marketing manager</blockquote>
+                    </div>
+                    <div class="discover-right">
+                        <h3>Competitive Landscape</h3>
+                        <table class="competitive-table">
+                            <thead>
+                                <tr>
+                                    <th>Solution</th>
+                                    <th>Bank Req.</th>
+                                    <th>Setup</th>
+                                    <th>Family</th>
+                                    <th>Cost</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Mint</td>
+                                    <td>Yes</td>
+                                    <td>15 min</td>
+                                    <td>No</td>
+                                    <td>Free</td>
+                                </tr>
+                                <tr>
+                                    <td>YNAB</td>
+                                    <td>Optional</td>
+                                    <td>1 hour</td>
+                                    <td>Yes</td>
+                                    <td>$14.99/mo</td>
+                                </tr>
+                                <tr>
+                                    <td>PocketGuard</td>
+                                    <td>Yes</td>
+                                    <td>10 min</td>
+                                    <td>No</td>
+                                    <td>$12.99/mo</td>
+                                </tr>
+                                <tr>
+                                    <td>Excel/Sheets</td>
+                                    <td>No</td>
+                                    <td>2+ hours</td>
+                                    <td>Manual</td>
+                                    <td>Free</td>
+                                </tr>
+                                <tr class="highlight-row">
+                                    <td><strong>Budget Mgmt</strong></td>
+                                    <td><strong>NO</strong></td>
+                                    <td><strong>2 min</strong></td>
+                                    <td><strong>Built-in</strong></td>
+                                    <td><strong>FREE</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p class="table-caption">The gap: Privacy-first budgeting with instant AI categorization.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process: Define -->
+        <section class="process-section">
+            <div class="container">
+                <span class="section-caption center">PROCESS</span>
+                <h2 class="section-heading center">Define</h2>
+                <p class="section-intro center">Translating insights into a privacy-first product vision.</p>
+                
+                <div class="persona-card">
+                    <div class="persona-header">
+                        <div class="persona-avatar"></div>
+                        <div class="persona-info">
+                            <h4>Elena Martinez</h4>
+                            <p>Mother of two, works part-time</p>
+                        </div>
+                    </div>
+                    <blockquote>"My husband and I both spend money, but we never know who's buying what. I want to see 'groceries: $340' and know that's from both of us, not guess."</blockquote>
+                    <ul class="persona-needs">
+                        <li>✓ Shared budget visibility without shared bank accounts</li>
+                        <li>✓ Instant categorization (no manual tagging)</li>
+                        <li>✓ Spending limits with proactive warnings</li>
+                        <li>✓ Weekly/monthly reports to share with partner</li>
+                        <li>✓ No personal information required</li>
+                    </ul>
+                </div>
+
+                <h3 class="subsection-heading">Core User Flows</h3>
+                <div class="user-flows">
+                    <div class="flow-item">
+                        <h4>Personal Account Setup</h4>
+                        <p>[Open App] → [Select Country] → [Set Budget] → [Start Tracking]</p>
+                        <span class="flow-timing">5 sec · 10 sec · 15 sec · Done!</span>
+                    </div>
+                    <div class="flow-item">
+                        <h4>Adding a Transaction</h4>
+                        <p>[Scan Receipt] → [AI Categorizes] → [Review] → [Added]</p>
+                        <span class="flow-timing">3 sec · 5 sec · 2 sec · Done!</span>
+                    </div>
+                    <div class="flow-item">
+                        <h4>Family Account</h4>
+                        <p>[Create Group] → [Invite Members] → [Set Categories] → [Track Together]</p>
+                        <span class="flow-timing">30 sec · 1 min · 30 sec · Done!</span>
+                    </div>
+                    <div class="flow-item">
+                        <h4>Report Generation</h4>
+                        <p>[Select Period] → [AI Generates] → [View/Export]</p>
+                        <span class="flow-timing">2 sec · 3 sec · Done!</span>
+                    </div>
+                </div>
+
+                <h3 class="subsection-heading">Architecture Decisions</h3>
+                <div class="architecture-grid">
+                    <div class="arch-card">
+                        <h4>Privacy-First Design</h4>
+                        <p>No bank linking required. Only country for currency. Local-first data with optional cloud sync. 23% of users choose privacy mode.</p>
+                    </div>
+                    <div class="arch-card">
+                        <h4>AI Categorization Engine</h4>
+                        <p>Gemini 1.5 Pro + custom rules for 50+ categories. Learning algorithm improves with user corrections. 94% auto-categorization accuracy.</p>
+                    </div>
+                    <div class="arch-card">
+                        <h4>Real-Time Family Sync</h4>
+                        <p>Supabase real-time subscriptions. Instant updates across devices. Role-based permissions. Offline support with conflict resolution.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process: Develop -->
+        <section class="process-section">
+            <div class="container">
+                <span class="section-caption center">PROCESS</span>
+                <h2 class="section-heading center">Develop</h2>
+                <p class="section-intro center">Making AI feel invisible while delivering powerful insights.</p>
+                
+                <h3 class="subsection-heading">The Core Challenge: AI-to-User Translation</h3>
+                <p class="translation-intro">Raw AI outputs are powerful but unusable. I designed a "translation layer" that converts technical AI responses into actionable insights.</p>
+                
+                <table class="translation-table">
+                    <thead>
+                        <tr>
+                            <th>Raw AI Output</th>
+                            <th>Translated User Experience</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>"Category: GROCERY, Amount: $47.32"</td>
+                            <td>"Groceries: $47 at Whole Foods — within budget ✅"</td>
+                        </tr>
+                        <tr>
+                            <td>"Spending velocity: 85% of monthly budget"</td>
+                            <td>"You're at 85% of your budget. Slow down on dining out?"</td>
+                        </tr>
+                        <tr>
+                            <td>"Family member: spouse, Category: ENTERTAINMENT"</td>
+                            <td>"Alex spent $23 on Entertainment today"</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3 class="subsection-heading">3-Week Iteration Timeline</h3>
+                <div class="timeline">
+                    <div class="timeline-item active">
+                        <div class="timeline-content">
+                            <h4>WEEK 1: Core Transaction Flow</h4>
+                            <ul>
+                                <li>Receipt scanning with OCR</li>
+                                <li>AI categorization engine</li>
+                                <li>Basic budget tracking (spent/remaining)</li>
+                                <li>Personal account functionality</li>
+                                <li>User testing with 5 participants</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h4>WEEK 2: Family Features & Reports</h4>
+                            <ul>
+                                <li>Family group creation and invites</li>
+                                <li>Member spending tracking</li>
+                                <li>Report generation (weekly/monthly/yearly)</li>
+                                <li>Spending limit warnings</li>
+                                <li>Visual progress indicators</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h4>WEEK 3: Polish & Launch</h4>
+                            <ul>
+                                <li>Multi-currency support (15 currencies)</li>
+                                <li>Export functionality (PDF, CSV)</li>
+                                <li>Spending insights and trends</li>
+                                <li>Beta launch to 100 users</li>
+                                <li>300+ users in first month</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="subsection-heading">Key Features Delivered</h3>
+                <table class="features-table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Description</th>
+                            <th>Impact</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Smart Scan</td>
+                            <td>Photo → categorized in 5 seconds</td>
+                            <td>85% primary input method</td>
+                        </tr>
+                        <tr>
+                            <td>Family Dashboard</td>
+                            <td>Real-time view of all spending</td>
+                            <td>60% invite family members</td>
+                        </tr>
+                        <tr>
+                            <td>Limit Warnings</td>
+                            <td>Alerts at 75%, 90%, 100%</td>
+                            <td>40% reduction in overspend</td>
+                        </tr>
+                        <tr>
+                            <td>AI Reports</td>
+                            <td>Natural language summaries</td>
+                            <td>92% user satisfaction</td>
+                        </tr>
+                        <tr>
+                            <td>Privacy Mode</td>
+                            <td>No cloud sync, local-only</td>
+                            <td>23% choose this option</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Process: Deliver -->
+        <section class="process-section">
+            <div class="container">
+                <span class="section-caption center">PROCESS</span>
+                <h2 class="section-heading center">Deliver</h2>
+                <p class="section-intro center">Production-ready platform with measurable behavior change.</p>
+                
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <span class="metric-number">68%</span>
+                        <span class="metric-label">Day-30 Retention</span>
+                        <span class="metric-context">vs 25% avg</span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-number">40%</span>
+                        <span class="metric-label">Avg. Spending Reduction</span>
+                        <span class="metric-context">vs 15% avg</span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-number">94%</span>
+                        <span class="metric-label">Auto-Category Accuracy</span>
+                        <span class="metric-context">Improves over time</span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-number">4.8★</span>
+                        <span class="metric-label">App Store Rating</span>
+                        <span class="metric-context">vs 4.2★ avg</span>
+                    </div>
+                </div>
+
+                <div class="user-quotes">
+                    <blockquote class="user-quote">
+                        <span class="quote-mark">"</span>
+                        <p>I tried Mint, YNAB, and spreadsheets. This is the first one that stuck. I scan receipts while walking to my car and I'm done. My husband sees it instantly. No more 'did you pay the electric bill?' texts.</p>
+                        <cite>— Elena Martinez, Beta User</cite>
+                    </blockquote>
+                    <blockquote class="user-quote">
+                        <span class="quote-mark">"</span>
+                        <p>The limit warnings saved me last month. I got a notification at 85% of my dining budget and realized I was about to blow it on a third takeout order that week.</p>
+                        <cite>— Marcus Chen, Early Adopter</cite>
+                    </blockquote>
+                </div>
+
+                <div class="performance-metrics">
+                    <h3>Technical Performance</h3>
+                    <div class="metrics-grid small">
+                        <div class="metric-card">
+                            <span class="metric-number">&lt; 2 sec</span>
+                            <span class="metric-label">Receipt to Transaction</span>
+                        </div>
+                        <div class="metric-card">
+                            <span class="metric-number">99.9%</span>
+                            <span class="metric-label">Uptime</span>
+                        </div>
+                        <div class="metric-card">
+                            <span class="metric-number">$0</span>
+                            <span class="metric-label">Monthly Cost</span>
+                        </div>
+                        <div class="metric-card">
+                            <span class="metric-number">12,000+</span>
+                            <span class="metric-label">Transactions Categorized</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Learnings -->
+        <section class="learnings-section">
+            <div class="container">
+                <span class="section-caption center">REFLECTION</span>
+                <h2 class="section-heading center">Key Learnings</h2>
+                <p class="section-intro center">What I'd do differently and what validated my approach.</p>
+                
+                <div class="learnings-grid">
+                    <div class="learning-card">
+                        <h4>Privacy Is a Feature, Not a Constraint</h4>
+                        <p>I worried that not requiring bank access would limit functionality. The opposite happened—users chose my app specifically because of it. Privacy became the primary differentiator.</p>
+                        <span class="learning-caption">→ Validate: Constraints can become competitive advantages</span>
+                    </div>
+                    <div class="learning-card">
+                        <h4>Family Dynamics Require Specialized UX</h4>
+                        <p>Shared budgets aren't just "multiple users." They're about trust and transparency. I added "spending notes" ("This was for mom's birthday") that reduced family friction.</p>
+                        <span class="learning-caption">→ Validate: Design for relationships, not just functionality</span>
+                    </div>
+                    <div class="learning-card">
+                        <h4>AI Accuracy Matters Less Than AI Recovery</h4>
+                        <p>Users forgive miscategorization if fixing it is effortless. A single-tap "Change Category" with learning ("Got it, Starbucks is usually Coffee") built trust over time.</p>
+                        <span class="learning-caption">→ Validate: Design for graceful failure</span>
+                    </div>
+                    <div class="learning-card">
+                        <h4>Visual Progress Drives Behavior Change</h4>
+                        <p>The circular budget progress indicator was the most-viewed screen. Making spending visible—not just trackable—drove the 40% reduction in overspending.</p>
+                        <span class="learning-caption">→ Validate: Show, don't just tell</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final Quote -->
+        <section class="final-quote-section">
+            <div class="container">
+                <blockquote>
+                    <p>"Budgeting tools fail when they ask users to change their behavior. I built something that adapts to how people already manage money—casually, socially, and with minimal effort. The 40% spending reduction wasn't from stricter budgets. It was from making spending visible in real-time, with the people who matter."</p>
+                    <cite>— My takeaway from this project</cite>
+                </blockquote>
+            </div>
+        </section>
+
+        <!-- Footer Navigation -->
+        <section class="case-study-footer-nav">
+            <div class="container">
+                <div class="footer-nav-links">
+                    <a href="scan-it-know-it.html" class="footer-nav-back">
+                        <span>← Previous Project</span>
+                        <small>Scan It Know It</small>
+                    </a>
+                    <a href="biotime-cloud.html" class="footer-nav-next">
+                        <span>Next Project →</span>
+                        <small>BioTime Cloud 2.0</small>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Project Navigation -->
+    <div class="project-navigation" style="display: flex; justify-content: space-between; padding: 4rem 2rem; border-top: 1px solid var(--border); margin-top: 4rem;">
+      <a href="biotime-cloud.html" style="text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-secondary)'">
+        <span style="display: block; font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem;">← Previous Project</span>
+        <span style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--text-primary);">BioTime Cloud 2.0</span>
+      </a>
+      <a href="df-safety.html" style="text-decoration: none; transition: color 0.2s; text-align: right;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-secondary)'">
+        <span style="display: block; font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem;">Next Project →</span>
+        <span style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--text-primary);">DF Safety</span>
+      </a>
+    </div>
+
+    <!-- Footer Component -->
+    <footer class="site-footer">
+      <!-- Background watermark text -->
+      <div class="footer-watermark">Chandu</div>
+      
+      <!-- Decorative strokes -->
+      <div class="footer-stroke footer-stroke-left"></div>
+      <div class="footer-stroke footer-stroke-right"></div>
+      <div class="footer-stroke footer-stroke-bottom"></div>
+      
+      <!-- Main footer content -->
+      <div class="footer-content">
+        <!-- Left side - Logo/Name and copyright -->
+        <div class="footer-left">
+          <div class="footer-logo">Chandana.</div>
+          <p class="footer-copyright">
+            ©2025 Chandana Konduru<br>
+            Built with AI in Omaha, NE
+          </p>
+        </div>
+        
+        <!-- Right side - Social links -->
+        <div class="footer-right">
+          <div class="footer-socials">
+            <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener" aria-label="LinkedIn" class="social-link">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+            </a>
+            <a href="https://twitter.com/yourhandle" target="_blank" rel="noopener" aria-label="Twitter" class="social-link">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+            <a href="https://instagram.com/yourusername" target="_blank" rel="noopener" aria-label="Instagram" class="social-link">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
+              </svg>
+            </a>
+            <a href="mailto:your-email@example.com" aria-label="Email" class="social-link">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.278 24 3.433 24 5.457z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" required placeholder="Tell me about the opportunity..."></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary modal-cancel">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Virtual Chandana Chatbot -->
+    <div class="chat-widget" id="chatWidget">
+        <button class="chat-fab" onclick="toggleChat()" aria-label="Talk to Virtual Chandana">
+            <div class="fab-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+            </div>
+            <span class="fab-text">Talk to Virtual Chandana</span>
+        </button>
+        
+        <div class="chat-container" id="chatContainer">
+            <div class="chat-header">
+                <div class="chat-header-info">
+                    <div class="chat-avatar">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </div>
+                    <div class="chat-title">
+                        <h4>Virtual Chandana</h4>
+                        <span class="chat-status">● Online now</span>
+                    </div>
+                </div>
+                <button class="chat-close" onclick="toggleChat()" aria-label="Close chat">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 6L6 18M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="chat-messages" id="chatMessages">
+                <div class="message bot welcome">
+                    <div class="message-bubble">
+                        Hi! I'm Virtual Chandana 👋<br><br>
+                        I can help you with:<br>
+                        • My skills & experience<br>
+                        • Job fit assessment<br>
+                        • Project details<br>
+                        • Contact info<br><br>
+                        What would you like to know?
+                    </div>
+                    <span class="message-time">Just now</span>
+                </div>
+            </div>
+            
+            <div class="chat-suggestions" id="chatSuggestions">
+                <button class="suggestion-chip" onclick="sendQuick('Is my job a match?')">Is my job a match?</button>
+                <button class="suggestion-chip" onclick="sendQuick('Your top skills')">Your top skills</button>
+                <button class="suggestion-chip" onclick="sendQuick('Key projects')">Key projects</button>
+                <button class="suggestion-chip" onclick="sendQuick('Contact details')">Contact details</button>
+            </div>
+            
+            <div class="chat-input-wrapper">
+                <div class="chat-input-area">
+                    <input type="text" id="chatInput" placeholder="Type a message..." onkeypress="handleKeyPress(event)" autocomplete="off">
+                    <button class="send-btn" onclick="sendMessage()" aria-label="Send">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,239 @@
+{
+  "profile": {
+    "fullName": "Chandana Sree Konduru",
+    "title": "AI Product Manager & Global Product Strategist",
+    "yearsOfExperience": "6",
+    "email": "chandanashree97@gmail.com",
+    "phone": "5312034748",
+    "location": "Omaha, NE, USA",
+    "linkedIn": "https://www.linkedin.com/in/chandana-sree-konduru/",
+    "portfolio": "https://chandanasree35.wixsite.com/portfolio",
+    "openToRemote": true,
+    "summary": "Strategic Product Manager with over 5 years of experience driving Digital Transformation across Fintech, Healthcare, and Consumer Retail (IoT) industries. Proven expert in leading the Full Software Product Lifecycle for global B2B SaaS and Agentic AI platforms, acting as the 'voice of the asset' to translate market signals into actionable roadmaps.",
+    "highlights": [
+      "Led global transformation across 4 countries (Nigeria, China, Mexico, India)",
+      "Built ScanItKnowIt with Gemini API at $0 operational cost",
+      "Increased executive decision-making confidence by 10%",
+      "Improved system performance by 5% through API modernization",
+      "Reduced manual safety case processing by 3%"
+    ]
+  },
+  "skills": {
+    "Product Management": ["Roadmap Strategy", "Agile/Scrum", "Product Lifecycle Management (SDLC)", "PRD/User Story Development", "Waterfall", "Change Management", "Jira", "Confluence", "Milestone Tracking", "Stakeholder Management"],
+    "AI & Emerging Tech": ["Agentic AI Orchestration", "LLM Prompt Engineering", "AI/ML Workflow Design", "Conversation Flow Design", "Generative AI", "Computer Vision", "NLP", "TensorFlow", "PyTorch", "OpenAI API", "Model Evaluation"],
+    "Data & Analytics": ["SQL", "Python", "Power BI", "Data Visualization", "Application Analytics", "Tableau", "ETL"],
+    "UX & Design Strategy": ["User Research & Personas", "Wireframing & Prototyping", "Usability Testing", "Information Architecture", "Adobe Creative Suite", "Figma", "Sketch", "Human-Centered UX", "Design Thinking"],
+    "Engineering Foundation": ["C#", ".NET Core", "ASP.NET", "RESTful API Integration", "System Architecture", "HTML5/CSS", "JavaScript", "TypeScript", "React"],
+    "Cloud & DevOps": ["AWS", "Azure", "Docker", "Kubernetes", "CI/CD", "GraphQL"]
+  },
+  "experience": [
+    {
+      "period": "2025–Present",
+      "role": "Founder & Lead Product Developer",
+      "company": "Community Projects",
+      "location": "Omaha, NE, USA",
+      "type": "AI Product Development",
+      "highlights": [
+        "Built ScanItKnowIt with Gemini API and vibe coding → functional app in weeks at $0 cost",
+        "Developed Budget Management tool using AI-assisted prototyping",
+        "Demonstrated end-to-end product ownership from ideation to deployment"
+      ]
+    },
+    {
+      "period": "2024–2025",
+      "role": "Associate Product Manager - Global R&D",
+      "company": "ZKTeco India",
+      "location": "Bangalore, India",
+      "type": "B2B SaaS & IoT",
+      "highlights": [
+        "Led global transformation across 4 countries (Nigeria, China, Mexico, India)",
+        "Boosted exec confidence by 10% with Super Admin Dashboard",
+        "Improved system performance by 5% through API modernization",
+        "Directed BioTime Cloud 2.0 (Web & Mobile) serving 10K+ users",
+        "Launched ZKDigimax-ESL IoT retail solution reducing pricing errors by 3%"
+      ]
+    },
+    {
+      "period": "2023–2024",
+      "role": "Post-Graduation in Data Science",
+      "company": "IIIT Bangalore",
+      "location": "Bangalore, India & Liverpool, UK",
+      "type": "Academic",
+      "highlights": [
+        "Advanced studies in ML, AI, and data systems",
+        "Applied academic insights to real-world product challenges",
+        "Cross-cultural academic collaboration"
+      ]
+    },
+    {
+      "period": "2023",
+      "role": "UI/UX Product Designer",
+      "company": "Data Foundry",
+      "location": "Bangalore, India",
+      "type": "Healthcare AI",
+      "highlights": [
+        "Redesigned AI-powered pharmacovigilance platform (DF Safety)",
+        "Reduced manual case processing by 3%",
+        "Ensured E2B R2/R3 regulatory compliance",
+        "Designed Explainable AI interface for medical reviewers"
+      ]
+    },
+    {
+      "period": "2021–2022",
+      "role": "Developer II | UI/UX Designer",
+      "company": "Cybage Software",
+      "location": "Hyderabad & Pune, India",
+      "type": "Enterprise CPQ",
+      "highlights": [
+        "Engineered proactive system monitors for CPQ platform",
+        "Managed maintenance using C#, .NET, SQL Server",
+        "Bridged technical implementation with user experience design"
+      ]
+    },
+    {
+      "period": "2019–2021",
+      "role": "Software Engineer",
+      "company": "NTT Data",
+      "location": "Bangalore, India",
+      "type": "Hospitality & Healthcare",
+      "highlights": [
+        "Led mobile booking app for Wyndham Hotels (+5% engagement)",
+        "Simplified medical billing UX for Tenet Health (-5% user confusion)",
+        "Architected seamless hotel booking portal (+3% conversion)"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "Scan It Know It",
+      "category": "Agentic AI Platform",
+      "role": "Founder & Lead Product Developer",
+      "skills": ["Gemini API", "Agentic AI", "Vibe Coding", "Figma", "Mobile-First Design"],
+      "metrics": ["$0 operational cost", "Weeks to launch", "Community-driven"],
+      "description": "Orchestrated end-to-end product lifecycle of mobile-responsive web application using Agentic AI to provide instant, data-driven insights with zero operational cost.",
+      "link": "#"
+    },
+    {
+      "name": "BioTime Cloud 2.0",
+      "category": "B2B SaaS (Web & Mobile)",
+      "role": "Associate Product Manager",
+      "company": "ZKTeco",
+      "skills": ["AWS", "React", "Node.js", "REST API", "Product Strategy", "Global Customization"],
+      "metrics": ["10K+ users", "4 countries", "+5% performance", "+10% exec confidence"],
+      "description": "Directed global SaaS transformation across 4 countries with region-specific customizations. Architected Super Admin Dashboard and modernized API architecture.",
+      "link": "#"
+    },
+    {
+      "name": "ZKDigimax-ESL",
+      "category": "IoT Retail Solution",
+      "role": "Associate Product Manager",
+      "company": "ZKTeco",
+      "skills": ["IoT", "Mobile App", "Agile/Scrum", "Cross-functional Leadership"],
+      "metrics": ["-3% pricing errors", "+2% digital engagement", "-10% inventory search time"],
+      "description": "IoT Electronic Shelf Label solution with QR/NFC scanning. Led agile sprints and design thinking workshops with in-store staff.",
+      "link": "#"
+    },
+    {
+      "name": "DF Safety",
+      "category": "Healthcare AI Platform",
+      "role": "UI/UX Product Designer",
+      "company": "Data Foundry",
+      "skills": ["AI/ML", "Healthcare UX", "E2B Compliance", "Data Visualization", "Figma"],
+      "metrics": ["-3% manual processing", "100% E2B R2/R3 compliant", "Multi-vigilance unified"],
+      "description": "AI-powered pharmacovigilance platform with explainable AI interface. Transformed complex ML outputs into human-centered UI for medical reviewers.",
+      "link": "#"
+    },
+    {
+      "name": "Experlogix CPQ",
+      "category": "Enterprise CPQ",
+      "role": "Developer II | UI/UX Designer",
+      "company": "Cybage",
+      "skills": ["C#", ".NET", "SQL Server", "Proactive Monitoring", "Agile"],
+      "metrics": ["High availability maintained", "Proactive issue detection"],
+      "description": "Cloud-based Configure-Price-Quote platform maintenance with feature engineering and proactive system monitors.",
+      "link": "#"
+    },
+    {
+      "name": "Wyndham Hotels Mobile App",
+      "category": "Hospitality Digital Transformation",
+      "role": "Software Engineer",
+      "company": "NTT Data",
+      "skills": ["Mobile Development", "UX Design", "B2B Dashboards", "Cross-platform Consistency"],
+      "metrics": ["+5% engagement", "+3% conversion", "B2B financial tracking"],
+      "description": "Led mobile booking app development and B2B franchisee portal with data visualizations for hotel financials.",
+      "link": "#"
+    },
+    {
+      "name": "Tenet Healthcare Billing UX",
+      "category": "Healthcare Digital Transformation",
+      "role": "Software Engineer",
+      "company": "NTT Data",
+      "skills": ["Healthcare UX", "Workflow Optimization", "Information Architecture"],
+      "metrics": ["-5% user confusion", "-5% task completion time", "50% data integration accuracy"],
+      "description": "Simplified medical billing processes into user-friendly interfaces for healthcare professionals.",
+      "link": "#"
+    }
+  ],
+  "education": [
+    {
+      "degree": "Post-Graduation in Data Science",
+      "school": "IIIT Bangalore",
+      "year": "2023-2024",
+      "location": "Bangalore, India & Liverpool, UK"
+    },
+    {
+      "degree": "Bachelor of Technology in Computer Science",
+      "school": "Madanapalle Institute of Technology & Science (JNTUA)",
+      "year": "2015-2019",
+      "location": "India"
+    }
+  ],
+  "targetRoles": [
+    "Product Manager",
+    "Associate Product Manager",
+    "AI Product Manager",
+    "ML Product Owner",
+    "UX Product Designer",
+    "Technical Business Analyst",
+    "Product Analyst",
+    "Project Coordinator",
+    "Delivery Manager",
+    "AI Product Specialist",
+    "Product Owner",
+    "Prompt Engineer",
+    "AI Prompt Developer",
+    "AI Trainer",
+    "No-Code Developer",
+    "Low-Code Developer",
+    "SaaS Implementation Specialist",
+    "Customer Success",
+    "Technical Writer",
+    "AI Integration Engineer",
+    "AI Solutions Specialist",
+    "AI QA Specialist",
+    "Model Evaluation Specialist"
+  ],
+  "roleMatches": {
+    "product manager": { "match": 95, "reason": "5+ years leading full product lifecycle, global B2B SaaS experience, roadmap strategy expert" },
+    "associate product manager": { "match": 100, "reason": "Proven PM experience, ready to bring immediate value while growing into larger ownership" },
+    "ai product manager": { "match": 98, "reason": "Built Agentic AI platform (ScanItKnowIt), LLM prompt engineering expert, AI workflow design specialist" },
+    "ml product owner": { "match": 92, "reason": "Deep ML product experience, model evaluation skills, AI/ML workflow design" },
+    "ux product designer": { "match": 88, "reason": "Strong UX portfolio with Figma, human-centered design expert, product-focused designer" },
+    "product designer": { "match": 85, "reason": "Design thinking practitioner, wireframing & prototyping expert, but PM-focused" },
+    "technical business analyst": { "match": 90, "reason": "Engineering foundation + PM skills, expert at translating business to technical requirements" },
+    "business analyst": { "match": 85, "reason": "Data analysis skills, requirement gathering expert, SQL & Python proficient" },
+    "product analyst": { "match": 82, "reason": "Metrics-driven PM approach, Power BI & Tableau expert, A/B testing experience" },
+    "project coordinator": { "match": 88, "reason": "Agile/Scrum expert, milestone tracking, cross-functional coordination across 4 countries" },
+    "delivery manager": { "match": 85, "reason": "Managed global product delivery, risk/issue logs, steering decks experience" },
+    "prompt engineer": { "match": 90, "reason": "LLM prompt engineering expert, built production AI with Gemini API, conversation flow design" },
+    "ai trainer": { "match": 85, "reason": "Model evaluation experience, AI workflow design, human-in-the-loop optimization" },
+    "no-code developer": { "match": 80, "reason": "Vibe coding expert, rapid prototyping with AI tools, $0 cost app deployment" },
+    "low-code developer": { "match": 78, "reason": "AI-assisted development, rapid prototyping, but engineering background enables custom solutions when needed" },
+    "ai integration engineer": { "match": 82, "reason": "RESTful API integration expert, system architecture knowledge, AI/ML pipeline experience" },
+    "ai solutions specialist": { "match": 85, "reason": "End-to-end AI product delivery, from concept to deployment, business value focus" },
+    "saas implementation": { "match": 80, "reason": "B2B SaaS lifecycle management, global rollout experience, customer onboarding" },
+    "customer success": { "match": 75, "reason": "Technical depth + product knowledge, excellent for technical customer success roles" },
+    "technical writer": { "match": 78, "reason": "PRD & user story expert, can create clear technical documentation and API docs" },
+    "ai qa": { "match": 75, "reason": "Model evaluation experience, AI testing requirements understanding" }
+  }
+}

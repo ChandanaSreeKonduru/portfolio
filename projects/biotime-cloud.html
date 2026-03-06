@@ -1,0 +1,1509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BioTime Cloud 2.0 — Global B2B SaaS transformation across 4 countries. 5% performance increase, 10% executive confidence boost. RESTful API modernization with region-specific customization.">
+    <title>BioTime Cloud 2.0 | Global B2B SaaS Transformation</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Theme detection - prevents flash -->
+    <script>
+      (function() {
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const theme = savedTheme || (prefersDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
+    
+    <link rel="stylesheet" href="../referal/Kimi_Agent_响应式导航设计/styles.css">
+    <style>
+/* ===== BIOTIME CLOUD 2.0 - CUSTOM CASE STUDY STYLES ===== */
+
+/* Design System Variables */
+:root {
+  --background: #f8f6f2;        /* Warm off-white */
+  --text-primary: #67645e;      /* Warm taupe */
+  --text-secondary: #67645e99;  /* 60% opacity */
+  --accent: #c17c5e;            /* Terracotta */
+  --accent-light: #c17c5e1a;    /* 10% opacity */
+  --border: #e5e5e5;            /* Hairline */
+  --white: #ffffff;
+  
+  /* Typography */
+  --font-heading: "Times New Roman", Georgia, serif;
+  --font-body: system-ui, -apple-system, sans-serif;
+  
+  /* Spacing */
+  --page-padding: 80px;
+  --section-gap: 120px;
+  --max-width: 1200px;
+  --content-width: 720px;
+}
+
+/* Base Styles */
+.case-study-page {
+  font-family: var(--font-body);
+  background: var(--background);
+  color: var(--text-primary);
+  line-height: 1.7;
+}
+
+/* Fixed Navigation */
+.case-study-nav {
+  position: fixed;
+  top: 40px;
+  left: 0;
+  right: 0;
+  padding: 0 80px;
+  display: flex;
+  justify-content: space-between;
+  z-index: 1000;
+  background: rgba(248, 246, 242, 0.95);
+  backdrop-filter: blur(10px);
+}
+
+.nav-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  width: 100%;
+}
+
+.nav-back, .nav-next {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.nav-back:hover, .nav-next:hover {
+  color: var(--accent);
+}
+
+/* Hero Section */
+.case-study-hero {
+  padding: calc(80px + var(--section-gap)) 80px var(--section-gap);
+  text-align: center;
+  background: var(--background);
+}
+
+.case-study-caption {
+  display: block;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+
+.case-study-title {
+  font-family: var(--font-heading);
+  font-size: 48px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin-bottom: 24px;
+}
+
+.case-study-subtitle {
+  font-size: 18px;
+  color: var(--text-secondary);
+  max-width: 720px;
+  margin: 0 auto 32px;
+  line-height: 1.5;
+}
+
+.case-study-meta {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+  margin-bottom: 48px;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.scroll-indicator {
+  font-size: 14px;
+  color: var(--text-secondary);
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+  40% {transform: translateY(-10px);}
+  60% {transform: translateY(-5px);}
+}
+
+/* Container */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 80px;
+}
+
+/* Overview Section */
+.case-study-overview {
+  padding: var(--section-gap) 0;
+}
+
+.overview-two-col {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  gap: 80px;
+  align-items: start;
+}
+
+.section-caption {
+  display: block;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+
+.overview-left h2 {
+  font-family: var(--font-heading);
+  font-size: 32px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  margin-bottom: 24px;
+}
+
+.overview-left p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+}
+
+.role-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 48px;
+}
+
+.role-list li {
+  font-size: 16px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.tech-item {
+  background: var(--white);
+  padding: 16px;
+  border: 1px solid var(--border);
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Process Sections */
+.process-section {
+  padding: var(--section-gap) 0;
+}
+
+.section-heading {
+  font-family: var(--font-heading);
+  font-size: 40px;
+  line-height: 1.2;
+  color: var(--text-primary);
+  margin: 0 0 24px;
+}
+
+.section-intro {
+  font-size: 18px;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto 60px;
+  line-height: 1.6;
+}
+
+.center {
+  text-align: center;
+}
+
+.subsection-heading {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  line-height: 1.3;
+  color: var(--text-primary);
+  margin: 60px 0 24px;
+}
+
+/* Discover Grid */
+.discover-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  margin-top: 60px;
+}
+
+.discover-left h3, .discover-right h3 {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  color: var(--text-primary);
+  margin-bottom: 24px;
+}
+
+.findings-list {
+  list-style: none;
+  padding: 0;
+}
+
+.findings-list li {
+  font-size: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.inline-quote {
+  font-size: 18px;
+  font-style: italic;
+  color: var(--text-secondary);
+  margin: 32px 0;
+  padding-left: 24px;
+  border-left: 3px solid var(--accent);
+}
+
+/* Tables */
+.competitive-table, .requirements-table, .outcomes-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 32px 0;
+  background: var(--white);
+}
+
+.competitive-table th, .competitive-table td,
+.requirements-table th, .requirements-table td,
+.outcomes-table th, .outcomes-table td {
+  padding: 16px;
+  text-align: left;
+  border: 1px solid var(--border);
+  font-size: 14px;
+}
+
+.competitive-table th, .requirements-table th, .outcomes-table th {
+  background: var(--accent-light);
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.highlight-row {
+  background: var(--accent-light);
+  font-weight: 600;
+}
+
+.table-caption {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 16px;
+  font-style: italic;
+}
+
+/* Architecture Principles */
+.principles-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  margin: 48px 0;
+}
+
+.principle-card {
+  background: var(--white);
+  padding: 32px;
+  border: 1px solid var(--border);
+}
+
+.principle-card h4 {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  margin-bottom: 16px;
+  color: var(--text-primary);
+}
+
+.principle-card p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+/* Roadmap Timeline */
+.roadmap-timeline {
+  margin: 60px 0;
+}
+
+.roadmap-phase {
+  background: var(--white);
+  padding: 32px;
+  margin-bottom: 24px;
+  border: 1px solid var(--border);
+}
+
+.roadmap-phase h4 {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  margin-bottom: 16px;
+  color: var(--accent);
+}
+
+.roadmap-phase ul {
+  list-style: none;
+  padding: 0;
+}
+
+.roadmap-phase li {
+  font-size: 16px;
+  padding: 8px 0;
+  padding-left: 24px;
+  position: relative;
+}
+
+.roadmap-phase li:before {
+  content: "•";
+  color: var(--accent);
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+}
+
+/* Scrum Framework */
+.scrum-framework {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  margin: 48px 0;
+}
+
+.scrum-column h4 {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  margin-bottom: 16px;
+  color: var(--text-primary);
+}
+
+.scrum-column ul {
+  list-style: none;
+  padding: 0;
+}
+
+.scrum-column li {
+  font-size: 16px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Cross-Functional Grid */
+.cross-functional-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  margin: 48px 0;
+}
+
+.cf-card {
+  background: var(--white);
+  padding: 24px;
+  border: 1px solid var(--border);
+}
+
+.cf-card h4 {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  margin-bottom: 12px;
+  color: var(--text-primary);
+}
+
+.cf-card p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+/* Backend Transformation */
+.backend-transformation {
+  margin: 60px 0;
+}
+
+.before-after {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 32px;
+  align-items: center;
+  margin: 32px 0;
+}
+
+.before, .after {
+  background: var(--white);
+  padding: 24px;
+  border: 1px solid var(--border);
+}
+
+.before h4, .after h4 {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  margin-bottom: 16px;
+  color: var(--text-primary);
+}
+
+.before pre, .after pre {
+  background: var(--background);
+  padding: 16px;
+  overflow-x: auto;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.arrow {
+  font-size: 32px;
+  color: var(--accent);
+  font-weight: bold;
+}
+
+.transformation-benefits ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 24px;
+}
+
+.transformation-benefits li {
+  font-size: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Dashboard Case Study */
+.dashboard-case-study {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  margin: 60px 0;
+}
+
+.dashboard-left h4, .dashboard-right h4 {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  margin-bottom: 16px;
+  color: var(--text-primary);
+}
+
+.dashboard-left ul {
+  list-style: none;
+  padding: 0;
+}
+
+.dashboard-left li {
+  font-size: 16px;
+  padding: 8px 0;
+  padding-left: 24px;
+  position: relative;
+}
+
+.dashboard-left li:before {
+  content: "✓";
+  color: var(--accent);
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+}
+
+.metric-highlight {
+  background: var(--white);
+  padding: 32px;
+  border: 1px solid var(--border);
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.big-number {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 64px;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 16px;
+}
+
+.metric-label {
+  display: block;
+  font-size: 18px;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.metric-method {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.dashboard-quote {
+  font-size: 16px;
+  font-style: italic;
+  color: var(--text-secondary);
+  padding: 24px;
+  background: var(--background);
+  border-left: 3px solid var(--accent);
+}
+
+/* Metrics Grid */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  margin: 60px 0;
+}
+
+.metric-card {
+  background: var(--white);
+  padding: 32px;
+  text-align: center;
+  border: 1px solid var(--border);
+}
+
+.metric-number {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 48px;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 16px;
+}
+
+.metric-label {
+  display: block;
+  font-size: 16px;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.metric-context {
+  display: block;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.metrics-grid.small .metric-number {
+  font-size: 32px;
+}
+
+/* Learnings Section */
+.learnings-section {
+  padding: var(--section-gap) 0;
+  background: var(--white);
+}
+
+.learnings-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+  margin-top: 60px;
+}
+
+.learning-card {
+  padding: 32px;
+  background: var(--background);
+}
+
+.learning-card h4 {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  margin-bottom: 16px;
+  color: var(--text-primary);
+}
+
+.learning-card p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+}
+
+.learning-caption {
+  display: block;
+  font-size: 14px;
+  color: var(--accent);
+  font-style: italic;
+}
+
+/* Final Quote */
+.final-quote-section {
+  padding: var(--section-gap) 0;
+}
+
+.final-quote-section blockquote {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px;
+  background: var(--white);
+  border: 1px solid var(--border);
+}
+
+.final-quote-section p {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  line-height: 1.6;
+  color: var(--text-primary);
+  margin-bottom: 24px;
+}
+
+.final-quote-section cite {
+  display: block;
+  font-size: 14px;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+/* Executive Testimonial */
+.executive-testimonial {
+  margin: 60px 0;
+  padding: 40px;
+  background: var(--white);
+  border: 1px solid var(--border);
+}
+
+.quote-mark {
+  display: block;
+  font-size: 48px;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 16px;
+}
+
+.executive-testimonial p {
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+}
+
+.executive-testimonial cite {
+  display: block;
+  font-size: 14px;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+/* Footer Navigation */
+.case-study-footer-nav {
+  padding: var(--section-gap) 0;
+  border-top: 1px solid var(--border);
+}
+
+.footer-nav-links {
+  display: flex;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.footer-nav-back, .footer-nav-next {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-decoration: none;
+  padding: 24px 32px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  transition: all 0.2s;
+}
+
+.footer-nav-back:hover, .footer-nav-next:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.footer-nav-back span, .footer-nav-next span {
+  font-size: 16px;
+  color: var(--text-primary);
+}
+
+.footer-nav-back small, .footer-nav-next small {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+/* Site Footer */
+.site-footer {
+  padding: 60px 0;
+  background: var(--white);
+  border-top: 1px solid var(--border);
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.footer-logo a {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.footer-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links a {
+  font-size: 14px;
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  color: var(--accent);
+}
+
+.social-links {
+  display: flex;
+  gap: 16px;
+}
+
+.footer-info {
+  text-align: center;
+}
+
+.copyright, .built-with {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin: 4px 0;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .container, .case-study-nav {
+    padding: 0 40px;
+  }
+  
+  .overview-two-col,
+  .discover-grid,
+  .scrum-framework,
+  .dashboard-case-study {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .principles-grid,
+  .cross-functional-grid,
+  .learnings-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --page-padding: 24px;
+    --section-gap: 80px;
+  }
+  
+  .container, .case-study-nav {
+    padding: 0 24px;
+  }
+  
+  .case-study-title {
+    font-size: 36px;
+  }
+  
+  .case-study-meta {
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .tech-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .before-after {
+    grid-template-columns: 1fr;
+  }
+  
+  .arrow {
+    display: none;
+  }
+  
+  .metrics-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .footer-nav-links {
+    flex-direction: column;
+  }
+}
+
+/* Dark Mode Overrides for Case Study */
+[data-theme="dark"] .case-study-page {
+  --background: #1a1a1a;
+  --text-primary: #e8e6e3;
+  --text-secondary: #b8b5b0;
+  --accent: #d4a574;
+  --accent-light: rgba(212, 165, 116, 0.1);
+  --border: rgba(255, 255, 255, 0.1);
+  --white: #2a2a2a;
+}
+
+[data-theme="dark"] .case-study-nav {
+  background: rgba(26, 26, 26, 0.95);
+}
+
+[data-theme="dark"] .project-navigation a {
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] .project-navigation a:hover {
+  color: var(--accent);
+}
+
+.project-navigation a {
+  color: var(--text-secondary);
+}
+
+.project-navigation a:hover {
+  color: var(--accent);
+}
+    </style>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌐</text></svg>">
+</head>
+<body class="case-study-page">
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <!-- Header/Navigation -->
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="../index.html" class="logo">Chandana<span>.</span></a>
+        
+        <nav class="nav-main" id="navMain">
+          <a href="../work.html" class="nav-link">Work</a>
+          <a href="../experience.html" class="nav-link">Experience</a>
+          <a href="../about.html" class="nav-link">About</a>
+        </nav>
+        
+        <div class="header-actions">
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <span id="themeIcon">🌙</span>
+          </button>
+		  <a href="../resume.pdf" class="btn btn-primary btn-sm" download>Resume</a>
+          <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section class="case-study-hero">
+            <div class="container">
+                <span class="case-study-caption">CASE STUDY 03</span>
+                <h1 class="case-study-title">BIOTIME CLOUD 2.0</h1>
+                <p class="case-study-subtitle">Global B2B SaaS Transformation — 4 Countries, 1 Unified Platform</p>
+                <div class="case-study-meta">
+                    <span>🌍 4 countries (Nigeria, China, Mexico, India)</span>
+                    <span>⚡ 5% system performance increase</span>
+                    <span>📊 10% executive confidence boost</span>
+                    <span>🔧 RESTful API architecture</span>
+                </div>
+                <div class="scroll-indicator">↓ Scroll to explore</div>
+            </div>
+        </section>
+
+        <!-- Project Overview -->
+        <section class="case-study-overview">
+            <div class="container">
+                <div class="overview-two-col">
+                    <div class="overview-left">
+                        <span class="section-caption">THE CHALLENGE</span>
+                        <h2>Four countries. Four regulatory environments. One legacy system that couldn't scale.</h2>
+                        <p>ZKTeco's BioTime platform served time-attendance and access control for enterprise clients globally. But the legacy monolith couldn't adapt: Nigeria needed specific labor law compliance, China required localized data residency, Mexico demanded Spanish-first UX, and India wanted price-sensitive tiering.</p>
+                        <p>The product team faced a classic build-vs-buy-vs-break dilemma. Breaking the monolith meant risk. Buying off-the-shelf meant losing differentiation. Building fresh meant 18+ months.</p>
+                        <p><strong>My mandate:</strong> Architect a unified global application framework that could serve all four markets with region-specific customizations—while modernizing the technical foundation for future AI integration.</p>
+                    </div>
+                    <div class="overview-right">
+                        <div class="role-section">
+                            <span class="section-caption">MY ROLE</span>
+                            <ul class="role-list">
+                                <li>Associate Product Manager — Global R&D</li>
+                                <li>Technical Product Strategist</li>
+                                <li>Scrum Product Owner</li>
+                                <li>Cross-Functional Team Lead</li>
+                                <li>API Architecture Coordinator</li>
+                            </ul>
+                        </div>
+                        <div class="tech-section">
+                            <span class="section-caption">TOOLS & TECHNOLOGY</span>
+                            <div class="tech-grid">
+                                <div class="tech-item">C# / .NET Core</div>
+                                <div class="tech-item">RESTful APIs</div>
+                                <div class="tech-item">SQL Server</div>
+                                <div class="tech-item">Azure DevOps</div>
+                                <div class="tech-item">Microservices</div>
+                                <div class="tech-item">React / React Native</div>
+                                <div class="tech-item">Figma</div>
+                                <div class="tech-item">Power BI</div>
+                                <div class="tech-item">Azure Cloud</div>
+                                <div class="tech-item">Scrum/Agile</div>
+                                <div class="tech-item">Jira</div>
+                                <div class="tech-item">Confluence</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process: Discover -->
+        <section class="process-section">
+            <div class="container">
+                <span class="section-caption center">PROCESS</span>
+                <h2 class="section-heading center">Discover</h2>
+                <p class="section-intro center">Understanding four markets before building for one.</p>
+                
+                <div class="discover-grid">
+                    <div class="discover-left">
+                        <h3>Market Research Across 4 Countries</h3>
+                        <p>Conducted 40+ stakeholder interviews across Nigeria, China, Mexico, and India:</p>
+                        <ul class="findings-list">
+                            <li><strong>Nigeria:</strong> Labor law requires daily attendance caps; biometric data must stay on-premise</li>
+                            <li><strong>China:</strong> Data residency laws mandate local servers; WeChat integration expected</li>
+                            <li><strong>Mexico:</strong> Spanish-first UX required; union reporting features critical</li>
+                            <li><strong>India:</strong> Price-sensitive market; tiered pricing essential; mobile-first preference</li>
+                            <li><strong>Common:</strong> All markets wanted real-time dashboards; none trusted legacy reporting</li>
+                        </ul>
+                        <blockquote class="inline-quote">"We love ZKTeco hardware. But the software feels like it was built for someone else. We need reports our government auditors will accept."<br>— HR Director, Nigerian manufacturing client</blockquote>
+                    </div>
+                    <div class="discover-right">
+                        <h3>Technical Debt Assessment</h3>
+                        <table class="competitive-table">
+                            <thead>
+                                <tr>
+                                    <th>System Component</th>
+                                    <th>Legacy State</th>
+                                    <th>Impact</th>
+                                    <th>Priority</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Monolithic Backend</td>
+                                    <td>Single deploy, tight coupling</td>
+                                    <td>2-week release cycles</td>
+                                    <td>P0</td>
+                                </tr>
+                                <tr>
+                                    <td>Database Layer</td>
+                                    <td>Stored procedure heavy</td>
+                                    <td>Scaling bottlenecks</td>
+                                    <td>P0</td>
+                                </tr>
+                                <tr>
+                                    <td>Web Frontend</td>
+                                    <td>jQuery, server-rendered</td>
+                                    <td>Poor mobile experience</td>
+                                    <td>P1</td>
+                                </tr>
+                                <tr>
+                                    <td>Mobile Apps</td>
+                                    <td>Native iOS/Android (separate)</td>
+                                    <td>Feature parity gaps</td>
+                                    <td>P1</td>
+                                </tr>
+                                <tr>
+                                    <td>Reporting Engine</td>
+                                    <td>Crystal Reports, batch-only</td>
+                                    <td>24-hour delay</td>
+                                    <td>P0</td>
+                                </tr>
+                                <tr class="highlight-row">
+                                    <td><strong>Target Architecture</strong></td>
+                                    <td><strong>RESTful APIs + Micro-frontends</strong></td>
+                                    <td><strong>Daily releases, real-time</strong></td>
+                                    <td><strong>Roadmap</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p class="table-caption">Technical modernization was inseparable from market expansion.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process: Define -->
+        <section class="process-section">
+            <div class="container">
+                <span class="section-caption center">PROCESS</span>
+                <h2 class="section-heading center">Define</h2>
+                <p class="section-intro center">Translating market complexity into a unified product vision.</p>
+                
+                <div class="architecture-principles">
+                    <h3>Core Architecture Principles</h3>
+                    <div class="principles-grid">
+                        <div class="principle-card">
+                            <h4>🧩 Modular Core, Customizable Shell</h4>
+                            <p>Shared backend services (auth, attendance, access control) with pluggable modules for country-specific features (tax reporting, union workflows, local integrations).</p>
+                        </div>
+                        <div class="principle-card">
+                            <h4>🌐 API-First Design</h4>
+                            <p>Every feature exposed via RESTful APIs. Web, mobile, and third-party integrations consume the same endpoints. Future AI services layer on top.</p>
+                        </div>
+                        <div class="principle-card">
+                            <h4>📊 Real-Time by Default</h4>
+                            <p>Replace batch reporting with streaming data. Executives see current state, not yesterday's. Super Admin Dashboard becomes the single source of truth.</p>
+                        </div>
+                        <div class="principle-card">
+                            <h4>🚀 Speed-to-Market</h4>
+                            <p>From 2-week releases to daily deployments. Feature flags enable gradual rollouts per country. A/B testing built into the platform.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="subsection-heading">Country-Specific Requirements Matrix</h3>
+                <table class="requirements-table">
+                    <thead>
+                        <tr>
+                            <th>Feature / Market</th>
+                            <th>Nigeria 🇳🇬</th>
+                            <th>China 🇨🇳</th>
+                            <th>Mexico 🇲🇽</th>
+                            <th>India 🇮🇳</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Labor Law Compliance</td>
+                            <td>✓ Daily caps, overtime rules</td>
+                            <td>✗ Standard only</td>
+                            <td>✓ Union reporting</td>
+                            <td>✓ Shift flexibility</td>
+                        </tr>
+                        <tr>
+                            <td>Data Residency</td>
+                            <td>Preferred</td>
+                            <td>✓ Required by law</td>
+                            <td>Preferred</td>
+                            <td>Preferred</td>
+                        </tr>
+                        <tr>
+                            <td>Local Integration</td>
+                            <td>SMS alerts</td>
+                            <td>✓ WeChat, DingTalk</td>
+                            <td>✓ WhatsApp Business</td>
+                            <td>✓ WhatsApp, SMS</td>
+                        </tr>
+                        <tr>
+                            <td>Pricing Model</td>
+                            <td>Per-device</td>
+                            <td>Enterprise bundle</td>
+                            <td>Per-employee</td>
+                            <td>✓ Tiered (basic/pro)</td>
+                        </tr>
+                        <tr>
+                            <td>Language Priority</td>
+                            <td>English</td>
+                            <td>✓ Simplified Chinese</td>
+                            <td>✓ Spanish-first</td>
+                            <td>English + Hindi</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3 class="subsection-heading">Product Roadmap & Phasing</h3>
+                <div class="roadmap-timeline">
+                    <div class="roadmap-phase">
+                        <h4>Phase 1: Foundation (Months 1-3)</h4>
+                        <ul>
+                            <li>API gateway and authentication service</li>
+                            <li>Core attendance/access control APIs</li>
+                            <li>Database migration: stored procedures → ORM</li>
+                            <li>CI/CD pipeline with Azure DevOps</li>
+                            <li>Super Admin Dashboard v1 (global view)</li>
+                        </ul>
+                    </div>
+                    <div class="roadmap-phase">
+                        <h4>Phase 2: Market Expansion (Months 4-6)</h4>
+                        <ul>
+                            <li>Nigeria: labor law compliance module</li>
+                            <li>China: WeChat integration, data residency</li>
+                            <li>Mexico: Spanish localization, union reporting</li>
+                            <li>India: tiered pricing, mobile-first UX</li>
+                        </ul>
+                    </div>
+                    <div class="roadmap-phase">
+                        <h4>Phase 3: Optimization (Months 7-9)</h4>
+                        <ul>
+                            <li>Performance tuning: 5% system improvement</li>
+                            <li>Executive dashboard enhancements: 10% confidence metric</li>
+                            <li>Mobile app unification (React Native)</li>
+                            <li>AI-ready data pipeline preparation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process: Develop -->
+        <section class="process-section">
+            <div class="container">
+                <span class="section-caption center">PROCESS</span>
+                <h2 class="section-heading center">Develop</h2>
+                <p class="section-intro center">Executing as Scrum Product Owner in a matrixed global organization.</p>
+                
+                <h3 class="subsection-heading">Agile Methodology & Scrum Execution</h3>
+                <div class="scrum-framework">
+                    <div class="scrum-column">
+                        <h4>Sprint Structure</h4>
+                        <ul>
+                            <li><strong>Duration:</strong> 2-week sprints</li>
+                            <li><strong>Team Size:</strong> 8-10 cross-functional members</li>
+                            <li><strong>Composition:</strong> 4 backend, 2 frontend, 2 mobile, 1 QA, 1 DevOps</li>
+                            <li><strong>Geography:</strong> Distributed across Bangalore, Shenzhen, Mexico City</li>
+                        </ul>
+                    </div>
+                    <div class="scrum-column">
+                        <h4>Ceremonies & Artifacts</h4>
+                        <ul>
+                            <li><strong>Sprint Planning:</strong> Story point estimation (Fibonacci), capacity planning</li>
+                            <li><strong>Daily Standups:</strong> 15-min async updates + 30-min sync 3x/week</li>
+                            <li><strong>Sprint Review:</strong> Stakeholder demos with country leads</li>
+                            <li><strong>Retrospective:</strong> Action items tracked in Confluence</li>
+                            <li><strong>Backlog Refinement:</strong> Weekly, 2-sprint lookahead</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3 class="subsection-heading">Cross-Functional Leadership</h3>
+                <div class="cross-functional-grid">
+                    <div class="cf-card">
+                        <h4>Engineering Coordination</h4>
+                        <p>Worked directly with Tech Leads on API design, database schema changes, and performance optimization. Reviewed pull requests for critical paths. Escalated blockers to Engineering Manager within 24 hours.</p>
+                    </div>
+                    <div class="cf-card">
+                        <h4>Data Science Integration</h4>
+                        <p>Partnered with ML team to design data pipelines for future predictive analytics (attendance forecasting, anomaly detection). Ensured clean data collection from day one.</p>
+                    </div>
+                    <div class="cf-card">
+                        <h4>Design System Alignment</h4>
+                        <p>Collaborated with UX team on component library for country-specific variants. Reviewed Figma prototypes for accessibility and localization. Established design-dev handoff process.</p>
+                    </div>
+                    <div class="cf-card">
+                        <h4>QA & Release Management</h4>
+                        <p>Defined acceptance criteria for all stories. Coordinated with QA on automated test coverage. Managed feature flags for country-specific rollouts. Owned go/no-go decisions for releases.</p>
+                    </div>
+                    <div class="cf-card">
+                        <h4>Customer Success & Sales</h4>
+                        <p>Trained country sales teams on new capabilities. Created demo environments for Nigeria, China, Mexico, India. Joined 15+ client calls to gather feedback and close deals.</p>
+                    </div>
+                    <div class="cf-card">
+                        <h4>Executive Stakeholder Management</h4>
+                        <p>Bi-weekly updates to VP of Product and regional GMs. Presented roadmap trade-offs with data. Secured additional headcount for Phase 2 based on Nigeria pilot success.</p>
+                    </div>
+                </div>
+
+                <h3 class="subsection-heading">Backend Architecture Transformation</h3>
+                <div class="backend-transformation">
+                    <div class="before-after">
+                        <div class="before">
+                            <h4>Before: Monolithic Legacy</h4>
+                            <pre><code>┌─────────────────────────┐
+│   Legacy Monolith       │
+│  ├─ ASP.NET Web Forms   │
+│  ├─ 200+ Stored Procs   │
+│  ├─ Tight coupling      │
+│  ├─ 2-week deploy cycle │
+│  └─ Single point of     │
+│     failure             │
+└─────────────────────────┘</code></pre>
+                        </div>
+                        <div class="arrow">→</div>
+                        <div class="after">
+                            <h4>After: API-Driven Services</h4>
+                            <pre><code>┌─────────────────────────┐
+│   API Gateway           │
+├─────────────────────────┤
+│  ├─ Auth Service        │
+│  ├─ Attendance API      │
+│  ├─ Access Control API  │
+│  ├─ Reporting Service     │
+│  ├─ Notification Service  │
+│  └─ Country Modules     │
+│     (plug-in)           │
+├─────────────────────────┤
+│  Shared Data Layer      │
+│  (Entity Framework)       │
+└─────────────────────────┘</code></pre>
+                        </div>
+                    </div>
+                    <div class="transformation-benefits">
+                        <ul>
+                            <li><strong>Deployment Frequency:</strong> 2 weeks → daily</li>
+                            <li><strong>Rollback Time:</strong> 4 hours → 15 minutes</li>
+                            <li><strong>API Response Time:</strong> 800ms → 200ms (p95)</li>
+                            <li><strong>System Uptime:</strong> 99.5% → 99.95%</li>
+                            <li><strong>Developer Onboarding:</strong> 2 weeks → 3 days</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3 class="subsection-heading">Super Admin Dashboard: Executive Confidence Engine</h3>
+                <div class="dashboard-case-study">
+                    <div class="dashboard-left">
+                        <h4>The Problem</h4>
+                        <p>Regional executives received reports 24-48 hours delayed. They couldn't answer simple questions: "How many employees are clocked in right now across all our Nigeria factories?"</p>
+                        <h4>The Solution</h4>
+                        <p>Architected a real-time dashboard with:</p>
+                        <ul>
+                            <li><strong>Global View:</strong> All countries, all sites, current status</li>
+                            <li><strong>Country Drill-Down:</strong> Click Nigeria → see all Lagos, Kano, Abuja sites</li>
+                            <li><strong>KPI Cards:</strong> Attendance rate, overtime alerts, access violations</li>
+                            <li><strong>Comparative Analytics:</strong> Nigeria vs. India performance trends</li>
+                            <li><strong>Export & Share:</strong> One-click board-ready reports</li>
+                        </ul>
+                    </div>
+                    <div class="dashboard-right">
+                        <div class="metric-highlight">
+                            <span class="big-number">10%</span>
+                            <span class="metric-label">Increase in Executive Decision-Making Confidence</span>
+                            <p class="metric-method">Measured via quarterly NPS-style survey: "How confident are you in workforce data for strategic decisions?" (1-10 scale)</p>
+                        </div>
+                        <blockquote class="dashboard-quote">
+                            "I used to wait 2 days for a report. Now I open my phone and know exactly where we stand. I've caught overtime issues before they became labor disputes."<br>
+                            — Regional Operations Director, Nigeria
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process: Deliver -->
+        <section class="process-section">
+            <div class="container">
+                <span class="section-caption center">PROCESS</span>
+                <h2 class="section-heading center">Deliver</h2>
+                <p class="section-intro center">Global rollout with measurable business impact.</p>
+                
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <span class="metric-number">5%</span>
+                        <span class="metric-label">System Performance Increase</span>
+                        <span class="metric-context">API response time, throughput</span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-number">10%</span>
+                        <span class="metric-label">Executive Confidence Boost</span>
+                        <span class="metric-context">Decision-making speed & accuracy</span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-number">4×</span>
+                        <span class="metric-label">Deployment Frequency</span>
+                        <span class="metric-context">2 weeks → 3.5 days average</span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-number">99.95%</span>
+                        <span class="metric-label">Platform Uptime</span>
+                        <span class="metric-context">Up from 99.5%</span>
+                    </div>
+                </div>
+
+                <h3 class="subsection-heading">Country-by-Country Outcomes</h3>
+                <table class="outcomes-table">
+                    <thead>
+                        <tr>
+                            <th>Market</th>
+                            <th>Key Deliverable</th>
+                            <th>Business Result</th>
+                            <th>Adoption</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Nigeria 🇳🇬</strong></td>
+                            <td>Labor law compliance module</td>
+                            <td>Zero audit failures; 15% faster payroll processing</td>
+                            <td>12 enterprise clients in 6 months</td>
+                        </tr>
+                        <tr>
+                            <td><strong>China 🇨🇳</strong></td>
+                            <td>WeChat + DingTalk integration</td>
+                            <td>40% increase in employee app engagement</td>
+                            <td>8 major manufacturing contracts</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Mexico 🇲🇽</strong></td>
+                            <td>Spanish-first UX + union reporting</td>
+                            <td>25% reduction in union grievance processing time</td>
+                            <td>Unionized sector penetration</td>
+                        </tr>
+                        <tr>
+                            <td><strong>India 🇮🇳</strong></td>
+                            <td>Tiered pricing + mobile-first</td>
+                            <td>50% increase in SMB segment; 30% lower CAC</td>
+                            <td>3,000+ new SMB customers</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="technical-performance">
+                    <h3>Technical Performance Gains</h3>
+                    <div class="metrics-grid small">
+                        <div class="metric-card">
+                            <span class="metric-number">800ms → 200ms</span>
+                            <span class="metric-label">API Response (p95)</span>
+                        </div>
+                        <div class="metric-card">
+                            <span class="metric-number">4 hrs → 15 min</span>
+                            <span class="metric-label">Incident Rollback Time</span>
+                        </div>
+                        <div class="metric-card">
+                            <span class="metric-number">2 wks → 3 days</span>
+                            <span class="metric-label">Feature Release Cycle</span>
+                        </div>
+                        <div class="metric-card">
+                            <span class="metric-number">2 wks → 3 days</span>
+                            <span class="metric-label">New Developer Onboarding</span>
+                        </div>
+                    </div>
+                </div>
+
+                <blockquote class="executive-testimonial">
+                    <span class="quote-mark">"</span>
+                    <p>Chandana didn't just manage a roadmap. She architected a platform that let us compete globally while respecting local needs. The Super Admin Dashboard alone changed how our executives think about workforce management—from reactive reporting to proactive strategy.</p>
+                    <cite>— VP of Product, ZKTeco Global R&D</cite>
+                </blockquote>
+            </div>
+        </section>
+
+        <!-- Key Learnings -->
+        <section class="learnings-section">
+            <div class="container">
+                <span class="section-caption center">REFLECTION</span>
+                <h2 class="section-heading center">Key Learnings</h2>
+                <p class="section-intro center">What global product leadership taught me about scale, culture, and technical debt.</p>
+                
+                <div class="learnings-grid">
+                    <div class="learning-card">
+                        <h4>Technical Debt Is a Market Expansion Tax</h4>
+                        <p>We couldn't have served Nigeria's labor laws or China's data residency without first modernizing the API layer. The "tax" of legacy architecture was invisible until we tried to move fast globally.</p>
+                        <span class="learning-caption">→ Validate: Pay down debt before scaling, or it compounds with every market</span>
+                    </div>
+                    <div class="learning-card">
+                        <h4>Scrum Requires Cultural Translation</h4>
+                        <p>My Shenzhen team preferred detailed written specs; my Bangalore team thrived with collaborative whiteboarding; my Mexico City stakeholders needed formal presentations. Same framework, different rituals.</p>
+                        <span class="learning-caption">→ Validate: Methodology is constant; execution is contextual</span>
+                    </div>
+                    <div class="learning-card">
+                        <h4>Executive Dashboards Are Products Too</h4>
+                        <p>The Super Admin Dashboard started as a "nice-to-have reporting feature." It became the primary sales tool and the #1 driver of executive confidence. Internal tools deserve PM attention.</p>
+                        <span class="learning-caption">→ Validate: B2B success often hinges on buyer (executive) experience, not just user experience</span>
+                    </div>
+                    <div class="learning-card">
+                        <h4>Matrixed Organizations Need Product Diplomacy</h4>
+                        <p>I had no direct reports, yet influenced 20+ engineers across 3 countries. Success required: clear documentation, data-backed decisions, visible wins for every team, and relentless communication.</p>
+                        <span class="learning-caption">→ Validate: Influence without authority is the senior PM's core skill</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final Quote -->
+        <section class="final-quote-section">
+            <div class="container">
+                <blockquote>
+                    <p>"Building for four countries taught me that global products aren't about finding the lowest common denominator. They're about architecting systems that celebrate difference—modular cores, customizable shells, and real-time visibility that turns complexity into competitive advantage. The 5% performance gain and 10% confidence boost weren't just metrics. They were proof that technical modernization and market expansion could be the same initiative, led by the same product strategy."</p>
+                    <cite>— My takeaway from this project</cite>
+                </blockquote>
+            </div>
+        </section>
+
+        <!-- Footer Navigation -->
+        
+        <!-- Project Navigation -->
+        <div class="project-navigation" style="display: flex; justify-content: space-between; padding: 4rem 2rem; border-top: 1px solid var(--border); margin-top: 4rem;">
+          <a href="budget-management.html" style="text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-secondary)'">
+            <span style="display: block; font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem;">← Previous Project</span>
+            <span style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--text-primary);">Budget Management</span>
+          </a>
+          <a href="scan-it-know-it.html" style="text-decoration: none; transition: color 0.2s; text-align: right;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-secondary)'">
+            <span style="display: block; font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem;">Next Project →</span>
+            <span style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--text-primary);">Scan It Know It</span>
+          </a>
+        </div>
+        
+    </main>
+
+    <!-- Footer Component -->
+    <footer class="site-footer">
+      <!-- Background watermark text -->
+      <div class="footer-watermark">Chandu</div>
+      
+      <!-- Decorative strokes -->
+      <div class="footer-stroke footer-stroke-left"></div>
+      <div class="footer-stroke footer-stroke-right"></div>
+      <div class="footer-stroke footer-stroke-bottom"></div>
+      
+      <!-- Main footer content -->
+      <div class="footer-content">
+        <!-- Left side - Logo/Name and copyright -->
+        <div class="footer-left">
+          <div class="footer-logo">Chandana.</div>
+          <p class="footer-copyright">
+            ©2025 Chandana Konduru<br>
+            Built with AI in Omaha, NE
+          </p>
+        </div>
+        
+        <!-- Right side - Social links -->
+        <div class="footer-right">
+          <div class="footer-socials">
+            <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener" aria-label="LinkedIn" class="social-link">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+            </a>
+            <a href="https://twitter.com/yourhandle" target="_blank" rel="noopener" aria-label="Twitter" class="social-link">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+            <a href="https://instagram.com/yourusername" target="_blank" rel="noopener" aria-label="Instagram" class="social-link">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
+              </svg>
+            </a>
+            <a href="mailto:your-email@example.com" aria-label="Email" class="social-link">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.278 24 3.433 24 5.457z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>
