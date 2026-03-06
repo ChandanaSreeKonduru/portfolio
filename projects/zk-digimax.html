@@ -1128,6 +1128,10 @@
                 <div class="technical-discovery">
                     <h3>Technical Feasibility: Hardware-Software Bridge</h3>
                     <div class="tech-discovery-grid">
+						<div class="td-card">
+                            <h4>Optimistic UI</h4>
+                            <p>To solve for e-ink refresh latency (2-3s), I implemented an Optimistic UI pattern. This provided instant visual feedback to staff, reducing 'perceived' system slowness and eliminating redundant 'force-refresh' taps by 40%.</p>
+                        </div>
                         <div class="td-card">
                             <h4>Wireless Protocol Complexity</h4>
                             <p>ESLs use Zigbee mesh networks. Mobile app needed to bridge Zigbee ↔ WiFi ↔ Cloud without store IT changes. Solution: Gateway device API abstraction—app talks HTTP, gateway handles Zigbee.</p>
@@ -1501,9 +1505,9 @@
                 
                 <div class="learnings-grid">
                     <div class="learning-card">
-                        <h4>Hardware-Software PMs Must Speak Both Languages</h4>
-                        <p>I couldn't code firmware, but I needed to understand wireless protocol limitations, e-ink refresh constraints, and battery trade-offs to make good product decisions. The best IoT PMs are bilingual: they translate "Zigbee mesh network latency" into "staff sees updates in 3 seconds" and vice versa.</p>
-                        <span class="learning-caption">→ Validate: Technical depth enables credible prioritization with engineering teams</span>
+                        <h4>The Bilingual PM Must Speak Hardware-Software Languages</h4>
+                        <p>IoT success requires speaking two languages: translating Zigbee mesh latency into user confidence states. I learned that technical depth isn't about writing the firmware, but about understanding its constraints to protect the UX.</p>
+                        <span class="learning-caption">→ Validate: Technical depth enables credible prioritization.</span>
                     </div>
                     <div class="learning-card">
                         <h4>Store Staff Are Users, Not Just Operators</h4>
@@ -1615,3 +1619,4 @@
     <script src="../js/script.js"></script>
 </body>
 </html>
+
