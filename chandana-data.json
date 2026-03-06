@@ -3,13 +3,15 @@
     "fullName": "Chandana Sree Konduru",
     "title": "AI Product Manager & Global Product Strategist",
     "yearsOfExperience": "6",
+    "age": "28",
     "email": "chandanashree97@gmail.com",
-    "phone": "5312034748",
+    // "phone": "(531) 203-4748",
     "location": "Omaha, NE, USA",
     "linkedIn": "https://www.linkedin.com/in/chandana-sree-konduru/",
-    "portfolio": "https://chandanasree35.wixsite.com/portfolio",
+    "GitHub": "https://github.com/chandanashree97",
     "openToRemote": true,
-    "summary": "Strategic Product Manager with over 5 years of experience driving Digital Transformation across Fintech, Healthcare, and Consumer Retail (IoT) industries. Proven expert in leading the Full Software Product Lifecycle for global B2B SaaS and Agentic AI platforms, acting as the 'voice of the asset' to translate market signals into actionable roadmaps.",
+    "gender": "Female",
+    "summary": "Strategic Product Manager with over 6 years of experience driving Digital Transformation across Fintech, Healthcare, and Consumer Retail (IoT) industries. Proven expert in leading the Full Software Product Lifecycle for global B2B SaaS and Agentic AI platforms, acting as the 'voice of the asset' to translate market signals into actionable roadmaps.",
     "highlights": [
       "Led global transformation across 4 countries (Nigeria, China, Mexico, India)",
       "Built ScanItKnowIt with Gemini API at $0 operational cost",
@@ -28,7 +30,7 @@
   },
   "experience": [
     {
-      "period": "2025–Present",
+      "period": "2025,2026",
       "role": "Founder & Lead Product Developer",
       "company": "Community Projects",
       "location": "Omaha, NE, USA",
@@ -40,7 +42,7 @@
       ]
     },
     {
-      "period": "2024–2025",
+      "period": "2024,2025",
       "role": "Associate Product Manager - Global R&D",
       "company": "ZKTeco India",
       "location": "Bangalore, India",
@@ -54,7 +56,7 @@
       ]
     },
     {
-      "period": "2023–2024",
+      "period": "2023,2024",
       "role": "Post-Graduation in Data Science",
       "company": "IIIT Bangalore",
       "location": "Bangalore, India & Liverpool, UK",
@@ -79,7 +81,7 @@
       ]
     },
     {
-      "period": "2021–2022",
+      "period": "2021,2022",
       "role": "Developer II | UI/UX Designer",
       "company": "Cybage Software",
       "location": "Hyderabad & Pune, India",
@@ -91,7 +93,7 @@
       ]
     },
     {
-      "period": "2019–2021",
+      "period": "2019,2020,2021",
       "role": "Software Engineer",
       "company": "NTT Data",
       "location": "Bangalore, India",
@@ -103,7 +105,7 @@
       ]
     }
   ],
-  "projects": [
+  "projects,Work": [
     {
       "name": "Scan It Know It",
       "category": "Agentic AI Platform",
@@ -178,13 +180,13 @@
     {
       "degree": "Post-Graduation in Data Science",
       "school": "IIIT Bangalore",
-      "year": "2023-2024",
+      "year": "2023,2024",
       "location": "Bangalore, India & Liverpool, UK"
     },
     {
       "degree": "Bachelor of Technology in Computer Science",
       "school": "Madanapalle Institute of Technology & Science (JNTUA)",
-      "year": "2015-2019",
+      "year": "2015,2016,2017,2018,2019",
       "location": "India"
     }
   ],
