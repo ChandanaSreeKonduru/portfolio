@@ -688,8 +688,6 @@
       line-height: 1.6;
     }
     .chat-message:not(.user) .chat-message-bubble {
-																		   
-								  
       border-bottom-left-radius: 0.25rem;
     }
     
@@ -901,7 +899,6 @@
       </div>
     </section>															   
     <!-- Featured Projects - Multi-item Carousel -->
-							  
     <section class="featured-section">
       <div class="featured-header">
         <div>
@@ -1090,7 +1087,6 @@
                 </div>
               </div>
             </article>
-
           </div>
         </div>
         
@@ -1488,12 +1484,6 @@
         });
         
         // Active nav state
-        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-        document.querySelectorAll('.nav-link').forEach(link => {
-            if (link.getAttribute('href') === currentPage) {
-                link.classList.add('active');
-            }
-        });
     </script>
 
   <script>
@@ -1514,8 +1504,6 @@
     document.addEventListener('click', (e) => {
       if (!e.target.closest('.site-header')) navMain.classList.remove('open');
     });
-																																			 
-		   
 
     // Active nav state
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
@@ -1616,7 +1604,6 @@
       
       carouselTrack.addEventListener('touchstart', (e) => {
         touchStartX = e.changedTouches[0].screenX;
-																																			
       }, { passive: true });
       
       carouselTrack.addEventListener('touchend', (e) => {
@@ -1640,9 +1627,7 @@
     //  CHATBOT — VIRTUAL CHANDANA
     //  FIXED: All stats, dates, countries corrected
     //  ADDED: Job-fit mode (paste JD → get match analysis)
-												   
     // ═══════════════════════════════════════════════════
-
     const chatbotFab   = document.getElementById('chatbotFab');
     const chatbotPanel = document.getElementById('chatbotPanel');
     const chatInput    = document.getElementById('chatInput');
@@ -1675,10 +1660,6 @@
         sendMessage();
       }, 350);
     }
-
-								  
-							
-						
 
     // ── EMBEDDED DATA — ALL FACTS CORRECTED ──										 
     const EMBEDDED_DATA = {
@@ -1831,8 +1812,7 @@
           "skills": ["AI/ML", "Healthcare UX", "E2B Compliance", "Data Visualization", "Figma"],
           "metrics": ["-3% manual processing", "100% E2B R2/R3 compliant", "Multi-vigilance unified"],
           "description": "AI-powered pharmacovigilance platform with explainable AI interface. Transformed complex ML outputs into human-centered UI for medical reviewers."		   
-        }
-																		 
+        },
 		{
           "name": "Budget Management",
           "category": "AI Finance Platform",
@@ -1941,7 +1921,7 @@
       if (jobText.includes('global') || jobText.includes('international')) strengths.push("4-country global experience");
       if (jobText.includes('healthcare') || jobText.includes('medical')) strengths.push("Healthcare AI (DF Safety)");
       if (jobText.includes('iot') || jobText.includes('retail')) strengths.push("IoT Retail (ZK Digimax)");
-      if (jobText.includes('b2b') || jobText.includes('saas')) strengths.push("B2B SaaS at scale (10K+ users)");
+      if (jobText.includes('b2b') || jobText.includes('saas')) strengths.push("B2B SaaS at scale (10K+ users, 4 markets)");
       
       return strengths.slice(0, 3);
     }
@@ -2019,12 +1999,7 @@
       
       // ===== ATS PROCESSING =====
       if (atsMode && input.length > 50) { atsMode = false; return formatATSScore(calculateATSScore(input)); }
-        
-        if (score) {
-          return formatATSScore(score);
-        } else {
-          return "Error analyzing. Please try again or email: " + data.profile.email;
-        }
+       
 																		if (lower.match(/name|who are you/)) return data.profile.fullName;
       if (lower.match(/year|experience.*year|how long/)) return `${data.profile.yearsOfExperience}+ years across B2B SaaS, IoT, healthcare AI, pharmacovigilance, hospitality, and fintech.`;
       if (lower.match(/email|contact|reach/)) return data.profile.email;
@@ -2044,7 +2019,8 @@
         return data.education.map(e => `${e.degree} — ${e.school} (${e.year})`).join('\n');
       }
       for (const proj of data.projects) {
-        if (lower.includes(proj.name.toLowerCase()) || (proj.name.includes('BioTime') && lower.includes('biotime')) || (proj.name.includes('Scan') && lower.includes('scan')) || (proj.name.includes('ZKDigiMax') && lower.includes('digi')) || (proj.name.includes('DF Safety') && lower.includes('df')) || (proj.name.includes('Budget') && lower.includes('budget'))) {
+        if (lower.includes(proj.name.toLowerCase()) || (proj.name.includes('BioTime') && lower.includes('biotime')) || (proj.name.includes('Scan') && lower.includes('scan')) || (proj.name.includes('ZK
+		DigiMax') && lower.includes('digi')) || (proj.name.includes('DF Safety') && lower.includes('df')) || (proj.name.includes('Budget') && lower.includes('budget'))) {
           return `**${proj.name}** (${proj.category})\n${proj.description}\n\nMetrics: ${proj.metrics.join(' · ')}`;
 									 									}
 																		}	
