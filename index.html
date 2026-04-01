@@ -688,6 +688,8 @@
       line-height: 1.6;
     }
     .chat-message:not(.user) .chat-message-bubble {
+																		   
+								  
       border-bottom-left-radius: 0.25rem;
     }
     
@@ -899,6 +901,7 @@
       </div>
     </section>															   
     <!-- Featured Projects - Multi-item Carousel -->
+							  
     <section class="featured-section">
       <div class="featured-header">
         <div>
@@ -1087,6 +1090,7 @@
                 </div>
               </div>
             </article>
+
           </div>
         </div>
         
@@ -1510,6 +1514,8 @@
     document.addEventListener('click', (e) => {
       if (!e.target.closest('.site-header')) navMain.classList.remove('open');
     });
+																																			 
+		   
 
     // Active nav state
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
@@ -1610,6 +1616,7 @@
       
       carouselTrack.addEventListener('touchstart', (e) => {
         touchStartX = e.changedTouches[0].screenX;
+																																			
       }, { passive: true });
       
       carouselTrack.addEventListener('touchend', (e) => {
@@ -1633,7 +1640,9 @@
     //  CHATBOT — VIRTUAL CHANDANA
     //  FIXED: All stats, dates, countries corrected
     //  ADDED: Job-fit mode (paste JD → get match analysis)
+												   
     // ═══════════════════════════════════════════════════
+
     const chatbotFab   = document.getElementById('chatbotFab');
     const chatbotPanel = document.getElementById('chatbotPanel');
     const chatInput    = document.getElementById('chatInput');
@@ -1666,6 +1675,10 @@
         sendMessage();
       }, 350);
     }
+
+								  
+							
+						
 
     // ── EMBEDDED DATA — ALL FACTS CORRECTED ──										 
     const EMBEDDED_DATA = {
@@ -1819,6 +1832,7 @@
           "metrics": ["-3% manual processing", "100% E2B R2/R3 compliant", "Multi-vigilance unified"],
           "description": "AI-powered pharmacovigilance platform with explainable AI interface. Transformed complex ML outputs into human-centered UI for medical reviewers."		   
         }
+																		 
 		{
           "name": "Budget Management",
           "category": "AI Finance Platform",
@@ -1856,7 +1870,7 @@
       let totalKeywords = 0;
       
       // Check each category
-      for (const [category, keywords] of Object.entries(data.atsKeywords)) {
+      for (const [category, keywords] of Object.entries(chandanaData.atsKeywords)) {
         let matched = 0;
         const found = [];
         const missing = [];
@@ -2004,17 +2018,36 @@
       }
       
       // ===== ATS PROCESSING =====
-      if (atsMode && input.length > 50) {
-        const score = calculateATSScore(input);
-        atsMode = false; // Reset after scan
+      if (atsMode && input.length > 50) { atsMode = false; return formatATSScore(calculateATSScore(input)); }
         
         if (score) {
           return formatATSScore(score);
         } else {
           return "Error analyzing. Please try again or email: " + data.profile.email;
         }
+																		if (lower.match(/name|who are you/)) return data.profile.fullName;
+      if (lower.match(/year|experience.*year|how long/)) return `${data.profile.yearsOfExperience}+ years across B2B SaaS, IoT, healthcare AI, pharmacovigilance, hospitality, and fintech.`;
+      if (lower.match(/email|contact|reach/)) return data.profile.email;
+      if (lower.match(/phone|call|number/)) return "(531) 203-4748";
+      if (lower.match(/location|where|based|from/)) return `${data.profile.location} — open to remote, hybrid, or on-site roles across the US. ${data.profile.workAuthorization}`;
+      if (lower.match(/visa|sponsorship|ead|h4|authorization/)) return data.profile.workAuthorization;
+      if (lower.match(/remote|hybrid|reloc/)) return "Yes, open to remote and hybrid US roles. Based in Omaha, NE.";
+      if (lower.match(/available|open|looking|hire|job/)) return `Open to AI PM, Product Analyst, and Technical PM roles. ${data.profile.workAuthorization} Email: ${data.profile.email}`;
+      if (lower.match(/country|countries|international|global/)) return "4-country global experience: Nigeria, China, Mexico, and India — through ZKTeco's B2B SaaS transformation (Aug 2023–Aug 2024).";
+      if (lower.match(/biotime|zkteco/)) { const e = data.experience.find(x => x.company === "ZKTeco India"); return e ? e.highlights.join('\n') : "35% performance increase, 4-country rollout, 10K+ users."; }
+      if (lower.match(/df safety|pharma|pharmacovigilance|healthcare/)) { const e = data.experience.find(x => x.company === "Data Foundry"); return e ? `DF Safety:\n${e.highlights.join('\n')}` : "AI acceptance 30% → 85%, 100% E2B R2/R3 compliant, 40% training time reduction."; }
+      if (lower.match(/^(skills?|what.*skills|list.*skills)$/)) return "AI/ML, Product, Design, Data, Cloud, Engineering. Ask about any specific one!";
+      if (lower.match(/ai.*skill|llm|agentic|prompt/)) return data.skills["AI & Emerging Tech"].join(', ');
+      if (lower.match(/projects?|works?|portfolio/)) return `${data.projects.length} case studies: ${data.projects.map(p => p.name).join(', ')}. View all on the Work page.`;
+      /* BUG 2 FIX: education block now properly closed */
+      if (lower.match(/education|degree|study|iiit|jntua/)) {
+        return data.education.map(e => `${e.degree} — ${e.school} (${e.year})`).join('\n');
       }
-      
+      for (const proj of data.projects) {
+        if (lower.includes(proj.name.toLowerCase()) || (proj.name.includes('BioTime') && lower.includes('biotime')) || (proj.name.includes('Scan') && lower.includes('scan')) || (proj.name.includes('ZKDigiMax') && lower.includes('digi')) || (proj.name.includes('DF Safety') && lower.includes('df')) || (proj.name.includes('Budget') && lower.includes('budget'))) {
+          return `**${proj.name}** (${proj.category})\n${proj.description}\n\nMetrics: ${proj.metrics.join(' · ')}`;
+									 									}
+																		}	
       // 1. Name
       if (lower.match(/name|who are you/)) {
         return data.profile.fullName;
@@ -2058,6 +2091,7 @@
           return data.skills[category].slice(0, 5).join(', ');
         }
       }
+	  
       
       // 8. Specific skill check
       const allSkills = getAllSkills();
@@ -2110,7 +2144,7 @@
       }
       // Education — FIXED: 2021
       if (lower.match(/education|degree|study|iiit|jntua/)) {
-        return data.education.map(e => `${e.degree} — ${e.school} (${e.year})`).join('\n');
+        return data.education.map(e => `${e.degree} — ${e.school} (${e.year})`).join('\n'); }
 		
       // 14. ATS Help
       if (lower.match(/remote|hybrid|reloc/)) return "Yes, open to remote and hybrid US roles. Based in Omaha, NE.";
