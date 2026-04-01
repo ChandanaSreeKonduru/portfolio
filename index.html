@@ -2019,8 +2019,7 @@
         return data.education.map(e => `${e.degree} — ${e.school} (${e.year})`).join('\n');
       }
       for (const proj of data.projects) {
-        if (lower.includes(proj.name.toLowerCase()) || (proj.name.includes('BioTime') && lower.includes('biotime')) || (proj.name.includes('Scan') && lower.includes('scan')) || (proj.name.includes('ZK
-		DigiMax') && lower.includes('digi')) || (proj.name.includes('DF Safety') && lower.includes('df')) || (proj.name.includes('Budget') && lower.includes('budget'))) {
+        if (lower.includes(proj.name.toLowerCase()) || (proj.name.includes('BioTime') && lower.includes('biotime')) || (proj.name.includes('Scan') && lower.includes('scan')) || (proj.name.includes('ZKDigiMax') && lower.includes('digi')) || (proj.name.includes('DF Safety') && lower.includes('df')) || (proj.name.includes('Budget') && lower.includes('budget'))) {
           return `**${proj.name}** (${proj.category})\n${proj.description}\n\nMetrics: ${proj.metrics.join(' · ')}`;
 									 									}
 																		}	
