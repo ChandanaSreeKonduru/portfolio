@@ -1620,31 +1620,7 @@
       }, { passive: true });
     })();
     
-    // Chatbot FAB - Wrapped in IIFE
-    // Chatbot FAB
-      // Chatbot FAB
-   // ═══════════════════════════════════════════════════
-    //  CHATBOT — VIRTUAL CHANDANA
-    //  FIXED: All stats, dates, countries corrected
-    //  ADDED: Job-fit mode (paste JD → get match analysis)
-    // ═══════════════════════════════════════════════════
-    const chatbotFab   = document.getElementById('chatbotFab');
-    const chatbotPanel = document.getElementById('chatbotPanel');
-    const chatInput    = document.getElementById('chatInput');
-    const chatSend     = document.getElementById('chatSend');
-    const chatbotMessages = document.getElementById('chatbotMessages');
 
-    // Open/close panel
-    chatbotFab.addEventListener('click', () => chatbotPanel.classList.toggle('open'));
-											
-	   
-	
-    document.addEventListener('click', (e) => {
-      if (!e.target.closest('.chatbot-panel') && !e.target.closest('.chatbot-fab') && !e.target.closest('.chatbot-cta-band')) {
-        chatbotPanel.classList.remove('open');
-      }
-    });
-     // ===== VIRTUAL CHANDANA + ATS SCANNER =====  
     // EMBEDDED DATA - No fetch needed, works immediately!
 
     // Helper for chatbot CTA band
