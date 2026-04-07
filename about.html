@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About | Chandana - AI Product Manager & Strategist</title>
+<meta name="description" content="Chandana Konduru — AI Tech Product Manager bridging technical architecture with human-centered design. 6+ years building global B2B SaaS, IoT, and healthcare AI products across the USA, India, Nigeria, China, and Mexico.">
+<script>
+(function() {
+  const savedTheme = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const theme = savedTheme || (prefersDark ? 'dark' : 'light');
+  document.documentElement.setAttribute('data-theme', theme);
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/rhode.css">
+<style>
+/* About Page Styles */
+.about-hero {
+  padding: 4rem 2rem;
+  text-align: center;
+}
+.about-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+  margin: 0 auto 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.about-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.about-title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+.about-tagline {
+  font-size: 1.25rem;
+  color: var(--accent);
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+}
+.about-intro {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+.location-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  padding: 0.125rem 0.625rem;
+  font-size: 0.875rem;
+  margin: 0 0.125rem;
+}
+/* Story Section */
+.story-section {
+  padding: 4rem 2rem;
+  background: var(--bg-secondary);
+}
+.story-image-wrapper {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto 3rem;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+}
+.story-main-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+}
+.story-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  align-items: center;
+}
+.story-content h2 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+}
+.story-content p {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+.phase-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 0.25rem;
+}
+.story-visual {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 0;
+  text-align: center;
+  overflow: hidden;
+  height: 100%;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.story-visual-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+/* Superpowers Section */
+.superpowers-section {
+  padding: 4rem 2rem;
+}
+.superpowers-title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+.superpowers-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.superpower-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  transition: all var(--transition-base);
+}
+.superpower-card:hover {
+  border-color: var(--border-strong);
+  transform: translateY(-6px);
+  box-shadow: 0 12px 40px var(--shadow-hover);
+}
+.superpower-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 1.25rem;
+  background: var(--bg-primary);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+}
+.superpower-name {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+}
+.superpower-description {
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+/* Approach Section */
+.approach-section {
+  padding: 4rem 2rem;
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border);
+}
+.approach-title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+.approach-steps {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.approach-step {
+  flex: 1;
+  min-width: 200px;
+  max-width: 250px;
+  text-align: center;
+}
+.approach-number {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--text-primary);
+  color: var(--bg-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0 auto 1rem;
+}
+.approach-step h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+.approach-step p {
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+/* Values Section */
+.values-section {
+  padding: 4rem 2rem;
+}
+.values-title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.value-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  transition: all var(--transition-base);
+}
+.value-card:hover {
+  border-color: var(--accent);
+}
+.value-card h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.value-card p {
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+/* CTA Section */
+.about-cta {
+  padding: 4rem 2rem;
+  text-align: center;
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border);
+}
+.about-cta h2 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+.about-cta p {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  max-width: 500px;
+  margin: 0 auto 1.5rem;
+}
+.cta-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+.social-link {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  transition: all var(--transition-fast);
+  text-decoration: none;
+}
+.social-link:hover {
+  border-color: var(--accent);
+  background: var(--accent);
+  transform: translateY(-2px);
+}
+/* Responsive */
+@media (max-width: 900px) {
+  .story-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .superpowers-grid { grid-template-columns: 1fr; }
+  .values-grid { grid-template-columns: 1fr; }
+  .approach-steps { flex-direction: column; align-items: center; }
+}
+@media (max-width: 480px) {
+  .about-hero { padding: 3rem 1rem; }
+  .about-avatar { width: 100px; height: 100px; font-size: 2.5rem; }
+  .story-section, .superpowers-section, .approach-section, .values-section, .about-cta { padding: 3rem 1rem; }
+  .superpower-card { padding: 1.5rem; }
+}
+/* Footer Styles */
+.site-footer {
+  position: relative;
+  width: 100%;
+  padding: 160px 2rem 32px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-primary);
+  border-top: 1px solid var(--border);
+}
+.footer-watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: clamp(100px, 18vw, 260px);
+  font-weight: 700;
+  color: var(--text-primary);
+  opacity: 0.04;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  letter-spacing: -0.02em;
+}
+.footer-stroke { position: absolute; background-color: var(--text-primary); opacity: 0.15; }
+.footer-stroke-left { left: 5%; top: 25%; width: 1px; height: 50%; }
+.footer-stroke-right { right: 5%; top: 25%; width: 1px; height: 50%; }
+.footer-stroke-bottom { bottom: 32px; left: 10%; width: 80%; height: 1px; }
+.footer-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+.footer-left { display: flex; flex-direction: column; gap: 0.5rem; }
+.footer-logo { font-size: 1.5rem; font-weight: 600; color: var(--text-primary); letter-spacing: -0.01em; }
+.footer-copyright { font-size: 0.875rem; color: var(--text-secondary); line-height: 1.6; margin: 0; }
+.footer-right { display: flex; align-items: center; }
+.footer-socials { display: flex; gap: 0.75rem; }
+.footer-socials .social-link {
+  width: 44px; height: 44px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-primary); background: var(--bg-card);
+  border: 1px solid var(--border); transition: all 0.2s ease;
+}
+.footer-socials .social-link:hover {
+  color: var(--bg-secondary); background: var(--text-primary);
+  border-color: var(--text-primary); transform: translateY(-3px);
+}
+.footer-socials .social-link svg { width: 20px; height: 20px; }
+@media (max-width: 768px) {
+  .site-footer { padding: 100px 1.5rem 32px; }
+  .footer-watermark { font-size: 70px; opacity: 0.06; }
+  .footer-stroke-left, .footer-stroke-right { display: none; }
+  .footer-stroke-bottom { left: 5%; width: 90%; }
+  .footer-content { flex-direction: column; text-align: center; gap: 1.5rem; }
+  .footer-left { align-items: center; }
+  .footer-socials { gap: 0.625rem; }
+  .footer-socials .social-link { width: 40px; height: 40px; }
+}
+</style>
+</head>
+<body>
+
+<header class="site-header" data-page="about"></header>
+
+<main>
+
+  <!-- About Hero -->
+  <section class="about-hero">
+    <div class="about-avatar">
+      <img src="images/profile image.png" alt="Chandana Konduru - AI Product Manager" />
+    </div>
+    <h1 class="about-title">Hi, I'm Chandana</h1>
+    <p class="about-tagline">AI Product Manager · Systems Architect · Community Product Builder</p>
+    <p class="about-intro">
+      I bridge <strong>technical architecture</strong> with <strong>human-centered design</strong> to build AI systems that solve real problems — not just impressive demos.
+    </p>
+    <p class="hero-context" style="font-size:1rem;color:var(--text-secondary);max-width:700px;margin:1rem auto 0;line-height:1.8;">
+      6+ years leading global product teams across
+      <span class="location-pill">🇺🇸 USA</span>,
+      <span class="location-pill">🇮🇳 India</span>,
+      <span class="location-pill">🇳🇬 Nigeria</span>,
+      <span class="location-pill">🇨🇳 China</span>, and
+      <span class="location-pill">🇲🇽 Mexico</span>.
+      From engineering foundations at NTT Data to AI product strategy at ZKTeco, I've shipped B2B SaaS, IoT retail solutions, and healthcare AI platforms.
+    </p>
+  </section>
+
+  <!-- Story Section -->
+  <section class="story-section">
+    <div class="story-grid">
+      <div class="story-content">
+        <h2>My Journey</h2>
+
+        <p>
+          <span class="phase-label">The Foundation</span>
+          <strong>Engineering Roots</strong><br>
+          I started as a software engineer at <strong>NTT Data</strong>, building mobile apps for Wyndham Hotels. This taught me that even the most complex code fails if it ignores user context. Technical depth is my foundation for credible leadership.
+        </p>
+
+        <p>
+          <span class="phase-label">The Pivot</span>
+          <strong>Design Thinking &amp; AI</strong><br>
+          At <strong>Data Foundry</strong>, I discovered my superpower: translating complex ML outputs into interfaces that medical reviewers <em>trusted</em>. I designed <strong>human-AI collaboration</strong>, increasing AI acceptance from 30% to 85% by making systems explainable, not just accurate.
+        </p>
+
+        <p>
+          <span class="phase-label">The Scale</span>
+          <strong>Global Product Strategy</strong><br>
+          As <strong>Associate Product Manager at ZKTeco</strong>, I led B2B SaaS transformation across 4 countries (Nigeria, China, Mexico, India). I architected unified platforms with region-specific customization — proving that global scale and local relevance require intentional system design.
+        </p>
+
+        <p>
+          <span class="phase-label">Now</span>
+          <strong>Agentic AI &amp; Community</strong><br>
+          Today in <strong>Omaha, Nebraska</strong>, I'm building <strong>ScanItKnowIt</strong> and <strong>Budget Management</strong> — LLM-powered tools that demonstrate what's possible with modern agentic AI. Currently open to AI PM and Product Analyst roles.
+        </p>
+      </div>
+
+      <div class="story-visual">
+        <img src="images/profile portfolio.jpeg" alt="Chandana Konduru - Product Manager Journey" class="story-visual-image" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Superpowers Section -->
+  <section class="superpowers-section">
+    <h2 class="superpowers-title">My Superpowers</h2>
+    <div class="superpowers-grid">
+
+      <div class="superpower-card">
+        <div class="superpower-icon">🎯</div>
+        <h3 class="superpower-name">Product Strategy &amp; ML Logic</h3>
+        <p class="superpower-description">
+          I see the big picture, bridging the gap between model weights and business ROI. Every feature ties back to business goals and user needs.
+        </p>
+      </div>
+
+      <div class="superpower-card">
+        <div class="superpower-icon">🤝</div>
+        <h3 class="superpower-name">Cross-Functional Leadership</h3>
+        <p class="superpower-description">
+          I bridge engineers, designers, and business stakeholders around a shared vision — translating technical complexity into clear decisions and moving teams from alignment to execution.
+        </p>
+      </div>
+
+      <div class="superpower-card">
+        <div class="superpower-icon">⚡</div>
+        <h3 class="superpower-name">LLM API Integration &amp; Rapid Prototyping</h3>
+        <p class="superpower-description">
+          I use agentic AI to move from ideation to functional MVP in days, not months. Data-driven decisions and measurable outcomes are non-negotiable.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Approach Section -->
+  <section class="approach-section">
+    <h2 class="approach-title">How I Work</h2>
+    <div class="approach-steps">
+      <div class="approach-step">
+        <div class="approach-number">1</div>
+        <h3>Discover</h3>
+        <p>Finding the "Why" through User Research.</p>
+      </div>
+      <div class="approach-step">
+        <div class="approach-number">2</div>
+        <h3>Define</h3>
+        <p>Mapping PRDs to Success Metrics.</p>
+      </div>
+      <div class="approach-step">
+        <div class="approach-number">3</div>
+        <h3>Deliver</h3>
+        <p>Sprinting in Agile/Scrum rhythms.</p>
+      </div>
+      <div class="approach-step">
+        <div class="approach-number">4</div>
+        <h3>Optimize</h3>
+        <p>Turning Data Analytics into growth.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values Section -->
+  <section class="values-section">
+    <h2 class="values-title">What I Believe</h2>
+    <div class="values-grid">
+      <div class="value-card">
+        <h3>🙋‍♀️ User-First Always</h3>
+        <p>Technology should serve people, not the other way around. Every decision starts with understanding user needs.</p>
+      </div>
+      <div class="value-card">
+        <h3>📊 Data-Driven Decisions</h3>
+        <p>Intuition is valuable, but data is essential. I measure everything and let insights guide the roadmap.</p>
+      </div>
+      <div class="value-card">
+        <h3>🚀 Ship Fast, Learn Faster</h3>
+        <p>Perfect is the enemy of good. I believe in rapid iteration and continuous improvement based on feedback.</p>
+      </div>
+      <div class="value-card">
+        <h3>🤖 AI as Augmentation</h3>
+        <p>AI should enhance human capabilities, not replace them. The best AI products feel invisible and intuitive.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="about-cta">
+    <h2>Let's Connect</h2>
+    <p>
+      Currently based in Omaha, NE, and open to global opportunities in AI Product Management or Technical Strategy. Whether it's a project deep-dive or a chat about the future of LLMs, I'd love to hear from you.
+    </p>
+    <div class="cta-actions">
+      <a href="mailto:chandanashree97@gmail.com" class="btn btn-primary">Get In Touch</a>
+      <a href="https://calendar.google.com/calendar/u/0/r/eventedit?text=30-min%20call%20with%20Chandana%20Konduru&details=AI%20Product%20Manager%20discussion&add=chandanashree97@gmail.com" target="_blank" rel="noopener" class="btn btn-secondary">Book a 30-min Call</a>
+      <a href="https://www.linkedin.com/in/chandana-sree-konduru/" target="_blank" rel="noopener" class="btn btn-secondary">LinkedIn Profile</a>
+    </div>
+    <div class="social-links">
+      <a href="https://www.linkedin.com/in/chandana-sree-konduru/" class="social-link" aria-label="LinkedIn" target="_blank" rel="noopener">💼</a>
+      <a href="https://github.com/ChandanaSreeKonduru" class="social-link" aria-label="GitHub" target="_blank" rel="noopener">💻</a>
+      <a href="mailto:chandanashree97@gmail.com" class="social-link" aria-label="Email">✉️</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer"></footer>
+
+<script src="js/shared.js"></script>
+
+</body>
+</html>

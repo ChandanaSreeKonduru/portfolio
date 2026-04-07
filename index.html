@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chandana Konduru — AI Product Manager</title>
+<meta name="description" content="AI Product Manager crafting intelligent products that scale. 6+ years across B2B SaaS, IoT, and Healthcare AI across USA, India, Nigeria, China, and Mexico.">
+<script>
+(function(){
+  const t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');
+  document.documentElement.setAttribute('data-theme',t);
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/rhode.css">
+<style>
+/* ── Nav overrides ── */
+.nav-link { font-size: 1rem !important; font-weight: 500 !important; }
+.logo { font-size: 1.25rem !important; }
+
+/* ── Hero layout ── */
+.hero-outer { background: var(--bg-primary); }
+.hero {
+  min-height: calc(100vh - var(--nav-height));
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 3rem;
+  padding: 4rem var(--container-pad);
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+.hero-content { position: relative; z-index: 1; }
+.hero-micro {
+  font-size: 0.8125rem; font-weight: 600; color: var(--accent);
+  text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 1.25rem;
+}
+.hero-title {
+  font-size: clamp(2rem, 3.8vw, 3.5rem); font-weight: 600;
+  line-height: 1.09; letter-spacing: -0.03em; color: var(--text-primary); margin-bottom: 1.125rem;
+}
+.hero-title span { color: var(--accent); }
+.hero-description {
+  font-size: clamp(0.9375rem, 1.4vw, 1.0625rem); color: var(--text-secondary);
+  max-width: 500px; margin-bottom: 0.875rem; line-height: 1.7;
+}
+.hero-human { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 2rem; font-style: italic; line-height: 1.6; }
+.hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center; margin-bottom: 1.25rem; }
+.hero-chatbot-nudge { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+.hero-chatbot-nudge span { font-size: 0.8125rem; color: var(--text-muted); }
+.hero-chatbot-nudge button {
+  background: none; border: none; padding: 0; font-size: 0.875rem; font-weight: 500;
+  color: var(--accent); cursor: pointer; text-decoration: underline;
+  text-underline-offset: 3px; font-family: inherit;
+}
+
+/* ── Globe ── */
+.hero-globe-side { display: flex; align-items: center; justify-content: center; }
+.globe-wrap {
+  width: min(500px, 100%);
+  aspect-ratio: 1;
+  position: relative;
+}
+#globeCanvas { width: 100%; height: 100%; display: block; cursor: grab; touch-action: none; }
+#globeCanvas:active { cursor: grabbing; }
+
+/* ── Responsive hero ── */
+@media (max-width: 960px) {
+  .hero { grid-template-columns: 1fr; padding: 3rem var(--container-pad) 1rem; gap: 2rem; }
+  .hero-content { order: 1; }
+  .hero-globe-side { order: 2; }
+  .globe-wrap { width: min(360px, 88vw); }
+}
+@media (max-width: 600px) {
+  .hero { padding: 2.5rem var(--container-pad) 1rem; gap: 1.5rem; }
+  .hero-title { font-size: clamp(1.875rem, 7vw, 2.5rem); }
+  .hero-actions { flex-direction: column; align-items: stretch; }
+  .hero-actions .btn { width: 100%; justify-content: center; }
+  .globe-wrap { width: min(300px, 88vw); }
+}
+
+/* ── Featured ── */
+.featured-section { padding: 5rem var(--container-pad); background: var(--bg-secondary); }
+.featured-inner { max-width: var(--container-max); margin: 0 auto; }
+.featured-header {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  margin-bottom: 2.5rem; flex-wrap: wrap; gap: 1rem;
+}
+.carousel-controls { display: flex; gap: 0.5rem; flex-shrink: 0; }
+.carousel-btn {
+  width: 40px; height: 40px; border-radius: 50%;
+  border: 1px solid var(--border); background: var(--bg-card);
+  color: var(--text-primary); cursor: pointer;
+  display: flex; align-items: center; justify-content: center; font-size: 1rem;
+  transition: border-color var(--t-fast), background var(--t-fast), color var(--t-fast);
+}
+.carousel-btn:hover { border-color: var(--text-primary); background: var(--text-primary); color: var(--bg-card); }
+.carousel-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+.carousel-wrapper { overflow: hidden; margin: 0 -0.5rem; }
+.carousel-track { display: flex; transition: transform 360ms ease; padding: 0.5rem; gap: 0; }
+.carousel-item { flex-shrink: 0; padding: 0 0.5rem; box-sizing: border-box; }
+.project-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius-md); overflow: hidden;
+  display: flex; flex-direction: column; height: 100%;
+  transition: border-color var(--t-base), box-shadow var(--t-base), transform var(--t-base);
+}
+.project-card:hover { border-color: var(--border-strong); box-shadow: var(--shadow-hover); transform: translateY(-4px); }
+.project-img { height: 168px; background: var(--bg-secondary); overflow: hidden; }
+.project-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 360ms ease; display: block; }
+.project-card:hover .project-img img { transform: scale(1.04); }
+.project-body { padding: 1.125rem; flex: 1; display: flex; flex-direction: column; }
+.project-cat { font-size: 0.6875rem; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.3rem; }
+.project-name { font-size: 1rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.3rem; letter-spacing: -0.01em; line-height: 1.3; }
+.project-role { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.5rem; }
+.project-desc { font-size: 0.8125rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 0.75rem; flex: 1; }
+.project-tags { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-bottom: 0.75rem; }
+.project-link {
+  font-size: 0.8125rem; font-weight: 500; color: var(--text-primary);
+  display: inline-flex; align-items: center; gap: 0.25rem; margin-top: auto;
+  transition: color var(--t-fast);
+}
+.project-link:hover { color: var(--accent); }
+.project-link::after { content: '→'; transition: transform var(--t-fast); }
+.project-link:hover::after { transform: translateX(3px); }
+.carousel-dots { display: flex; justify-content: center; gap: 0.375rem; margin-top: 1.75rem; }
+.carousel-dot {
+  width: 6px; height: 6px; border-radius: 50%; border: none;
+  background: var(--border-strong); cursor: pointer; transition: all var(--t-fast);
+}
+.carousel-dot.active { background: var(--text-primary); width: 20px; border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<header class="site-header" data-page=""></header>
+
+<main>
+
+<!-- HERO -->
+<div class="hero-outer">
+<section class="hero">
+  <div class="hero-content">
+    <div style="margin-bottom:1.5rem;">
+      <span class="open-badge">Open to AI PM · Product Analyst roles</span>
+    </div>
+    <p class="hero-micro">AI Product Manager &amp; Global Product Strategist</p>
+    <h1 class="hero-title">Crafting <span>intelligent products</span> that scale</h1>
+    <p class="hero-description">
+      I bridge cutting-edge AI technology and human-centered design, building products that solve real problems and drive measurable business impact.
+      6+ years shipping B2B SaaS, IoT, and healthcare AI across the USA, India, Nigeria, China, and Mexico.
+    </p>
+    <p class="hero-human">When I'm not shipping enterprise AI, I'm building agentic AI community tools that make technology accessible — right here in Omaha.</p>
+    <div class="hero-actions">
+      <a href="work.html" class="btn btn-primary btn-lg">View My Work</a>
+      <a href="resume.pdf" class="btn btn-secondary btn-lg" download>Download Resume ↓</a>
+    </div>
+    <div class="hero-chatbot-nudge">
+      <span>✨ New —</span>
+      <button onclick="openChatPanel()">Ask my AI assistant about my experience →</button>
+    </div>
+  </div>
+  <div class="hero-globe-side">
+    <div class="globe-wrap">
+      <canvas id="globeCanvas"></canvas>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- CHATBOT CTA BAND -->
+<section class="chatbot-cta-band">
+  <div class="chatbot-cta-inner">
+    <p class="cta-eyebrow">AI Portfolio Assistant</p>
+    <h3>Ask me anything about my experience</h3>
+    <p class="cta-sub">Trained on my full work history — ask about skills, projects, or paste a job description to see how I match.</p>
+    <div class="chatbot-prompt-chips">
+      <button class="prompt-chip" onclick="triggerPrompt('What is your AI and LLM experience?')">What's your AI experience?</button>
+      <button class="prompt-chip" onclick="triggerPrompt('Have you worked in healthcare or pharmacovigilance?')">Healthcare experience?</button>
+      <button class="prompt-chip" onclick="triggerPrompt('What is your strongest case study?')">Strongest case study?</button>
+      <button class="prompt-chip" onclick="triggerPrompt('Are you open to remote roles and what is your work authorization?')">Open to remote?</button>
+    </div>
+    <button class="btn-chat-cta" onclick="openChatPanel()">Chat with AI Portfolio Assistant <span class="chat-arrow">→</span></button>
+  </div>
+</section>
+
+<!-- FEATURED PROJECTS (all 8) -->
+<section class="featured-section">
+  <div class="featured-inner">
+    <div class="featured-header">
+      <div>
+        <h2 class="section-title">Featured Projects</h2>
+        <p class="section-subtitle">6+ years of shipped products across AI, SaaS, IoT, healthcare, and fintech.</p>
+      </div>
+      <div class="carousel-controls">
+        <button class="carousel-btn" id="carouselPrev" aria-label="Previous">←</button>
+        <button class="carousel-btn" id="carouselNext" aria-label="Next">→</button>
+      </div>
+    </div>
+    <div class="carousel-wrapper">
+      <div class="carousel-track" id="carouselTrack">
+
+        <!-- 1. BioTime Cloud -->
+        <div class="carousel-item">
+          <div class="project-card">
+            <div class="project-img"><img src="images/Biotime-cloude.jpg" alt="BioTime Cloud 2.0" loading="lazy"></div>
+            <div class="project-body">
+              <p class="project-cat">Enterprise SaaS · IoT</p>
+              <h3 class="project-name">BioTime Cloud 2.0</h3>
+              <p class="project-role">Senior PM — ZKTeco</p>
+              <p class="project-desc">Led 4-country SaaS transformation (Nigeria, China, Mexico, India) for 10K+ enterprise users. RESTful API migration delivered 35% system performance increase.</p>
+              <div class="project-tags"><span class="tag">🌐 4 countries</span><span class="tag">👥 10K+ users</span><span class="tag">📈 35% perf gain</span></div>
+              <a href="projects/biotime-cloud.html" class="project-link">View Case Study</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Scan It Know It -->
+        <div class="carousel-item">
+          <div class="project-card">
+            <div class="project-img"><img src="images/Scan-it-know-it.png" alt="Scan It Know It" loading="lazy"></div>
+            <div class="project-body">
+              <p class="project-cat">Agentic AI</p>
+              <h3 class="project-name">Scan It Know It</h3>
+              <p class="project-role">PM &amp; AI Architect</p>
+              <p class="project-desc">AI-powered product recognition app built with Gemini API. Scan any product for instant ingredient, nutrition, or safety info. 92% accuracy, $0 infrastructure, shipped in 3 weeks.</p>
+              <div class="project-tags"><span class="tag">⚡ &lt;5s response</span><span class="tag">🎯 92% accuracy</span><span class="tag">💰 $0 cost</span></div>
+              <a href="projects/scan-it-know-it.html" class="project-link">View Case Study</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. ZKDigiMax -->
+        <div class="carousel-item">
+          <div class="project-card">
+            <div class="project-img"><img src="images/digimax.jpg" alt="ZKDigiMax ESL" loading="lazy"></div>
+            <div class="project-body">
+              <p class="project-cat">IoT · Retail Tech</p>
+              <h3 class="project-name">ZKDigiMax-ESL</h3>
+              <p class="project-role">Product Manager — ZKTeco</p>
+              <p class="project-desc">IoT Electronic Shelf Label system reducing pricing errors 3% and inventory search time 10%. Cross-functional PM leadership across hardware, firmware, and mobile app teams.</p>
+              <div class="project-tags"><span class="tag">📡 IoT hardware</span><span class="tag">📉 3% fewer errors</span><span class="tag">⏱️ 10% time saved</span></div>
+              <a href="projects/zk-digimax.html" class="project-link">View Case Study</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Wyndham -->
+        <div class="carousel-item">
+          <div class="project-card">
+            <div class="project-img"><img src="images/wyndham_hotel.jpg" alt="Wyndham Hotels" loading="lazy"></div>
+            <div class="project-body">
+              <p class="project-cat">Enterprise · Hospitality</p>
+              <h3 class="project-name">Wyndham Hotels &amp; Resorts</h3>
+              <p class="project-role">Software Engineer — NTT Data</p>
+              <p class="project-desc">Mobile-first booking portal with offline capability. Improved guest engagement 5%, reduced support tickets 10%, streamlined staff management workflows.</p>
+              <div class="project-tags"><span class="tag">📱 Mobile-first</span><span class="tag">📈 5% engagement</span><span class="tag">🎫 10% fewer tickets</span></div>
+              <a href="projects/wyndham-hotels.html" class="project-link">View Case Study</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Tenet Healthcare -->
+        <div class="carousel-item">
+          <div class="project-card">
+            <div class="project-img"><img src="images/tenet.jpeg" alt="Tenet Healthcare" loading="lazy"></div>
+            <div class="project-body">
+              <p class="project-cat">Healthcare · Enterprise</p>
+              <h3 class="project-name">Tenet Healthcare</h3>
+              <p class="project-role">Software Developer — NTT Data</p>
+              <p class="project-desc">Redesigned complex medical billing UX for healthcare professionals. Reduced task confusion 5%, boosted staff productivity 3%. HIPAA-compliant React/Node stack.</p>
+              <div class="project-tags"><span class="tag">⏱️ 5% faster</span><span class="tag">🔒 HIPAA</span><span class="tag">⚛️ React/Node</span></div>
+              <a href="projects/tenet-healthcare.html" class="project-link">View Case Study</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. Experlogix CPQ -->
+        <div class="carousel-item">
+          <div class="project-card">
+            <div class="project-img"><img src="images/Experlogix_Logo.jpg" alt="Experlogix CPQ" loading="lazy"></div>
+            <div class="project-body">
+              <p class="project-cat">Enterprise · SaaS</p>
+              <h3 class="project-name">Experlogix CPQ</h3>
+              <p class="project-role">Developer II — NTT Data / Experlogix</p>
+              <p class="project-desc">Cloud CPQ platform maintenance and stability engineering. Proactive monitoring with C# and SQL, ensuring high availability and accelerating speed-to-market for enterprise features.</p>
+              <div class="project-tags"><span class="tag">☁️ Cloud-native</span><span class="tag">💻 C# .NET</span><span class="tag">🔄 DevOps</span></div>
+              <a href="projects/experlogix-cpq.html" class="project-link">View Case Study</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7. Budget Management -->
+        <div class="carousel-item">
+          <div class="project-card">
+            <div class="project-img"><img src="images/budget managment.jpg" alt="Budget Management" loading="lazy"></div>
+            <div class="project-body">
+              <p class="project-cat">Agentic AI · Fintech</p>
+              <h3 class="project-name">Budget Management</h3>
+              <p class="project-role">PM &amp; Lead Developer</p>
+              <p class="project-desc">AI finance platform built with 70% AI-generated code. Privacy-first design — no bank account required. 68% Day-30 retention, 10% user spending reduction.</p>
+              <div class="project-tags"><span class="tag">🤖 70% AI code</span><span class="tag">📉 10% spending↓</span><span class="tag">📊 68% retention</span></div>
+              <a href="projects/budget-management.html" class="project-link">View Case Study</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 8. DF Safety -->
+        <div class="carousel-item">
+          <div class="project-card">
+            <div class="project-img"><img src="images/df safety.jpg" alt="DF Safety" loading="lazy"></div>
+            <div class="project-body">
+              <p class="project-cat">AI / Healthcare</p>
+              <h3 class="project-name">DF Safety</h3>
+              <p class="project-role">PM — AI/ML · Data Foundry</p>
+              <p class="project-desc">Scaled AI-powered pharmacovigilance for global CROs. Drove AI acceptance from 30% to 85% through explainable ML design. 100% E2B regulatory compliance maintained.</p>
+              <div class="project-tags"><span class="tag">📈 30%→85% AI trust</span><span class="tag">✓ 100% compliant</span><span class="tag"> E2B R2/R3</span></div>
+              <a href="projects/df-safety.html" class="project-link">View Case Study</a>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /carousel-track -->
+    </div><!-- /carousel-wrapper -->
+    <div class="carousel-dots" id="carouselDots"></div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<section class="trust-section">
+  <div class="container">
+    <p class="trust-label">Companies &amp; clients</p>
+    <div class="trust-logos">
+      <span class="trust-logo">ZKTeco</span>
+      <span class="trust-logo">NTT Data</span>
+      <span class="trust-logo">Data Foundry</span>
+      <span class="trust-logo">Experlogix</span>
+      <span class="trust-logo">Tenet Healthcare</span>
+      <span class="trust-logo">Wyndham Hotels</span>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills-section">
+  <div class="container">
+    <h2 class="section-title">Core Expertise</h2>
+    <p class="section-subtitle">Skills I use daily across product, AI, and engineering contexts.</p>
+    <div class="skills-grid">
+      <div class="skill-card"><div class="skill-icon">🤖</div><p class="skill-name">AI / LLM Products</p><p class="skill-level">Gemini · Claude · GPT APIs</p></div>
+      <div class="skill-card"><div class="skill-icon">📋</div><p class="skill-name">Product Management</p><p class="skill-level">PRD · Roadmaps · OKRs</p></div>
+      <div class="skill-card"><div class="skill-icon">📊</div><p class="skill-name">Data &amp; Analytics</p><p class="skill-level">SQL · Power BI · Tableau</p></div>
+      <div class="skill-card"><div class="skill-icon">🏥</div><p class="skill-name">Healthcare AI</p><p class="skill-level">Pharmacovigilance · E2B · HIPAA</p></div>
+      <div class="skill-card"><div class="skill-icon">☁️</div><p class="skill-name">B2B SaaS &amp; Cloud</p><p class="skill-level">RESTful APIs · Azure · IoT</p></div>
+      <div class="skill-card"><div class="skill-icon">🎨</div><p class="skill-name">UX &amp; Design</p><p class="skill-level">Figma · User Research</p></div>
+      <div class="skill-card"><div class="skill-icon">⚙️</div><p class="skill-name">Agile &amp; Delivery</p><p class="skill-level">Jira · Scrum · Confluence</p></div>
+      <div class="skill-card"><div class="skill-icon">⚡</div><p class="skill-name">Agentic AI Dev</p><p class="skill-level">LLM APIs · Rapid Prototyping</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" style="background:var(--bg-secondary);border-top:1px solid var(--border);">
+  <div class="container">
+    <h2 class="cta-title">Let's Build Something Remarkable</h2>
+    <p class="cta-description">Exploring new opportunities in AI Product Management, Product Strategy, and Technical Analysis.</p>
+    <div style="display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;">
+      <a href="about.html" class="btn btn-primary btn-lg">Get in Touch</a>
+      <a href="work.html" class="btn btn-secondary btn-lg">View All Work</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer"></footer>
+
+<script src="js/shared.js"></script>
+<script>
+/* ── Carousel ── */
+(function(){
+  const track = document.getElementById('carouselTrack');
+  const items  = track.querySelectorAll('.carousel-item');
+  const dots   = document.getElementById('carouselDots');
+  let cur = 0;
+
+  function perView(){ return window.innerWidth > 1100 ? 3 : window.innerWidth > 700 ? 2 : 1; }
+
+  function itemW(){
+    return items[0].offsetWidth;
+  }
+
+  function buildDots(){
+    dots.innerHTML = '';
+    const pages = Math.ceil(items.length / perView());
+    for(let i = 0; i < pages; i++){
+      const d = document.createElement('button');
+      d.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+      d.addEventListener('click', () => goTo(i * perView()));
+      dots.appendChild(d);
+    }
+  }
+
+  function goTo(idx){
+    const pv  = perView();
+    const max = items.length - pv;
+    cur = Math.max(0, Math.min(idx, max));
+    track.style.transform = `translateX(-${cur * itemW()}px)`;
+    document.getElementById('carouselPrev').disabled = cur === 0;
+    document.getElementById('carouselNext').disabled = cur >= max;
+    const page = Math.floor(cur / pv);
+    dots.querySelectorAll('.carousel-dot').forEach((d,i) => d.classList.toggle('active', i === page));
+  }
+
+  /* set item widths based on perView */
+  function layout(){
+    const pv = perView();
+    const wrapW = track.parentElement.offsetWidth;
+    const w = Math.floor(wrapW / pv);
+    items.forEach(it => { it.style.width = w + 'px'; });
+    buildDots(); goTo(0);
+  }
+
+  document.getElementById('carouselPrev').addEventListener('click', () => goTo(cur - 1));
+  document.getElementById('carouselNext').addEventListener('click', () => goTo(cur + 1));
+  window.addEventListener('resize', layout);
+  layout();
+})();
+
+/* ── Globe ── */
+(function(){
+  const canvas = document.getElementById('globeCanvas');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+
+  /* Chandana's actual locations */
+  const MARKERS = [
+    { lat: 41.26,  lng: -95.94,  label: 'Omaha, NE (Now)', now: true  },
+    { lat: 53.41,  lng: -2.99,   label: 'Liverpool, UK',   now: false },
+    { lat: 18.52,  lng: 73.86,   label: 'Pune, India',     now: false },
+    { lat: 12.97,  lng: 77.59,   label: 'Bangalore',       now: false },
+    { lat: 17.39,  lng: 78.49,   label: 'Hyderabad',       now: false },
+    { lat: 9.08,   lng: 8.68,    label: 'Nigeria',         now: false },
+    { lat: 19.43,  lng: -99.13,  label: 'Mexico',          now: false },
+    { lat: 39.91,  lng: 116.39,  label: 'China',           now: false },
+  ];
+
+  const ARCS = [
+    [0,1],[0,5],[0,6],[0,7],
+    [1,2],[1,3],[2,3],[3,4],[4,5],[5,6],[6,7],[7,3],
+  ];
+
+  /* Fibonacci sphere — even dot distribution */
+  const DOTS = [];
+  const N = 900, gr = (1 + Math.sqrt(5)) / 2;
+  for(let i = 0; i < N; i++){
+    const theta = 2 * Math.PI * i / gr;
+    const phi   = Math.acos(1 - 2*(i+0.5)/N);
+    DOTS.push([Math.sin(phi)*Math.cos(theta), Math.cos(phi), Math.sin(phi)*Math.sin(theta)]);
+  }
+
+  let rotY = -0.09, rotX = -0.72;
+  let velY = 0.0016, velX = 0;
+  let drag = false, lx = 0, ly = 0;
+  let t = 0;
+
+  function resize(){
+    const s = canvas.parentElement.clientWidth || 400;
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width  = s * dpr;
+    canvas.height = s * dpr;
+    canvas.style.width  = s + 'px';
+    canvas.style.height = s + 'px';
+  }
+  resize();
+  if(window.ResizeObserver){
+    new ResizeObserver(resize).observe(canvas.parentElement);
+  }
+  window.addEventListener('resize', resize);
+
+  function rot(x,y,z,rx,ry){
+    const cy=Math.cos(rx), sy=Math.sin(rx);
+    const y2=y*cy-z*sy, z2=y*sy+z*cy;
+    const cx=Math.cos(ry), sx=Math.sin(ry);
+    return [x*cx+z2*sx, y2, -x*sx+z2*cx];
+  }
+
+  function latLng(lat,lng,R){
+    const la=lat*Math.PI/180, lo=lng*Math.PI/180;
+    return [R*Math.cos(la)*Math.cos(lo), R*Math.sin(la), R*Math.cos(la)*Math.sin(lo)];
+  }
+
+  function colors(){
+    const dark = document.documentElement.getAttribute('data-theme')==='dark';
+    return {
+      dot:     dark ? [212,168,118] : [160,110,60],
+      arc:     dark ? 'rgba(212,168,118,0.28)' : 'rgba(160,110,60,0.22)',
+      travel:  dark ? 'rgba(220,190,140,0.9)'  : 'rgba(120,80,30,0.85)',
+      marker:  dark ? [200,170,120] : [130,85,40],
+      now:     dark ? [80,200,120]  : [30,140,70],
+    };
+  }
+
+  function frame(){
+    t += 0.011;
+    if(!drag){ rotY += velY; velX *= 0.93; velY *= 0.997; rotX += velX; }
+    rotX = Math.max(-1.1, Math.min(1.1, rotX));
+
+    const dpr = window.devicePixelRatio || 1;
+    const W   = canvas.width / dpr;
+    const H   = canvas.height / dpr;
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    ctx.clearRect(0,0,W,H);
+
+    const R  = Math.min(W,H) * 0.42;
+    const cx = W/2, cy = H/2;
+    const C  = colors();
+
+    /* Globe edge glow */
+    const grd = ctx.createRadialGradient(cx,cy,R*0.7,cx,cy,R*1.35);
+    const gc  = document.documentElement.getAttribute('data-theme')==='dark'
+                ? 'rgba(212,168,118,' : 'rgba(160,110,60,';
+    grd.addColorStop(0, gc+'0.04)');
+    grd.addColorStop(1, gc+'0)');
+    ctx.fillStyle = grd; ctx.fillRect(0,0,W,H);
+
+    /* Dots */
+    DOTS.forEach(([dx,dy,dz]) => {
+      const [rx,ry,rz] = rot(dx*R,dy*R,dz*R,rotX,rotY);
+      if(rz > 0) return;
+      const a  = Math.max(0.06, 0.8*(1-(rz+R)/(2*R)));
+      const sz = 1.1 + a*0.7;
+      const fov = 2.5, sc = fov/(fov+rz/R);
+      const sx = rx*sc+cx, sy = -ry*sc+cy;
+      ctx.beginPath(); ctx.arc(sx,sy,sz,0,Math.PI*2);
+      ctx.fillStyle=`rgba(${C.dot[0]},${C.dot[1]},${C.dot[2]},${a.toFixed(2)})`;
+      ctx.fill();
+    });
+
+    /* Arc connections */
+    ARCS.forEach(([i,j]) => {
+      const m = MARKERS[i], n = MARKERS[j];
+      const [x1,y1,z1] = rot(...latLng(m.lat,m.lng,R),rotX,rotY);
+      const [x2,y2,z2] = rot(...latLng(n.lat,n.lng,R),rotX,rotY);
+      if(z1 > R*0.25 && z2 > R*0.25) return;
+      const fov=2.5;
+      const sc1=fov/(fov+z1/R), sc2=fov/(fov+z2/R);
+      const sx1=x1*sc1+cx, sy1=-y1*sc1+cy;
+      const sx2=x2*sc2+cx, sy2=-y2*sc2+cy;
+      /* Elevated midpoint */
+      const mx=(x1+x2)/2, my=(y1+y2)/2, mz=(z1+z2)/2;
+      const ml=Math.sqrt(mx*mx+my*my+mz*mz)||1;
+      const el=R*1.20;
+      const scm=fov/(fov+(mz/ml*el)/R);
+      const ecx=(mx/ml*el)*scm+cx, ecy=-(my/ml*el)*scm+cy;
+      ctx.beginPath(); ctx.moveTo(sx1,sy1);
+      ctx.quadraticCurveTo(ecx,ecy,sx2,sy2);
+      ctx.strokeStyle=C.arc; ctx.lineWidth=1; ctx.stroke();
+      /* Traveling dot */
+      const tp=(Math.sin(t*1.1+i*0.9)+1)/2;
+      const tx=(1-tp)*(1-tp)*sx1+2*(1-tp)*tp*ecx+tp*tp*sx2;
+      const ty=(1-tp)*(1-tp)*sy1+2*(1-tp)*tp*ecy+tp*tp*sy2;
+      ctx.beginPath(); ctx.arc(tx,ty,2,0,Math.PI*2);
+      ctx.fillStyle=C.travel; ctx.fill();
+    });
+
+    /* Markers */
+    const fov=2.5;
+    MARKERS.forEach((mk,idx) => {
+      const [rx,ry,rz] = rot(...latLng(mk.lat,mk.lng,R),rotX,rotY);
+      if(rz > R*0.12) return;
+      const sc=fov/(fov+rz/R);
+      const sx=rx*sc+cx, sy=-ry*sc+cy;
+      const col = mk.now ? C.now : C.marker;
+      const pulse = (Math.sin(t*2+idx*0.8)+1)/2;
+      /* Outer ring */
+      ctx.beginPath(); ctx.arc(sx,sy,5+pulse*5,0,Math.PI*2);
+      ctx.strokeStyle=`rgba(${col[0]},${col[1]},${col[2]},${(0.12+pulse*0.18).toFixed(2)})`;
+      ctx.lineWidth=1; ctx.stroke();
+      /* Core */
+      ctx.beginPath(); ctx.arc(sx,sy,mk.now?4:2.8,0,Math.PI*2);
+      ctx.fillStyle=`rgb(${col[0]},${col[1]},${col[2]})`; ctx.fill();
+      /* Label */
+      /*const fontSize = Math.max(8.5, Math.min(10.5, R*0.027));
+      ctx.font = `${fontSize}px 'DM Sans',system-ui,sans-serif`;
+      ctx.fillStyle=`rgba(${col[0]},${col[1]},${col[2]},0.88)`;
+      ctx.fillText(mk.label, sx+7, sy+4);*/
+      const fontSize = Math.max(8.5, Math.min(10.5, R*0.027));
+      ctx.font = `${fontSize}px 'DM Sans',system-ui,sans-serif`;
+      ctx.fillStyle=`rgba(${col[0]},${col[1]},${col[2]},0.88)`;
+      ctx.save();
+      ctx.translate(sx, sy);
+      ctx.rotate(-rotY);
+      ctx.fillText(mk.label, 7, 4);
+      ctx.restore();
+      
+    });
+
+    requestAnimationFrame(frame);
+  }
+  frame();
+
+  /* Drag — mouse */
+  canvas.addEventListener('mousedown', e => { drag=true; lx=e.clientX; ly=e.clientY; e.preventDefault(); });
+  window.addEventListener('mousemove', e => {
+    if(!drag) return;
+    const dx=e.clientX-lx, dy=e.clientY-ly;
+    velY=dx*0.004; velX=dy*0.004;
+    rotY+=velY; rotX+=velX; lx=e.clientX; ly=e.clientY;
+  });
+  window.addEventListener('mouseup', () => drag=false);
+
+  /* Drag — touch */
+  canvas.addEventListener('touchstart', e => { drag=true; lx=e.touches[0].clientX; ly=e.touches[0].clientY; }, {passive:true});
+  canvas.addEventListener('touchmove', e => {
+    if(!drag) return;
+    const dx=e.touches[0].clientX-lx, dy=e.touches[0].clientY-ly;
+    velY=dx*0.004; velX=dy*0.004;
+    rotY+=velY; rotX+=velX; lx=e.touches[0].clientX; ly=e.touches[0].clientY;
+  }, {passive:true});
+  canvas.addEventListener('touchend', () => drag=false);
+})();
+</script>
+
+</body>
+</html>
