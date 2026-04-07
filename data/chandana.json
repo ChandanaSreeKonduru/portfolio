@@ -1,0 +1,276 @@
+{
+  "meta": {
+    "name": "Chandana Sree Konduru",
+    "title": "AI Product Manager | AI Agent Architect | Technical Product Manager",
+    "location": "Omaha, Nebraska, USA",
+    "email": "chandanashree97@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/chandana-sree-konduru/",
+    "github": "https://github.com/ChandanaSreeKonduru",
+    "workAuth": "H4-EAD — no sponsorship needed, eligible to work immediately",
+    "availability": "Immediately available",
+    "openTo": ["AI Product Manager", "Product Analyst", "Technical PM", "UX-PM Hybrid", "Product Strategy"],
+    "remote": true,
+    "countries": ["USA", "India", "Nigeria", "China", "Mexico"],
+    "yearsExperience": "6+",
+    "summary": "AI Product Manager with 6+ years shipping B2B SaaS, IoT, and healthcare AI products across the USA, India, Nigeria, China, and Mexico. I bridge technical architecture with human-centered design to build products that solve real problems and drive measurable impact."
+  },
+
+  "experience": [
+    {
+      "id": "zkteco",
+      "company": "ZKTeco",
+      "role": "Associate Product Manager",
+      "start": "August 2023",
+      "end": "August 2024",
+      "location": "USA (remote, global)",
+      "url": "projects/biotime-cloud.html",
+      "projects": [
+        {
+          "name": "BioTime Cloud 2.0",
+          "url": "projects/biotime-cloud.html",
+          "category": "Enterprise SaaS",
+          "description": "Led 4-country B2B SaaS transformation (Nigeria, China, Mexico, India) for 10,000+ enterprise users. Directed RESTful API migration delivering 35% system performance increase.",
+          "metrics": ["35% system performance increase", "10,000+ enterprise users", "4 countries", "RESTful API migration"],
+          "tags": ["SaaS", "B2B", "API", "Global", "Enterprise"]
+        },
+        {
+          "name": "ZKDigiMax-ESL",
+          "url": "projects/zk-digimax.html",
+          "category": "IoT",
+          "description": "Managed IoT Electronic Shelf Label mobile app for global retail stores. Reduced pricing errors 3%, cut inventory search time 10% via human-centered design.",
+          "metrics": ["3% pricing error reduction", "10% inventory time saved", "IoT hardware", "Retail tech"],
+          "tags": ["IoT", "Mobile", "Retail", "Hardware", "UX"]
+        }
+      ]
+    },
+    {
+      "id": "datafoundry",
+      "company": "Data Foundry",
+      "role": "Product Manager — AI/ML",
+      "start": "2022",
+      "end": "2023",
+      "location": "USA",
+      "url": "projects/df-safety.html",
+      "projects": [
+        {
+          "name": "DF Safety",
+          "url": "projects/df-safety.html",
+          "category": "Healthcare AI",
+          "description": "Scaled AI-powered pharmacovigilance platform for global CROs. Increased AI acceptance from 30% to 85% through explainable ML interface design. Maintained 100% E2B R2/R3 regulatory compliance.",
+          "metrics": ["85% AI acceptance rate (from 30%)", "100% E2B R2/R3 compliance", "40% training time reduction", "Global CRO scale"],
+          "tags": ["Healthcare", "AI/ML", "Pharmacovigilance", "Regulatory", "XAI", "E2B"]
+        }
+      ]
+    },
+    {
+      "id": "nttdata",
+      "company": "NTT Data / Experlogix",
+      "role": "Developer II & Product Engineer",
+      "start": "February 2022",
+      "end": "December 2022",
+      "location": "USA",
+      "url": "projects/experlogix-cpq.html",
+      "projects": [
+        {
+          "name": "Experlogix CPQ",
+          "url": "projects/experlogix-cpq.html",
+          "category": "Enterprise SaaS",
+          "description": "Cloud CPQ platform maintenance and feature delivery. Engineered proactive monitoring using C# and SQL, ensuring high availability and accelerating speed-to-market.",
+          "metrics": ["High availability SaaS", "C# .NET", "SQL monitoring", "DevOps/CI-CD"],
+          "tags": ["CPQ", "C#", ".NET", "Cloud", "Enterprise", "DevOps"]
+        },
+        {
+          "name": "Tenet Healthcare",
+          "url": "projects/tenet-healthcare.html",
+          "category": "Healthcare",
+          "description": "Redesigned medical billing UX for healthcare professionals. Reduced task confusion 5%, improved staff productivity 3%. HIPAA-compliant React/Node.js stack.",
+          "metrics": ["5% task confusion reduction", "3% productivity boost", "HIPAA compliant", "React/Node.js"],
+          "tags": ["Healthcare", "HIPAA", "UX", "React", "Medical Billing"]
+        },
+        {
+          "name": "Wyndham Hotels & Resorts",
+          "url": "projects/wyndham-hotels.html",
+          "category": "Hospitality",
+          "description": "Mobile-first booking portal with offline capability. Improved guest engagement 5%, reduced support tickets 10%, improved staff management workflows.",
+          "metrics": ["5% guest engagement increase", "10% support ticket reduction", "Mobile-first", "Offline capability"],
+          "tags": ["Hospitality", "Mobile", "Booking", "UX", "Offline"]
+        }
+      ]
+    }
+  ],
+
+  "communityProjects": [
+    {
+      "id": "scanitknowit",
+      "name": "Scan It Know It",
+      "url": "projects/scan-it-know-it.html",
+      "role": "PM & AI Architect",
+      "start": "June 2025",
+      "end": "February 2026",
+      "category": "Agentic AI",
+      "description": "AI-powered product & receipt recognition app. Scan any product for instant ingredient, nutrition, or safety info. Built with Gemini API using LLM API workflows.",
+      "metrics": ["92% accuracy", "<5s response time", "$0 infrastructure cost", "3-week build"],
+      "tags": ["Gemini API", "AI", "Computer Vision", "Zero-to-One", "Serverless"]
+    },
+    {
+      "id": "budgetmgmt",
+      "name": "Budget Management",
+      "url": "projects/budget-management.html",
+      "role": "PM & Lead Developer",
+      "start": "June 2025",
+      "end": "February 2026",
+      "category": "Agentic AI / Fintech",
+      "description": "AI finance platform with privacy-first design. No bank account required. Built with 70% AI-generated code using agentic development practices.",
+      "metrics": ["68% Day-30 retention", "10% user spending reduction", "70% AI-generated code", "Privacy-first"],
+      "tags": ["AI", "Fintech", "Privacy", "LLM", "Agentic Coding"]
+    }
+  ],
+
+  "education": [
+    {
+      "school": "IIIT Bangalore",
+      "degree": "PG Certificate, Data Science",
+      "year": "2021"
+    },
+    {
+      "school": "JNTUA",
+      "degree": "B.Tech, Computer Science",
+      "year": "2019"
+    }
+  ],
+
+  "skills": {
+    "productManagement": ["Product Strategy", "PRD Writing", "Roadmapping", "OKRs", "Stakeholder Management", "User Research", "A/B Testing", "Go-to-Market"],
+    "ai": ["LLM API Integration", "Gemini API", "Claude API", "GPT API", "AI/ML Product Design", "Explainable AI", "Agentic AI Workflows", "Rapid AI Prototyping"],
+    "data": ["SQL", "Power BI", "Tableau", "Data Analytics", "KPI Definition", "Dashboard Design"],
+    "tools": ["Jira", "Confluence", "Figma", "Azure DevOps", "GitHub", "Notion"],
+    "technical": ["RESTful APIs", "C# .NET", "React", "Node.js", "Azure", "HTML/CSS", "JavaScript"],
+    "domains": ["Healthcare AI", "Pharmacovigilance", "E2B R2/R3", "HIPAA", "B2B SaaS", "IoT", "Fintech", "Hospitality"],
+    "methodologies": ["Agile", "Scrum", "Design Thinking", "Jobs-to-be-Done", "Lean Startup"]
+  },
+
+  "atsKeywords": [
+    "AI Product Manager", "Product Manager", "Technical Product Manager",
+    "LLM", "GPT", "Gemini", "Claude", "Machine Learning", "AI/ML",
+    "B2B SaaS", "Enterprise SaaS", "Cloud Platform",
+    "Healthcare AI", "Pharmacovigilance", "HIPAA", "E2B", "Clinical",
+    "IoT", "Internet of Things", "Hardware",
+    "Agile", "Scrum", "Sprint", "Backlog", "Roadmap",
+    "SQL", "Power BI", "Tableau", "Data Analytics",
+    "Figma", "UX Research", "User Research", "Wireframe",
+    "RESTful API", "API Integration", "Azure", "Cloud",
+    "Jira", "Confluence", "OKR", "KPI",
+    "Cross-functional", "Stakeholder", "Go-to-market", "GTM",
+    "Product Strategy", "Product Launch", "Zero to One",
+    "Global", "International", "Multi-country",
+    "H4-EAD", "No sponsorship", "Work authorization"
+  ],
+
+  "faq": [
+    {
+      "q": ["hi", "hello", "hey", "good morning", "good afternoon", "good evening"],
+      "a": "Hi! I'm Chandana's AI Portfolio Assistant. I can answer questions about her experience, skills, case studies, or you can paste a job description to get an ATS match score. What would you like to know?"
+    },
+    {
+      "q": ["your name", "who are you", "what are you", "introduce"],
+      "a": "I'm the AI Portfolio Assistant for Chandana Konduru — an AI Product Manager with 6+ years of experience across B2B SaaS, IoT, healthcare AI, and fintech. Ask me anything about her background!"
+    },
+    {
+      "q": ["available", "open to work", "looking for", "hire", "hiring", "start", "notice period"],
+      "a": "Chandana is immediately available — no notice period. She's open to AI PM, Product Analyst, Technical PM, and UX-PM hybrid roles. She's on H4-EAD, so no visa sponsorship is needed. Reach her at chandanashree97@gmail.com.",
+      "link": "about.html"
+    },
+    {
+      "q": ["remote", "location", "where", "omaha", "relocate", "hybrid", "onsite", "on-site"],
+      "a": "Chandana is based in Omaha, NE and is open to remote, hybrid, or on-site roles across the US. She's led global teams across 5 countries, so timezone flexibility is natural to her.",
+      "link": "about.html"
+    },
+    {
+      "q": ["visa", "sponsorship", "work auth", "h4", "ead", "h-4", "authorization", "eligible"],
+      "a": "Chandana holds H4-EAD work authorization — she can start immediately with no visa sponsorship required."
+    },
+    {
+      "q": ["ai", "llm", "gpt", "gemini", "claude", "machine learning", "ml", "language model", "artificial intelligence", "generative"],
+      "a": "Chandana has hands-on AI/ML PM experience: she raised AI acceptance from 30%→85% at Data Foundry's pharmacovigilance platform, built Scan It Know It using Gemini API (92% accuracy, $0 infra), and shipped Budget Management AI with 68% retention. She works with Gemini, Claude, and GPT APIs directly.",
+      "link": "projects/scan-it-know-it.html"
+    },
+    {
+      "q": ["healthcare", "health", "medical", "hipaa", "pharma", "pharmacovigilance", "clinical", "e2b", "regulatory", "cro"],
+      "a": "Healthcare is one of Chandana's strongest domains. At Data Foundry she was PM for DF Safety — an AI pharmacovigilance platform achieving 85% AI acceptance (from 30%) and 100% E2B R2/R3 compliance. At Tenet Healthcare she improved medical billing UX with HIPAA-compliant React/Node systems.",
+      "link": "projects/df-safety.html"
+    },
+    {
+      "q": ["saas", "b2b", "cloud", "enterprise", "biotime", "platform", "subscription"],
+      "a": "At ZKTeco, Chandana led BioTime Cloud 2.0 — a 4-country B2B SaaS transformation (Nigeria, China, Mexico, India) for 10,000+ enterprise users, delivering 35% system performance increase via RESTful API migration. This is her flagship enterprise SaaS case study.",
+      "link": "projects/biotime-cloud.html"
+    },
+    {
+      "q": ["iot", "hardware", "shelf", "esl", "digimax", "retail", "internet of things", "device"],
+      "a": "Chandana managed ZKDigiMax-ESL at ZKTeco — an IoT Electronic Shelf Label system for global retail stores. She reduced pricing errors 3% and cut inventory search time 10% through human-centered mobile app design and cross-functional hardware-software PM leadership.",
+      "link": "projects/zk-digimax.html"
+    },
+    {
+      "q": ["scan", "product recognition", "receipt", "scan it know it", "gemini", "computer vision", "zero to one"],
+      "a": "Scan It Know It is Chandana's zero-to-one AI product — scans any product or receipt for instant info. Built with Gemini API: 92% accuracy, <5s response, $0 infrastructure cost, shipped in 3 weeks (June–Feb 2026).",
+      "link": "projects/scan-it-know-it.html"
+    },
+    {
+      "q": ["budget", "finance", "spending", "money", "budget management", "fintech"],
+      "a": "Budget Management is Chandana's AI finance platform — 70% AI-generated code, privacy-first (no bank account required), 68% Day-30 retention, and 10% user spending reduction for beta users.",
+      "link": "projects/budget-management.html"
+    },
+    {
+      "q": ["wyndham", "hotel", "hospitality", "booking", "travel"],
+      "a": "At NTT Data, Chandana built the mobile-first booking portal for Wyndham Hotels & Resorts — 5% guest engagement increase, 10% support ticket reduction, with offline capability for hotel staff.",
+      "link": "projects/wyndham-hotels.html"
+    },
+    {
+      "q": ["tenet", "medical billing", "billing", "react", "node"],
+      "a": "At NTT Data for Tenet Healthcare, Chandana improved complex medical billing UX — reducing task confusion 5%, boosting staff productivity 3%, on a HIPAA-compliant React/Node.js platform.",
+      "link": "projects/tenet-healthcare.html"
+    },
+    {
+      "q": ["experlogix", "cpq", "configure price quote", "c#", ".net"],
+      "a": "At Experlogix (via NTT Data), Chandana was Developer II on the cloud CPQ platform — proactive monitoring with C# and SQL, DevOps delivery, ensuring high SaaS availability for enterprise customers.",
+      "link": "projects/experlogix-cpq.html"
+    },
+    {
+      "q": ["strongest", "best", "top", "highlight", "favorite", "showcase", "impressive"],
+      "a": "Three standout case studies: (1) BioTime Cloud 2.0 — 35% performance gain, 4-country enterprise SaaS; (2) DF Safety — 85% AI acceptance from 30%, exceptional in regulated healthcare AI; (3) Scan It Know It — zero-to-one AI product in 3 weeks at $0. Each shows a different PM dimension.",
+      "link": "work.html"
+    },
+    {
+      "q": ["skill", "tools", "technology", "stack", "sql", "tableau", "figma", "jira", "power bi", "azure"],
+      "a": "Core skills: LLM API integration (Gemini, Claude, GPT), SQL, Power BI, Tableau, Figma, Jira, Confluence, Azure, RESTful APIs, Agile/Scrum, user research, PRD writing, OKRs. Domain expertise: healthcare AI, pharmacovigilance, B2B SaaS, IoT, fintech.",
+      "link": "experience.html"
+    },
+    {
+      "q": ["experience", "background", "history", "career", "years", "worked", "resume", "cv"],
+      "a": "6+ years across: ZKTeco (AI PM, SaaS & IoT, Aug 2023–Aug 2024), Data Foundry (AI/ML PM, Healthcare, 2022–2023), NTT Data/Experlogix (Product Engineer, Feb–Dec 2022), Tenet Healthcare and Wyndham Hotels (Software Developer/Engineer, 2020–2022). Plus two personal AI products built in 2025–2026.",
+      "link": "experience.html"
+    },
+    {
+      "q": ["country", "countries", "global", "international", "nigeria", "mexico", "china", "india", "uk", "united kingdom"],
+      "a": "Chandana has shipped products across USA, India, Nigeria, China, and Mexico — primarily through the 4-country SaaS rollout at ZKTeco. She's experienced managing cross-cultural stakeholder needs and region-specific product customization. She has not worked in the UK.",
+      "link": "projects/biotime-cloud.html"
+    },
+    {
+      "q": ["education", "degree", "iiit", "jntu", "data science", "computer science", "qualification"],
+      "a": "PG Certificate in Data Science from IIIT Bangalore (2021) and B.Tech in Computer Science from JNTUA (2019). Her data science background directly informs her approach to AI product metrics and model evaluation.",
+      "link": "about.html"
+    },
+    {
+      "q": ["contact", "email", "reach", "connect", "linkedin", "schedule", "call"],
+      "a": "Email: chandanashree97@gmail.com · LinkedIn: linkedin.com/in/chandana-sree-konduru · She responds within 24 hours and is happy to jump on a call to discuss any role.",
+      "link": "about.html"
+    },
+    {
+      "q": ["salary", "compensation", "pay", "rate", "expected"],
+      "a": "For compensation details, please reach out directly — chandanashree97@gmail.com. Chandana is open to discussing based on role scope, location, and company stage."
+    },
+    {
+      "q": ["ats", "score", "job description", "jd", "match", "fit", "requirement", "evaluate"],
+      "a": "Paste your full job description and I'll run an ATS compatibility analysis — showing keyword matches, coverage score, and specific gaps. Try it!"
+    }
+  ]
+}
