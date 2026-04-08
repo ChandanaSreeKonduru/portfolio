@@ -1,714 +1,898 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="BioTime Cloud 2.0 — Global B2B SaaS transformation across 4 countries. 35% performance increase, 10% executive confidence boost. RESTful API modernization with region-specific customization.">
-    <title>BioTime Cloud 2.0 | Global B2B SaaS Transformation</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Theme detection - prevents flash -->
-    <script>
-      (function() {
-        const savedTheme = localStorage.getItem('theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const theme = savedTheme || (prefersDark ? 'dark' : 'light');
-        document.documentElement.setAttribute('data-theme', theme);
-      })();
-    </script>
-    
-    <link rel="stylesheet" href="../css/rhode.css">
-    <style>
-/* Project-specific styles using rhode.css variables */
-.project-hero {
-  padding: 6rem 2rem 4rem;
-  text-align: center;
-  background: var(--bg-primary);
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BioTime Cloud 2.0 — Case Study | Chandana Konduru</title>
+<script>(function(){const t=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t)})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/rhode.css">
+<style>
+/* ─── palette shortcuts ─── */
+:root{
+  --B:#378ADD;--Bb:#E6F1FB;--Bd:#0C447C;
+  --T:#1D9E75;--Tb:#E1F5EE;--Td:#085041;
+  --P:#534AB7;--Pb:#EEEDFE;--Pd:#26215C;
+  --A:#BA7517;--Ab:#FAEEDA;--Ad:#412402;
+  --G:#3B6D11;--Gb:#EAF3DE;--Gd:#173404;
+  --C:#993C1D;--Cb:#FAECE7;--Cd:#4A1B0C;
+  --N:#888780;--Nb:#F1EFE8;--Nd:#2C2C2A;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--bg-primary);color:var(--text-primary)}
+a{text-decoration:none}
+
+/* ─── outer wrapper with improved spacing ─── */
+.W{max-width:1040px;margin:0 auto;padding:0 2rem 6rem;margin-left:0}
+
+/* ─── adjust main content for sidebar on desktop ─── */
+@media(min-width:1200px){
+  .W{margin-left:240px;max-width:calc(100% - 240px)}
+}
+@media(max-width:1199px){
+  .sn{display:none}
+  .W{margin-left:0}
 }
 
-.project-title {
-  font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: 600;
-  color: var(--text-primary);
-  margin-bottom: 1rem;
+/* ─── fixed vertical sidebar nav ─── */
+.sn{position:fixed;left:0;top:var(--nav-height,64px);width:240px;height:calc(100vh - var(--nav-height,64px));background:var(--bg-primary);border-right:1px solid var(--border);overflow-y:auto;padding:1.5rem 0;z-index:80;scrollbar-width:thin;scrollbar-color:var(--border) transparent}
+.sn::-webkit-scrollbar{width:6px}
+.sn::-webkit-scrollbar-track{background:transparent}
+.sn::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+.sn::-webkit-scrollbar-thumb:hover{background:var(--text-muted)}
+.sn a{display:block;padding:.75rem 1.25rem;font-size:.8125rem;font-weight:500;color:var(--text-muted);border-left:3px solid transparent;border-bottom:none;transition:all 150ms;text-align:left;letter-spacing:.02em}
+.sn a:hover{color:var(--accent);background:var(--bg-secondary)}
+.sn a.on{color:var(--accent);border-left-color:var(--accent);background:var(--bg-secondary);font-weight:600}
+
+/* ─── phase header band with improvements ─── */
+.ph{display:flex;align-items:center;gap:.875rem;padding:1rem 1.25rem;border-radius:12px;margin:3rem 0 1.5rem;scroll-margin-top:calc(var(--nav-height,64px)+60px);box-shadow:0 1px 3px rgba(0,0,0,.08);backdrop-filter:blur(8px)}
+.ph-n{font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.3rem .65rem;border-radius:6px;flex-shrink:0}
+.ph-t{font-size:1.125rem;font-weight:650;letter-spacing:-.015em;color:var(--text-primary);line-height:1.4}
+.ph-d{margin-left:auto;font-size:.7rem;color:var(--text-muted);font-weight:600;white-space:nowrap}
+
+/* ─── keyword badge with improvements ─── */
+.K{display:inline-flex;align-items:center;padding:.1rem .425rem;border-radius:4px;font-size:.75em;font-weight:600;font-family:'DM Mono',monospace;line-height:1.45;white-space:nowrap;vertical-align:middle;gap:.15rem}
+.Kp{background:var(--Pb);color:var(--Pd)}
+.Kb{background:var(--Bb);color:var(--Bd)}
+.Kt{background:var(--Tb);color:var(--Td)}
+.Ka{background:var(--Ab);color:var(--Ad)}
+.Kg{background:var(--Gb);color:var(--Gd)}
+.Kc{background:var(--Cb);color:var(--Cd)}
+.Kn{background:var(--Nb);color:var(--Nd)}
+
+/* ─── keyword cluster (pill group) ─── */
+.kc{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.25rem}
+
+/* ─── grid helpers with improved margins ─── */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.5rem}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:.875rem;margin-bottom:1.5rem}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;margin-bottom:1.5rem}
+.g6{display:grid;grid-template-columns:repeat(6,1fr);gap:.625rem;margin-bottom:1.5rem}
+@media(max-width:768px){
+  .g2,.g3{grid-template-columns:1fr}
+  .g4{grid-template-columns:repeat(2,1fr)}
+  .g6{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:500px){
+  .g4,.g6{grid-template-columns:1fr}
 }
 
-.project-subtitle {
-  font-size: 1.125rem;
-  color: var(--text-secondary);
-  max-width: 600px;
-  margin: 0 auto 2rem;
+/* ─── card with improved spacing ─── */
+.C{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:1.125rem 1.375rem;transition:all 200ms ease;margin-bottom:0}
+.C:hover{border-color:var(--accent);box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.C-t{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.625rem}
+
+/* ─── big metric card with improvements ─── */
+.MC{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:.875rem 1.125rem;transition:all 200ms ease}
+.MC:hover{border-color:var(--accent);box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.MC-l{font-size:.6rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.3rem}
+.MC-v{font-size:1.75rem;font-weight:700;line-height:1;margin-bottom:.15rem}
+.MC-s{font-size:.65rem;color:var(--text-muted);line-height:1.4}
+
+/* ─── stat bar improvements ─── */
+.sb{display:flex;align-items:center;gap:.75rem;margin-bottom:.55rem}
+.sb-l{font-size:.8rem;font-weight:500;color:var(--text-primary);min-width:180px}
+.sb-t{flex:1;height:8px;background:var(--bg-secondary);border-radius:4px;overflow:hidden}
+.sb-f{height:100%;border-radius:4px}
+.sb-v{font-size:.8rem;font-weight:700;min-width:40px;text-align:right}
+@media(max-width:600px){.sb-l{min-width:105px;font-size:.68rem}}
+
+/* ─── chart container ─── */
+.ch{position:relative;width:100%}
+.h150{height:150px}.h170{height:170px}.h190{height:190px}.h210{height:210px}
+
+/* ─── flow pipeline ─── */
+.fp{display:flex;flex-wrap:wrap;align-items:center;gap:.35rem;padding:.875rem 1rem;background:var(--bg-secondary);border-radius:10px;margin:.5rem 0}
+.fp-n{border-radius:8px;padding:.375rem .65rem;font-size:.7rem;font-weight:600;flex-shrink:0}
+.fp-n sub{font-size:.55rem;font-weight:400;opacity:.65;display:block;line-height:1.2}
+.fp-a{color:var(--text-muted);font-size:.75rem;flex-shrink:0}
+
+/* ─── before/after ─── */
+.ba{display:grid;grid-template-columns:1fr 38px 1fr;gap:.5rem;align-items:center}
+.ba-b{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:.875rem}
+.ba-b.aft{border-color:var(--T)}
+.ba-b h5{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.5rem}
+.ba-l{font-size:.75rem;color:var(--text-secondary);padding:.2rem 0;border-bottom:1px solid var(--border);line-height:1.4}
+.ba-l:last-child{border:none}
+.ba-l b{color:var(--text-primary)}
+.ba-a{text-align:center;font-size:1.25rem;color:var(--accent)}
+.ba-al{font-size:.55rem;color:var(--text-muted);text-align:center;margin-top:.15rem}
+@media(max-width:580px){.ba{grid-template-columns:1fr}.ba-a{transform:rotate(90deg)}}
+
+/* ─── visual timeline bar ─── */
+.vtl{display:flex;border-radius:10px;overflow:hidden;height:56px}
+.vtl-s{display:flex;flex-direction:column;justify-content:center;padding:0 .75rem;border-right:1px solid rgba(255,255,255,.18)}
+.vtl-s:last-child{border:none}
+.vtl-mo{font-size:.52rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;opacity:.7;margin-bottom:.15rem}
+.vtl-n{font-size:.7rem;font-weight:600;line-height:1.2}
+
+/* ─── matrix table spacing ─── */
+.mx{width:100%;border-collapse:collapse;font-size:.8rem;border-spacing:0}
+.mx th{padding:.5rem .75rem;text-align:left;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--text-muted);border-bottom:1px solid var(--border);background:var(--bg-secondary)}
+.mx td{padding:.5rem .75rem;border-bottom:1px solid var(--border);color:var(--text-secondary);vertical-align:top;line-height:1.5}
+.mx tr:last-child td{border-bottom:none}
+.mx .r{font-weight:600;color:var(--text-primary)}
+.ck{display:inline-flex;align-items:center;justify-content:center;width:13px;height:13px;border-radius:50%;background:var(--Tb);color:var(--Td);font-size:.48rem;font-weight:700;margin-right:.2rem;vertical-align:middle}
+
+/* ─── OKR table spacing ─── */
+.okr{width:100%;border-collapse:collapse;font-size:.85rem}
+.okr thead{background:var(--bg-secondary)}
+.okr th{padding:.5rem .85rem;text-align:left;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--text-muted);border-bottom:1px solid var(--border)}
+.okr td{padding:.6rem .85rem;border-bottom:1px solid var(--border);color:var(--text-secondary);vertical-align:middle}
+.okr tr:last-child td{border-bottom:none}
+.okr .kn{color:var(--text-primary);font-weight:500}
+.hit{padding:.1rem .5rem;border-radius:100px;font-size:.62rem;font-weight:700;background:var(--Tb);color:var(--Td)}
+.beat{padding:.1rem .5rem;border-radius:100px;font-size:.62rem;font-weight:700;background:var(--Gb);color:var(--Gd)}
+
+/* ─── tool grid ─── */
+.tg{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:.375rem}
+.ti{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:.35rem .5rem;text-align:center}
+.ti-c{font-size:.52rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.03em;margin-bottom:.1rem}
+.ti-n{font-size:.7rem;font-weight:600;color:var(--text-primary)}
+
+/* ─── quick data row (label:value pairs) ─── */
+.dr{font-size:.78rem;color:var(--text-secondary);line-height:1.7}
+.dr .row{display:flex;justify-content:space-between;padding:.225rem 0;border-bottom:1px solid var(--border)}
+.dr .row:last-child{border:none}
+.dr .row b{color:var(--text-primary);font-weight:600}
+
+/* ─── color shortcuts ─── */
+.vB{color:var(--B)}.vT{color:var(--T)}.vP{color:var(--P)}
+.vA{color:var(--A)}.vG{color:var(--G)}.vC{color:var(--C)}
+.vX{color:var(--accent)}
+
+/* ─── section label above chart ─── */
+.sl{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text-muted);margin-bottom:.75rem;margin-top:1.75rem}
+
+/* ─── separator ─── */
+hr{border:none;border-top:1px solid var(--border)}
+
+/* ─── hero with improved spacing ─── */
+.hero-h1{font-size:clamp(1.5rem,4vw,2.375rem);font-weight:700;letter-spacing:-.03em;line-height:1.2;margin-bottom:1rem}
+.hook{font-size:1rem;color:var(--text-secondary);max-width:680px;line-height:1.75;margin-bottom:1.5rem}
+.hook b{color:var(--text-primary);font-weight:500}
+.tags{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:1.25rem}
+.tag{padding:.2rem .675rem;border-radius:100px;font-size:.7rem;font-weight:600}
+
+/* ─── TL;DR ─── */
+.tldr{background:var(--Ab);border-left:3px solid var(--A);border-radius:0 10px 10px 0;padding:1rem 1.25rem;margin-bottom:1.5rem}
+.tldr-l{font-size:.6rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--Ad);margin-bottom:.5rem}
+.tldr-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:.3rem}
+.tldr-i{font-size:.8rem;color:var(--Ad);line-height:1.5}
+.tldr-i::before{content:'→ ';font-weight:700;margin-right:.25rem}
+
+/* ─── quote with improved spacing ─── */
+.qt{border-left:3px solid var(--accent);padding:.875rem 1.25rem;background:var(--Ab);border-radius:0 10px 10px 0;margin:1.25rem 0}
+.qt p{font-size:.875rem;font-style:italic;color:var(--Ad);margin:0 0 .25rem;line-height:1.6}
+.qt .qs{font-size:.65rem;font-style:normal;color:var(--Ad);opacity:.75}
+
+/* ─── sources ─── */
+.src{font-size:.67rem;color:var(--text-muted);border-top:1px solid var(--border);padding-top:.75rem;margin-top:1.5rem;line-height:1.9}
+.src a{color:var(--accent)}
+
+/* ─── prev/next ─── */
+.pn{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 0;border-top:1px solid var(--border);margin-top:2rem;gap:1rem}
+.pn a{font-size:.9rem;font-weight:500;color:var(--text-secondary);display:flex;align-items:center;gap:.5rem;transition:color 150ms}
+.pn a:hover{color:var(--accent)}
+@media(max-width:600px){
+  .pn{flex-direction:column;align-items:stretch;text-align:center}
+  .pn a{justify-content:center}
 }
 
-.project-meta {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  flex-wrap: wrap;
-  margin-bottom: 3rem;
-  font-size: 0.875rem;
-  color: var(--text-secondary);
+/* ─── learn grid with better spacing ─── */
+.lg{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem}
+@media(max-width:600px){.lg{grid-template-columns:1fr}}
+.lc{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:1rem 1.25rem;margin-bottom:0;transition:all 200ms ease}
+.lc:hover{border-color:var(--accent);box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.lc-t{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.5rem}
+.lc p{font-size:.825rem;color:var(--text-secondary);line-height:1.65;margin:0}
+
+/* ─── breadcrumb ─── */
+.bc{font-size:.7rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:1.25rem}
+.bc a{color:var(--accent);transition:color 150ms}
+.bc a:hover{color:var(--accent)}
+
+/* ─── responsive tablet/mobile ─── */
+@media(max-width:768px){
+  .W{padding:0 1.5rem 6rem}
+  .hero-h1{font-size:clamp(1.375rem,5vw,2rem)}
+  .hook{font-size:.95rem;line-height:1.7}
+  .ph{margin:2.5rem 0 1rem;padding:.875rem 1rem}
+  .ph-n{font-size:.6rem}
+  .ph-t{font-size:1rem}
+  .sl{margin-top:1.5rem;margin-bottom:.625rem}
 }
 
-.section-caption {
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--accent);
-  margin-bottom: 1rem;
-}
-
-.section-title {
-  font-size: 2rem;
-  font-weight: 600;
-  color: var(--text-primary);
-  margin-bottom: 1.5rem;
-}
-
-.content-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  margin: 3rem 0;
-}
-
-@media (max-width: 768px) {
-  .content-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
+@media(max-width:500px){
+  .W{padding:0 1rem 6rem}
+  .hero-h1{font-size:clamp(1.25rem,6vw,1.75rem)}
+  .hook{font-size:.9rem;line-height:1.6}
+  .MC{padding:.625rem .875rem}
+  .MC-v{font-size:1.5rem}
+  .sl{font-size:.65rem;margin-bottom:.5rem}
+  .ph{margin:2rem 0 .875rem;padding:.75rem .875rem}
+  .C{padding:.975rem 1.125rem}
+  .kc{gap:.3rem}
 }
 </style>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌐</text></svg>">
 </head>
 <body>
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-    
-    <!-- Header/Navigation -->
-    <header class="site-header">
-      <div class="header-inner">
-        <a href="../index.html" class="logo">Chandana<span>.</span></a>
-        
-        <nav class="nav-main" id="navMain">
-          <a href="../work.html" class="nav-link">Work</a>
-          <a href="../experience.html" class="nav-link">Experience</a>
-          <a href="../about.html" class="nav-link">About</a>
-        </nav>
-        
-        <div class="header-actions">
-          <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-            <span id="themeIcon">🌙</span>
-          </button>
-		  <a href="../resume.pdf" class="btn btn-primary btn-sm" download>Resume</a>
-          <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
-        </div>
+
+<header class="site-header" data-page="work"></header>
+
+<!-- sticky subnav -->
+<nav class="sn">
+  <a href="#hero">Overview</a>
+  <a href="#p1">① Problem</a>
+  <a href="#p2">② Research</a>
+  <a href="#p3">③ Prioritise</a>
+  <a href="#p4">④ AI Design</a>
+  <a href="#p5">⑤ Build</a>
+  <a href="#p6">⑥ Launch</a>
+  <a href="#p7">⑦ Results</a>
+  <a href="#p8">⑧ Learnings</a>
+</nav>
+
+<div class="W">
+
+<!-- ══════════════ HERO ══════════════ -->
+<section id="hero" style="padding:2.25rem 0 1.5rem;border-bottom:1px solid var(--border);margin-bottom:1.5rem">
+  <p class="bc"><a href="../work.html">← work</a> · case study 01</p>
+  <h1 class="hero-h1">BioTime Cloud 2.0 — B2B SaaS + Fintech Platform</h1>
+  <p class="hook">
+    How I turned <b>4 fragmented regional products</b> into one AI-powered global platform —
+    shipping <b>Gloria AI</b> (<span class="K Kp">LLM + RAG chatbot</span>), <span class="K Kb">REST microservices</span>,
+    <span class="K Kc">fintech payroll modules</span>, and a <span class="K Ka">real-time Power BI dashboard</span>
+    across 4 countries in 12 months.
+  </p>
+
+  <div class="tags">
+    <span class="tag" style="background:var(--Bb);color:var(--Bd)">B2B SaaS · HR Tech</span>
+    <span class="tag" style="background:var(--Cb);color:var(--Cd)">Fintech / Payroll</span>
+    <span class="tag" style="background:var(--Pb);color:var(--Pd)">LLM · RAG · Gloria AI</span>
+    <span class="tag" style="background:var(--Tb);color:var(--Td)">4-Country Rollout</span>
+    <span class="tag" style="background:var(--Ab);color:var(--Ad)">REST API Migration</span>
+    <span class="tag" style="background:var(--Nb);color:var(--Nd)">AWS · Power BI · Python</span>
+  </div>
+
+  <div class="tldr">
+    <div class="tldr-l">At a glance — ZKTeco India · Aug 2023 → Aug 2024</div>
+    <div class="tldr-g">
+      <div class="tldr-i">Associate PM · sole product owner · 12-person cross-functional team</div>
+      <div class="tldr-i">35% system performance gain via REST microservices migration</div>
+      <div class="tldr-i">Gloria AI (LLM+RAG) → 65% pilot adoption in week 1</div>
+      <div class="tldr-i">4 regional URLs → 1 unified platform · feature flags</div>
+      <div class="tldr-i">$240K annual revenue unlocked via fintech pricing modules</div>
+      <div class="tldr-i">9/9 OKRs hit or exceeded · +17% above aggregate targets</div>
+    </div>
+  </div>
+
+  <!-- 8 hero metrics -->
+  <div class="g4" style="margin-bottom:1rem">
+    <div class="MC"><div class="MC-l">Pilot adoption</div><div class="MC-v vT">65%</div><div class="MC-s">week 1 (OKR target: 65%)</div></div>
+    <div class="MC"><div class="MC-l">Perf gain</div><div class="MC-v vX">35%</div><div class="MC-s">API latency + throughput</div></div>
+    <div class="MC"><div class="MC-l">Revenue lift</div><div class="MC-v vC">$240K</div><div class="MC-s">fintech pricing (projected)</div></div>
+    <div class="MC"><div class="MC-l">OKR overrun</div><div class="MC-v vG">+17%</div><div class="MC-s">above all targets</div></div>
+    <div class="MC"><div class="MC-l">Hallucination↓</div><div class="MC-v vG">4.1%</div><div class="MC-s">from 23% baseline (82%↓)</div></div>
+    <div class="MC"><div class="MC-l">URLs unified</div><div class="MC-v vA">4→1</div><div class="MC-s">one global platform</div></div>
+    <div class="MC"><div class="MC-l">NPS</div><div class="MC-v vT">61</div><div class="MC-s">from 48 pre-launch</div></div>
+    <div class="MC"><div class="MC-l">Time saved</div><div class="MC-v vB">30%</div><div class="MC-s">per user per session</div></div>
+  </div>
+
+  <!-- visual timeline -->
+  <div class="sl">12-month lifecycle · Aug 2023 → Aug 2024 (active PM work throughout all phases)</div>
+  <div class="vtl" style="margin-bottom:.375rem">
+    <div class="vtl-s" style="flex:1;background:var(--Cb);color:var(--Cd)"><div class="vtl-mo">Aug–Sep</div><div class="vtl-n">① Problem</div></div>
+    <div class="vtl-s" style="flex:1.25;background:var(--Bb);color:var(--Bd)"><div class="vtl-mo">Sep–Oct</div><div class="vtl-n">② Research</div></div>
+    <div class="vtl-s" style="flex:1;background:var(--Pb);color:var(--Pd)"><div class="vtl-mo">Oct–Nov</div><div class="vtl-n">③ Prioritise</div></div>
+    <div class="vtl-s" style="flex:1.25;background:var(--Ab);color:var(--Ad)"><div class="vtl-mo">Nov–Jan</div><div class="vtl-n">④ AI Design</div></div>
+    <div class="vtl-s" style="flex:2.25;background:var(--Tb);color:var(--Td)"><div class="vtl-mo">Jan–May</div><div class="vtl-n">⑤ Agile Build · 8 sprints</div></div>
+    <div class="vtl-s" style="flex:.875;background:var(--Gb);color:var(--Gd)"><div class="vtl-mo">May–Jun</div><div class="vtl-n">⑥ Launch</div></div>
+    <div class="vtl-s" style="flex:1.25;background:var(--Nb);color:var(--Nd)"><div class="vtl-mo">Jun–Aug</div><div class="vtl-n">⑦ Monitor</div></div>
+  </div>
+  <div style="font-size:.62rem;color:var(--text-muted)">All 12 months = active PM ownership · Discovery re-ran every sprint retrospective · Each phase overlaps by design</div>
+</section>
+
+<!-- ══════════════ PHASE 1 — PROBLEM ══════════════ -->
+<div class="ph" style="background:var(--Cb)" id="p1">
+  <span class="ph-n" style="background:rgba(255,255,255,.25);color:var(--Cd)">Phase 01</span>
+  <span class="ph-t" style="color:var(--Cd)">Problem Definition — Why BioTime 1.0 was failing</span>
+  <span class="ph-d" style="color:var(--Cd);opacity:.65">Aug 2023</span>
+</div>
+
+<!-- Role + team + pain points in one row -->
+<div class="g2" style="margin-bottom:.875rem">
+  <div>
+    <div class="sl">My role · team composition · scope</div>
+    <div class="g3" style="margin-bottom:.75rem">
+      <div class="MC"><div class="MC-l">My role</div><div class="MC-v vP" style="font-size:1.1rem">Assoc. PM</div><div class="MC-s">sole PM · no direct reports</div></div>
+      <div class="MC"><div class="MC-l">Team</div><div class="MC-v vB">12</div><div class="MC-s">cross-functional</div></div>
+      <div class="MC"><div class="MC-l">Markets</div><div class="MC-v vA">4</div><div class="MC-s">NG · CN · MX · IN</div></div>
+    </div>
+    <div class="ch h170"><canvas id="teamDonut"></canvas></div>
+  </div>
+  <div>
+    <div class="sl">User + business pain (Fullstory · Salesforce · Power BI)</div>
+    <div class="dr">
+      <div class="row"><span>Session time wasted switching systems <span class="K Kc">Fullstory</span></span><b style="color:var(--C)">40%+</b></div>
+      <div class="row"><span>Navigation friction vs competitors <span class="K Ka">GA funnel</span></span><b style="color:var(--C)">6×</b></div>
+      <div class="row"><span>Lower adoption Nigeria + Mexico <span class="K Ka">Google Analytics</span></span><b style="color:var(--C)">35%↓</b></div>
+      <div class="row"><span>Mobile feature gap — India (78% mobile) <span class="K Kb">Fullstory</span></span><b style="color:var(--C)">40%↓</b></div>
+      <div class="row"><span>Support tickets = FAQ (Python NLP) <span class="K Kp">→ LLM opportunity</span></span><b style="color:var(--P)">22%</b></div>
+      <div class="row"><span>Maintenance cost multiplier — 4 codebases</span><b style="color:var(--C)">4×</b></div>
+      <div class="row"><span>Fintech revenue locked — no region pricing</span><b style="color:var(--C)">$240K</b></div>
+      <div class="row"><span>NPS declining quarterly <span class="K Ka">Power BI trend</span></span><b style="color:var(--C)">8%↓/qtr</b></div>
+    </div>
+  </div>
+</div>
+
+<!-- Competitive analysis chart -->
+<div class="sl">Competitive analysis — BioTime 1.0 vs market (5-platform teardown · Aug 2023)</div>
+<div class="ch h190" style="margin-bottom:.375rem"><canvas id="compChart"></canvas></div>
+<div style="font-size:.62rem;color:var(--text-muted);margin-bottom:1rem">Platforms benchmarked: BambooHR · Workday · Darwinbox · SAP SuccessFactors · Keka · Scored across 6 product capability dimensions</div>
+
+<!-- ══════════════ PHASE 2 — RESEARCH ══════════════ -->
+<div class="ph" style="background:var(--Bb)" id="p2">
+  <span class="ph-n" style="background:rgba(255,255,255,.25);color:var(--Bd)">Phase 02</span>
+  <span class="ph-t" style="color:var(--Bd)">Discovery &amp; User Research</span>
+  <span class="ph-d" style="color:var(--Bd);opacity:.65">Sep – Oct 2023 · 6 weeks</span>
+</div>
+
+<div class="kc">
+  <span class="K Kb">28 Client Interviews</span><span class="K Kb">18 Usability Tests</span>
+  <span class="K Ka">Salesforce Ticket Analysis</span><span class="K Ka">Fullstory Session Replays</span>
+  <span class="K Ka">Power BI Funnel Dashboards</span><span class="K Kp">Python NLP Clustering</span>
+  <span class="K Kb">Google Analytics Cohorts</span><span class="K Kt">Jobs-to-be-Done Framework</span>
+  <span class="K Kp">LLM Feasibility Benchmarks (RAG vs zero-shot)</span><span class="K Kb">Competitive Teardown · 5 platforms</span>
+</div>
+
+<div class="g2" style="margin-bottom:.875rem">
+  <div>
+    <div class="sl">Research signal sources (data volume)</div>
+    <div class="ch h190"><canvas id="resDonut"></canvas></div>
+  </div>
+  <div>
+    <div class="sl">Salesforce ticket categories — Python NLP clustering (1,200 tickets)</div>
+    <div class="ch h190"><canvas id="ticketChart"></canvas></div>
+  </div>
+</div>
+
+<!-- Key insights visual cards -->
+<div class="sl">6 research insights → direct product decisions</div>
+<div class="g3" style="margin-bottom:.875rem">
+  <div class="C"><div class="C-t" style="color:var(--Pd)"><span class="K Kp">Insight 1</span> LLM opportunity</div><div style="font-size:.78rem;color:var(--text-secondary);line-height:1.55">22% of tickets = simple FAQ → <span class="K Kp">Gloria AI (RAG chatbot)</span> hypothesis</div></div>
+  <div class="C"><div class="C-t" style="color:var(--Bd)"><span class="K Kb">Insight 2</span> Architecture blocker</div><div style="font-size:.78rem;color:var(--text-secondary);line-height:1.55">4-URL split = data isolation → <span class="K Kb">shared REST APIs</span> must come first</div></div>
+  <div class="C"><div class="C-t" style="color:var(--Cd)"><span class="K Kc">Insight 3</span> Fintech revenue gap</div><div style="font-size:.78rem;color:var(--text-secondary);line-height:1.55">Nigeria + Mexico need payroll exports → <span class="K Kc">$240K revenue blocker</span></div></div>
+  <div class="C"><div class="C-t" style="color:var(--Pd)"><span class="K Kp">Insight 4</span> Hallucination risk</div><div style="font-size:.78rem;color:var(--text-secondary);line-height:1.55">Zero-shot LLM hallucinated 23% on labour law → <span class="K Kp">RAG mandatory</span> for regulatory queries</div></div>
+  <div class="C"><div class="C-t" style="color:var(--Td)"><span class="K Kt">Insight 5</span> Mobile parity (India)</div><div style="font-size:.78rem;color:var(--text-secondary);line-height:1.55">78% mobile users · 40% fewer features → <span class="K Kt">mobile-first design</span> = retention risk</div></div>
+  <div class="C"><div class="C-t" style="color:var(--Bd)"><span class="K Kb">Insight 6</span> China data law</div><div style="font-size:.78rem;color:var(--text-secondary);line-height:1.55">Data residency required in-country routing → <span class="K Kb">architectural constraint day 1</span></div></div>
+</div>
+
+<div class="qt">
+  <p>"We believe HR users will adopt 40% faster with an LLM chatbot — validated by: 22% of tickets are FAQ (Python NLP), 8/10 interviewees prefer instant answers over ticket submission."</p>
+  <div class="qs">— Hypothesis documented in <span class="K Kb">Aha!</span> · Oct 2023 · Validated at 65% adoption in pilot · May 2024</div>
+</div>
+
+<!-- ══════════════ PHASE 3 — PRIORITISATION ══════════════ -->
+<div class="ph" style="background:var(--Pb)" id="p3">
+  <span class="ph-n" style="background:rgba(255,255,255,.25);color:var(--Pd)">Phase 03</span>
+  <span class="ph-t" style="color:var(--Pd)">Prioritisation — RICE · MoSCoW · OKRs · Roadmap</span>
+  <span class="ph-d" style="color:var(--Pd);opacity:.65">Oct – Nov 2023 · 6 weeks</span>
+</div>
+
+<div class="kc">
+  <span class="K Kb">Aha! Roadmap (Now/Next/Later)</span><span class="K Kt">RICE Framework</span><span class="K Kt">MoSCoW Method</span>
+  <span class="K Ka">OKRs · KPIs · Success Metrics</span><span class="K Kb">Jira Backlog (DEEP method)</span>
+  <span class="K Ka">Power BI Scoring Dashboard</span><span class="K Kt">Data-informed Prioritisation</span>
+</div>
+
+<div class="g2" style="margin-bottom:.875rem">
+  <div>
+    <div class="sl">RICE scores — 45+ ideas evaluated (top 6)</div>
+    <div id="riceEl"></div>
+  </div>
+  <div>
+    <div class="sl">MoSCoW — 45 ideas bucketed for Release 1</div>
+    <div class="ch h190"><canvas id="moscowChart"></canvas></div>
+    <div style="font-size:.62rem;color:var(--text-muted);margin-top:.25rem">
+      <b>Must (5):</b> Gloria AI chatbot · Single URL · Power BI dashboard · REST migration · Mobile parity<br>
+      <b>Should (8):</b> Fintech region pricing · <b>Could (12):</b> Advanced classifiers · <b>Won't (20+):</b> Multi-agent automation
+    </div>
+  </div>
+</div>
+
+<!-- OKRs set this phase -->
+<div class="sl">OKRs set in Aha! — Objective: Modernise BioTime Cloud into one AI-powered global platform</div>
+<div style="overflow:hidden;border:1px solid var(--border);border-radius:10px;margin-bottom:.875rem">
+  <table class="okr">
+    <thead><tr><th>Key result</th><th>Target</th><th>Why it matters</th></tr></thead>
+    <tbody>
+      <tr><td class="kn">Pilot adoption rate — week 1</td><td>65%</td><td style="font-size:.7rem"><span class="K Kt">Product-market fit</span> signal</td></tr>
+      <tr><td class="kn">LLM chatbot <span class="K Kp">latency p95</span></td><td>&lt;1.5s</td><td style="font-size:.7rem">Mobile HR managers · instant answers</td></tr>
+      <tr><td class="kn"><span class="K Kp">Inference cost</span> per query</td><td>&lt;$0.008</td><td style="font-size:.7rem">Fintech cost model sustainability</td></tr>
+      <tr><td class="kn"><span class="K Kp">Hallucination rate</span> on labour law queries</td><td>&lt;5%</td><td style="font-size:.7rem">Regulatory compliance — non-negotiable</td></tr>
+      <tr><td class="kn">Unified single URL — all 4 regions</td><td>100%</td><td style="font-size:.7rem">Core <span class="K Kb">architecture OKR</span></td></tr>
+      <tr><td class="kn">Fintech revenue unlocked (projected)</td><td>$180K</td><td style="font-size:.7rem">Region-specific payroll pricing modules</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ══════════════ PHASE 4 — AI DESIGN ══════════════ -->
+<div class="ph" style="background:var(--Ab)" id="p4">
+  <span class="ph-n" style="background:rgba(255,255,255,.25);color:var(--Ad)">Phase 04</span>
+  <span class="ph-t" style="color:var(--Ad)">AI Design · Architecture · PRD · Behaviour Spec</span>
+  <span class="ph-d" style="color:var(--Ad);opacity:.65">Nov 2023 – Jan 2024 · 10 weeks</span>
+</div>
+
+<div class="kc">
+  <span class="K Kp">RAG · Vector DB · Embeddings</span><span class="K Kp">Prompt Engineering (chain-of-thought)</span>
+  <span class="K Kp">Model Evaluation Framework</span><span class="K Kp">Hallucination Risk Mitigation</span>
+  <span class="K Kp">Context-window Tradeoffs</span><span class="K Kp">Human-in-the-Loop Feedback</span>
+  <span class="K Kp">Gloria AI Integration</span><span class="K Kp">Precision · Recall · F1</span>
+  <span class="K Kb">REST Microservices Architecture</span><span class="K Kb">Feature Flags · AWS</span>
+  <span class="K Kt">User Stories · Acceptance Criteria (Given-When-Then)</span><span class="K Kc">AI Behaviour Spec</span>
+</div>
+
+<!-- RAG vs fine-tuning decision + eval framework side by side -->
+<div class="g2" style="margin-bottom:.875rem">
+  <div class="C">
+    <div class="C-t" style="color:var(--Pd)">AI decision: <span class="K Kp">RAG</span> vs fine-tuning (radar comparison)</div>
+    <div class="ch h170"><canvas id="ragRadar"></canvas></div>
+    <div style="font-size:.62rem;color:var(--text-muted);margin-top:.3rem"><span class="K Kp">RAG chosen</span> — 80% lower cost · source citations → <span class="K Kc">hallucination mitigation</span> · policy docs update live in <span class="K Kp">vector DB</span> · context-window chunks at 512 tokens</div>
+  </div>
+  <div class="C">
+    <div class="C-t" style="color:var(--Pd)">Model evaluation framework — defined before build</div>
+    <div class="dr">
+      <div class="row"><span><span class="K Kp">Eval dataset</span></span><b style="color:var(--P)">600 queries (150/region)</b></div>
+      <div class="row"><span><span class="K Kp">Precision</span> target</span><b style="color:var(--T)">≥ 92%</b></div>
+      <div class="row"><span><span class="K Kp">Recall</span> target</span><b style="color:var(--T)">≥ 88%</b></div>
+      <div class="row"><span><span class="K Ka">Latency threshold</span></span><b style="color:var(--T)">&lt; 1.5s p95</b></div>
+      <div class="row"><span><span class="K Ka">Inference cost</span> cap</span><b style="color:var(--T)">&lt; $0.008/query</b></div>
+      <div class="row"><span><span class="K Kc">HITL trigger</span></span><b style="color:var(--A)">confidence &lt; 0.85</b></div>
+      <div class="row"><span><span class="K Kc">Bias check</span></span><b style="color:var(--A)">per region (4 langs)</b></div>
+    </div>
+  </div>
+</div>
+
+<!-- Gloria AI pipeline -->
+<div class="sl">Gloria AI — RAG chatbot architecture (built into BioTime Cloud 2.0 · AWS · confirmed feature¹)</div>
+<div class="fp">
+  <div class="fp-n" style="background:var(--Bb);color:var(--Bd)">HR Query<sub>mobile / web</sub></div>
+  <div class="fp-a">→</div>
+  <div class="fp-n" style="background:var(--Pb);color:var(--Pd)">Prompt Engineering<sub>chain-of-thought</sub></div>
+  <div class="fp-a">→</div>
+  <div class="fp-n" style="background:var(--Ab);color:var(--Ad)">RAG Retrieval<sub>vector DB + embeddings</sub></div>
+  <div class="fp-a">→</div>
+  <div class="fp-n" style="background:var(--Tb);color:var(--Td)">LLM Inference<sub>&lt;1.5s · $0.006/query</sub></div>
+  <div class="fp-a">→</div>
+  <div class="fp-n" style="background:var(--Gb);color:var(--Gd)">Response + Sources<sub>confidence ≥ 0.85</sub></div>
+  <div class="fp-a">→</div>
+  <div class="fp-n" style="background:var(--Bb);color:var(--Bd)">Human-in-Loop<sub>correction → retraining signal</sub></div>
+</div>
+
+<!-- Architecture before/after -->
+<div class="sl" style="margin-top:.875rem">System architecture — legacy monolith → REST microservices (AWS)</div>
+<div class="ba" style="margin-bottom:.625rem">
+  <div class="ba-b">
+    <h5 style="color:var(--text-muted)">Before — 4 separate monoliths</h5>
+    <div class="ba-l">ASP.NET Web Forms · single tightly-coupled deploy per region</div>
+    <div class="ba-l">200+ stored procedures · no separation of concerns</div>
+    <div class="ba-l">4 separate URLs · 4 teams · maintenance cost ×4</div>
+    <div class="ba-l">Crystal Reports · 24-hr batch reporting delay</div>
+    <div class="ba-l">2-week releases · 99.5% uptime · 800ms p95 latency</div>
+    <div class="ba-l">No REST API — 3rd-party integrations blocked</div>
+  </div>
+  <div><div class="ba-a">→</div><div class="ba-al">REST-led<br>migration</div></div>
+  <div class="ba-b aft">
+    <h5 style="color:var(--Td)">After — Single AWS microservices platform</h5>
+    <div class="ba-l">API Gateway · Auth · Attendance · Payroll microservices</div>
+    <div class="ba-l">Real-time Power BI reporting (embedded)</div>
+    <div class="ba-l"><b>Single URL · 4 markets · feature flags</b></div>
+    <div class="ba-l">Gloria AI chatbot (RAG + LLM layer)</div>
+    <div class="ba-l">Daily deploys · 99.95% uptime · 500ms p95</div>
+    <div class="ba-l"><b>Built-in REST API</b> for 3rd-party integrations (36 std reports¹)</div>
+  </div>
+</div>
+<div class="g4" style="margin-bottom:.875rem">
+  <div class="MC"><div class="MC-l">API latency p95</div><div class="MC-v vT">500ms</div><div class="MC-s">from 800ms · 37%↓</div></div>
+  <div class="MC"><div class="MC-l">Deploys / month</div><div class="MC-v vG">22</div><div class="MC-s">from 2 · daily cadence</div></div>
+  <div class="MC"><div class="MC-l">Rollback time</div><div class="MC-v vB">15 min</div><div class="MC-s">from 4 hours</div></div>
+  <div class="MC"><div class="MC-l">Dev onboarding</div><div class="MC-v vP">3 days</div><div class="MC-s">from 2 weeks</div></div>
+</div>
+
+<!-- 4-country matrix -->
+<div class="sl">4-country requirements matrix — one codebase · feature flags per region</div>
+<div style="overflow-x:auto;border:1px solid var(--border);border-radius:10px;margin-bottom:.875rem">
+  <table class="mx">
+    <thead><tr><th>Requirement</th><th>🇳🇬 Nigeria</th><th>🇨🇳 China</th><th>🇲🇽 Mexico</th><th>🇮🇳 India</th></tr></thead>
+    <tbody>
+      <tr><td class="r">Labour compliance</td><td><span class="ck">✓</span>Overtime caps</td><td>Standard</td><td><span class="ck">✓</span>Union reporting</td><td><span class="ck">✓</span>Shift flexibility</td></tr>
+      <tr><td class="r">Data residency</td><td>Preferred</td><td><span class="ck">✓</span>Required by law</td><td>Preferred</td><td>Preferred</td></tr>
+      <tr><td class="r">Fintech / payroll export</td><td><span class="ck">✓</span>Per-device billing</td><td>Bundle pricing</td><td><span class="ck">✓</span>Per-employee</td><td><span class="ck">✓</span>Tiered plans</td></tr>
+      <tr><td class="r">Local integrations</td><td>SMS alerts</td><td><span class="ck">✓</span>WeChat · DingTalk</td><td><span class="ck">✓</span>WhatsApp Business</td><td><span class="ck">✓</span>WhatsApp · SMS</td></tr>
+      <tr><td class="r">Language / UX</td><td>English</td><td><span class="ck">✓</span>Simplified Chinese</td><td><span class="ck">✓</span>Spanish-first</td><td>EN + Hindi</td></tr>
+      <tr><td class="r">Mobile priority</td><td>Partial</td><td>Partial</td><td>Partial</td><td><span class="ck">✓</span>Primary channel</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ══════════════ PHASE 5 — BUILD ══════════════ -->
+<div class="ph" style="background:var(--Tb)" id="p5">
+  <span class="ph-n" style="background:rgba(255,255,255,.25);color:var(--Td)">Phase 05</span>
+  <span class="ph-t" style="color:var(--Td)">Agile Build — 8 Sprints · Cross-functional Leadership</span>
+  <span class="ph-d" style="color:var(--Td);opacity:.65">Jan – May 2024 · 16 weeks</span>
+</div>
+
+<div class="kc">
+  <span class="K Kt">Agile / Scrum</span><span class="K Kt">Sprint Planning</span><span class="K Kt">Product Backlog (DEEP method)</span>
+  <span class="K Kb">Jira</span><span class="K Kb">Confluence PRD</span><span class="K Kc">AI Behaviour Spec</span>
+  <span class="K Ka">A/B Testing</span><span class="K Ka">Fullstory UX Analysis</span><span class="K Ka">Power BI KPI Dashboards</span>
+  <span class="K Kb">Salesforce Stakeholder Comms</span><span class="K Kt">Hypothesis-driven Development</span><span class="K Ka">Usability Testing</span>
+</div>
+
+<div class="g2" style="margin-bottom:.875rem">
+  <!-- Sprint velocity -->
+  <div>
+    <div class="sl">Sprint velocity — 8 sprints (committed vs delivered story points)</div>
+    <div class="ch h210"><canvas id="sprintChart"></canvas></div>
+    <div style="font-size:.62rem;color:var(--text-muted);margin-top:.25rem">S1–S2: team ramp-up + architecture bootstrapping · S3+: consistent over-delivery · Avg velocity +50% sprint 1→8</div>
+  </div>
+  <!-- PM toolchain -->
+  <div>
+    <div class="sl">PM toolchain — customer voice → product → feedback loop</div>
+    <div style="display:flex;flex-direction:column;gap:.375rem">
+      <div style="display:grid;grid-template-columns:88px 1fr;gap:.5rem;align-items:center">
+        <span class="fp-n" style="background:var(--Bb);color:var(--Bd);font-size:.7rem;text-align:center">Salesforce</span>
+        <span style="font-size:.75rem;color:var(--text-secondary)">Client voice → <span class="K Ka">ticket clustering</span> → backlog input</span>
       </div>
-    </header>
-
-    <main id="main-content">
-        <!-- Hero Section -->
-        <section class="project-hero">
-            <div class="container">
-                <span class="section-caption">CASE STUDY 03</span>
-                <h1 class="project-title">BIOTIME CLOUD 2.0</h1>
-                <p class="project-subtitle">Global B2B SaaS Transformation — 4 Countries, 1 Unified Platform</p>
-                <div class="project-meta">
-                    <span>🌍 4 countries (Nigeria, China, Mexico, India)</span>
-                    <span>⚡ 35% system performance increase</span>
-                    <span>📊 10% executive confidence boost</span>
-                    <span>🔧 RESTful API architecture</span>
-                </div>
-                <div class="scroll-indicator">↓ Scroll to explore</div>
-            </div>
-        </section>
-
-        <!-- Project Overview -->
-        <section class="project-overview">
-            <div class="container">
-                <div class="content-grid">
-                    <div class="overview-left">
-                        <span class="section-caption">THE CHALLENGE</span>
-                        <h2 class="section-title">Four countries. Four regulatory environments. One legacy system that couldn't scale.</h2>
-                        <p>ZKTeco's BioTime platform served time-attendance and access control for enterprise clients globally. But the legacy monolith couldn't adapt: Nigeria needed specific labor law compliance, China required localized data residency, Mexico demanded Spanish-first UX, and India wanted price-sensitive tiering.</p>
-                        <p>The product team faced a classic build-vs-buy-vs-break dilemma. Breaking the monolith meant risk. Buying off-the-shelf meant losing differentiation. Building fresh meant 18+ months.</p>
-                        <p><strong>My mandate:</strong> Architect a unified global framework to serve four distinct markets. I led the transition from a legacy monolith to a modular API-first architecture, enabling 100% regulatory compliance in Nigeria and China while reducing technical debt by 40%.</p>
-                    </div>
-                    <div class="overview-right">
-                        <div class="role-section">
-                            <span class="section-caption">MY ROLE</span>
-                            <ul class="role-list">
-                                <li> Product Manager — Global R&D</li>
-                                <li>Technical Product Strategist</li>
-                                <li>Scrum Product Owner</li>
-                                <li>Cross-Functional Team Lead</li>
-                                <li>API Architecture Coordinator</li>
-                            </ul>
-                        </div>
-                        <div class="tech-section">
-                            <span class="section-caption">TOOLS & TECHNOLOGY</span>
-                            <div class="tech-grid">
-                                <div class="tech-item">C# / .NET Core</div>
-                                <div class="tech-item">RESTful APIs</div>
-                                <div class="tech-item">SQL Server</div>
-                                <div class="tech-item">Azure DevOps</div>
-                                <div class="tech-item">Microservices</div>
-                                <div class="tech-item">React / React Native</div>
-                                <div class="tech-item">Figma</div>
-                                <div class="tech-item">Power BI</div>
-                                <div class="tech-item">Azure Cloud</div>
-                                <div class="tech-item">Scrum/Agile</div>
-                                <div class="tech-item">Jira</div>
-                                <div class="tech-item">Confluence</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Process: Discover -->
-        <section class="process-section">
-            <div class="container">
-                <span class="section-caption center">PROCESS</span>
-                <h2 class="section-title center">Discover</h2>
-                <p class="section-intro center">Understanding four markets before building for one.</p>
-                
-                <div class="discover-grid">
-                    <div class="discover-left">
-                        <h3>Market Research Across 4 Countries</h3>
-                        <p>Conducted 40+ stakeholder interviews across Nigeria, China, Mexico, and India:</p>
-                        <ul class="findings-list">
-                            <li><strong>Nigeria:</strong> Labor law requires daily attendance caps; biometric data must stay on-premise</li>
-                            <li><strong>China:</strong> Data residency laws mandate local servers; WeChat integration expected</li>
-                            <li><strong>Mexico:</strong> Spanish-first UX required; union reporting features critical</li>
-                            <li><strong>India:</strong> Price-sensitive market; tiered pricing essential; mobile-first preference</li>
-                            <li><strong>Common:</strong> All markets wanted real-time dashboards; none trusted legacy reporting</li>
-                        </ul>
-                        <blockquote class="inline-quote">"We love ZKTeco hardware. But the software feels like it was built for someone else. We need reports our government auditors will accept."<br>— HR Director, Nigerian manufacturing client</blockquote>
-                    </div>
-                    <div class="discover-right">
-                        <h3>Technical Debt Assessment</h3>
-                        <table class="competitive-table">
-                            <thead>
-                                <tr>
-                                    <th>System Component</th>
-                                    <th>Legacy State</th>
-                                    <th>Impact</th>
-                                    <th>Priority</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Monolithic Backend</td>
-                                    <td>Single deploy, tight coupling</td>
-                                    <td>2-week release cycles</td>
-                                    <td>P0</td>
-                                </tr>
-                                <tr>
-                                    <td>Database Layer</td>
-                                    <td>Stored procedure heavy</td>
-                                    <td>Scaling bottlenecks</td>
-                                    <td>P0</td>
-                                </tr>
-                                <tr>
-                                    <td>Web Frontend</td>
-                                    <td>jQuery, server-rendered</td>
-                                    <td>Poor mobile experience</td>
-                                    <td>P1</td>
-                                </tr>
-                                <tr>
-                                    <td>Mobile Apps</td>
-                                    <td>Native iOS/Android (separate)</td>
-                                    <td>Feature parity gaps</td>
-                                    <td>P1</td>
-                                </tr>
-                                <tr>
-                                    <td>Reporting Engine</td>
-                                    <td>Crystal Reports, batch-only</td>
-                                    <td>24-hour delay</td>
-                                    <td>P0</td>
-                                </tr>
-                                <tr class="highlight-row">
-                                    <td><strong>Target Architecture</strong></td>
-                                    <td><strong>RESTful APIs + Micro-frontends</strong></td>
-                                    <td><strong>Daily releases, real-time</strong></td>
-                                    <td><strong>Roadmap</strong></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <p class="table-caption">Technical modernization was inseparable from market expansion.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Process: Define -->
-        <section class="process-section">
-            <div class="container">
-                <span class="section-caption center">PROCESS</span>
-                <h2 class="section-title center">Define</h2>
-                <p class="section-intro center">Translating market complexity into a unified product vision.</p>
-                
-                <div class="architecture-principles">
-                    <h3>Core Architecture Principles</h3>
-                    <div class="principles-grid">
-                        <div class="principle-card">
-                            <h4>🧩 Modular Core, Customizable Shell</h4>
-                            <p>Shared backend services (auth, attendance, access control) with pluggable modules for country-specific features (tax reporting, union workflows, local integrations).</p>
-                        </div>
-                        <div class="principle-card">
-                            <h4>🌐 API-First Design</h4>
-                            <p>Every feature exposed via RESTful APIs. Web, mobile, and third-party integrations consume the same endpoints. Future AI services layer on top.</p>
-                        </div>
-                        <div class="principle-card">
-                            <h4>📊 Real-Time by Default</h4>
-                            <p>Replace batch reporting with streaming data. Executives see current state, not yesterday's. Super Admin Dashboard becomes the single source of truth.</p>
-                        </div>
-                        <div class="principle-card">
-                            <h4>🚀 Speed-to-Market</h4>
-                            <p>From 2-week releases to daily deployments. Feature flags enable gradual rollouts per country. A/B testing built into the platform.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <h3 class="subsection-title">Country-Specific Requirements Matrix</h3>
-                <table class="requirements-table">
-                    <thead>
-                        <tr>
-                            <th>Feature / Market</th>
-                            <th>Nigeria 🇳🇬</th>
-                            <th>China 🇨🇳</th>
-                            <th>Mexico 🇲🇽</th>
-                            <th>India 🇮🇳</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Labor Law Compliance</td>
-                            <td>✓ Daily caps, overtime rules</td>
-                            <td>✗ Standard only</td>
-                            <td>✓ Union reporting</td>
-                            <td>✓ Shift flexibility</td>
-                        </tr>
-                        <tr>
-                            <td>Data Residency</td>
-                            <td>Preferred</td>
-                            <td>✓ Required by law</td>
-                            <td>Preferred</td>
-                            <td>Preferred</td>
-                        </tr>
-                        <tr>
-                            <td>Local Integration</td>
-                            <td>SMS alerts</td>
-                            <td>✓ WeChat, DingTalk</td>
-                            <td>✓ WhatsApp Business</td>
-                            <td>✓ WhatsApp, SMS</td>
-                        </tr>
-                        <tr>
-                            <td>Pricing Model</td>
-                            <td>Per-device</td>
-                            <td>Enterprise bundle</td>
-                            <td>Per-employee</td>
-                            <td>✓ Tiered (basic/pro)</td>
-                        </tr>
-                        <tr>
-                            <td>Language Priority</td>
-                            <td>English</td>
-                            <td>✓ Simplified Chinese</td>
-                            <td>✓ Spanish-first</td>
-                            <td>English + Hindi</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <h3 class="subsection-title">Product Roadmap & Phasing</h3>
-                <div class="roadmap-timeline">
-                    <div class="roadmap-phase">
-                        <h4>Phase 1: Foundation (Months 1-3)</h4>
-                        <ul>
-                            <li>API gateway and authentication service</li>
-                            <li>Core attendance/access control APIs</li>
-                            <li>Database migration: stored procedures → ORM</li>
-                            <li>CI/CD pipeline with Azure DevOps</li>
-                            <li>Super Admin Dashboard v1 (global view)</li>
-                        </ul>
-                    </div>
-                    <div class="roadmap-phase">
-                        <h4>Phase 2: Market Expansion (Months 4-6)</h4>
-                        <ul>
-                            <li>Nigeria: labor law compliance module</li>
-                            <li>China: WeChat integration, data residency</li>
-                            <li>Mexico: Spanish localization, union reporting</li>
-                            <li>India: tiered pricing, mobile-first UX</li>
-                        </ul>
-                    </div>
-                    <div class="roadmap-phase">
-                        <h4>Phase 3: Optimization (Months 7-9)</h4>
-                        <ul>
-                            <li>Performance tuning: 35% system improvement</li>
-                            <li>Executive dashboard enhancements: 10% confidence metric</li>
-                            <li>Mobile app unification (React Native)</li>
-                            <li>AI-ready data pipeline preparation</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Process: Develop -->
-        <section class="process-section">
-            <div class="container">
-                <span class="section-caption center">PROCESS</span>
-                <h2 class="section-title center">Develop</h2>
-                <p class="section-intro center">Executing as Scrum Product Owner in a matrixed global organization.</p>
-                
-                <h3 class="subsection-title">Agile Methodology & Scrum Execution</h3>
-                <div class="scrum-framework">
-                    <div class="scrum-column">
-                        <h4>Sprint Structure</h4>
-                        <ul>
-                            <li><strong>Duration:</strong> 2-week sprints</li>
-                            <li><strong>Team Size:</strong> 8-10 cross-functional members</li>
-                            <li><strong>Composition:</strong> 4 backend, 2 frontend, 2 mobile, 1 QA, 1 DevOps</li>
-                            <li><strong>Geography:</strong> Distributed across Bangalore, Shenzhen, Mexico City</li>
-                        </ul>
-                    </div>
-                    <div class="scrum-column">
-                        <h4>Ceremonies & Artifacts</h4>
-                        <ul>
-                            <li><strong>Sprint Planning:</strong> Story point estimation (Fibonacci), capacity planning</li>
-                            <li><strong>Daily Standups:</strong> 15-min async updates + 30-min sync 3x/week</li>
-                            <li><strong>Sprint Review:</strong> Stakeholder demos with country leads</li>
-                            <li><strong>Retrospective:</strong> Action items tracked in Confluence</li>
-                            <li><strong>Backlog Refinement:</strong> Weekly, 2-sprint lookahead</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <h3 class="subsection-title">Cross-Functional Leadership</h3>
-                <div class="cross-functional-grid">
-                    <div class="cf-card">
-                        <h4>Engineering Coordination</h4>
-                        <p>Worked directly with Tech Leads on API design, database schema changes, and performance optimization. Reviewed pull requests for critical paths. Escalated blockers to Engineering Manager within 24 hours.</p>
-                    </div>
-                    <div class="cf-card">
-                        <h4>Data Science Integration</h4>
-                        <p>Partnered with ML team to design data pipelines for future predictive analytics (attendance forecasting, anomaly detection). Ensured clean data collection from day one.</p>
-                    </div>
-                    <div class="cf-card">
-                        <h4>Design System Alignment</h4>
-                        <p>Collaborated with UX team on component library for country-specific variants. Reviewed Figma prototypes for accessibility and localization. Established design-dev handoff process.</p>
-                    </div>
-                    <div class="cf-card">
-                        <h4>QA & Release Management</h4>
-                        <p>Defined acceptance criteria for all stories. Coordinated with QA on automated test coverage. Managed feature flags for country-specific rollouts. Owned go/no-go decisions for releases.</p>
-                    </div>
-                    <div class="cf-card">
-                        <h4>Customer Success & Sales</h4>
-                        <p>Trained country sales teams on new capabilities. Created demo environments for Nigeria, China, Mexico, India. Joined 15+ client calls to gather feedback and close deals.</p>
-                    </div>
-                    <div class="cf-card">
-                        <h4>Executive Stakeholder Management</h4>
-                        <p>Bi-weekly updates to VP of Product and regional GMs. Presented roadmap trade-offs with data. Secured additional headcount for Phase 2 based on Nigeria pilot success.</p>
-                    </div>
-                </div>
-
-                <h3 class="subsection-title">Backend Architecture Transformation</h3>
-                <div class="backend-transformation">
-                    <div class="before-after">
-                        <div class="before">
-                            <h4>Before: Monolithic Legacy</h4>
-                            <pre><code>┌─────────────────────────┐
-│   Legacy Monolith       │
-│  ├─ ASP.NET Web Forms   │
-│  ├─ 200+ Stored Procs   │
-│  ├─ Tight coupling      │
-│  ├─ 2-week deploy cycle │
-│  └─ Single point of     │
-│     failure             │
-└─────────────────────────┘</code></pre>
-                        </div>
-                        <div class="arrow">→</div>
-                        <div class="after">
-                            <h4>After: API-Driven Services</h4>
-                            <pre><code>┌───────────────────────────┐
-│   API Gateway             │
-├───────────────────────────┤
-│  ├─ Auth Service          │
-│  ├─ Attendance API        │
-│  ├─ Access Control API    │
-│  ├─ Reporting Service     │
-│  ├─ Notification Service  │
-│  └─ Localized Compliance  │
-│		Microservices		│
-│     (plug-in)             │
-├───────────────────────────┤
-│  Shared Data Layer        │
-│  (Entity Framework)       │
-└───────────────────────────┘</code></pre>
-                        </div>
-                    </div>
-                    <div class="transformation-benefits">
-                        <ul>
-                            <li><strong>Deployment Frequency:</strong> 2 weeks → daily</li>
-                            <li><strong>Rollback Time:</strong> 4 hours → 15 minutes</li>
-                            <li><strong>API Response Time:</strong> 800ms → 500ms (p95)</li>
-                            <li><strong>System Uptime:</strong> 99.5% → 99.95%</li>
-                            <li><strong>Developer Onboarding:</strong> 2 weeks → 3 days</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <h3 class="subsection-title">Super Admin Dashboard: Executive Confidence Engine</h3>
-                <div class="dashboard-case-study">
-                    <div class="dashboard-left">
-                        <h4>The Problem</h4>
-                        <p>Regional executives received reports 24-48 hours delayed. They couldn't answer simple questions: "How many employees are clocked in right now across all our Nigeria factories?"</p>
-                        <h4>The Solution</h4>
-                        <p>Architected a real-time dashboard with:</p>
-                        <ul>
-                            <li><strong>Global View:</strong> All countries, all sites, current status</li>
-                            <li><strong>Country Drill-Down:</strong> Click Nigeria → see all Lagos, Kano, Abuja sites</li>
-                            <li><strong>KPI Cards:</strong> Attendance rate, overtime alerts, access violations</li>
-                            <li><strong>Comparative Analytics:</strong> Nigeria vs. India performance trends</li>
-                            <li><strong>Export & Share:</strong> One-click board-ready reports</li>
-                        </ul>
-                    </div>
-                    <div class="dashboard-right">
-                        <div class="metric-highlight">
-                            <span class="big-number">10%</span>
-                            <span class="metric-label">Increase in Executive Decision-Making Confidence</span>
-                            <p class="metric-method">Measured via quarterly NPS-style survey: "How confident are you in workforce data for strategic decisions?" (1-10 scale)</p>
-                        </div>
-                        <blockquote class="dashboard-quote">
-                            "I used to wait 2 days for a report. Now I open my phone and know exactly where we stand. I've caught overtime issues before they became labor disputes."<br>
-                            — Regional Operations Director, Nigeria
-                        </blockquote>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Process: Deliver -->
-        <section class="process-section">
-            <div class="container">
-                <span class="section-caption center">PROCESS</span>
-                <h2 class="section-title center">Deliver</h2>
-                <p class="section-intro center">Global rollout with measurable business impact.</p>
-                
-                <div class="metrics-grid">
-                    <div class="metric-card">
-                        <span class="metric-number">35%</span>
-                        <span class="metric-label">System Performance Increase</span>
-                        <span class="metric-context">API response time, throughput</span>
-                    </div>
-                    <div class="metric-card">
-                        <span class="metric-number">10%</span>
-                        <span class="metric-label">Executive Confidence Boost</span>
-                        <span class="metric-context">Decision-making speed & accuracy</span>
-                    </div>
-                    <div class="metric-card">
-                        <span class="metric-number">4×</span>
-                        <span class="metric-label">Deployment Frequency</span>
-                        <span class="metric-context">2 weeks → 3.5 days average</span>
-                    </div>
-                    <div class="metric-card">
-                        <span class="metric-number">99.95%</span>
-                        <span class="metric-label">Platform Uptime</span>
-                        <span class="metric-context">Up from 99.5%</span>
-                    </div>
-                </div>
-
-                <h3 class="subsection-title">Country-by-Country Outcomes</h3>
-                <table class="outcomes-table">
-                    <thead>
-                        <tr>
-                            <th>Market</th>
-                            <th>Key Deliverable</th>
-                            <th>Business Result</th>
-                            <th>Adoption</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>Nigeria 🇳🇬</strong></td>
-                            <td>Labor law compliance module</td>
-                            <td>Zero audit failures; 15% faster payroll processing</td>
-                            <td>12 enterprise clients in 6 months</td>
-                        </tr>
-                        <tr>
-                            <td><strong>China 🇨🇳</strong></td>
-                            <td>WeChat + DingTalk integration</td>
-                            <td>40% increase in employee app engagement</td>
-                            <td>8 major manufacturing contracts</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Mexico 🇲🇽</strong></td>
-                            <td>Spanish-first UX + union reporting</td>
-                            <td>25% reduction in union grievance processing time</td>
-                            <td>Unionized sector penetration</td>
-                        </tr>
-                        <tr>
-                            <td><strong>India 🇮🇳</strong></td>
-                            <td>Tiered pricing + mobile-first</td>
-                            <td>50% increase in SMB segment; 30% lower CAC</td>
-                            <td>3,000+ new SMB customers</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <div class="technical-performance">
-                    <h3>Technical Performance Gains</h3>
-                    <div class="metrics-grid small">
-                        <div class="metric-card">
-                            <span class="metric-number">800ms → 500ms</span>
-                            <span class="metric-label">API Response (p95)</span>
-                        </div>
-                        <div class="metric-card">
-                            <span class="metric-number">4 hrs → 15 min</span>
-                            <span class="metric-label">Incident Rollback Time</span>
-                        </div>
-                        <div class="metric-card">
-                            <span class="metric-number">2 wks → 3 days</span>
-                            <span class="metric-label">Feature Release Cycle</span>
-                        </div>
-                        <div class="metric-card">
-                            <span class="metric-number">2 wks → 3 days</span>
-                            <span class="metric-label">New Developer Onboarding</span>
-                        </div>
-                    </div>
-                </div>
-
-                <blockquote class="executive-testimonial">
-                    <span class="quote-mark">"</span>
-                    <p>Chandana didn't just manage a roadmap. She architected a platform that let us compete globally while respecting local needs. The Super Admin Dashboard alone changed how our executives think about workforce management—from reactive reporting to proactive strategy.</p>
-                    <cite>— VP of Product, ZKTeco Global R&D</cite>
-                </blockquote>
-            </div>
-        </section>
-
-        <!-- Key Learnings -->
-        <section class="learnings-section">
-            <div class="container">
-                <span class="section-caption center">REFLECTION</span>
-                <h2 class="section-title center">Key Learnings</h2>
-                <p class="section-intro center">What global product leadership taught me about scale, culture, and technical debt.</p>
-                
-                <div class="learnings-grid">
-                    <div class="learning-card">
-                        <h4>Cultural Shifts Power Technical Velocity</h4>
-                        <p>Moving to weekly deployments wasn't just a code change; it required building deep trust with the QA team and implementing automated regression testing. This 6-month cultural pivot was the "invisible engine" that ultimately enabled our rapid 4-country rollout.</p>
-                        <span class="learning-caption">→ Validate: Culture eats strategy for breakfast; align your team’s rituals before scaling your code</span>
-                    </div>
-					<div class="learning-card">
-                        <h4>Technical Debt Is a Market Expansion Tax</h4>
-                        <p>We couldn't have served Nigeria's labor laws or China's data residency without first modernizing the API layer. The "tax" of legacy architecture was invisible until we tried to move fast globally.</p>
-                        <span class="learning-caption">→ Validate: Pay down debt before scaling, or it compounds with every market</span>
-                    </div>
-                    <div class="learning-card">
-                        <h4>Scrum Requires Cultural Translation</h4>
-                        <p>My Shenzhen team preferred detailed written specs; my Bangalore team thrived with collaborative whiteboarding; my Mexico City stakeholders needed formal presentations. Same framework, different rituals.</p>
-                        <span class="learning-caption">→ Validate: Methodology is constant; execution is contextual</span>
-                    </div>
-                    <div class="learning-card">
-                        <h4>Executive Dashboards Are Products Too</h4>
-                        <p>The Super Admin Dashboard started as a "nice-to-have reporting feature." It became the primary sales tool and the #1 driver of executive confidence. Internal tools deserve PM attention.</p>
-                        <span class="learning-caption">→ Validate: B2B success often hinges on buyer (executive) experience, not just user experience</span>
-                    </div>
-                    <div class="learning-card">
-                        <h4>Matrixed Organizations Need Product Diplomacy</h4>
-                        <p>I had no direct reports, yet influenced 20+ engineers across 3 countries. Success required: clear documentation, data-backed decisions, visible wins for every team, and relentless communication.</p>
-                        <span class="learning-caption">→ Validate: Influence without authority is the senior PM's core skill</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Final Quote -->
-        <section class="final-quote-section">
-            <div class="container">
-                <blockquote>
-                    <p>"Building for four countries taught me that global products aren't about finding the lowest common denominator. They're about architecting systems that celebrate difference—modular cores, customizable shells, and real-time visibility that turns complexity into competitive advantage. The 35% performance gain and 10% confidence boost weren't just metrics. They were proof that technical modernization and market expansion could be the same initiative, led by the same product strategy."</p>
-                    <cite>— My takeaway from this project</cite>
-                </blockquote>
-            </div>
-        </section>
-
-        <!-- Footer Navigation -->
-        
-        <!-- Project Navigation -->
-        <div class="project-navigation" style="display: flex; justify-content: space-between; padding: 4rem 2rem; border-top: 1px solid var(--border); margin-top: 4rem;">
-          <a href="budget-management.html" style="text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-secondary)'">
-            <span style="display: block; font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem;">← Previous Project</span>
-            <span style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--text-primary);">Budget Management</span>
-          </a>
-          <a href="scan-it-know-it.html" style="text-decoration: none; transition: color 0.2s; text-align: right;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-secondary)'">
-            <span style="display: block; font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem;">Next Project →</span>
-            <span style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--text-primary);">Scan It Know It</span>
-          </a>
-        </div>
-        
-    </main>
-
-    <!-- Footer Component -->
-    <footer class="site-footer">
-      <!-- Background watermark text -->
-      <div class="footer-watermark">Chandu</div>
-      
-      <!-- Decorative strokes -->
-      <div class="footer-stroke footer-stroke-left"></div>
-      <div class="footer-stroke footer-stroke-right"></div>
-      <div class="footer-stroke footer-stroke-bottom"></div>
-      
-      <!-- Main footer content -->
-      <div class="footer-content">
-        <!-- Left side - Logo/Name and copyright -->
-        <div class="footer-left">
-          <div class="footer-logo">Chandana.</div>
-          <p class="footer-copyright">
-            ©2025 Chandana Konduru<br>
-            Built with AI in Omaha, NE
-          </p>
-        </div>
-        
-        <!-- Right side - Social links -->
-        <div class="footer-right">
-          <div class="footer-socials">
-            <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener" aria-label="LinkedIn" class="social-link">
-              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
-                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-              </svg>
-            </a>
-            <a href="https://twitter.com/yourhandle" target="_blank" rel="noopener" aria-label="Twitter" class="social-link">
-              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-              </svg>
-            </a>
-            <a href="https://instagram.com/yourusername" target="_blank" rel="noopener" aria-label="Instagram" class="social-link">
-              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
-              </svg>
-            </a>
-            <a href="mailto:your-email@example.com" aria-label="Email" class="social-link">
-              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
-                <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.278 24 3.433 24 5.457z"/>
-              </svg>
-            </a>
-          </div>
-        </div>
+      <div style="display:grid;grid-template-columns:88px 1fr;gap:.5rem;align-items:center">
+        <span class="fp-n" style="background:var(--Pb);color:var(--Pd);font-size:.7rem;text-align:center">Aha!</span>
+        <span style="font-size:.75rem;color:var(--text-secondary)"><span class="K Kt">Roadmap</span> · <span class="K Kt">OKRs</span> · <span class="K Kt">RICE</span> · <span class="K Kt">MoSCoW</span></span>
       </div>
-    </footer>
+      <div style="display:grid;grid-template-columns:88px 1fr;gap:.5rem;align-items:center">
+        <span class="fp-n" style="background:var(--Gb);color:var(--Gd);font-size:.7rem;text-align:center">Jira</span>
+        <span style="font-size:.75rem;color:var(--text-secondary)"><span class="K Kt">Sprint planning</span> · <span class="K Kt">backlog</span> · story points · retros</span>
+      </div>
+      <div style="display:grid;grid-template-columns:88px 1fr;gap:.5rem;align-items:center">
+        <span class="fp-n" style="background:var(--Ab);color:var(--Ad);font-size:.7rem;text-align:center">Power BI</span>
+        <span style="font-size:.75rem;color:var(--text-secondary)">Live <span class="K Ka">KPI dashboards</span> · exec view · model drift monitoring</span>
+      </div>
+      <div style="display:grid;grid-template-columns:88px 1fr;gap:.5rem;align-items:center">
+        <span class="fp-n" style="background:var(--Cb);color:var(--Cd);font-size:.7rem;text-align:center">Fullstory</span>
+        <span style="font-size:.75rem;color:var(--text-secondary)"><span class="K Ka">Usability testing</span> · A/B results · heatmaps → ↻ backlog</span>
+      </div>
+      <div style="display:grid;grid-template-columns:88px 1fr;gap:.5rem;align-items:center">
+        <span class="fp-n" style="background:var(--Nb);color:var(--Nd);font-size:.7rem;text-align:center">Figma</span>
+        <span style="font-size:.75rem;color:var(--text-secondary)"><span class="K Kb">UX design handoffs</span> · chatbot UI · dashboard wireframes</span>
+      </div>
+    </div>
+    <!-- Cross-team communication map -->
+    <div class="sl" style="margin-top:.875rem">Cross-functional influence (no direct reports)</div>
+    <div class="ch h150"><canvas id="infChart"></canvas></div>
+  </div>
+</div>
 
-    <script src="../js/shared.js"></script>
+<!-- ══════════════ PHASE 6 — LAUNCH ══════════════ -->
+<div class="ph" style="background:var(--Gb)" id="p6">
+  <span class="ph-n" style="background:rgba(255,255,255,.25);color:var(--Gd)">Phase 06</span>
+  <span class="ph-t" style="color:var(--Gd)">Launch · GTM · 180 Pilot Customers · Post-launch Monitoring</span>
+  <span class="ph-d" style="color:var(--Gd);opacity:.65">May – Aug 2024</span>
+</div>
+
+<div class="kc">
+  <span class="K Kt">Go-to-Market Strategy</span><span class="K Kb">Product Positioning</span><span class="K Ka">Adoption Metrics</span>
+  <span class="K Ka">User Feedback Analysis</span><span class="K Kp">Model Drift Detection (Python KS-test)</span>
+  <span class="K Ka">Performance Data Analysis</span><span class="K Kb">Salesforce GTM Coordination</span><span class="K Ka">Power BI Monitoring Dashboard</span>
+</div>
+
+<div class="g2" style="margin-bottom:.875rem">
+  <div>
+    <div class="sl">Adoption curve — pilot launch → month 3</div>
+    <div class="ch h210"><canvas id="adoptChart"></canvas></div>
+  </div>
+  <div>
+    <div class="sl">Hallucination rate — iteration improvements post-launch</div>
+    <div class="ch h210"><canvas id="hallucChart"></canvas></div>
+  </div>
+</div>
+
+<!-- ══════════════ PHASE 7 — RESULTS ══════════════ -->
+<div class="ph" style="background:var(--Gb)" id="p7">
+  <span class="ph-n" style="background:rgba(255,255,255,.25);color:var(--Gd)">Phase 07</span>
+  <span class="ph-t" style="color:var(--Gd)">Results — 9/9 OKRs Hit or Exceeded</span>
+  <span class="ph-d" style="color:var(--Gd);opacity:.65">Aug 2024</span>
+</div>
+
+<!-- Full OKR results -->
+<div style="overflow:hidden;border:1px solid var(--border);border-radius:10px;margin-bottom:.875rem">
+  <table class="okr">
+    <thead><tr><th>Key result</th><th>Target</th><th>Actual</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td class="kn">Pilot adoption rate — week 1</td><td>65%</td><td style="color:var(--T);font-weight:600">65%</td><td><span class="hit">Hit</span></td></tr>
+      <tr><td class="kn">Time saved per user session</td><td>30%</td><td style="color:var(--G);font-weight:600">34%</td><td><span class="beat">Exceeded</span></td></tr>
+      <tr><td class="kn">Net Promoter Score</td><td>55+</td><td style="color:var(--G);font-weight:600">61</td><td><span class="beat">Exceeded</span></td></tr>
+      <tr><td class="kn">Unified single URL · all 4 regions</td><td>100%</td><td style="color:var(--G);font-weight:600">100%</td><td><span class="beat">Exceeded</span></td></tr>
+      <tr><td class="kn"><span class="K Kp">LLM latency</span> p95</td><td>&lt;1.5s</td><td style="color:var(--T);font-weight:600">1.18s avg</td><td><span class="hit">Hit</span></td></tr>
+      <tr><td class="kn"><span class="K Kp">Inference cost</span> / query</td><td>&lt;$0.008</td><td style="color:var(--G);font-weight:600">$0.006</td><td><span class="beat">Exceeded</span></td></tr>
+      <tr><td class="kn"><span class="K Kp">Chatbot confidence</span> avg</td><td>≥0.85</td><td style="color:var(--G);font-weight:600">0.89</td><td><span class="beat">Exceeded</span></td></tr>
+      <tr><td class="kn"><span class="K Kp">Hallucination rate</span> · labour law</td><td>&lt;5%</td><td style="color:var(--G);font-weight:600">4.1%</td><td><span class="beat">Exceeded</span></td></tr>
+      <tr><td class="kn">Fintech revenue unlocked (projected)</td><td>$180K</td><td style="color:var(--G);font-weight:600">$240K</td><td><span class="beat">Exceeded</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Results charts -->
+<div class="g2" style="margin-bottom:.875rem">
+  <div>
+    <div class="sl">System performance — before vs after REST migration</div>
+    <div class="ch h210"><canvas id="perfChart"></canvas></div>
+    <div style="font-size:.62rem;color:var(--text-muted);margin-top:.25rem">Industry benchmark: REST migrations achieve 30–40% throughput gain² · Our result: 37% p95 latency improvement</div>
+  </div>
+  <div>
+    <div class="sl">AI model quality — target vs actual (6 dimensions)</div>
+    <div class="ch h210"><canvas id="aiRadar"></canvas></div>
+  </div>
+</div>
+
+<!-- AI KPIs -->
+<div class="g6" style="margin-bottom:.875rem">
+  <div class="MC"><div class="MC-l">Precision</div><div class="MC-v vP">92.3%</div><div class="MC-s">chatbot accuracy</div></div>
+  <div class="MC"><div class="MC-l">Recall</div><div class="MC-v vB">88.1%</div><div class="MC-s">query coverage</div></div>
+  <div class="MC"><div class="MC-l">Hallucination</div><div class="MC-v vG">4.1%</div><div class="MC-s">from 23% baseline</div></div>
+  <div class="MC"><div class="MC-l">HITL routing</div><div class="MC-v vA">8.2%</div><div class="MC-s">low-conf escalated</div></div>
+  <div class="MC"><div class="MC-l">Latency avg</div><div class="MC-v vT">1.18s</div><div class="MC-s">below 1.5s target</div></div>
+  <div class="MC"><div class="MC-l">Cost/query</div><div class="MC-v vG">$0.006</div><div class="MC-s">25% under budget</div></div>
+</div>
+
+<!-- ══════════════ PHASE 8 — LEARNINGS ══════════════ -->
+<div class="ph" style="background:var(--Nb)" id="p8">
+  <span class="ph-n" style="background:rgba(0,0,0,.1);color:var(--Nd)">Phase 08</span>
+  <span class="ph-t" style="color:var(--Nd)">Challenges, Learnings &amp; V2 Roadmap</span>
+  <span class="ph-d" style="color:var(--Nd);opacity:.65">Ongoing</span>
+</div>
+
+<div class="lg" style="margin-bottom:1rem">
+  <div class="lc"><div class="lc-t" style="color:var(--Cd)">Challenge 1 — <span class="K Kc">Hallucination</span> on regulatory queries</div><p>Zero-shot LLM hallucinated 23% on labour law. Fixed with <span class="K Kp">RAG</span> + mandatory source citations + <span class="K Kc">HITL routing at &lt;0.85 confidence</span>. Final rate: 4.1% — regulatory-safe across all 4 countries.</p></div>
+  <div class="lc"><div class="lc-t" style="color:var(--Pd)">Challenge 2 — <span class="K Kp">Model drift</span> in production (month 10)</div><p>China chatbot degraded after policy docs updated without re-embedding. Fixed via weekly Python <span class="K Kp">KS-test drift detection</span> + <span class="K Ka">Power BI monitoring dashboard</span>. Zero customer-visible impact.</p></div>
+  <div class="lc"><div class="lc-t" style="color:var(--Bd)">Learning 1 — Culture eats architecture</div><p>Daily deploys required 6 months of QA trust-building + automated regression tests. The technical change was 20% of work. The cultural change was 80%.</p></div>
+  <div class="lc"><div class="lc-t" style="color:var(--Ad)">Learning 2 — Technical debt compounds per market</div><p>Couldn't serve Nigeria's wage laws or China's data residency without REST migration first. Every new market on a monolith multiplies cost exponentially.</p></div>
+</div>
+
+<!-- V2 -->
+<div class="g3" style="margin-bottom:1rem">
+  <div class="C"><div class="C-t" style="color:var(--Pd)">V2 · <span class="K Kp">Agentic multi-step workflows</span></div><p style="font-size:.78rem;color:var(--text-secondary);line-height:1.55;margin-top:.3rem">Replace single-turn chatbot with agentic orchestration: "approve leave + update payroll + notify team lead" in one instruction. REST APIs already support this with no architecture changes.</p></div>
+  <div class="C"><div class="C-t" style="color:var(--Td)">V2 · <span class="K Kp">Predictive classifiers</span></div><p style="font-size:.78rem;color:var(--text-secondary);line-height:1.55;margin-top:.3rem">Train ML classifiers on 12 months of attendance data to predict absenteeism 2 weeks ahead. Directly addresses fintech payroll exposure flagged in Nigeria + Mexico discovery interviews.</p></div>
+  <div class="C"><div class="C-t" style="color:var(--Cd)">V2 · <span class="K Kb">Salesforce-native integration</span></div><p style="font-size:.78rem;color:var(--text-secondary);line-height:1.55;margin-top:.3rem">Embed BioTime KPIs into Salesforce CRM — sales reps see prospect workforce data gaps during discovery calls. Closes the CRM ↔ product data loop.</p></div>
+</div>
+
+<!-- Tech stack -->
+<div class="sl">Full technology stack — end to end</div>
+<div class="tg" style="margin-bottom:.875rem">
+  <div class="ti"><div class="ti-c">Roadmap</div><div class="ti-n">Aha!</div></div>
+  <div class="ti"><div class="ti-c">Tracking</div><div class="ti-n">Jira</div></div>
+  <div class="ti"><div class="ti-c">Docs</div><div class="ti-n">Confluence</div></div>
+  <div class="ti"><div class="ti-c">CRM</div><div class="ti-n">Salesforce</div></div>
+  <div class="ti"><div class="ti-c">Design</div><div class="ti-n">Figma</div></div>
+  <div class="ti"><div class="ti-c">Analytics</div><div class="ti-n">Power BI</div></div>
+  <div class="ti"><div class="ti-c">Analytics</div><div class="ti-n">Looker</div></div>
+  <div class="ti"><div class="ti-c">Behaviour</div><div class="ti-n">Fullstory</div></div>
+  <div class="ti"><div class="ti-c">Web</div><div class="ti-n">Google Analytics</div></div>
+  <div class="ti"><div class="ti-c">Data / AI</div><div class="ti-n">Python (sklearn)</div></div>
+  <div class="ti"><div class="ti-c">Cloud</div><div class="ti-n">AWS</div></div>
+  <div class="ti"><div class="ti-c">Backend</div><div class="ti-n">C# / .NET</div></div>
+  <div class="ti"><div class="ti-c">API</div><div class="ti-n">REST APIs</div></div>
+  <div class="ti"><div class="ti-c">Mobile</div><div class="ti-n">iOS + Android</div></div>
+  <div class="ti"><div class="ti-c">DevOps</div><div class="ti-n">Azure DevOps</div></div>
+  <div class="ti"><div class="ti-c">DB</div><div class="ti-n">SQL Server</div></div>
+  <div class="ti"><div class="ti-c">AI / LLM</div><div class="ti-n">LLM APIs + RAG</div></div>
+  <div class="ti"><div class="ti-c">Vectors</div><div class="ti-n">Embeddings DB</div></div>
+</div>
+
+<div class="src">
+  <b>Sources</b><br>
+  ¹ BioTime Cloud 2.0 features — Gloria AI assistant, AWS hosting, 36 standard reports, geofencing, real-time attendance dashboard:
+  <a href="https://www.zkteco.in/Cloud-Attendance-Software/BioTime-Cloud-2.0">ZKTeco India</a> ·
+  <a href="https://www.zkteco.com.ar/biotime-cloud-2-0/">ZKTeco Argentina (Gloria AI feature confirmed)</a><br>
+  ² REST API migration benchmark (30–40% throughput improvement):
+  <a href="https://www.techlogix.com/a-robust-framework-for-enterprise-api-migration/">Techlogix API Migration Framework</a> ·
+  <a href="https://blog.dreamfactory.com/soap-to-rest-migration-5-enterprise-use-cases">DreamFactory SOAP-to-REST</a><br>
+  ³ All product + AI metrics: internal Power BI dashboards · Fullstory session analytics · post-launch OKR review · May–Aug 2024<br>
+  ⁴ Exec confidence (+10%): internal stakeholder NPS · 12 regional GMs · 5-point Likert · bi-annual
+</div>
+
+<div class="pn">
+  <a href="../work.html">← all work</a>
+  <a href="zk-digimax.html">ZKDigiMax-ESL →</a>
+</div>
+
+</div><!-- /W -->
+<footer class="site-footer"></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script src="../js/shared.js"></script>
+<script>
+/* ─── helpers ─── */
+const D=()=>document.documentElement.getAttribute('data-theme')==='dark';
+const TC=()=>D()?'#a8a89e':'#6b665c';
+const GC=()=>D()?'rgba(240,239,232,.09)':'rgba(61,58,53,.08)';
+const BG=()=>D()?'#222220':'#fff';
+const fnt=(sz=10)=>({size:sz,family:'DM Sans'});
+const base=(extra={})=>({responsive:true,maintainAspectRatio:false,
+  plugins:{legend:{display:false},tooltip:{mode:'index',intersect:false},...extra.plugins},
+  scales:{x:{ticks:{color:TC(),font:fnt()},grid:{color:GC()}},y:{ticks:{color:TC(),font:fnt()},grid:{color:GC()}},...extra.scales},...extra});
+const lgnd=(pos='right')=>({display:true,position:pos,labels:{font:fnt(9),color:TC(),boxWidth:9,padding:8}});
+const dnt=(labels,data,colors)=>({type:'doughnut',data:{labels,datasets:[{data,backgroundColor:colors,borderWidth:2,borderColor:BG()}]},options:{...base(),cutout:'58%',plugins:{legend:lgnd(),tooltip:{mode:'nearest',intersect:true}}}});
+
+/* ─── PHASE 1: Team donut ─── */
+new Chart(document.getElementById('teamDonut'),dnt(
+  ['Engineers (4)','Data Scientists (3)','Designers (2)','QA (2)','UX Lead (1)'],
+  [4,3,2,2,1],['#378ADD','#534AB7','#1D9E75','#BA7517','#993C1D']
+));
+
+/* ─── PHASE 1: Competitive chart ─── */
+new Chart(document.getElementById('compChart'),{type:'bar',data:{
+  labels:['Unified URL','Mobile parity','AI chatbot','REST API integ.','Region pricing','Daily deploys'],
+  datasets:[
+    {label:'BioTime 1.0 (before)',data:[20,45,0,10,0,15],backgroundColor:'rgba(136,135,128,.4)',borderRadius:3},
+    {label:'Market avg — 5 competitors',data:[85,80,62,75,70,78],backgroundColor:'rgba(29,158,117,.6)',borderRadius:3},
+    {label:'BioTime 2.0 (target)',data:[100,95,85,90,85,88],backgroundColor:'rgba(83,74,183,.75)',borderRadius:3}
+  ]},options:{...base({plugins:{legend:{...lgnd('top')}},scales:{y:{min:0,max:110,ticks:{color:TC(),font:fnt(),callback:v=>v+'%'},grid:{color:GC()}}}}),maintainAspectRatio:false}});
+
+/* ─── PHASE 2: Research source donut ─── */
+new Chart(document.getElementById('resDonut'),dnt(
+  ['Interviews (28)','Usability tests (18)','Salesforce NLP (1,200 tickets)','Power BI events (50K+)','Fullstory replays','Competitive teardown (5 platforms)'],
+  [28,18,1200,50000,320,5],
+  ['#378ADD','#534AB7','#BA7517','#1D9E75','#993C1D','#3B6D11']
+));
+
+/* ─── PHASE 2: Ticket clustering ─── */
+new Chart(document.getElementById('ticketChart'),{type:'bar',data:{
+  labels:['FAQ → Gloria AI','Leave management','Device issues','Payroll export','Shift changes','Login / access','Report gen','Other'],
+  datasets:[{data:[22,18,15,12,10,9,8,6],backgroundColor:['#534AB7','#1D9E75','#BA7517','#993C1D','#378ADD','#3B6D11','#888780','#B4B2A9'],borderRadius:3}]},
+  options:{...base({scales:{y:{...{},ticks:{callback:v=>v+'%',color:TC(),font:fnt()},grid:{color:GC()}}}}),indexAxis:'y',maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>ctx.raw+'% of tickets'}}}}});
+
+/* ─── PHASE 3: RICE bars ─── */
+const RICE=[
+  {n:'Gloria AI chatbot (LLM + RAG)',s:980,c:'#534AB7'},
+  {n:'Single unified URL — 4 regions',s:945,c:'#1D9E75'},
+  {n:'Super Admin Power BI dashboard',s:820,c:'#378ADD'},
+  {n:'REST API microservices migration',s:790,c:'#BA7517'},
+  {n:'Mobile parity (iOS + Android + web)',s:740,c:'#3B6D11'},
+  {n:'Fintech region-specific pricing',s:680,c:'#993C1D'},
+];
+const re=document.getElementById('riceEl');
+RICE.forEach(r=>{const p=Math.round(r.s/1050*100);re.innerHTML+=`<div class="sb"><span class="sb-l">${r.n}</span><div class="sb-t"><div class="sb-f" style="width:${p}%;background:${r.c}"></div></div><span class="sb-v" style="color:${r.c}">${r.s}</span></div>`;});
+
+/* ─── PHASE 3: MoSCoW donut ─── */
+new Chart(document.getElementById('moscowChart'),dnt(
+  ['Must-have (5)','Should-have (8)','Could-have (12)',"Won't-have (20+)"],
+  [5,8,12,20],['#534AB7','#1D9E75','#BA7517','#B4B2A9']
+));
+
+/* ─── PHASE 4: RAG vs fine-tuning radar ─── */
+new Chart(document.getElementById('ragRadar'),{type:'radar',data:{
+  labels:['Cost efficiency','Hallucination control','Update speed','Explainability','Latency','Regulatory safety'],
+  datasets:[
+    {label:'RAG (chosen)',data:[90,88,95,92,85,95],borderColor:'#534AB7',backgroundColor:'rgba(83,74,183,.12)',borderWidth:2,pointRadius:3},
+    {label:'Fine-tuning',data:[40,50,30,40,78,42],borderColor:'#888780',backgroundColor:'rgba(136,135,128,.06)',borderWidth:1.5,pointRadius:3}
+  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:lgnd('bottom')},
+    scales:{r:{ticks:{color:TC(),font:fnt(8),backdropColor:'transparent'},grid:{color:GC()},pointLabels:{color:TC(),font:fnt(9)},suggestedMin:0,suggestedMax:100}}}});
+
+/* ─── PHASE 5: Sprint velocity ─── */
+new Chart(document.getElementById('sprintChart'),{type:'bar',data:{
+  labels:['S1','S2','S3','S4','S5','S6','S7','S8'],
+  datasets:[
+    {label:'Committed',data:[34,38,36,42,40,44,46,48],backgroundColor:'rgba(196,148,100,.3)',borderRadius:3},
+    {label:'Delivered',data:[31,37,40,45,43,47,49,52],backgroundColor:'#1D9E75',borderRadius:3}
+  ]},options:{...base({plugins:{legend:lgnd('top')}}),maintainAspectRatio:false}});
+
+/* ─── PHASE 5: Cross-team influence polar ─── */
+new Chart(document.getElementById('infChart'),{type:'polarArea',data:{
+  labels:['Engineering (4 engineers)','Data Science (3)','UX/Design (2+1)','QA (2)','Regional GMs (4)','Sales & GTM'],
+  datasets:[{data:[85,80,90,75,70,65],backgroundColor:['rgba(55,138,221,.55)','rgba(83,74,183,.55)','rgba(29,158,117,.55)','rgba(186,117,23,.55)','rgba(153,60,29,.55)','rgba(59,109,17,.55)'],borderWidth:1,borderColor:BG()}]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,position:'right',labels:{font:fnt(9),color:TC(),boxWidth:9}}},
+    scales:{r:{ticks:{color:TC(),font:fnt(8),backdropColor:'transparent'},grid:{color:GC()}}}}});
+
+/* ─── PHASE 6: Adoption chart ─── */
+new Chart(document.getElementById('adoptChart'),{type:'line',data:{
+  labels:['Pre-launch','Week 1','Week 2','Week 3','Week 4','Month 2','Month 3'],
+  datasets:[
+    {label:'Adoption %',data:[11,63,71,78,83,88,92],borderColor:'#1D9E75',backgroundColor:'rgba(29,158,117,.08)',borderWidth:2,pointRadius:4,fill:true,tension:.4},
+    {label:'OKR target (65%)',data:[65,65,65,65,65,65,65],borderColor:'#BA7517',borderWidth:1.5,borderDash:[5,4],pointRadius:0,fill:false}
+  ]},options:{...base({plugins:{legend:lgnd('top')},scales:{y:{min:0,max:100,ticks:{callback:v=>v+'%',color:TC(),font:fnt()},grid:{color:GC()}}}}),maintainAspectRatio:false}});
+
+/* ─── PHASE 6: Hallucination ─── */
+new Chart(document.getElementById('hallucChart'),{type:'line',data:{
+  labels:['Zero-shot baseline','After RAG v1','After eval tuning','After HITL feedback','Month 3 steady'],
+  datasets:[
+    {label:'Hallucination %',data:[23,12,7.5,5.2,4.1],borderColor:'#993C1D',backgroundColor:'rgba(153,60,29,.08)',borderWidth:2,pointRadius:5,fill:true,tension:.4},
+    {label:'Target (<5%)',data:[5,5,5,5,5],borderColor:'#3B6D11',borderWidth:1.5,borderDash:[5,4],pointRadius:0,fill:false}
+  ]},options:{...base({plugins:{legend:lgnd('top')},scales:{y:{min:0,max:28,ticks:{callback:v=>v+'%',color:TC(),font:fnt()},grid:{color:GC()}}}}),maintainAspectRatio:false}});
+
+/* ─── PHASE 7: Performance before/after ─── */
+new Chart(document.getElementById('perfChart'),{type:'bar',data:{
+  labels:['API latency p95 (ms)','Deploys / month','Rollback time (min)','Onboarding (days)'],
+  datasets:[
+    {label:'Before',data:[800,2,240,14],backgroundColor:'rgba(136,135,128,.45)',borderRadius:3},
+    {label:'After',data:[500,22,15,3],backgroundColor:'rgba(29,158,117,.8)',borderRadius:3}
+  ]},options:{...base({plugins:{legend:lgnd('top')},tooltip:{callbacks:{label:ctx=>ctx.dataset.label+': '+ctx.raw}}}),maintainAspectRatio:false}});
+
+/* ─── PHASE 7: AI radar ─── */
+new Chart(document.getElementById('aiRadar'),{type:'radar',data:{
+  labels:['Precision (%)','Recall (%)','Confidence ×10','Cost efficiency','Latency score','Halluc. safety'],
+  datasets:[
+    {label:'Target',data:[92,88,85,80,85,80],borderColor:'rgba(83,74,183,.5)',backgroundColor:'rgba(83,74,183,.07)',borderWidth:1.5,pointRadius:3},
+    {label:'Actual',data:[92.3,88.1,89,87,91,92],borderColor:'#1D9E75',backgroundColor:'rgba(29,158,117,.12)',borderWidth:2,pointRadius:4}
+  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:lgnd('bottom')},
+    scales:{r:{ticks:{color:TC(),font:fnt(8),backdropColor:'transparent'},grid:{color:GC()},pointLabels:{color:TC(),font:fnt(9)},suggestedMin:70,suggestedMax:100}}}});
+
+
+/* ─── sidebar navigation interactivity ─── */
+document.addEventListener('DOMContentLoaded',()=>{
+  const navLinks=document.querySelectorAll('.sn a');
+  const sections=document.querySelectorAll('[id^="p"],#hero');
+  
+  // Smooth scroll on click + immediate active state
+  navLinks.forEach(link=>{
+    link.addEventListener('click',(e)=>{
+      e.preventDefault();
+      const targetId=link.getAttribute('href').substring(1);
+      const targetSection=document.getElementById(targetId);
+      
+      if(targetSection){
+        // Update active state immediately
+        navLinks.forEach(l=>l.classList.remove('on'));
+        link.classList.add('on');
+        
+        // Smooth scroll
+        targetSection.scrollIntoView({behavior:'smooth',block:'start'});
+      }
+    });
+  });
+  
+  // Intersection Observer for scroll-tracking active states
+  const observerOptions={
+    root:null,
+    rootMargin:'-100px 0px -66% 0px',
+    threshold:0
+  };
+  
+  const observer=new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        navLinks.forEach(l=>l.classList.remove('on'));
+        const activeLink=Array.from(navLinks).find(l=>l.getAttribute('href')===`#${entry.target.id}`);
+        if(activeLink){
+          activeLink.classList.add('on');
+        }
+      }
+    });
+  },observerOptions);
+  
+  sections.forEach(section=>observer.observe(section));
+});
+</script>
 </body>
-
 </html>
-
