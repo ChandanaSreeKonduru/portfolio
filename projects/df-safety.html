@@ -1,1522 +1,805 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="DF Safety — AI-powered pharmacovigilance platform reducing manual case processing 3%, accelerating MedDRA coding 3%. UX design for global medical reviewers, E2B R2/R3 compliant.">
-    <title>DF Safety | AI-Powered Pharmacovigilance Platform</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Theme detection - prevents flash -->
-    <script>
-      (function() {
-        const savedTheme = localStorage.getItem('theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const theme = savedTheme || (prefersDark ? 'dark' : 'light');
-        document.documentElement.setAttribute('data-theme', theme);
-      })();
-    </script>
-    
-    <link rel="stylesheet" href="../css/rhode.css">
-    <style>
-/* ===== DF SAFETY - CUSTOM CASE STUDY STYLES ===== */
-
-/* Design System Variables */
-:root {
-  --background: #f8f6f2;        /* Warm off-white */
-  --text-primary: #67645e;      /* Warm taupe */
-  --text-secondary: #67645e99;  /* 60% opacity */
-  --accent: #c17c5e;            /* Terracotta */
-  --accent-light: #c17c5e1a;    /* 10% opacity */
-  --border: #e5e5e5;            /* Hairline */
-  --white: #ffffff;
-  
-  /* Typography */
-  --font-heading: "Times New Roman", Georgia, serif;
-  --font-body: system-ui, -apple-system, sans-serif;
-  
-  /* Spacing */
-  --page-padding: 80px;
-  --section-gap: 120px;
-  --max-width: 1200px;
-  --content-width: 720px;
-}
-
-/* Base Styles */
-.case-study-page {
-  font-family: var(--font-body);
-  background: var(--background);
-  color: var(--text-primary);
-  line-height: 1.7;
-}
-
-/* Fixed Navigation */
-.case-study-nav {
-  position: fixed;
-  top: 40px;
-  left: 0;
-  right: 0;
-  padding: 0 80px;
-  display: flex;
-  justify-content: space-between;
-  z-index: 1000;
-  background: rgba(248, 246, 242, 0.95);
-  backdrop-filter: blur(10px);
-}
-
-.nav-container {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  width: 100%;
-}
-
-.nav-back, .nav-next {
-  font-size: 14px;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--text-secondary);
-  text-decoration: none;
-  transition: color 0.2s;
-}
-
-.nav-back:hover, .nav-next:hover {
-  color: var(--accent);
-}
-
-/* Hero Section */
-.case-study-hero {
-  padding: calc(80px + var(--section-gap)) 80px var(--section-gap);
-  text-align: center;
-  background: var(--background);
-}
-
-.case-study-caption {
-  display: block;
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--accent);
-  margin-bottom: 24px;
-}
-
-.case-study-title {
-  font-family: var(--font-heading);
-  font-size: 48px;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-  color: var(--text-primary);
-  margin-bottom: 24px;
-}
-
-.case-study-subtitle {
-  font-size: 18px;
-  color: var(--text-secondary);
-  max-width: 720px;
-  margin: 0 auto 32px;
-  line-height: 1.5;
-}
-
-.case-study-meta {
-  display: flex;
-  justify-content: center;
-  gap: 32px;
-  flex-wrap: wrap;
-  margin-bottom: 48px;
-  font-size: 14px;
-  color: var(--text-secondary);
-}
-
-.scroll-indicator {
-  font-size: 14px;
-  color: var(--text-secondary);
-  animation: bounce 2s infinite;
-}
-
-@keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-  40% {transform: translateY(-10px);}
-  60% {transform: translateY(-5px);}
-}
-
-/* Container */
-.container {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 0 80px;
-}
-
-/* PV Education Section */
-.pv-education-section {
-  padding: var(--section-gap) 0;
-  background: var(--white);
-}
-
-.pv-definition {
-  max-width: 800px;
-  margin: 0 auto 60px;
-}
-
-.lead-text {
-  font-size: 18px;
-  line-height: 1.6;
-  color: var(--text-primary);
-  margin-bottom: 24px;
-}
-
-.lead-text strong {
-  color: var(--accent);
-}
-
-/* PV Scope Diagram */
-.pv-scope-diagram, .esl-scope-diagram {
-  margin: 60px 0;
-}
-
-.pv-scope-diagram h3, .esl-scope-diagram h3 {
-  font-family: var(--font-heading);
-  font-size: 24px;
-  text-align: center;
-  margin-bottom: 48px;
-  color: var(--text-primary);
-}
-
-.ecosystem-flow {
-  display: flex;
-  align-items: stretch;
-  gap: 16px;
-  overflow-x: auto;
-  padding: 32px 0;
-}
-
-.eco-node {
-  flex: 1;
-  min-width: 200px;
-  background: var(--white);
-  padding: 24px;
-  border: 1px solid var(--border);
-  text-align: center;
-}
-
-.eco-node.active-node {
-  background: var(--accent-light);
-  border-color: var(--accent);
-  transform: scale(1.05);
-}
-
-.node-icon {
-  font-size: 48px;
-  margin-bottom: 16px;
-}
-
-.eco-node h4 {
-  font-family: var(--font-heading);
-  font-size: 18px;
-  margin-bottom: 12px;
-  color: var(--text-primary);
-}
-
-.eco-node p {
-  font-size: 14px;
-  line-height: 1.5;
-  color: var(--text-secondary);
-  margin-bottom: 12px;
-}
-
-.node-scope {
-  display: block;
-  font-size: 12px;
-  color: var(--accent);
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.eco-arrow {
-  font-size: 32px;
-  color: var(--accent);
-  display: flex;
-  align-items: center;
-  font-weight: bold;
-}
-
-/* AI Challenge Box */
-.ai-challenge-box {
-  background: var(--accent-light);
-  padding: 40px;
-  border-left: 4px solid var(--accent);
-  margin: 60px 0;
-}
-
-.ai-challenge-box h4 {
-  font-family: var(--font-heading);
-  font-size: 20px;
-  margin-bottom: 16px;
-  color: var(--text-primary);
-}
-
-.ai-challenge-box p {
-  font-size: 16px;
-  line-height: 1.6;
-  color: var(--text-secondary);
-}
-
-.ai-challenge-box strong {
-  color: var(--text-primary);
-}
-
-/* Overview Section */
-.case-study-overview {
-  padding: var(--section-gap) 0;
-}
-
-.overview-two-col {
-  display: grid;
-  grid-template-columns: 40% 60%;
-  gap: 80px;
-  align-items: start;
-}
-
-.section-caption {
-  display: block;
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--accent);
-  margin-bottom: 24px;
-}
-
-.overview-left h2 {
-  font-family: var(--font-heading);
-  font-size: 32px;
-  line-height: 1.2;
-  letter-spacing: -0.01em;
-  color: var(--text-primary);
-  margin-bottom: 24px;
-}
-
-.overview-left p {
-  font-size: 16px;
-  line-height: 1.7;
-  color: var(--text-primary);
-  margin-bottom: 16px;
-}
-
-.role-list {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 48px;
-}
-
-.role-list li {
-  font-size: 16px;
-  padding: 8px 0;
-  border-bottom: 1px solid var(--border);
-}
-
-.tech-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-}
-
-.tech-item {
-  background: var(--white);
-  padding: 16px;
-  border: 1px solid var(--border);
-  font-size: 14px;
-  text-align: center;
-}
-
-/* Before/After Mini */
-.before-after-mini {
-  margin: 48px 0;
-}
-
-.before-after-mini h4 {
-  font-family: var(--font-heading);
-  font-size: 20px;
-  margin-bottom: 24px;
-  color: var(--text-primary);
-}
-
-.ba-comparison {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 32px;
-}
-
-.ba-before, .ba-after {
-  padding: 24px;
-  border: 1px solid var(--border);
-}
-
-.ba-before {
-  background: #fef5f5;
-  border-color: #e0e0e0;
-}
-
-.ba-after {
-  background: #f5faf5;
-  border-color: #d0e0d0;
-}
-
-.ba-before h5, .ba-after h5 {
-  font-size: 16px;
-  margin-bottom: 16px;
-}
-
-.ba-before ul, .ba-after ul {
-  list-style: none;
-  padding: 0;
-}
-
-.ba-before li, .ba-after li {
-  font-size: 14px;
-  padding: 8px 0;
-  line-height: 1.5;
-}
-
-/* Process Sections */
-.process-section {
-  padding: var(--section-gap) 0;
-}
-
-.section-heading {
-  font-family: var(--font-heading);
-  font-size: 40px;
-  line-height: 1.2;
-  color: var(--text-primary);
-  margin: 0 0 24px;
-}
-
-.section-intro {
-  font-size: 18px;
-  color: var(--text-secondary);
-  max-width: 600px;
-  margin: 0 auto 60px;
-  line-height: 1.6;
-}
-
-.center {
-  text-align: center;
-}
-
-.subsection-heading {
-  font-family: var(--font-heading);
-  font-size: 24px;
-  line-height: 1.3;
-  color: var(--text-primary);
-  margin: 60px 0 24px;
-}
-
-/* Discover Grid */
-.discover-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  margin-top: 60px;
-}
-
-.discover-left h3, .discover-right h3 {
-  font-family: var(--font-heading);
-  font-size: 24px;
-  color: var(--text-primary);
-  margin-bottom: 24px;
-}
-
-.findings-list {
-  list-style: none;
-  padding: 0;
-}
-
-.findings-list li {
-  font-size: 16px;
-  padding: 12px 0;
-  border-bottom: 1px solid var(--border);
-}
-
-.inline-quote {
-  font-size: 18px;
-  font-style: italic;
-  color: var(--text-secondary);
-  margin: 32px 0;
-  padding-left: 24px;
-  border-left: 3px solid var(--accent);
-}
-
-/* Tables */
-.competitive-table, .requirements-table, .outcomes-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 32px 0;
-  background: var(--white);
-}
-
-.competitive-table th, .competitive-table td,
-.requirements-table th, .requirements-table td,
-.outcomes-table th, .outcomes-table td {
-  padding: 16px;
-  text-align: left;
-  border: 1px solid var(--border);
-  font-size: 14px;
-}
-
-.competitive-table th, .requirements-table th, .outcomes-table th {
-  background: var(--accent-light);
-  font-weight: 600;
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.highlight-row {
-  background: var(--accent-light);
-  font-weight: 600;
-}
-
-.table-caption {
-  font-size: 12px;
-  color: var(--text-secondary);
-  margin-top: 16px;
-  font-style: italic;
-}
-
-/* Metrics Grid */
-.metrics-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 32px;
-  margin: 60px 0;
-}
-
-.metric-card {
-  background: var(--white);
-  padding: 32px;
-  text-align: center;
-  border: 1px solid var(--border);
-}
-
-.metric-number {
-  display: block;
-  font-family: var(--font-heading);
-  font-size: 48px;
-  color: var(--accent);
-  line-height: 1;
-  margin-bottom: 16px;
-}
-
-.metric-label {
-  display: block;
-  font-size: 16px;
-  color: var(--text-primary);
-  margin-bottom: 8px;
-}
-
-.metric-context {
-  display: block;
-  font-size: 12px;
-  color: var(--text-secondary);
-}
-
-/* Learnings Section */
-.learnings-section {
-  padding: var(--section-gap) 0;
-  background: var(--white);
-}
-
-.learnings-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 40px;
-  margin-top: 60px;
-}
-
-.learning-card {
-  padding: 32px;
-  background: var(--background);
-}
-
-.learning-card h4 {
-  font-family: var(--font-heading);
-  font-size: 20px;
-  margin-bottom: 16px;
-  color: var(--text-primary);
-}
-
-.learning-card p {
-  font-size: 16px;
-  line-height: 1.6;
-  color: var(--text-secondary);
-  margin-bottom: 16px;
-}
-
-.learning-caption {
-  display: block;
-  font-size: 14px;
-  color: var(--accent);
-  font-style: italic;
-}
-
-/* Final Quote */
-.final-quote-section {
-  padding: var(--section-gap) 0;
-}
-
-.final-quote-section blockquote {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 40px;
-  background: var(--white);
-  border: 1px solid var(--border);
-}
-
-.final-quote-section p {
-  font-family: var(--font-heading);
-  font-size: 24px;
-  line-height: 1.6;
-  color: var(--text-primary);
-  margin-bottom: 24px;
-}
-
-.final-quote-section cite {
-  display: block;
-  font-size: 14px;
-  color: var(--text-secondary);
-  font-style: italic;
-}
-
-/* Footer Navigation */
-.case-study-footer-nav {
-  padding: var(--section-gap) 0;
-  border-top: 1px solid var(--border);
-}
-
-.footer-nav-links {
-  display: flex;
-  justify-content: space-between;
-  gap: 32px;
-}
-
-.footer-nav-back, .footer-nav-next {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  text-decoration: none;
-  padding: 24px 32px;
-  background: var(--white);
-  border: 1px solid var(--border);
-  transition: all 0.2s;
-}
-
-.footer-nav-back:hover, .footer-nav-next:hover {
-  border-color: var(--accent);
-  transform: translateY(-2px);
-}
-
-.footer-nav-back span, .footer-nav-next span {
-  font-size: 16px;
-  color: var(--text-primary);
-}
-
-.footer-nav-back small, .footer-nav-next small {
-  font-size: 14px;
-  color: var(--text-secondary);
-}
-
-/* Site Footer */
-.site-footer {
-  padding: 60px 0;
-  background: var(--white);
-  border-top: 1px solid var(--border);
-}
-
-.footer-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 24px;
-}
-
-.footer-logo a {
-  font-size: 24px;
-  font-weight: 600;
-  color: var(--text-primary);
-  text-decoration: none;
-}
-
-.footer-links {
-  display: flex;
-  gap: 32px;
-  list-style: none;
-  padding: 0;
-}
-
-.footer-links a {
-  font-size: 14px;
-  color: var(--text-secondary);
-  text-decoration: none;
-}
-
-.footer-links a:hover {
-  color: var(--accent);
-}
-
-.social-links {
-  display: flex;
-  gap: 16px;
-}
-
-.footer-info {
-  text-align: center;
-}
-
-.copyright, .built-with {
-  font-size: 12px;
-  color: var(--text-secondary);
-  margin: 4px 0;
-}
-
-/* Responsive Design */
-@media (max-width: 1024px) {
-  .container, .case-study-nav {
-    padding: 0 40px;
-  }
-  
-  .overview-two-col,
-  .discover-grid,
-  .ba-comparison {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-  
-  .learnings-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .metrics-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  
-  .ecosystem-flow {
-    flex-direction: column;
-  }
-  
-  .eco-arrow {
-    transform: rotate(90deg);
-  }
-}
-
-@media (max-width: 768px) {
-  :root {
-    --page-padding: 24px;
-    --section-gap: 80px;
-  }
-  
-  .container, .case-study-nav {
-    padding: 0 24px;
-  }
-  
-  .case-study-title {
-    font-size: 36px;
-  }
-  
-  .case-study-meta {
-    flex-direction: column;
-    gap: 16px;
-  }
-  
-  .tech-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .metrics-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .footer-nav-links {
-    flex-direction: column;
-  }
-}
-
-/* Dark Mode Overrides for Case Study */
-[data-theme="dark"] .case-study-page {
-  --background: #1a1a1a;
-  --text-primary: #e8e6e3;
-  --text-secondary: #b8b5b0;
-  --accent: #d4a574;
-  --accent-light: rgba(212, 165, 116, 0.1);
-  --border: rgba(255, 255, 255, 0.1);
-  --white: #2a2a2a;
-}
-
-[data-theme="dark"] .case-study-nav {
-  background: rgba(26, 26, 26, 0.95);
-}
-
-[data-theme="dark"] .project-navigation a {
-  color: var(--text-secondary);
-}
-
-[data-theme="dark"] .project-navigation a:hover {
-  color: var(--accent);
-}
-
-.project-navigation a {
-  color: var(--text-secondary);
-}
-
-.project-navigation a:hover {
-  color: var(--accent);
-}
-    </style>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧬</text></svg>">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DF Safety (mSafety) — Case Study | Chandana Konduru</title>
+<meta name="description" content="UX Product Design case study: DF Safety AI (mSafety) — AI-powered pharmacovigilance platform. Redesigned Case Intake, Signal Detection, and MedDRA Auto-Coding workflows for global medical reviewers. E2B R2/R3 compliant.">
+<script>(function(){const t=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t)})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/rhode.css">
+<style>
+:root{
+  --B:#378ADD;--Bb:#E6F1FB;--Bd:#0C447C;
+  --T:#1D9E75;--Tb:#E1F5EE;--Td:#085041;
+  --P:#534AB7;--Pb:#EEEDFE;--Pd:#26215C;
+  --A:#BA7517;--Ab:#FAEEDA;--Ad:#412402;
+  --G:#3B6D11;--Gb:#EAF3DE;--Gd:#173404;
+  --C:#993C1D;--Cb:#FAECE7;--Cd:#4A1B0C;
+  --N:#888780;--Nb:#F1EFE8;--Nd:#2C2C2A;
+  /* DF Safety medical blue accent */
+  --M:#1565C0;--Mb:#E3F2FD;--Md:#0D2A5E;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--bg-primary);color:var(--text-primary)}
+a{text-decoration:none;color:inherit}
+
+.W{max-width:1040px;margin:0 auto;padding:0 2rem 6rem;margin-left:0}
+@media(min-width:1200px){.W{margin-left:240px;max-width:calc(100% - 240px)}}
+@media(max-width:1199px){.sn{display:none}.W{margin-left:0}}
+
+/* sidebar nav */
+.sn{position:fixed;left:0;top:var(--nav-height,64px);width:240px;height:calc(100vh - var(--nav-height,64px));background:var(--bg-primary);border-right:1px solid var(--border);overflow-y:auto;padding:1.5rem 0;z-index:80;scrollbar-width:thin;scrollbar-color:var(--border) transparent}
+.sn::-webkit-scrollbar{width:6px}
+.sn::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+.sn a{display:block;padding:.75rem 1.25rem;font-size:.8125rem;font-weight:500;color:var(--text-muted);border-left:3px solid transparent;transition:color 150ms,border-color 150ms,background 150ms}
+.sn a:hover{color:var(--accent);background:var(--bg-secondary)}
+.sn a.on{color:var(--accent);border-left-color:var(--accent);background:var(--bg-secondary);font-weight:600}
+
+/* phase header */
+.ph{display:flex;align-items:center;gap:.875rem;padding:1rem 1.25rem;border-radius:12px;margin:3rem 0 1.5rem;scroll-margin-top:calc(var(--nav-height,64px)+60px)}
+.ph-n{font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.3rem .65rem;border-radius:6px;flex-shrink:0}
+.ph-t{font-size:1.125rem;font-weight:600;letter-spacing:-.015em;color:var(--text-primary);line-height:1.4}
+.ph-d{margin-left:auto;font-size:.7rem;color:var(--text-muted);font-weight:600;white-space:nowrap}
+
+/* keyword badges */
+.K{display:inline-flex;align-items:center;padding:.1rem .425rem;border-radius:4px;font-size:.75em;font-weight:600;font-family:'DM Mono',monospace;line-height:1.45;white-space:nowrap;vertical-align:middle}
+.Kp{background:var(--Pb);color:var(--Pd)} .Kb{background:var(--Bb);color:var(--Bd)}
+.Kt{background:var(--Tb);color:var(--Td)} .Ka{background:var(--Ab);color:var(--Ad)}
+.Kg{background:var(--Gb);color:var(--Gd)} .Kc{background:var(--Cb);color:var(--Cd)}
+.Kn{background:var(--Nb);color:var(--Nd)} .Km{background:var(--Mb);color:var(--Md)}
+
+.kc{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.25rem}
+
+/* grids */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.5rem}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:.875rem;margin-bottom:1.5rem}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;margin-bottom:1.5rem}
+.g6{display:grid;grid-template-columns:repeat(6,1fr);gap:.625rem;margin-bottom:1.5rem}
+@media(max-width:768px){.g2,.g3{grid-template-columns:1fr}.g4{grid-template-columns:repeat(2,1fr)}.g6{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:500px){.g4,.g6{grid-template-columns:1fr}}
+
+/* cards */
+.C{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:1.125rem 1.375rem}
+.C-t{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.625rem}
+.MC{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:.875rem 1.125rem}
+.MC-l{font-size:.6rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.3rem}
+.MC-v{font-size:1.75rem;font-weight:700;line-height:1;margin-bottom:.15rem}
+.MC-s{font-size:.65rem;color:var(--text-muted);line-height:1.4}
+
+/* stat bars */
+.sb{display:flex;align-items:center;gap:.75rem;margin-bottom:.55rem}
+.sb-l{font-size:.8rem;font-weight:500;color:var(--text-primary);min-width:180px}
+.sb-t{flex:1;height:8px;background:var(--bg-secondary);border-radius:4px;overflow:hidden}
+.sb-f{height:100%;border-radius:4px}
+.sb-v{font-size:.8rem;font-weight:700;min-width:40px;text-align:right}
+@media(max-width:600px){.sb-l{min-width:100px;font-size:.7rem}}
+
+/* chart container */
+.ch{position:relative;width:100%}
+.h150{height:150px}.h170{height:170px}.h190{height:190px}.h210{height:210px}.h230{height:230px}
+
+/* flow pipeline */
+.fp{display:flex;flex-wrap:wrap;align-items:center;gap:.35rem;padding:.875rem 1rem;background:var(--bg-secondary);border-radius:10px;margin:.5rem 0}
+.fp-n{border-radius:8px;padding:.375rem .65rem;font-size:.7rem;font-weight:600;flex-shrink:0}
+.fp-n sub{font-size:.55rem;font-weight:400;opacity:.65;display:block;line-height:1.2}
+.fp-a{color:var(--text-muted);font-size:.75rem;flex-shrink:0}
+
+/* before/after */
+.ba{display:grid;grid-template-columns:1fr 38px 1fr;gap:.5rem;align-items:center}
+.ba-b{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:.875rem}
+.ba-b.aft{border-color:var(--T)}
+.ba-b h5{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.5rem}
+.ba-l{font-size:.75rem;color:var(--text-secondary);padding:.2rem 0;border-bottom:1px solid var(--border);line-height:1.4}
+.ba-l:last-child{border:none}
+.ba-l b{color:var(--text-primary)}
+.ba-a{text-align:center;font-size:1.25rem;color:var(--accent)}
+.ba-al{font-size:.55rem;color:var(--text-muted);text-align:center;margin-top:.15rem}
+@media(max-width:580px){.ba{grid-template-columns:1fr}.ba-a{transform:rotate(90deg)}}
+
+/* visual timeline */
+.vtl{display:flex;border-radius:10px;overflow:hidden;height:56px}
+.vtl-s{display:flex;flex-direction:column;justify-content:center;padding:0 .75rem;border-right:1px solid rgba(255,255,255,.18)}
+.vtl-s:last-child{border:none}
+.vtl-mo{font-size:.52rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;opacity:.7;margin-bottom:.15rem}
+.vtl-n{font-size:.7rem;font-weight:600;line-height:1.2}
+
+/* data row */
+.dr{font-size:.78rem;color:var(--text-secondary);line-height:1.7}
+.dr .row{display:flex;justify-content:space-between;padding:.225rem 0;border-bottom:1px solid var(--border)}
+.dr .row:last-child{border:none}
+.dr .row b{color:var(--text-primary);font-weight:600}
+
+/* OKR table */
+.okr{width:100%;border-collapse:collapse;font-size:.85rem}
+.okr thead{background:var(--bg-secondary)}
+.okr th{padding:.5rem .85rem;text-align:left;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--text-muted);border-bottom:1px solid var(--border)}
+.okr td{padding:.6rem .85rem;border-bottom:1px solid var(--border);color:var(--text-secondary);vertical-align:middle}
+.okr tr:last-child td{border-bottom:none}
+.okr .kn{color:var(--text-primary);font-weight:500}
+.hit{padding:.1rem .5rem;border-radius:100px;font-size:.62rem;font-weight:700;background:var(--Tb);color:var(--Td)}
+.beat{padding:.1rem .5rem;border-radius:100px;font-size:.62rem;font-weight:700;background:var(--Gb);color:var(--Gd)}
+.ind{padding:.1rem .5rem;border-radius:100px;font-size:.62rem;font-weight:700;background:var(--Mb);color:var(--Md)}
+
+/* tool grid */
+.tg{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:.375rem}
+.ti{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:.35rem .5rem;text-align:center}
+.ti-c{font-size:.52rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.03em;margin-bottom:.1rem}
+.ti-n{font-size:.7rem;font-weight:600;color:var(--text-primary)}
+
+/* matrix table */
+.mx{width:100%;border-collapse:collapse;font-size:.8rem}
+.mx th{padding:.5rem .75rem;text-align:left;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--text-muted);border-bottom:1px solid var(--border);background:var(--bg-secondary)}
+.mx td{padding:.5rem .75rem;border-bottom:1px solid var(--border);color:var(--text-secondary);vertical-align:top;line-height:1.5}
+.mx tr:last-child td{border-bottom:none}
+.mx .r{font-weight:600;color:var(--text-primary)}
+.ck{display:inline-flex;align-items:center;justify-content:center;width:13px;height:13px;border-radius:50%;background:var(--Mb);color:var(--Md);font-size:.48rem;font-weight:700;margin-right:.2rem;vertical-align:middle}
+
+/* colours */
+.vB{color:var(--B)}.vT{color:var(--T)}.vP{color:var(--P)}
+.vA{color:var(--A)}.vG{color:var(--G)}.vC{color:var(--C)}.vX{color:var(--accent)}.vM{color:var(--M)}
+
+/* section label */
+.sl{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text-muted);margin-bottom:.75rem;margin-top:1.75rem}
+
+hr{border:none;border-top:1px solid var(--border)}
+
+/* hero */
+.hero-h1{font-size:clamp(1.5rem,4vw,2.375rem);font-weight:700;letter-spacing:-.03em;line-height:1.2;margin-bottom:1rem}
+.hook{font-size:1rem;color:var(--text-secondary);max-width:680px;line-height:1.75;margin-bottom:1.5rem}
+.hook b{color:var(--text-primary);font-weight:500}
+.tags{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:1.25rem}
+.tag{padding:.2rem .675rem;border-radius:100px;font-size:.7rem;font-weight:600}
+
+/* TL;DR in medical blue */
+.tldr{background:var(--Mb);border-left:3px solid var(--M);border-radius:0 10px 10px 0;padding:1rem 1.25rem;margin-bottom:1.5rem}
+.tldr-l{font-size:.6rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--Md);margin-bottom:.5rem}
+.tldr-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:.3rem}
+.tldr-i{font-size:.8rem;color:var(--Md);line-height:1.5}
+.tldr-i::before{content:'→ ';font-weight:700;margin-right:.25rem}
+
+/* quote */
+.qt{border-left:3px solid var(--accent);padding:.875rem 1.25rem;background:var(--Ab);border-radius:0 10px 10px 0;margin:1.25rem 0}
+.qt p{font-size:.875rem;font-style:italic;color:var(--Ad);margin:0 0 .25rem;line-height:1.6}
+.qt .qs{font-size:.65rem;font-style:normal;color:var(--Ad);opacity:.75}
+
+/* reference callout */
+.ref{display:inline-flex;align-items:center;gap:.375rem;background:var(--bg-secondary);border:1px solid var(--border);border-radius:6px;padding:.25rem .625rem;font-size:.65rem;color:var(--text-muted);margin-top:.375rem}
+.ref a{color:var(--accent)}
+
+/* artifact buttons */
+.artifact-row{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem}
+.art-btn{display:inline-flex;align-items:center;gap:.375rem;padding:.375rem .875rem;border-radius:100px;border:1px solid var(--border);background:var(--bg-card);font-size:.78rem;font-weight:500;color:var(--text-secondary);transition:border-color 150ms,color 150ms}
+.art-btn:hover{border-color:var(--accent);color:var(--accent)}
+
+/* sources */
+.src{font-size:.67rem;color:var(--text-muted);border-top:1px solid var(--border);padding-top:.75rem;margin-top:1.5rem;line-height:2}
+.src a{color:var(--accent)}
+
+/* prev/next */
+.pn{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 0;border-top:1px solid var(--border);margin-top:2rem;gap:1rem}
+.pn a{font-size:.9rem;font-weight:500;color:var(--text-secondary);display:flex;align-items:center;gap:.5rem;transition:color 150ms}
+.pn a:hover{color:var(--accent)}
+@media(max-width:600px){.pn{flex-direction:column;align-items:stretch;text-align:center}.pn a{justify-content:center}}
+
+/* learnings */
+.lg{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem}
+@media(max-width:600px){.lg{grid-template-columns:1fr}}
+.lc{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:1rem 1.25rem}
+.lc-t{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.5rem}
+.lc p{font-size:.825rem;color:var(--text-secondary);line-height:1.65;margin:0}
+
+/* breadcrumb */
+.bc{font-size:.7rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:1.25rem}
+.bc a{color:var(--accent)}
+
+/* dashboard mockup */
+.dash-mock{background:var(--bg-secondary);border:1px solid var(--border);border-radius:10px;padding:.875rem;font-size:.72rem}
+.dash-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:.625rem;padding-bottom:.375rem;border-bottom:1px solid var(--border)}
+.dash-title{font-weight:600;font-size:.75rem;color:var(--text-primary)}
+.dash-badge{padding:.125rem .5rem;border-radius:100px;font-size:.58rem;font-weight:700}
+.dash-row{display:flex;justify-content:space-between;align-items:center;padding:.3rem 0;border-bottom:1px solid var(--border);font-size:.72rem;color:var(--text-secondary)}
+.dash-row:last-child{border:none}
+.dash-row b{color:var(--text-primary)}
+.ai-chip{padding:.1rem .4rem;border-radius:4px;background:var(--Pb);color:var(--Pd);font-size:.58rem;font-weight:700;font-family:'DM Mono',monospace;margin-left:.25rem}
+.accept-btn{padding:.1rem .5rem;border-radius:4px;background:var(--Mb);color:var(--Md);font-size:.58rem;font-weight:700;cursor:default}
+
+/* mobile */
+@media(max-width:768px){.W{padding:0 1.5rem 6rem}.hero-h1{font-size:clamp(1.375rem,5vw,2rem)}.hook{font-size:.95rem}.ph{margin:2.5rem 0 1rem}.sl{margin-top:1.5rem}}
+@media(max-width:500px){.W{padding:0 1rem 6rem}.hero-h1{font-size:clamp(1.25rem,6vw,1.75rem)}.MC-v{font-size:1.5rem}}
+</style>
 </head>
-<body class="case-study-page">
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-    
-    <!-- Header/Navigation -->
-    <header class="site-header">
-      <div class="header-inner">
-        <a href="../index.html" class="logo">Chandana<span>.</span></a>
-        
-        <nav class="nav-main" id="navMain">
-          <a href="../work.html" class="nav-link">Work</a>
-          <a href="../experience.html" class="nav-link">Experience</a>
-          <a href="../about.html" class="nav-link">About</a>
-        </nav>
-        
-        <div class="header-actions">
-          <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-            <span id="themeIcon">🌙</span>
-          </button>
-		  <a href="../resume.pdf" class="btn btn-primary btn-sm" download>Resume</a>
-          <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
-        </div>
-      </div>
-    </header>
+<body>
 
-    <main id="main-content">
-        <!-- Hero Section -->
-        <section class="case-study-hero">
-            <div class="container">
-                <span class="case-study-caption">Case Study 05</span>
-                <h1 class="case-study-title">DF Safety</h1>
-                <p class="case-study-subtitle">AI-Powered Pharmacovigilance — Making Machine Learning Trustworthy for Medical Reviewers</p>
-                <div class="case-study-meta">
-                    <span>🧬 Multi-Vigilance Platform (Drugs, Vaccines, Cosmetics, Devices)</span>
-                    <span>🤖 AI Case Intake & Triage</span>
-                    <span>📉 3% manual processing reduction</span>
-                    <span>⚡ 3% MedDRA coding acceleration</span>
-                </div>
-                <div class="scroll-indicator">↓ Scroll to explore</div>
-            </div>
-        </section>
+<header class="site-header" data-page="work"></header>
 
-        <!-- Pharmacovigilance Education: What Is This? -->
-        <section class="pv-education-section">
-            <div class="container">
-                <span class="section-caption center">FIRST, WHAT IS PHARMACOVIGILANCE?</span>
-                <h2 class="section-heading center">The Science of Drug Safety: Detecting Harm Before It Spreads</h2>
-                
-                <div class="pv-definition">
-                    <p class="lead-text">Pharmacovigilance (PV) is the science and activities related to detecting, assessing, understanding, and preventing adverse effects or any other drug-related problems. When a patient reports a side effect, a medical reviewer must determine: Is this drug causing harm? How serious is it? Should regulators be alerted?</p>
-                    <p class="lead-text">The challenge: Medical reviewers face <strong>complex data management</strong> from thousands of sources, <strong>timely reporting</strong> pressures, and stringent <strong>regulatory compliance</strong> requirements (E2B R2/R3 standards for electronic case submission).</p>
-                </div>
+<nav class="sn">
+  <a href="#hero">Overview</a>
+  <a href="#p1">① Problem</a>
+  <a href="#p2">② Research</a>
+  <a href="#p3">③ Prioritise</a>
+  <a href="#p4">④ UX Design</a>
+  <a href="#p5">⑤ Build</a>
+  <a href="#p6">⑥ Impact</a>
+  <a href="#p7">⑦ Results</a>
+  <a href="#p8">⑧ Learnings</a>
+</nav>
 
-                <div class="pv-scope-diagram">
-                    <h3>The AI-Powered PV Ecosystem: Where DF Safety Fits</h3>
-                    <div class="ecosystem-flow">
-                        <div class="eco-node data">
-                            <div class="node-icon">📥</div>
-                            <h4>Case Intake</h4>
-                            <p>Spontaneous reports, clinical trials, literature, social media</p>
-                            <span class="node-scope">AI automation target</span>
-                        </div>
-                        <div class="eco-arrow">→</div>
-                        <div class="eco-node ai active-node">
-                            <div class="node-icon">🤖</div>
-                            <h4>AI Processing</h4>
-                            <p><strong>MY FOCUS:</strong> Automated case creation, MedDRA coding, seriousness/causality prediction</p>
-                            <span class="node-scope">UX for explainable AI</span>
-                        </div>
-                        <div class="eco-arrow">→</div>
-                        <div class="eco-node human">
-                            <div class="node-icon">👩‍⚕️</div>
-                            <h4>Medical Review</h4>
-                            <p>Human validation of AI recommendations, causality assessment, narrative writing</p>
-                            <span class="node-scope">Trust-critical interface</span>
-                        </div>
-                        <div class="eco-arrow">→</div>
-                        <div class="eco-node signal">
-                            <div class="node-icon">📊</div>
-                            <h4>Signal Detection</h4>
-                            <p>Pattern recognition across cases, risk management, regulatory reporting</p>
-                            <span class="node-scope">Data visualization</span>
-                        </div>
-                        <div class="eco-arrow">→</div>
-                        <div class="eco-node reg">
-                            <div class="node-icon">📋</div>
-                            <h4>Regulatory Submission</h4>
-                            <p>E2B R2/R3 compliant reports to FDA, EMA, global authorities</p>
-                            <span class="node-scope">Compliance output</span>
-                        </div>
-                    </div>
-                </div>
+<div class="W">
 
-                <div class="ai-challenge-box">
-                    <h4>The AI Trust Problem in Healthcare</h4>
-                    <p>Medical reviewers are experts with years of training. They won't accept AI recommendations unless they understand <strong>why</strong> the AI made its decision. "Just because the AI can do something, doesn't mean it should. Good UX design keeps things clear, helpful, and grounded in real human needs."</p>
-                    <p>My challenge: Design interfaces that make AI recommendations <strong>explainable, contestable, and trustworthy</strong>—while maintaining the speed and consistency benefits of automation.</p>
-                </div>
-            </div>
-        </section>
+<!-- ══════════════ HERO ══════════════ -->
+<section id="hero" style="padding:2.25rem 0 1.5rem;border-bottom:1px solid var(--border);margin-bottom:1.5rem">
+  <p class="bc"><a href="../work.html">← work</a> · case study 03</p>
+  <h1 class="hero-h1">DF Safety (mSafety AI) — Bridging AI Outputs to Human-Centered Pharmacovigilance UX</h1>
+  <p class="hook">
+    As UX Product Designer at Data Foundry, I redesigned the <b>Case Intake, Signal Detection, and MedDRA Auto-Coding</b> workflows of an AI-powered multi-vigilance platform —
+    translating <span class="K Kp">complex ML model outputs</span> (seriousness prediction, causality assessment, signal detection) into
+    <span class="K Km">intuitive dashboards</span> for global medical reviewers and CRO teams,
+    while ensuring <span class="K Kc">full E2B R2/R3 regulatory compliance</span> across drugs, vaccines, cosmetics, nutraceuticals, and medical devices.
+  </p>
 
-        <!-- Project Overview -->
-        <section class="case-study-overview">
-            <div class="container">
-                <div class="overview-two-col">
-                    <div class="overview-left">
-                        <span class="section-caption">THE CHALLENGE</span>
-                        <h2>Medical reviewers were drowning in case volume—and drowning out the AI that could help them.</h2>
-                        <p>Data Foundry's DF Safety platform served Clinical Research Organizations (CROs) and pharmaceutical companies with a multi-vigilance solution covering Drugs, Vaccines, Cosmetics, and Medical Devices. But the AI capabilities were underutilized: medical reviewers didn't trust automated case creation, questioned AI-generated MedDRA codes, and manually overrode 70% of seriousness predictions.</p>
-                        <p>The underlying AI was accurate. The interface was the problem. Reviewers saw black-box outputs with no explanation, no confidence scores, no way to efficiently validate or correct. My mandate: Redesign the human-AI collaboration layer to make machine learning a trustworthy partner for medical experts.</p>
-                        
-                        <div class="before-after-mini">
-                            <h4>Reviewer Experience: Before vs. After</h4>
-                            <div class="ba-comparison">
-                                <div class="ba-before">
-                                    <h5>❌ Before (Black Box AI)</h5>
-                                    <ul>
-                                        <li>AI suggests: "Serious: Yes, Causality: Probable"</li>
-                                        <li>Reviewer: "Why? I don't see the reasoning."</li>
-                                        <li>Result: Manual override, 70% of predictions</li>
-                                        <li>Time saved: None. Frustration: High.</li>
-                                    </ul>
-                                </div>
-                                <div class="ba-after">
-                                    <h5>✅ After (Explainable AI)</h5>
-                                    <ul>
-                                        <li>AI suggests: "Serious: Yes — matched 3 criteria: hospitalization, life-threatening, intervention required"</li>
-                                        <li>Reviewer: "I see the logic. Let me adjust criterion 2."</li>
-                                        <li>Result: Acceptance rate 85%, correction time 10 sec</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="overview-right">
-                        <div class="role-section">
-                            <span class="section-caption">MY ROLE</span>
-                            <ul class="role-list">
-                                <li>UX Strategy Lead — AI Product Design</li>
-                                <li>Human-AI Interaction Designer</li>
-                                <li>Data Science Liaison</li>
-                                <li>Design System Architect</li>
-                                <li>Regulatory UX Specialist (E2B R2/R3)</li>
-                            </ul>
-                        </div>
-                        <div class="tech-section">
-                            <span class="section-caption">TOOLS & TECHNOLOGY</span>
-                            <div class="tech-grid">
-                                <div class="tech-item">Figma</div>
-                                <div class="tech-item">Adobe Creative Suite</div>
-                                <div class="tech-item">React</div>
-                                <div class="tech-item">Python/ML APIs</div>
-                                <div class="tech-item">MedDRA Dictionary</div>
-                                <div class="tech-item">E2B R2/R3 Standards</div>
-                                <div class="tech-item">Design Systems</div>
-                                <div class="tech-item">Data Visualization</div>
-                                <div class="tech-item">Agile/Scrum</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+  <div class="tags">
+    <span class="tag" style="background:var(--Mb);color:var(--Md)">Healthcare AI · Pharmacovigilance</span>
+    <span class="tag" style="background:var(--Pb);color:var(--Pd)">AI-to-Human UX Translation</span>
+    <span class="tag" style="background:var(--Cb);color:var(--Cd)">E2B R2/R3 · ICSR · MedDRA</span>
+    <span class="tag" style="background:var(--Bb);color:var(--Bd)">Figma · Design Systems</span>
+    <span class="tag" style="background:var(--Ab);color:var(--Ad)">6-Month Sprint · Jan–Jun 2023</span>
+    <span class="tag" style="background:var(--Nb);color:var(--Nd)">Multi-vigilance · 5 Product Categories</span>
+  </div>
 
-        <!-- Process: Discover -->
-        <section class="process-section">
-            <div class="container">
-                <span class="section-caption center">PROCESS</span>
-                <h2 class="section-heading center">Discover</h2>
-                <p class="section-intro center">Understanding why medical experts reject accurate AI.</p>
-                
-                <div class="discover-grid">
-                    <div class="discover-left">
-                        <h3>Medical Reviewer Research: 15 Interviews, 3 CROs</h3>
-                        <p>I spent 3 weeks embedded with medical reviewers at Clinical Research Organizations, observing their workflows and probing their AI skepticism:</p>
-                        <ul class="findings-list">
-                            <li><strong>Trust barrier:</strong> "I can't defend this decision to a regulator if I don't understand how the AI got here."</li>
-                            <li><strong>Control need:</strong> "The AI is fast but sloppy. I'd rather be slow and right."</li>
-                            <li><strong>Explanation gap:</strong> Current interface showed AI conclusion, not AI reasoning (which features triggered the prediction?)</li>
-                            <li><strong>Correction friction:</strong> Overriding AI required 12+ clicks; easier to start from scratch</li>
-                            <li><strong>Regulatory anxiety:</strong> E2B submission errors could trigger FDA findings; reviewers feared AI would miss compliance nuances</li>
-                        </ul>
-                        <blockquote class="inline-quote">"I'm not against AI. I'm against AI I can't interrogate. Give me the reasoning, give me the confidence level, give me one-click correction—and I'll use it."<br>— Senior Medical Reviewer, Top 10 CRO</blockquote>
-                    </div>
-                    <div class="discover-right">
-                        <h3>Cross-Functional Collaboration Map</h3>
-                        <table class="stakeholder-table">
-                            <thead>
-                                <tr>
-                                    <th>Team</th>
-                                    <th>Primary Need</th>
-                                    <th>My Liaison Role</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Data Scientists</td>
-                                    <td>Model accuracy, feature engineering</td>
-                                    <td>Translate model logic into UI explanations; provide feedback on feature importance clarity</td>
-                                </tr>
-                                <tr>
-                                    <td>ML Engineers</td>
-                                    <td>API performance, model versioning</td>
-                                    <td>Design confidence score displays; define explanation API contracts</td>
-                                </tr>
-                                <tr>
-                                    <td>Medical Reviewers</td>
-                                    <td>Accuracy, defensibility, efficiency</td>
-                                    <td>Primary user research; workflow optimization; trust-building interfaces</td>
-                                </tr>
-                                <tr>
-                                    <td>Regulatory Affairs</td>
-                                    <td>E2B R2/R3 compliance, audit trails</td>
-                                    <td>Design compliant data import/export; ensure AI decisions are traceable</td>
-                                </tr>
-                                <tr>
-                                    <td>CRO Clients</td>
-                                    <td>Speed, cost reduction, quality</td>
-                                    <td>Balance automation with human oversight; demonstrate ROI</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <p class="table-caption">Success required translating between 5 organizational languages: data science, engineering, medicine, regulation, and business.</p>
-                    </div>
-                </div>
-
-                <div class="xai-research">
-                    <h3>Explainable AI (XAI) Literature Review</h3>
-                    <p>Before designing, I synthesized 47 academic articles on AI explanation interfaces for clinical decision support. Key insights that shaped my approach:</p>
-                    <div class="xai-principles">
-                        <div class="xai-card">
-                            <h4>What Information to Provide?</h4>
-                            <ul>
-                                <li>Feature importance (which case characteristics drove the prediction?)</li>
-                                <li>Confidence scores (how certain is the AI?)</li>
-                                <li>Similar cases (what past cases resemble this one?)</li>
-                                <li>Model limitations (what does the AI not know?)</li>
-                            </ul>
-                        </div>
-                        <div class="xai-card">
-                            <h4>How to Design the Interface?</h4>
-                            <ul>
-                                <li>Layered explanations: high-level summary → detailed reasoning → raw features</li>
-                                <li>Visual hierarchies: Make AI reasoning scannable, not buried</li>
-                                <li>Interactive exploration: Let reviewers drill into specific factors</li>
-                                <li>Plain language: Avoid technical model jargon</li>
-                            </ul>
-                        </div>
-                        <div class="xai-card">
-                            <h4>How to Handle Errors?</h4>
-                            <ul>
-                                <li>Design for "oh-oh" moments: What happens when AI is wrong?</li>
-                                <li>Make correction effortless: One-click override with explanation</li>
-                                <li>Provide second opinions: Alternative predictions with confidence</li>
-                                <li>Never trap users: Always provide manual path</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Process: Define -->
-        <section class="process-section">
-            <div class="container">
-                <span class="section-caption center">PROCESS</span>
-                <h2 class="section-heading center">Define</h2>
-                <p class="section-intro center">Designing trust into every AI-human interaction.</p>
-                
-                <div class="design-principles">
-                    <h3>Core Design Principles for Medical AI</h3>
-                    <div class="principles-grid">
-                        <div class="principle-card">
-                            <h4>🔍 Make Things Explainable</h4>
-                            <p>If AI suggests a case is serious, show exactly which criteria matched (hospitalization? life-threatening? disability?). Use plain language. Display confidence scores. "Design like your goal is to build trust with every click."</p>
-                        </div>
-                        <div class="principle-card">
-                            <h4>🤝 Design for Collaboration, Not Control</h4>
-                            <p>AI cannot replace medical reviewers. It assists them. Make it easy to accept, question, or override AI suggestions. Never force AI decisions. "AI can be their assistant. Make it easy for users to accept, question, or override the AI's suggestions."</p>
-                        </div>
-                        <div class="principle-card">
-                            <h4>⚠️ Plan for the "Oh-Oh"</h4>
-                            <p>What happens when AI miscodes a serious adverse event? Build in failsafes. Provide second opinions. Don't trap reviewers on a single path. "Build in failsafes. Provide second opinions. Don't trap users on a single path."</p>
-                        </div>
-                        <div class="principle-card">
-                            <h4>✅ Keep It Simple</h4>
-                            <p>Even if AI logic is complex (neural networks, ensemble models), the interface shouldn't be. Prioritize clarity over cleverness. Medical reviewers work under time pressure and regulatory anxiety.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <h3 class="subsection-heading">Multi-Vigilance Unification Strategy</h3>
-                <div class="unification-strategy">
-                    <div class="strategy-left">
-                        <h4>The Problem: Four Silos, Four UX Patterns</h4>
-                        <p>DF Safety handled Drugs, Vaccines, Cosmetics, and Medical Devices—but each had separate workflows, terminology, and interfaces. CROs managing multiple product types needed to train staff on four different systems.</p>
-                    </div>
-                    <div class="strategy-right">
-                        <h4>The Solution: Unified Platform with Contextual Adaptation</h4>
-                        <p>I designed a single interface framework that adapts based on product type:</p>
-                        <ul>
-                            <li><strong>Shared structure:</strong> Case intake → AI triage → Review → Signal detection → Report</li>
-                            <li><strong>Contextual fields:</strong> Drugs show "indication," vaccines show "lot number," devices show "UDI"</li>
-                            <li><strong>Consistent AI patterns:</strong> Same explanation interface, adapted to product-specific seriousness criteria</li>
-                            <li><strong>Result:</strong> 40% reduction in training time for multi-product CROs</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <h3 class="subsection-heading">AI Feature Definition: Case Intake & Triage</h3>
-                <table class="ai-features-table">
-                    <thead>
-                        <tr>
-                            <th>AI Capability</th>
-                            <th>Reviewer Need</th>
-                            <th>UX Solution</th>
-                            <th>Impact</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Automated Case Creation</td>
-                            <td>Reduce manual data entry from source documents</td>
-                            <td>AI extracts fields → Reviewer validates in side-by-side comparison → One-click confirm or edit</td>
-                            <td>3% processing effort reduction</td>
-                        </tr>
-                        <tr>
-                            <td>MedDRA Auto-Coding</td>
-                            <td>Fast, accurate adverse event coding</td>
-                            <td>AI suggests PT/LLT codes → Shows similar past cases → Reviewer accepts or searches alternatives</td>
-                            <td>3% coding time acceleration</td>
-                        </tr>
-                        <tr>
-                            <td>Seriousness Prediction</td>
-                            <td>Consistent application of regulatory criteria</td>
-                            <td>AI highlights matching criteria (death, hospitalization, etc.) → Confidence score per criterion → Toggle to adjust → Explanation updates real-time</td>
-                            <td>85% acceptance rate (vs. 30% before)</td>
-                        </tr>
-                        <tr>
-                            <td>Causality Assessment</td>
-                            <td>Defensible causality judgments</td>
-                            <td>AI suggests "Probable" → Shows reasoning (temporal relationship, dechallenge, rechallenge) → Reviewer adjusts weighting → Narrative auto-updates</td>
-                            <td>50% faster narrative writing</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <h3 class="subsection-heading">Signal Detection: From Data to Decision</h3>
-                <div class="signal-detection-strategy">
-                    <div class="sd-left">
-                        <h4>Demand Science Approach</h4>
-                        <p>Applied "Demand Science" principles to transform complex ML outputs and large datasets into actionable outcomes:</p>
-                        <ul>
-                            <li><strong>Disproportionality analysis:</strong> Statistical algorithms identify signals, but reviewers need stories</li>
-                            <li><strong>UX translation:</strong> "Drug X + Event Y: 3× higher than expected based on 10,000 cases. Emerging trend over 6 months."</li>
-                            <li><strong>Multi-format dashboards:</strong> Executive view (trends), Medical view (case details), Regulatory view (compliance status)</li>
-                        </ul>
-                    </div>
-                    <div class="sd-right">
-                        <h4>Risk Management Interface</h4>
-                        <p>Designed collaborative signal management:</p>
-                        <ul>
-                            <li>Shared workspace for cross-functional teams (medical, regulatory, statistics)</li>
-                            <li>Threaded discussions attached to specific signals</li>
-                            <li>Regulatory report generation: One-click E2B R3 signal documentation</li>
-                            <li>Audit trail: Every decision tracked for inspections</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Process: Develop -->
-        <section class="process-section">
-            <div class="container">
-                <span class="section-caption center">PROCESS</span>
-                <h2 class="section-heading center">Develop</h2>
-                <p class="section-intro center">Building the interface between machine learning and medical expertise.</p>
-                
-                <h3 class="subsection-heading">The Explanation Interface: Technical Implementation</h3>
-                <div class="xui-implementation">
-                    <div class="xui-before-after">
-                        <div class="xui-before">
-                            <h4>❌ Before: Opaque AI Output</h4>
-                            <div class="mock-ui bad-ui">
-                                <div class="ai-output">
-                                    <label>AI Assessment:</label>
-                                    <div class="prediction">Serious: YES</div>
-                                    <div class="prediction">Causality: PROBABLE</div>
-                                    <button class="override-btn">Override</button>
-                                </div>
-                            </div>
-                            <p class="ui-caption">Reviewer sees conclusion, no reasoning. Must investigate manually or blindly trust.</p>
-                        </div>
-                        <div class="xui-arrow">→</div>
-                        <div class="xui-after">
-                            <h4>✅ After: Explainable AI Interface (XUI)</h4>
-                            <div class="mock-ui good-ui">
-                                <div class="ai-explanation">
-                                    <label>AI Assessment:</label>
-                                    <div class="confidence-bar">
-                                        <span>Confidence: 87%</span>
-                                        <div class="bar"><div class="fill" style="width: 87%"></div></div>
-                                    </div>
-                                    <div class="criteria-list">
-                                        <div class="criterion met">✓ Hospitalization required</div>
-                                        <div class="criterion met">✓ Life-threatening condition</div>
-                                        <div class="criterion not-met">○ Resulted in death (not detected)</div>
-                                        <div class="criterion met">✓ Required intervention</div>
-                                    </div>
-                                    <div class="similar-cases">
-                                        Based on 12 similar cases (94% agreement)
-                                    </div>
-                                    <div class="actions">
-                                        <button class="accept-btn">Accept AI Assessment</button>
-                                        <button class="adjust-btn">Adjust Criteria</button>
-                                        <button class="manual-btn">Manual Override</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="ui-caption">Reviewer sees reasoning, confidence, similar cases. Can accept, adjust, or override with one click.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <h3 class="subsection-heading">Design System for Multi-Vigilance</h3>
-                <div class="design-system-showcase">
-                    <div class="ds-components">
-                        <h4>Component Library: AI-Enhanced Elements</h4>
-                        <div class="component-grid">
-                            <div class="comp-card">
-                                <h5>AI Confidence Indicator</h5>
-                                <div class="comp-visual">
-                                    <div class="confidence-badge high">High confidence</div>
-                                    <div class="confidence-badge medium">Medium confidence</div>
-                                    <div class="confidence-badge low">Low confidence — Review recommended</div>
-                                </div>
-                                <p>Color-coded badges with percentage thresholds. Low confidence triggers enhanced review mode.</p>
-                            </div>
-                            <div class="comp-card">
-                                <h5>Explanation Accordion</h5>
-                                <div class="comp-visual">
-                                    <div class="accordion">
-                                        <div class="acc-header">Why this coding? ▼</div>
-                                        <div class="acc-content">Matched terms: "Headache" → PT: Headache (100%), "Severe" → Severity: Severe (95%)</div>
-                                    </div>
-                                </div>
-                                <p>Progressive disclosure for detailed AI reasoning. Keeps interface clean while allowing deep inspection.</p>
-                            </div>
-                            <div class="comp-card">
-                                <h5>Correction Flow</h5>
-                                <div class="comp-visual">
-                                    <div class="correction-flow">
-                                        <span>AI: Probable</span>
-                                        <span>→</span>
-                                        <select><option>Probable</option><option>Possible</option><option>Unlikely</option></select>
-                                        <span>→</span>
-                                        <input type="text" placeholder="Reason for change..." size="15">
-                                    </div>
-                                </div>
-                                <p>Inline correction with mandatory reasoning capture. Supports audit trail and model retraining.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <h3 class="subsection-heading">Regulatory Compliance: E2B R2/R3 Design</h3>
-                <div class="regulatory-design">
-                    <div class="e2b-challenge">
-                        <h4>The Compliance Challenge</h4>
-                        <p>E2B (Electronic Transmission of Individual Case Safety Reports) is the global standard for regulatory submission. E2B R3 introduced more granular data fields and improved structure—but also complexity. My design had to ensure:</p>
-                        <ul>
-                            <li><strong>Data integrity:</strong> AI-extracted fields must be traceable to source</li>
-                            <li><strong>Null flavor handling:</strong> Proper handling of missing data per E2B standards</li>
-                            <li><strong>Backwards compatibility:</strong> Support both R2 and R3 during transition period</li>
-                            <li><strong>Audit trails:</strong> Every AI decision and human correction logged</li>
-                        </ul>
-                    </div>
-                    <div class="compliance-solutions">
-                        <h4>UX Solutions for Compliance</h4>
-                        <div class="solution-list">
-                            <div class="sol-item">
-                                <h5>Source-Linked Data Entry</h5>
-                                <p>Every AI-extracted field links to source document location. Reviewer can click to verify context.</p>
-                            </div>
-                            <div class="sol-item">
-                                <h5>Validation Visual Indicators</h5>
-                                <p>Real-time E2B validation: Green check for compliant, yellow warning for missing optional, red error for missing required.</p>
-                            </div>
-                            <div class="sol-item">
-                                <h5>Bulk XML Migration Interface</h5>
-                                <p>Designed seamless data import/export workflows including bulk XML migration with progress tracking and error reporting.</p>
-                            </div>
-                            <div class="sol-item">
-                                <h5>Audit-Ready History</h5>
-                                <p>Complete decision log: AI suggestion → Reviewer action → Final value → Timestamp → User ID. Exportable for inspections.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <h3 class="subsection-heading">Agile Development: Sprints & Deliverables</h3>
-                <div class="agile-process">
-                    <div class="sprint-timeline">
-                        <div class="sprint-phase">
-                            <h4>Sprint 1-2: Foundation</h4>
-                            <ul>
-                                <li>Design system components (Figma)</li>
-                                <li>Explanation interface wireframes</li>
-                                <li>Medical reviewer usability testing (5 participants)</li>
-                                <li>Key learning: Confidence thresholds need adjustment per product type</li>
-                            </ul>
-                        </div>
-                        <div class="sprint-phase">
-                            <h4>Sprint 3-4: AI Integration</h4>
-                            <ul>
-                                <li>MedDRA auto-coding interface with explanation layer</li>
-                                <li>Seriousness prediction with criteria breakdown</li>
-                                <li>Data science collaboration: Refined feature importance display</li>
-                                <li>Regulatory review: E2B validation rules integration</li>
-                            </ul>
-                        </div>
-                        <div class="sprint-phase">
-                            <h4>Sprint 5-6: Unification & Scale</h4>
-                            <ul>
-                                <li>Multi-vigilance adaptive interface</li>
-                                <li>Signal detection dashboards</li>
-                                <li>Literature monitoring integration</li>
-                                <li>End-to-end testing with 3 CRO pilot customers</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="deliverables-showcase">
-                        <h4>Key Deliverables</h4>
-                        <div class="deliverable-cards">
-                            <div class="del-card">
-                                <h5>📋 Comprehensive Design Specs</h5>
-                                <p>DF Safety 4.0 wireframes integrating Literature Monitoring, Signal Detection, and Case Intake into cohesive cloud-based platform.</p>
-                            </div>
-                            <div class="del-card">
-                                <h5>🎨 Unified Design System</h5>
-                                <p>Industry's first true multi-vigilance design system—consistent patterns across Drugs, Vaccines, Cosmetics, Devices.</p>
-                            </div>
-                            <div class="del-card">
-                                <h5>📊 Data Visualization System</h5>
-                                <p>Signal Detection dashboards transforming large datasets into actionable outcomes through multi-format representations.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Process: Deliver -->
-        <section class="process-section">
-            <div class="container">
-                <span class="section-caption center">PROCESS</span>
-                <h2 class="section-heading center">Deliver</h2>
-                <p class="section-intro center">Measurable impact on medical reviewer efficiency and AI trust.</p>
-                
-                <div class="metrics-grid">
-                    <div class="metric-card">
-                        <span class="metric-number">3%</span>
-                        <span class="metric-label">Manual Processing Reduction</span>
-                        <span class="metric-context">Case Intake & Triage automation</span>
-                    </div>
-                    <div class="metric-card">
-                        <span class="metric-number">3%</span>
-                        <span class="metric-label">MedDRA Coding Acceleration</span>
-                        <span class="metric-context">Auto-coding with explanation</span>
-                    </div>
-                    <div class="metric-card">
-                        <span class="metric-number">85%</span>
-                        <span class="metric-label">AI Acceptance Rate</span>
-                        <span class="metric-context">Up from 30% (black box)</span>
-                    </div>
-                    <div class="metric-card">
-                        <span class="metric-number">40%</span>
-                        <span class="metric-label">Training Time Reduction</span>
-                        <span class="metric-context">Multi-vigilance unification</span>
-                    </div>
-                </div>
-
-                <div class="outcomes-detailed">
-                    <h3>Detailed Outcomes by Module</h3>
-                    <table class="outcomes-table">
-                        <thead>
-                            <tr>
-                                <th>Module</th>
-                                <th>Before</th>
-                                <th>After</th>
-                                <th>Reviewer Feedback</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Case Intake</td>
-                                <td>Manual entry from PDFs: 15 min/case</td>
-                                <td>AI extraction + validation: 12 min/case (3% reduction)</td>
-                                <td>"I spend less time typing, more time thinking."</td>
-                            </tr>
-                            <tr>
-                                <td>MedDRA Coding</td>
-                                <td>Manual dictionary search: 5 min/event</td>
-                                <td>AI suggestion + review: 4.85 min/event (3% faster)</td>
-                                <td>"The similar cases feature catches things I'd miss."</td>
-                            </tr>
-                            <tr>
-                                <td>Seriousness Assessment</td>
-                                <td>Checklist manually: 3 min, inconsistent</td>
-                                <td>AI pre-populated criteria: 1 min, 85% acceptance</td>
-                                <td>"I can see exactly why it flagged this as serious."</td>
-                            </tr>
-                            <tr>
-                                <td>Signal Detection</td>
-                                <td>Excel analysis, weekly reports</td>
-                                <td>Real-time dashboard, collaborative workspace</td>
-                                <td>"We caught a signal 2 weeks earlier than before."</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="testimonials-section">
-                    <h3>Medical Reviewer & Client Feedback</h3>
-                    <div class="testimonial-grid">
-                        <blockquote class="testimonial-card">
-                            <p>"The explanation interface changed how I work. I used to ignore AI suggestions. Now I use them as a starting point—it's faster than starting from scratch, and I trust it because I can see the reasoning."</p>
-                            <cite>— Medical Reviewer, Global CRO</cite>
-                        </blockquote>
-                        <blockquote class="testimonial-card">
-                            <p>"We passed our FDA inspection with zero findings on our AI-assisted cases. The audit trail was complete, every decision was traceable. That defensibility is worth the investment."</p>
-                            <cite>— VP of Pharmacovigilance, Pharmaceutical Client</cite>
-                        </blockquote>
-                        <blockquote class="testimonial-card">
-                            <p>"Training new reviewers used to take 3 weeks per product type. With the unified interface, we train once, they work across Drugs and Devices. Huge operational savings."</p>
-                            <cite>— Operations Director, Multi-Service CRO</cite>
-                        </blockquote>
-                    </div>
-                </div>
-
-                <div class="regulatory-validation">
-                    <h3>Regulatory Compliance Validation</h3>
-                    <div class="compliance-badges">
-                        <div class="badge">
-                            <span class="badge-icon">✓</span>
-                            <span class="badge-text">E2B R2 Compliant</span>
-                        </div>
-                        <div class="badge">
-                            <span class="badge-icon">✓</span>
-                            <span class="badge-text">E2B R3 Compliant</span>
-                        </div>
-                        <div class="badge">
-                            <span class="badge-icon">✓</span>
-                            <span class="badge-text">FDA Inspection Ready</span>
-                        </div>
-                        <div class="badge">
-                            <span class="badge-icon">✓</span>
-                            <span class="badge-text">EMA Compatible</span>
-                        </div>
-                    </div>
-                    <p class="compliance-note">All AI-assisted workflows include complete audit trails, source data verification links, and human override documentation meeting ALCOA+ standards for data integrity.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Key Learnings -->
-        <section class="learnings-section">
-            <div class="container">
-                <span class="section-caption center">REFLECTION</span>
-                <h2 class="section-heading center">Key Learnings</h2>
-                <p class="section-intro center">What designing AI for medical experts taught me about trust, transparency, and regulation.</p>
-                
-                <div class="learnings-grid">
-                    <div class="learning-card">
-                        <h4>Trust Is the Real KPI for Healthcare AI</h4>
-                        <p>We measured efficiency gains (3% here, 3% there), but the real metric was trust. When AI acceptance jumped from 30% to 85%, reviewers weren't just faster—they were more confident, more consistent, and more willing to use advanced features. "Measure trust, not just clicks. While engagement metrics are useful, trust is the real key performance indicator (KPI) in healthcare."</p>
-                        <span class="learning-caption">→ Validate: In regulated industries, trust metrics predict adoption better than speed metrics</span>
-                    </div>
-                    <div class="learning-card">
-                        <h4>Explainability Requires Layered Design</h4>
-                        <p>One layer of explanation doesn't fit all. New reviewers want simple confidence scores. Senior reviewers want feature-level details. Regulators want audit trails. I designed progressive disclosure: summary → criteria → similar cases → raw features. Each user drills to their comfort level.</p>
-                        <span class="learning-caption">→ Validate: Design explanations as journeys, not monoliths</span>
-                    </div>
-                    <div class="learning-card">
-                        <h4>Compliance Is a UX Feature, Not a Constraint</h4>
-                        <p>E2B R2/R3 requirements initially felt like design limitations. But when I made audit trails visible and source-linking interactive, reviewers found them valuable for their own verification—not just regulatory box-checking. Compliance features became trust features.</p>
-                        <span class="learning-caption">→ Validate: Regulatory requirements often align with user needs for transparency</span>
-                    </div>
-                    <div class="learning-card">
-                        <h4>AI-UX Design Is Cross-Functional Diplomacy</h4>
-                        <p>Data scientists wanted to show model accuracy. Medical reviewers wanted to see clinical reasoning. Regulatory wanted audit trails. I had to synthesize these into coherent interfaces—translating between technical metrics, clinical concepts, and compliance requirements. The best AI product designers are multilingual.</p>
-                        <span class="learning-caption">→ Validate: AI UX requires fluency in data science, domain expertise, and regulation</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Final Quote -->
-        <section class="final-quote-section">
-            <div class="container">
-                <blockquote>
-                    <p>"Designing AI for medical reviewers taught me that the most sophisticated machine learning is worthless if humans can't understand, trust, and efficiently correct it. The 3% efficiency gains in case processing weren't just about speed—they represented hours reclaimed for clinical thinking. The 85% AI acceptance rate wasn't just adoption—it was trust earned through transparency. In healthcare AI, the interface is the product. My job wasn't to make the AI smarter; it was to make the collaboration between human expertise and machine intelligence seamless, defensible, and regulation-ready."</p>
-                    <cite>— My takeaway from this project</cite>
-                </blockquote>
-            </div>
-        </section>
-
-        <!-- Footer Navigation -->
-        <section class="case-study-footer-nav">
-            <div class="container">
-                <div class="footer-nav-links">
-                    <a href="biotime-cloud.html" class="footer-nav-back">
-                        <span>← Previous Project</span>
-                        <small>BioTime Cloud 2.0</small>
-                    </a>
-                    <a href="zk-digimax.html" class="footer-nav-next">
-                        <span>Next Project →</span>
-                        <small>ZKDigiMax-ESL</small>
-                    </a>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Project Navigation -->
-    <div class="project-navigation" style="display: flex; justify-content: space-between; padding: 4rem 2rem; border-top: 1px solid var(--border); margin-top: 4rem;">
-      <a href="scan-it-know-it.html" style="text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-secondary)'">
-        <span style="display: block; font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem;">← Previous Project</span>
-        <span style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--text-primary);">Scan It Know It</span>
-      </a>
-      <a href="tenet-healthcare.html" style="text-decoration: none; transition: color 0.2s; text-align: right;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-secondary)'">
-        <span style="display: block; font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem;">Next Project →</span>
-        <span style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--text-primary);">Tenet Healthcare</span>
-      </a>
+  <div class="tldr">
+    <div class="tldr-l">At a glance — Data Foundry, Bangalore · Jan – Jun 2023</div>
+    <div class="tldr-g">
+      <div class="tldr-i">UI/UX Product Designer · cross-functional team (ML, data science, medical reviewers)</div>
+      <div class="tldr-i">Redesigned Case Intake, Signal Detection, MedDRA Auto-Coding workflows</div>
+      <div class="tldr-i">Unified UX framework across 5 vigilance categories (drugs, vaccines, cosmetics, devices, nutraceuticals)</div>
+      <div class="tldr-i">AI outputs translated to one-click accept/correct reviewer interface</div>
+      <div class="tldr-i">E2B R2/R3 compliance built into every workflow — bulk XML export</div>
+      <div class="tldr-i">40–60% case processing time reduction (industry benchmark for AI-assisted PV)¹</div>
     </div>
+  </div>
 
-    <!-- Footer Component -->
-    <footer class="site-footer"></footer>
+  <!-- Hero metrics -->
+  <div class="g4" style="margin-bottom:1rem">
+    <div class="MC"><div class="MC-l">Case processing ↓</div><div class="MC-v vM">40–60%</div><div class="MC-s">industry benchmark · AI-assisted PV¹</div></div>
+    <div class="MC"><div class="MC-l">MedDRA efficiency</div><div class="MC-v vG">80%+</div><div class="MC-s">vs manual coding · NLP auto-coding²</div></div>
+    <div class="MC"><div class="MC-l">Vigilance categories</div><div class="MC-v vP">5</div><div class="MC-s">drugs · vaccines · cosmetics · devices · nutraceuticals</div></div>
+    <div class="MC"><div class="MC-l">Regulatory standard</div><div class="MC-v vC">E2B R2/R3</div><div class="MC-s">100% compliant · ICSR XML export</div></div>
+    <div class="MC"><div class="MC-l">AI features designed</div><div class="MC-v vB">4</div><div class="MC-s">causality · seriousness · MedDRA · signal detection</div></div>
+    <div class="MC"><div class="MC-l">Reviewer interviews</div><div class="MC-v vT">15+</div><div class="MC-s">medical reviewers + CRO teams</div></div>
+    <div class="MC"><div class="MC-l">Design role</div><div class="MC-v" style="font-size:1.1rem;color:var(--A)">UX Lead</div><div class="MC-s">sole UX designer · 6-month project</div></div>
+    <div class="MC"><div class="MC-l">Platform</div><div class="MC-v" style="font-size:1.1rem;color:var(--M)">Live</div><div class="MC-s">DF mSafety AI v4.0 · enterprise deployed</div></div>
+  </div>
 
-    <script src="../js/shared.js"></script>
+  <!-- 6-month design sprint timeline -->
+  <div class="sl">6-month UX redesign sprint · Jan – Jun 2023</div>
+  <div class="vtl" style="margin-bottom:.375rem">
+    <div class="vtl-s" style="flex:1;background:var(--Cb);color:var(--Cd)"><div class="vtl-mo">Jan · Wks 1–3</div><div class="vtl-n">① Problem definition</div></div>
+    <div class="vtl-s" style="flex:1.25;background:var(--Mb);color:var(--Md)"><div class="vtl-mo">Jan–Feb · Wks 3–6</div><div class="vtl-n">② Research + discovery</div></div>
+    <div class="vtl-s" style="flex:.875;background:var(--Pb);color:var(--Pd)"><div class="vtl-mo">Feb · Wk 7</div><div class="vtl-n">③ Prioritise</div></div>
+    <div class="vtl-s" style="flex:2;background:var(--Ab);color:var(--Ad)"><div class="vtl-mo">Feb–Apr · Wks 8–18</div><div class="vtl-n">④ UX design + prototyping (Figma)</div></div>
+    <div class="vtl-s" style="flex:1.25;background:var(--Tb);color:var(--Td)"><div class="vtl-mo">Apr–Jun · Wks 18–24</div><div class="vtl-n">⑤ Engineering handoff + iteration</div></div>
+  </div>
+  <div style="font-size:.62rem;color:var(--text-muted)">Sole UX designer · worked daily with 3 ML engineers, 2 data scientists, and 4 medical reviewer SMEs · live in DF mSafety AI v4.0</div>
+</section>
+
+<!-- ══════════════ PHASE 1 — PROBLEM ══════════════ -->
+<div class="ph" style="background:var(--Cb)" id="p1">
+  <span class="ph-n" style="background:rgba(255,255,255,.25);color:var(--Cd)">Phase 01</span>
+  <span class="ph-t" style="color:var(--Cd)">Problem — AI outputs exist, but reviewers can't use them</span>
+  <span class="ph-d" style="color:var(--Cd);opacity:.65">Jan 2023 · Weeks 1–3</span>
+</div>
+
+<div class="qt">
+  <p>"The AI gives us a causality score, a seriousness flag, and a MedDRA suggestion — but they're buried in three different screens with no context, no confidence indicator, and no easy way to accept or push back."</p>
+  <div class="qs">— Medical reviewer SME · internal discovery session · Data Foundry · Jan 2023</div>
+</div>
+
+<div class="g2" style="margin-bottom:.875rem">
+  <div>
+    <div class="sl" style="margin-top:0">Platform context — what DF mSafety AI handles</div>
+    <div class="C" style="margin-bottom:.625rem">
+      <div class="C-t" style="color:var(--Md)">What the platform does</div>
+      <div style="font-size:.78rem;color:var(--text-secondary);line-height:1.7">
+        <div style="padding:.2rem 0;border-bottom:1px solid var(--border)">End-to-end pharmacovigilance case management — from intake to regulatory submission</div>
+        <div style="padding:.2rem 0;border-bottom:1px solid var(--border)">AI-powered <span class="K Kp">seriousness prediction</span> + <span class="K Kp">causality assessment</span> for adverse events</div>
+        <div style="padding:.2rem 0;border-bottom:1px solid var(--border)"><span class="K Kp">MedDRA auto-coding</span> via NLP — keyword-to-preferred-term matching</div>
+        <div style="padding:.2rem 0;border-bottom:1px solid var(--border)"><span class="K Km">Signal detection</span> + risk management dashboards across product portfolios</div>
+        <div style="padding:.2rem 0"><span class="K Kc">E2B R2/R3</span> compliant ICSR export + bulk XML migration for regulatory submissions</div>
+      </div>
+    </div>
+    <div class="C">
+      <div class="C-t" style="color:var(--Cd)">Who uses it — reviewer personas</div>
+      <div style="font-size:.78rem;color:var(--text-secondary);line-height:1.7">
+        <div style="padding:.2rem 0;border-bottom:1px solid var(--border)">🧑‍⚕️ <b>Medical reviewers</b> — assess AI seriousness + causality recommendations</div>
+        <div style="padding:.2rem 0;border-bottom:1px solid var(--border)">🏢 <b>CRO teams</b> — process high volumes of ICSRs across global client portfolios</div>
+        <div style="padding:.2rem 0;border-bottom:1px solid var(--border)">🔬 <b>Signal analysts</b> — monitor safety signals across product categories</div>
+        <div style="padding:.2rem 0">📋 <b>Regulatory affairs</b> — review and submit E2B XML to health authorities</div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="sl" style="margin-top:0">Pain points — discovered in reviewer interviews</div>
+    <div class="dr">
+      <div class="row"><span>Time spent on manual case intake + triage (baseline) <span class="K Ka">industry data¹</span></span><b style="color:var(--C)">40–60%</b></div>
+      <div class="row"><span>AI outputs across separate screens with no unified view</span><b style="color:var(--C)">3 screens</b></div>
+      <div class="row"><span>No confidence score shown with AI suggestions</span><b style="color:var(--C)">0 context</b></div>
+      <div class="row"><span>Manual MedDRA coding — keyword lookup + hierarchy navigation <span class="K Ka">benchmark²</span></span><b style="color:var(--C)">80% slower</b></div>
+      <div class="row"><span>5 vigilance categories — separate navigation per category</span><b style="color:var(--C)">5 flows</b></div>
+      <div class="row"><span>E2B XML export — manual field mapping per submission</span><b style="color:var(--C)">Error-prone</b></div>
+    </div>
+    <div class="sl">Competitive landscape — 4 PV platforms benchmarked</div>
+    <div class="ch h190"><canvas id="compChart"></canvas></div>
+    <div style="font-size:.62rem;color:var(--text-muted);margin-top:.25rem">
+      Platforms: ArisGlobal LifeSphere · IQVIA Argus · SafetyEasy · Veeva Vault Safety
+      <div class="ref">📎 <a href="https://intuitionlabs.ai/articles/pharmacovigilance-software-systems-overview" target="_blank">IntuitionLabs: PV Software Systems Overview 2025</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ PHASE 2 — RESEARCH ══════════════ -->
+<div class="ph" style="background:var(--Mb)" id="p2">
+  <span class="ph-n" style="background:rgba(255,255,255,.25);color:var(--Md)">Phase 02</span>
+  <span class="ph-t" style="color:var(--Md)">Research — Understanding the reviewer's world</span>
+  <span class="ph-d" style="color:var(--Md);opacity:.65">Jan – Feb 2023 · Weeks 3–6</span>
+</div>
+
+<div class="kc">
+  <span class="K Km">15+ medical reviewer interviews</span>
+  <span class="K Km">4 CRO team usability sessions</span>
+  <span class="K Ka">Existing case log analysis (data patterns)</span>
+  <span class="K Ka">Regulatory audit finding review</span>
+  <span class="K Kp">AI output accuracy benchmarking (ML team)</span>
+  <span class="K Kt">Jobs-to-be-Done framework</span>
+  <span class="K Kb">Competitive teardown · 4 PV platforms</span>
+  <span class="K Kc">E2B R2/R3 compliance mapping</span>
+</div>
+
+<div class="g2" style="margin-bottom:.875rem">
+  <div>
+    <div class="sl" style="margin-top:0">Research signal sources</div>
+    <div class="ch h190"><canvas id="resDonut"></canvas></div>
+  </div>
+  <div>
+    <div class="sl" style="margin-top:0">6 key insights → UX decisions</div>
+    <div class="C" style="padding:.75rem 1rem;margin-bottom:.5rem"><div class="C-t" style="color:var(--Md)"><span class="K Km">Insight 1</span> AI trust requires transparency</div><div style="font-size:.78rem;color:var(--text-secondary);line-height:1.55">Reviewers won't accept AI suggestions without a confidence score and "why" tooltip — <span class="K Kp">explainability UI</span> is mandatory</div></div>
+    <div class="C" style="padding:.75rem 1rem;margin-bottom:.5rem"><div class="C-t" style="color:var(--Cd)"><span class="K Kc">Insight 2</span> Regulatory compliance = UX constraint #1</div><div style="font-size:.78rem;color:var(--text-secondary);line-height:1.55">Every screen must support <span class="K Kc">E2B R2/R3 audit trail</span> — accept/correct decisions must be logged with timestamp and user</div></div>
+    <div class="C" style="padding:.75rem 1rem;margin-bottom:.5rem"><div class="C-t" style="color:var(--Pd)"><span class="K Kp">Insight 3</span> MedDRA lookup is the biggest time sink</div><div style="font-size:.78rem;color:var(--text-secondary);line-height:1.55">Reviewers navigate 5 hierarchy levels manually → <span class="K Kp">NLP auto-suggestion</span> + one-click accept is the primary UX win</div></div>
+    <div class="C" style="padding:.75rem 1rem;margin-bottom:.5rem"><div class="C-t" style="color:var(--Ad)"><span class="K Ka">Insight 4</span> 5 vigilance categories = 5 different workflows (currently)</div><div style="font-size:.78rem;color:var(--text-secondary);line-height:1.55">CRO teams switch contexts constantly — a <span class="K Km">unified UX framework</span> with category-specific modules reduces cognitive load</div></div>
+    <div class="C" style="padding:.75rem 1rem;margin-bottom:.5rem"><div class="C-t" style="color:var(--Td)"><span class="K Kt">Insight 5</span> Signal detection needs executive-readable charts</div><div style="font-size:.78rem;color:var(--text-secondary);line-height:1.55">Signal data exists but is presented as raw tables — <span class="K Km">actionable dashboards</span> with risk tiers are what safety leads actually need</div></div>
+    <div class="C" style="padding:.75rem 1rem"><div class="C-t" style="color:var(--Bd)"><span class="K Kb">Insight 6</span> Bulk XML migration is a CRO dealbreaker</div><div style="font-size:.78rem;color:var(--text-secondary);line-height:1.55">Large CROs onboard with thousands of existing cases — <span class="K Kc">bulk XML import/export</span> UX must be frictionless or the platform fails at adoption</div></div>
+  </div>
+</div>
+
+<!-- ══════════════ PHASE 3 — PRIORITISE ══════════════ -->
+<div class="ph" style="background:var(--Pb)" id="p3">
+  <span class="ph-n" style="background:rgba(255,255,255,.25);color:var(--Pd)">Phase 03</span>
+  <span class="ph-t" style="color:var(--Pd)">Prioritisation — 4 core redesign areas identified</span>
+  <span class="ph-d" style="color:var(--Pd);opacity:.65">Feb 2023 · Week 7</span>
+</div>
+
+<div class="kc">
+  <span class="K Kt">MoSCoW Method</span>
+  <span class="K Ka">Impact vs effort matrix</span>
+  <span class="K Km">Regulatory risk weighting</span>
+  <span class="K Kb">Figma user story mapping</span>
+  <span class="K Kp">AI feature feasibility (with ML team)</span>
+</div>
+
+<div class="g2" style="margin-bottom:.875rem">
+  <div>
+    <div class="sl" style="margin-top:0">UX redesign priorities — impact scores</div>
+    <div id="riceEl"></div>
+    <div style="font-size:.62rem;color:var(--text-muted);margin-top:.375rem">Scored on: <b>Reviewer time saved × Regulatory risk × AI adoption impact × 6-month feasibility</b></div>
+  </div>
+  <div>
+    <div class="sl" style="margin-top:0">MoSCoW — redesign scope</div>
+    <div class="ch h190"><canvas id="moscowChart"></canvas></div>
+    <div style="font-size:.62rem;color:var(--text-muted);margin-top:.25rem">
+      <b>Must (4):</b> Case Intake redesign · MedDRA auto-coding UI · Causality/Seriousness panel · E2B XML flow<br>
+      <b>Should (3):</b> Signal detection dashboards · Risk management views · Audit trail UI<br>
+      <b>Could (4):</b> Advanced analytics · Study configuration · Literature review module<br>
+      <b>Won't (now):</b> Mobile-native app · Third-party EHR connectors
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ PHASE 4 — UX DESIGN ══════════════ -->
+<div class="ph" style="background:var(--Ab)" id="p4">
+  <span class="ph-n" style="background:rgba(255,255,255,.25);color:var(--Ad)">Phase 04</span>
+  <span class="ph-t" style="color:var(--Ad)">UX Design — AI-to-Human Translation at Every Step</span>
+  <span class="ph-d" style="color:var(--Ad);opacity:.65">Feb – Apr 2023 · Weeks 8–18</span>
+</div>
+
+<div class="kc">
+  <span class="K Kb">Figma (low-fi → high-fi prototypes)</span>
+  <span class="K Kb">Design system (medical component library)</span>
+  <span class="K Kp">AI explainability UI patterns (confidence scores + tooltips)</span>
+  <span class="K Km">One-click accept/correct interaction model</span>
+  <span class="K Kc">E2B R2/R3 audit trail UX</span>
+  <span class="K Ka">WCAG-compliant contrast + accessibility</span>
+  <span class="K Kt">User story writing + acceptance criteria</span>
+  <span class="K Kp">Daily sync with ML team for AI output mapping</span>
+</div>
+
+<!-- Dashboard mockups side by side -->
+<div class="g2" style="margin-bottom:.875rem">
+  <div>
+    <div class="sl" style="margin-top:0">Redesigned Case Intake — AI-assisted triage panel</div>
+    <div class="dash-mock">
+      <div class="dash-header">
+        <span class="dash-title">Case #CV-2023-4821 · Adverse Event Triage</span>
+        <span class="dash-badge" style="background:var(--Cb);color:var(--Cd)">⚠ Pending review</span>
+      </div>
+      <div class="dash-row"><span>Patient: 67F · Drug: [Product A] · Event: Hepatotoxicity</span></div>
+      <div class="dash-row">
+        <span><b>AI Seriousness</b> <span class="ai-chip">ML model · 94% confidence</span></span>
+        <span style="color:var(--C);font-weight:600">Serious <span class="accept-btn">Accept ✓</span></span>
+      </div>
+      <div class="dash-row">
+        <span><b>AI Causality</b> <span class="ai-chip">ML model · 87% confidence</span></span>
+        <span style="color:var(--A);font-weight:600">Probable <span class="accept-btn">Accept ✓</span></span>
+      </div>
+      <div class="dash-row">
+        <span><b>MedDRA Auto-code</b> <span class="ai-chip">NLP · keyword match</span></span>
+        <span style="color:var(--M);font-weight:600">10047141 · Hepatic failure <span class="accept-btn">Accept ✓</span></span>
+      </div>
+      <div class="dash-row">
+        <span><b>E2B R2/R3</b> — 15-day expedited report</span>
+        <span style="color:var(--G);font-weight:600">Auto-scheduled ✓</span>
+      </div>
+    </div>
+    <div style="font-size:.62rem;color:var(--text-muted);margin-top:.375rem">AI suggestions surface with confidence scores + one-click accept — no hunting across screens. Every decision audit-logged.</div>
+  </div>
+  <div>
+    <div class="sl" style="margin-top:0">Signal Detection dashboard — before vs after</div>
+    <div class="ba" style="margin-bottom:.625rem">
+      <div class="ba-b">
+        <h5 style="color:var(--text-muted)">Before — raw data table</h5>
+        <div class="ba-l">Flat spreadsheet · 40+ columns</div>
+        <div class="ba-l">No risk tier visualisation</div>
+        <div class="ba-l">Manual filter setup per session</div>
+        <div class="ba-l">No drill-down to case level</div>
+        <div class="ba-l">Signal thresholds hard-coded by dev</div>
+      </div>
+      <div><div class="ba-a">→</div><div class="ba-al">UX redesign</div></div>
+      <div class="ba-b aft">
+        <h5 style="color:var(--Td)">After — actionable dashboard</h5>
+        <div class="ba-l"><b>Risk-tiered signal cards</b> (high/medium/low)</div>
+        <div class="ba-l"><b>Trend chart</b> — signal volume over time</div>
+        <div class="ba-l">Saved filter sets per product/category</div>
+        <div class="ba-l">Click-through to case detail + audit trail</div>
+        <div class="ba-l"><b>Configurable thresholds</b> via UI — no dev needed</div>
+      </div>
+    </div>
+    <div class="sl" style="margin-top:.625rem">Unified multi-vigilance framework</div>
+    <div class="ch h150"><canvas id="vigilanceChart"></canvas></div>
+    <div style="font-size:.62rem;color:var(--text-muted);margin-top:.25rem">One navigation structure serves all 5 vigilance categories — category-specific modules slot in via configurable product type without rebuilding flows</div>
+  </div>
+</div>
+
+<!-- AI UX flow -->
+<div class="sl">AI-to-human UX pipeline — how ML outputs become reviewer actions</div>
+<div class="fp">
+  <div class="fp-n" style="background:var(--Cb);color:var(--Cd)">Case intake<sub>auto-creation from XML / manual</sub></div>
+  <div class="fp-a">→</div>
+  <div class="fp-n" style="background:var(--Pb);color:var(--Pd)">ML model outputs<sub>seriousness · causality scores</sub></div>
+  <div class="fp-a">→</div>
+  <div class="fp-n" style="background:var(--Ab);color:var(--Ad)">AI triage panel<sub>confidence + explainability tooltip</sub></div>
+  <div class="fp-a">→</div>
+  <div class="fp-n" style="background:var(--Mb);color:var(--Md)">Reviewer action<sub>accept · correct · override</sub></div>
+  <div class="fp-a">→</div>
+  <div class="fp-n" style="background:var(--Tb);color:var(--Td)">Audit trail log<sub>decision + timestamp · E2B compliant</sub></div>
+  <div class="fp-a">→</div>
+  <div class="fp-n" style="background:var(--Gb);color:var(--Gd)">E2B XML export<sub>regulatory submission ready</sub></div>
+</div>
+
+<!-- Vigilance category matrix -->
+<div class="sl" style="margin-top:.875rem">Unified UX framework — 5 vigilance categories, one navigation system</div>
+<div style="overflow-x:auto;border:1px solid var(--border);border-radius:10px;margin-bottom:.875rem">
+  <table class="mx">
+    <thead><tr><th>UX component</th><th>💊 Drugs</th><th>💉 Vaccines</th><th>💄 Cosmetics</th><th>🩺 Devices</th><th>🌿 Nutraceuticals</th></tr></thead>
+    <tbody>
+      <tr><td class="r">Case Intake (AI auto-fill)</td><td><span class="ck">✓</span>Full</td><td><span class="ck">✓</span>Full</td><td><span class="ck">✓</span>Full</td><td><span class="ck">✓</span>Full</td><td><span class="ck">✓</span>Full</td></tr>
+      <tr><td class="r">MedDRA auto-coding</td><td><span class="ck">✓</span>AE terms</td><td><span class="ck">✓</span>AE terms</td><td>Adapted</td><td>Adapted</td><td>Adapted</td></tr>
+      <tr><td class="r">AI Causality assessment</td><td><span class="ck">✓</span>ML model</td><td><span class="ck">✓</span>ML model</td><td style="color:var(--N)">Manual</td><td><span class="ck">✓</span>ML model</td><td style="color:var(--N)">Manual</td></tr>
+      <tr><td class="r">Signal Detection dashboard</td><td><span class="ck">✓</span>Full</td><td><span class="ck">✓</span>Full</td><td><span class="ck">✓</span>Full</td><td><span class="ck">✓</span>Full</td><td>Partial</td></tr>
+      <tr><td class="r">E2B R2/R3 XML export</td><td><span class="ck">✓</span>Full</td><td><span class="ck">✓</span>Full</td><td>Adapted</td><td>Adapted</td><td>Adapted</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ══════════════ PHASE 5 — BUILD & HANDOFF ══════════════ -->
+<div class="ph" style="background:var(--Tb)" id="p5">
+  <span class="ph-n" style="background:rgba(255,255,255,.25);color:var(--Td)">Phase 05</span>
+  <span class="ph-t" style="color:var(--Td)">Execution &amp; Handoff — Sole UX Designer · 6-Month Ownership</span>
+  <span class="ph-d" style="color:var(--Td);opacity:.65">Apr – Jun 2023 · Weeks 18–24</span>
+</div>
+
+<div class="kc">
+  <span class="K Kb">Figma handoff (annotated specs + developer notes)</span>
+  <span class="K Kb">Medical design system (component library)</span>
+  <span class="K Km">PRD + user stories + acceptance criteria</span>
+  <span class="K Kp">Daily ML team syncs (AI output accuracy mapping)</span>
+  <span class="K Ka">Usability testing rounds (medical reviewer panel)</span>
+  <span class="K Kc">Regulatory compliance review (E2B field mapping)</span>
+  <span class="K Kt">WCAG 2.1 accessibility audit</span>
+</div>
+
+<div class="g2" style="margin-bottom:.875rem">
+  <div>
+    <div class="sl" style="margin-top:0">Iteration cycles — design → test → refine</div>
+    <div class="ch h210"><canvas id="iterationChart"></canvas></div>
+    <div style="font-size:.62rem;color:var(--text-muted);margin-top:.25rem">Each iteration round: low-fi → reviewer validation → high-fi → engineering review → accessibility check → sign-off. 3 full cycles completed.</div>
+  </div>
+  <div>
+    <div class="sl" style="margin-top:0">My role — what I owned end to end</div>
+    <div class="dr">
+      <div class="row"><span><b>PRD + user stories</b></span><b style="color:var(--M)">Written · owned</b></div>
+      <div class="row"><span><b>Figma prototypes</b> (low-fi → high-fi)</span><b style="color:var(--M)">Sole designer</b></div>
+      <div class="row"><span><b>Medical design system</b> — component library</span><b style="color:var(--M)">Built from scratch</b></div>
+      <div class="row"><span><b>ML liaison</b> — AI output to UX translation</span><b style="color:var(--M)">Daily syncs</b></div>
+      <div class="row"><span><b>Regulatory mapping</b> — E2B field → UI field</span><b style="color:var(--M)">100% fields mapped</b></div>
+      <div class="row"><span><b>WCAG 2.1</b> accessibility audit</span><b style="color:var(--M)">AA compliant</b></div>
+      <div class="row"><span><b>Engineering handoff</b> — annotated Figma specs</span><b style="color:var(--M)">Delivered</b></div>
+    </div>
+    <div class="artifact-row">
+      <a class="art-btn" href="https://datafoundry.ai/m-safety/" target="_blank">→ DF mSafety AI (live platform)</a>
+      <a class="art-btn" href="https://datafoundry.ai/2023/04/the-next-generation-multi-vigilance-solution/" target="_blank">→ v4.0 release blog</a>
+    </div>
+  </div>
+</div>
+
+<!-- Cross-team comms flow -->
+<div class="sl">Cross-functional collaboration — how I bridged AI and medical reviewer worlds</div>
+<div class="fp">
+  <div class="fp-n" style="background:var(--Cb);color:var(--Cd)">Medical reviewers<sub>requirements + usability feedback</sub></div>
+  <div class="fp-a">↔</div>
+  <div class="fp-n" style="background:var(--Ab);color:var(--Ad)">UX Design (me)<sub>prototypes · PRD · design system</sub></div>
+  <div class="fp-a">↔</div>
+  <div class="fp-n" style="background:var(--Pb);color:var(--Pd)">ML / Data science<sub>model outputs · confidence scores · accuracy</sub></div>
+  <div class="fp-a">↔</div>
+  <div class="fp-n" style="background:var(--Mb);color:var(--Md)">Engineering<sub>Figma handoff · component specs</sub></div>
+  <div class="fp-a">↔</div>
+  <div class="fp-n" style="background:var(--Cb);color:var(--Cd)">Regulatory affairs<sub>E2B compliance sign-off</sub></div>
+</div>
+
+<!-- ══════════════ PHASE 6 — IMPACT ══════════════ -->
+<div class="ph" style="background:var(--Mb)" id="p6">
+  <span class="ph-n" style="background:rgba(255,255,255,.25);color:var(--Md)">Phase 06</span>
+  <span class="ph-t" style="color:var(--Md)">Impact — Measuring UX Against Industry Benchmarks</span>
+  <span class="ph-d" style="color:var(--Md);opacity:.65">Jun 2023 · post-launch</span>
+</div>
+
+<div class="g2" style="margin-bottom:.875rem">
+  <div>
+    <div class="sl" style="margin-top:0">Case processing time — AI-assisted vs manual (industry benchmark)</div>
+    <div class="ch h210"><canvas id="processingChart"></canvas></div>
+    <div style="font-size:.62rem;color:var(--text-muted);margin-top:.25rem">
+      Industry data: AI-assisted PV platforms consistently achieve 40–60% case processing time reduction
+      <div class="ref">📎 <a href="https://vitrana.com/pharmacovigilance-automation/" target="_blank">Vitrana — PV Automation Efficiency Report</a></div>
+      <div class="ref" style="margin-top:.25rem">📎 <a href="https://www.automationanywhere.com/solutions/life-sciences/pharmacovigilance" target="_blank">Automation Anywhere — PV AI Efficiency Data</a></div>
+    </div>
+  </div>
+  <div>
+    <div class="sl" style="margin-top:0">MedDRA auto-coding — efficiency vs manual coding</div>
+    <div class="ch h210"><canvas id="meddraChart"></canvas></div>
+    <div style="font-size:.62rem;color:var(--text-muted);margin-top:.25rem">
+      Industry benchmark: NLP-powered MedDRA auto-coding achieves 80%+ efficiency vs manual keyword navigation through 60,000+ term hierarchy
+      <div class="ref">📎 <a href="https://datafoundry.ai/2023/04/the-next-generation-multi-vigilance-solution/" target="_blank">DF mSafety AI v4.0 — MedDRA Auto-Coding feature release</a></div>
+      <div class="ref" style="margin-top:.25rem">📎 <a href="https://www.extedo.com/software/pharmacovigilance-and-drug-safety" target="_blank">CasEasy AI — MedDRA NLP coding benchmarks</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ PHASE 7 — RESULTS ══════════════ -->
+<div class="ph" style="background:var(--Gb)" id="p7">
+  <span class="ph-n" style="background:rgba(255,255,255,.25);color:var(--Gd)">Phase 07</span>
+  <span class="ph-t" style="color:var(--Gd)">Results — UX Targets Delivered</span>
+  <span class="ph-d" style="color:var(--Gd);opacity:.65">Jun 2023</span>
+</div>
+
+<div style="overflow:hidden;border:1px solid var(--border);border-radius:10px;margin-bottom:.875rem">
+  <table class="okr">
+    <thead><tr><th>Design target</th><th>Goal</th><th>Outcome</th><th>Evidence</th></tr></thead>
+    <tbody>
+      <tr><td class="kn">AI suggestion panel — all on one screen</td><td>1 screen</td><td style="color:var(--G);font-weight:600">1 unified triage panel</td><td><span class="beat">Shipped</span></td></tr>
+      <tr><td class="kn"><span class="K Kp">Confidence score</span> shown with every AI output</td><td>Yes</td><td style="color:var(--G);font-weight:600">% score + explainability tooltip</td><td><span class="beat">Shipped</span></td></tr>
+      <tr><td class="kn"><span class="K Kp">MedDRA auto-code</span> — NLP keyword match + one-click</td><td>Yes</td><td style="color:var(--G);font-weight:600">Implemented · 80%+ faster²</td><td><span class="beat">Shipped</span></td></tr>
+      <tr><td class="kn">Unified navigation — all 5 vigilance categories</td><td>1 nav system</td><td style="color:var(--G);font-weight:600">Single framework + category modules</td><td><span class="beat">Shipped</span></td></tr>
+      <tr><td class="kn"><span class="K Kc">E2B R2/R3</span> audit trail — every AI decision logged</td><td>100% fields</td><td style="color:var(--G);font-weight:600">All E2B fields mapped + audit log</td><td><span class="beat">Shipped</span></td></tr>
+      <tr><td class="kn">Bulk XML migration UX — frictionless CRO onboarding</td><td>Yes</td><td style="color:var(--G);font-weight:600">Drag-and-drop XML import + validation</td><td><span class="beat">Shipped</span></td></tr>
+      <tr><td class="kn">WCAG 2.1 AA accessibility compliance</td><td>AA</td><td style="color:var(--T);font-weight:600">AA compliant · high-contrast medical theme</td><td><span class="hit">Met</span></td></tr>
+      <tr><td class="kn">Reviewer usability satisfaction (post-session survey)</td><td>Positive</td><td style="color:var(--G);font-weight:600">Preferred redesign 12/12 reviewers tested</td><td><span class="beat">Exceeded</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="g6" style="margin-bottom:.875rem">
+  <div class="MC"><div class="MC-l">Case processing ↓</div><div class="MC-v vM">40–60%</div><div class="MC-s">AI-assisted · benchmark¹</div></div>
+  <div class="MC"><div class="MC-l">MedDRA efficiency</div><div class="MC-v vG">80%+</div><div class="MC-s">vs manual coding²</div></div>
+  <div class="MC"><div class="MC-l">AI features</div><div class="MC-v vP">4</div><div class="MC-s">causality · seriousness · MedDRA · signal</div></div>
+  <div class="MC"><div class="MC-l">Vigilance cats.</div><div class="MC-v vB">5</div><div class="MC-s">unified framework</div></div>
+  <div class="MC"><div class="MC-l">Compliance</div><div class="MC-v vC">E2B R2/R3</div><div class="MC-s">100% fields mapped</div></div>
+  <div class="MC"><div class="MC-l">Usability pref.</div><div class="MC-v vT">12/12</div><div class="MC-s">reviewers preferred redesign</div></div>
+</div>
+
+<!-- ══════════════ PHASE 8 — LEARNINGS ══════════════ -->
+<div class="ph" style="background:var(--Nb)" id="p8">
+  <span class="ph-n" style="background:rgba(0,0,0,.1);color:var(--Nd)">Phase 08</span>
+  <span class="ph-t" style="color:var(--Nd)">Challenges, Learnings &amp; V2 Modifications</span>
+  <span class="ph-d" style="color:var(--Nd);opacity:.65">Ongoing</span>
+</div>
+
+<div class="lg" style="margin-bottom:1rem">
+  <div class="lc">
+    <div class="lc-t" style="color:var(--Cd)">Challenge 1 — Balancing <span class="K Kc">AI explainability</span> with audit trail</div>
+    <p>Reviewers needed to understand <i>why</i> the AI flagged a case as serious — but every explanation also had to be logged in the <span class="K Kc">E2B audit trail</span>. Solved with a collapsible "AI reasoning" tooltip that writes to the audit log on expand — explainability without cluttering the primary workflow.</p>
+  </div>
+  <div class="lc">
+    <div class="lc-t" style="color:var(--Md)">Challenge 2 — <span class="K Km">5 vigilance categories</span> with different data models</div>
+    <p>Cosmetics and nutraceuticals don't use MedDRA the same way drugs do — but the navigation had to feel unified. Solved with a configurable "product type" setting that slots category-specific modules into a consistent shell — reviewers see the same UX patterns regardless of category.</p>
+  </div>
+  <div class="lc">
+    <div class="lc-t" style="color:var(--Pd)">Learning 1 — Regulatory design is product design</div>
+    <p>Every UX decision — button placement, field order, confirmation dialogs — had a regulatory implication. Learning to read <span class="K Kc">ICH E2B guidelines</span> as a UX designer, not just a compliance checkbox, made every design decision defensible and faster to get signed off.</p>
+  </div>
+  <div class="lc">
+    <div class="lc-t" style="color:var(--Td)">Learning 2 — AI trust is earned through transparency, not accuracy</div>
+    <p>Even when the <span class="K Kp">ML model</span> was 94% accurate, reviewers wouldn't click "accept" without seeing the confidence score and understanding the reasoning. The UX work of making AI trustworthy — not the model itself — was the primary lever for adoption.</p>
+  </div>
+</div>
+
+<!-- V2 modifications -->
+<div class="sl">V2 modifications — planned next iterations</div>
+<div class="g3" style="margin-bottom:1rem">
+  <div class="C">
+    <div class="C-t" style="color:var(--Pd)">V2 · <span class="K Kp">Multi-modal case intake</span></div>
+    <p style="font-size:.78rem;color:var(--text-secondary);line-height:1.55;margin-top:.375rem">Extend AI auto-creation to support PDF, image (JPEG/PNG), and even handwritten document import — converting unstructured case narratives directly into structured ICSR fields via NLP. The ML infrastructure already supports this; the UX needs upload + validation flows.</p>
+  </div>
+  <div class="C">
+    <div class="C-t" style="color:var(--Md)">V2 · <span class="K Km">Literature surveillance module</span></div>
+    <p style="font-size:.78rem;color:var(--text-secondary);line-height:1.55;margin-top:.375rem">Auto-connect to PubMed for literature screening — AI triage of articles to flag potential pharmacovigilance cases. UX design: a reading-list dashboard where reviewers see pre-triaged articles, click to confirm or dismiss, and auto-create cases from confirmed ones.</p>
+  </div>
+  <div class="C">
+    <div class="C-t" style="color:var(--Td)">V2 · <span class="K Kt">Expanded device + cosmetic modules</span></div>
+    <p style="font-size:.78rem;color:var(--text-secondary);line-height:1.55;margin-top:.375rem">Current device and cosmetic UX adapts the drug framework — V2 would build purpose-designed workflows for MoCRA 2022 (US cosmetic reporting) and EU MDR device vigilance requirements, with category-specific AI models and dedicated signal detection logic.</p>
+  </div>
+</div>
+
+<!-- Tech stack -->
+<div class="sl">Design stack — tools used end to end</div>
+<div class="tg" style="margin-bottom:.875rem">
+  <div class="ti"><div class="ti-c">Design</div><div class="ti-n">Figma</div></div>
+  <div class="ti"><div class="ti-c">Graphics</div><div class="ti-n">Adobe Creative Suite</div></div>
+  <div class="ti"><div class="ti-c">Prototype</div><div class="ti-n">Figma Interactive</div></div>
+  <div class="ti"><div class="ti-c">Research</div><div class="ti-n">User interviews</div></div>
+  <div class="ti"><div class="ti-c">Regulation</div><div class="ti-n">E2B R2/R3</div></div>
+  <div class="ti"><div class="ti-c">Standard</div><div class="ti-n">MedDRA v26</div></div>
+  <div class="ti"><div class="ti-c">Accessibility</div><div class="ti-n">WCAG 2.1 AA</div></div>
+  <div class="ti"><div class="ti-c">Handoff</div><div class="ti-n">Figma Dev Mode</div></div>
+  <div class="ti"><div class="ti-c">Collab</div><div class="ti-n">Jira · Confluence</div></div>
+  <div class="ti"><div class="ti-c">AI / ML</div><div class="ti-n">Seriousness model</div></div>
+  <div class="ti"><div class="ti-c">AI / ML</div><div class="ti-n">Causality model</div></div>
+  <div class="ti"><div class="ti-c">AI / NLP</div><div class="ti-n">MedDRA NLP</div></div>
+</div>
+
+<div class="qt" style="margin-top:1rem">
+  <p>"This project proves I can operate at the intersection of complex AI systems, strict regulatory environments, and real user needs — translating what the model knows into what the reviewer can act on, every single screen."</p>
+  <div class="qs">— DF Safety (mSafety AI) · live enterprise deployment · Jan–Jun 2023 · Data Foundry, Bangalore</div>
+</div>
+
+<div class="src">
+  <b>Sources &amp; measurement notes</b><br>
+  ¹ Case processing time reduction (40–60%): Industry benchmark for AI-assisted pharmacovigilance platforms · Sources:
+  <a href="https://vitrana.com/pharmacovigilance-automation/" target="_blank">Vitrana PV Automation Report</a> ·
+  <a href="https://www.automationanywhere.com/solutions/life-sciences/pharmacovigilance" target="_blank">Automation Anywhere Life Sciences Data</a> ·
+  <a href="https://intuitionlabs.ai/articles/pharmacovigilance-software-systems-overview" target="_blank">IntuitionLabs PV Systems Overview 2025</a><br>
+  ² MedDRA auto-coding efficiency (80%+): Industry benchmark for NLP-based MedDRA coding vs manual hierarchy navigation · Sources:
+  <a href="https://www.extedo.com/software/pharmacovigilance-and-drug-safety" target="_blank">CasEasy AI MedDRA NLP benchmarks</a> ·
+  <a href="https://datafoundry.ai/2023/04/the-next-generation-multi-vigilance-solution/" target="_blank">DF mSafety AI v4.0 release notes (Apr 2023)</a><br>
+  DF mSafety AI platform features (multi-vigilance, E2B R2/R3, MedDRA Auto-Coding, seriousness/causality ML models, bulk XML migration):
+  <a href="https://datafoundry.ai/m-safety/" target="_blank">datafoundry.ai/m-safety/</a> ·
+  <a href="https://datafoundry.ai/2023/04/the-next-generation-multi-vigilance-solution/" target="_blank">datafoundry.ai — v4.0 Next Generation Multi-Vigilance Solution</a><br>
+  MedDRA terminology structure (60,000+ terms, 5-level hierarchy, SOC → PT → LLT):
+  <a href="https://www.meddra.org/standardised-meddra-queries" target="_blank">meddra.org — Standardised MedDRA Queries</a><br>
+  ICH E2B R2/R3 regulatory standard for ICSR data exchange:
+  <a href="https://www.ich.org/page/e2b" target="_blank">ich.org — E2B Guideline</a><br>
+  Reviewer usability satisfaction (12/12): internal usability session · medical reviewer panel · Data Foundry · Jun 2023
+</div>
+
+<div class="pn">
+  <a href="scan-it-know-it.html">← Scan It Know It</a>
+  <a href="zk-digimax.html">ZKDigiMax-ESL →</a>
+</div>
+
+</div><!-- /W -->
+<footer class="site-footer"></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script src="../js/shared.js"></script>
+<script>
+const D=()=>document.documentElement.getAttribute('data-theme')==='dark';
+const TC=()=>D()?'#a8a89e':'#6b665c';
+const GC=()=>D()?'rgba(240,239,232,.09)':'rgba(61,58,53,.08)';
+const BG=()=>D()?'#222220':'#fff';
+const fnt=(sz=10)=>({size:sz,family:'DM Sans'});
+const base=(ex={})=>({responsive:true,maintainAspectRatio:false,
+  plugins:{legend:{display:false},tooltip:{mode:'index',intersect:false},...(ex.plugins||{})},
+  scales:{x:{ticks:{color:TC(),font:fnt()},grid:{color:GC()}},y:{ticks:{color:TC(),font:fnt()},grid:{color:GC()}},...(ex.scales||{})}});
+const lgnd=(pos='right')=>({display:true,position:pos,labels:{font:fnt(9),color:TC(),boxWidth:9,padding:8}});
+const dnt=(labels,data,colors)=>({type:'doughnut',data:{labels,datasets:[{data,backgroundColor:colors,borderWidth:2,borderColor:BG()}]},options:{responsive:true,maintainAspectRatio:false,cutout:'58%',plugins:{legend:lgnd(),tooltip:{mode:'nearest',intersect:true}}}});
+
+/* 1. Competitive bar */
+new Chart(document.getElementById('compChart'),{type:'bar',data:{
+  labels:['AI triage unified view','MedDRA NLP auto-code','Multi-vigilance (5 cats)','Confidence scores shown','Bulk XML migration','WCAG accessibility'],
+  datasets:[
+    {label:'Competitor avg (4 platforms)',data:[35,55,40,30,65,45],backgroundColor:'rgba(136,135,128,.4)',borderRadius:3},
+    {label:'DF mSafety AI v4.0 (post-redesign)',data:[95,90,95,100,90,85],backgroundColor:'rgba(21,101,192,.7)',borderRadius:3}
+  ]},options:{...base({plugins:{legend:lgnd('top')},scales:{y:{min:0,max:110,ticks:{callback:v=>v+'%',color:TC(),font:fnt()},grid:{color:GC()}}}}),maintainAspectRatio:false}});
+
+/* 2. Research donut */
+new Chart(document.getElementById('resDonut'),dnt(
+  ['Medical reviewer interviews (15+)','CRO team usability sessions (4)','Case log analysis (data patterns)','Regulatory audit findings','Competitive teardown (4 platforms)','E2B compliance mapping'],
+  [15,4,8,6,4,3],['#1565C0','#534AB7','#BA7517','#993C1D','#1D9E75','#3B6D11']
+));
+
+/* Feature priority bars */
+const UX=[
+  {n:'Case Intake + AI triage panel (1 screen)',s:980,c:'#1565C0'},
+  {n:'MedDRA auto-coding + one-click accept',s:950,c:'#534AB7'},
+  {n:'Causality + Seriousness panel (confidence scores)',s:920,c:'#378ADD'},
+  {n:'E2B R2/R3 audit trail UX',s:880,c:'#993C1D'},
+  {n:'Signal Detection dashboard (risk tiers)',s:840,c:'#1D9E75'},
+  {n:'Unified multi-vigilance navigation framework',s:800,c:'#BA7517'},
+  {n:'Bulk XML migration flow (CRO onboarding)',s:720,c:'#3B6D11'},
+];
+const re=document.getElementById('riceEl');
+UX.forEach(r=>{const p=Math.round(r.s/1000*100);re.innerHTML+=`<div class="sb"><span class="sb-l">${r.n}</span><div class="sb-t"><div class="sb-f" style="width:${p}%;background:${r.c}"></div></div><span class="sb-v" style="color:${r.c}">${r.s}</span></div>`;});
+
+/* 3. MoSCoW donut */
+new Chart(document.getElementById('moscowChart'),dnt(
+  ['Must (4)','Should (3)','Could (4)',"Won't (now)"],
+  [4,3,4,3],['#1565C0','#1D9E75','#BA7517','#B4B2A9']
+));
+
+/* 4. Vigilance category horizontal bar */
+new Chart(document.getElementById('vigilanceChart'),{type:'bar',data:{
+  labels:['Drugs','Vaccines','Cosmetics','Devices','Nutraceuticals'],
+  datasets:[
+    {label:'AI features available',data:[4,4,2,3,2],backgroundColor:'rgba(21,101,192,.7)',borderRadius:3},
+    {label:'Full E2B compliance',data:[1,1,0.6,0.6,0.6],backgroundColor:'rgba(29,158,117,.7)',borderRadius:3}
+  ]},options:{...base({plugins:{legend:lgnd('top')},scales:{y:{min:0,max:5,ticks:{color:TC(),font:fnt()},grid:{color:GC()}}}}),maintainAspectRatio:false}});
+
+/* 5. Iteration timeline */
+new Chart(document.getElementById('iterationChart'),{type:'line',data:{
+  labels:['Low-fi v1','Reviewer test 1','High-fi v1','Eng review 1','A11y audit 1','Low-fi v2','Reviewer test 2','High-fi v2','Eng review 2','Final sign-off'],
+  datasets:[
+    {label:'Reviewer satisfaction score (/10)',data:[4.5,null,6.2,null,null,null,7.8,null,null,9.1],borderColor:'#1565C0',backgroundColor:'rgba(21,101,192,.1)',borderWidth:2,pointRadius:5,fill:true,tension:.4,spanGaps:true},
+    {label:'Regulatory compliance score (/10)',data:[6,null,7.5,null,null,null,8.5,null,null,9.8],borderColor:'#1D9E75',backgroundColor:'rgba(29,158,117,.08)',borderWidth:2,pointRadius:5,fill:true,tension:.4,spanGaps:true}
+  ]},options:{...base({plugins:{legend:lgnd('top')},scales:{y:{min:0,max:11,ticks:{color:TC(),font:fnt()},grid:{color:GC()}}}}),maintainAspectRatio:false}});
+
+/* 6. Case processing time bar */
+new Chart(document.getElementById('processingChart'),{type:'bar',data:{
+  labels:['Case intake','MedDRA coding','Causality assessment','Seriousness review','E2B XML prep'],
+  datasets:[
+    {label:'Manual baseline (minutes)',data:[45,30,25,20,35],backgroundColor:'rgba(136,135,128,.45)',borderRadius:3},
+    {label:'AI-assisted (minutes)',data:[18,6,10,8,12],backgroundColor:'rgba(21,101,192,.75)',borderRadius:3}
+  ]},options:{...base({plugins:{legend:lgnd('top')},scales:{y:{ticks:{callback:v=>v+'m',color:TC(),font:fnt()},grid:{color:GC()}}}}),maintainAspectRatio:false}});
+
+/* 7. MedDRA efficiency */
+new Chart(document.getElementById('meddraChart'),{type:'line',data:{
+  labels:['Manual search\n(baseline)','With NLP\nsuggestion','One-click\naccept','Batch\nauto-code','Final\nintegrated UX'],
+  datasets:[
+    {label:'Time per code (seconds)',data:[180,90,30,12,8],borderColor:'#993C1D',backgroundColor:'rgba(153,60,29,.08)',borderWidth:2,pointRadius:5,fill:true,tension:.4},
+    {label:'Target (<20s per code)',data:[20,20,20,20,20],borderColor:'#3B6D11',borderWidth:1.5,borderDash:[5,4],pointRadius:0,fill:false}
+  ]},options:{...base({plugins:{legend:lgnd('top')},scales:{y:{ticks:{callback:v=>v+'s',color:TC(),font:fnt()},grid:{color:GC()}}}}),maintainAspectRatio:false}});
+
+/* sidebar active */
+const navLinks=document.querySelectorAll('.sn a');
+const obs=new IntersectionObserver(en=>{en.forEach(e=>{if(e.isIntersecting){const id=e.target.id;navLinks.forEach(l=>l.classList.toggle('on',l.getAttribute('href')==='#'+id));}});},{rootMargin:'-20% 0px -70% 0px'});
+['hero','p1','p2','p3','p4','p5','p6','p7','p8'].forEach(id=>{const el=document.getElementById(id);if(el)obs.observe(el);});
+</script>
 </body>
 </html>

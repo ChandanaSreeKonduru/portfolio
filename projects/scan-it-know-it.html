@@ -1,1177 +1,866 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Scan It Know It — AI Document Intelligence Platform. How I built a production-ready OCR platform in 4 weeks using AI-assisted development, achieving 92% accuracy at $0 cost.">
-    <title>Scan It Know It | AI Document Intelligence Platform</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Theme detection - prevents flash -->
-    <script>
-      (function() {
-        const savedTheme = localStorage.getItem('theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const theme = savedTheme || (prefersDark ? 'dark' : 'light');
-        document.documentElement.setAttribute('data-theme', theme);
-      })();
-    </script>
-    
-    <link rel="stylesheet" href="../css/rhode.css">
-    <style>
-/* ===== SCAN IT KNOW IT - CUSTOM CASE STUDY STYLES ===== */
-
-/* Design System Variables */
-:root {
-  --background: #f8f6f2;        /* Warm off-white */
-  --text-primary: #67645e;      /* Warm taupe */
-  --text-secondary: #67645e99;  /* 60% opacity */
-  --accent: #c17c5e;            /* Terracotta */
-  --accent-light: #c17c5e1a;    /* 10% opacity */
-  --border: #e5e5e5;            /* Hairline */
-  --white: #ffffff;
-  
-  /* Typography */
-  --font-heading: "Times New Roman", Georgia, serif;
-  --font-body: system-ui, -apple-system, sans-serif;
-  
-  /* Spacing */
-  --page-padding: 80px;
-  --section-gap: 120px;
-  --max-width: 1200px;
-  --content-width: 720px;
-}
-
-/* Base Styles */
-.case-study-page {
-  font-family: var(--font-body);
-  background: var(--background);
-  color: var(--text-primary);
-  line-height: 1.7;
-}
-
-/* Fixed Navigation */
-.case-study-nav {
-  position: fixed;
-  top: 40px;
-  left: 0;
-  right: 0;
-  padding: 0 80px;
-  display: flex;
-  justify-content: space-between;
-  z-index: 1000;
-  background: rgba(248, 246, 242, 0.95);
-  backdrop-filter: blur(10px);
-}
-
-.nav-container {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  width: 100%;
-}
-
-.nav-back, .nav-next {
-  font-size: 14px;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--text-secondary);
-  text-decoration: none;
-  transition: color 0.2s;
-}
-
-.nav-back:hover, .nav-next:hover {
-  color: var(--accent);
-}
-
-/* Hero Section */
-.case-study-hero {
-  padding: calc(80px + var(--section-gap)) 80px var(--section-gap);
-  text-align: center;
-  background: var(--background);
-}
-
-.case-study-caption {
-  display: block;
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--accent);
-  margin-bottom: 24px;
-}
-
-.case-study-title {
-  font-family: var(--font-heading);
-  font-size: 48px;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-  color: var(--text-primary);
-  margin-bottom: 24px;
-}
-
-.case-study-subtitle {
-  font-size: 18px;
-  color: var(--text-secondary);
-  max-width: 720px;
-  margin: 0 auto 32px;
-  line-height: 1.5;
-}
-
-.case-study-meta {
-  display: flex;
-  justify-content: center;
-  gap: 32px;
-  flex-wrap: wrap;
-  margin-bottom: 48px;
-  font-size: 14px;
-  color: var(--text-secondary);
-}
-
-.scroll-indicator {
-  font-size: 14px;
-  color: var(--text-secondary);
-  animation: bounce 2s infinite;
-}
-
-@keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-  40% {transform: translateY(-10px);}
-  60% {transform: translateY(-5px);}
-}
-
-/* Container */
-.container {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 0 80px;
-}
-
-/* Overview Section */
-.case-study-overview {
-  padding: var(--section-gap) 0;
-}
-
-.overview-two-col {
-  display: grid;
-  grid-template-columns: 40% 60%;
-  gap: 80px;
-  align-items: start;
-}
-
-.section-caption {
-  display: block;
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--accent);
-  margin-bottom: 24px;
-}
-
-.overview-left h2 {
-  font-family: var(--font-heading);
-  font-size: 32px;
-  line-height: 1.2;
-  letter-spacing: -0.01em;
-  color: var(--text-primary);
-  margin-bottom: 24px;
-}
-
-.overview-left p {
-  font-size: 16px;
-  line-height: 1.7;
-  color: var(--text-primary);
-  margin-bottom: 16px;
-}
-
-.role-list {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 48px;
-}
-
-.role-list li {
-  font-size: 16px;
-  padding: 8px 0;
-  border-bottom: 1px solid var(--border);
-}
-
-.tech-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-}
-
-.tech-item {
-  background: var(--white);
-  padding: 16px;
-  border: 1px solid var(--border);
-  font-size: 14px;
-  text-align: center;
-}
-
-/* Process Sections */
-.process-section {
-  padding: var(--section-gap) 0;
-}
-
-.section-heading {
-  font-family: var(--font-heading);
-  font-size: 40px;
-  line-height: 1.2;
-  color: var(--text-primary);
-  margin: 0 0 24px;
-}
-
-.section-intro {
-  font-size: 18px;
-  color: var(--text-secondary);
-  max-width: 600px;
-  margin: 0 auto 60px;
-  line-height: 1.6;
-}
-
-.center {
-  text-align: center;
-}
-
-.subsection-heading {
-  font-family: var(--font-heading);
-  font-size: 24px;
-  line-height: 1.3;
-  color: var(--text-primary);
-  margin: 60px 0 24px;
-}
-
-/* Discover Grid */
-.discover-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  margin-top: 60px;
-}
-
-.discover-left h3, .discover-right h3 {
-  font-family: var(--font-heading);
-  font-size: 24px;
-  color: var(--text-primary);
-  margin-bottom: 24px;
-}
-
-.findings-list {
-  list-style: none;
-  padding: 0;
-}
-
-.findings-list li {
-  font-size: 16px;
-  padding: 12px 0;
-  border-bottom: 1px solid var(--border);
-}
-
-.inline-quote {
-  font-size: 18px;
-  font-style: italic;
-  color: var(--text-secondary);
-  margin: 32px 0;
-  padding-left: 24px;
-  border-left: 3px solid var(--accent);
-}
-
-/* Agentic coding Box */
-.vibe-coding-box {
-  background: var(--accent-light);
-  padding: 48px;
-  border: 1px solid var(--accent);
-  margin: 60px 0;
-}
-
-.vibe-coding-box h3 {
-  font-family: var(--font-heading);
-  font-size: 24px;
-  margin-bottom: 24px;
-  color: var(--text-primary);
-}
-
-.vibe-coding-box ul {
-  list-style: none;
-  padding: 0;
-}
-
-.vibe-coding-box li {
-  font-size: 16px;
-  padding: 8px 0;
-  padding-left: 24px;
-  position: relative;
-}
-
-.vibe-coding-box li:before {
-  content: "•";
-  color: var(--accent);
-  position: absolute;
-  left: 0;
-  font-weight: bold;
-}
-
-/* Tables */
-.competitive-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 32px 0;
-  background: var(--white);
-}
-
-.competitive-table th, .competitive-table td {
-  padding: 16px;
-  text-align: left;
-  border: 1px solid var(--border);
-  font-size: 14px;
-}
-
-.competitive-table th {
-  background: var(--accent-light);
-  font-weight: 600;
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.highlight-row {
-  background: var(--accent-light);
-  font-weight: 600;
-}
-
-.table-caption {
-  font-size: 12px;
-  color: var(--text-secondary);
-  margin-top: 16px;
-  font-style: italic;
-}
-
-/* User Persona Card */
-.persona-card {
-  background: var(--white);
-  padding: 40px;
-  border: 1px solid var(--border);
-  margin: 48px 0;
-}
-
-.persona-header {
-  display: flex;
-  gap: 24px;
-  align-items: center;
-  margin-bottom: 24px;
-}
-
-.persona-avatar {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent), var(--accent-light));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 32px;
-}
-
-.persona-name {
-  font-size: 24px;
-  font-weight: 600;
-  color: var(--text-primary);
-}
-
-.persona-role {
-  font-size: 14px;
-  color: var(--text-secondary);
-}
-
-.persona-quote {
-  font-size: 18px;
-  font-style: italic;
-  color: var(--text-secondary);
-  margin: 24px 0;
-  padding-left: 24px;
-  border-left: 3px solid var(--accent);
-}
-
-.needs-list {
-  list-style: none;
-  padding: 0;
-  margin-top: 24px;
-}
-
-.needs-list li {
-  font-size: 16px;
-  padding: 8px 0;
-  padding-left: 24px;
-  position: relative;
-}
-
-.needs-list li:before {
-  content: "✓";
-  color: var(--accent);
-  position: absolute;
-  left: 0;
-  font-weight: bold;
-}
-
-/* Architecture Cards */
-.architecture-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
-  margin: 48px 0;
-}
-
-.arch-card {
-  background: var(--white);
-  padding: 32px;
-  border: 1px solid var(--border);
-}
-
-.arch-card-icon {
-  font-size: 32px;
-  margin-bottom: 16px;
-}
-
-.arch-card h4 {
-  font-family: var(--font-heading);
-  font-size: 20px;
-  margin-bottom: 16px;
-  color: var(--text-primary);
-}
-
-.arch-card p {
-  font-size: 16px;
-  line-height: 1.6;
-  color: var(--text-secondary);
-}
-
-/* Translation Table */
-.translation-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 32px 0;
-  background: var(--white);
-}
-
-.translation-table th, .translation-table td {
-  padding: 16px;
-  text-align: left;
-  border: 1px solid var(--border);
-  font-size: 14px;
-  vertical-align: top;
-}
-
-.translation-table th {
-  background: var(--accent-light);
-  font-weight: 600;
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-/* Timeline */
-.iteration-timeline {
-  margin: 60px 0;
-  position: relative;
-}
-
-.iteration-timeline:before {
-  content: "";
-  position: absolute;
-  left: 20px;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: var(--border);
-}
-
-.timeline-week {
-  background: var(--white);
-  padding: 32px;
-  margin-bottom: 24px;
-  border: 1px solid var(--border);
-  position: relative;
-  padding-left: 64px;
-}
-
-.timeline-week:first-child {
-  border-color: var(--accent);
-}
-
-.timeline-week::before {
-  content: "";
-  position: absolute;
-  left: 12px;
-  top: 40px;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: var(--accent);
-}
-
-.timeline-week:first-child::before {
-  background: var(--accent);
-}
-
-.timeline-week h4 {
-  font-family: var(--font-heading);
-  font-size: 20px;
-  margin-bottom: 16px;
-  color: var(--text-primary);
-}
-
-.timeline-week ul {
-  list-style: none;
-  padding: 0;
-}
-
-.timeline-week li {
-  font-size: 16px;
-  padding: 8px 0;
-  padding-left: 24px;
-  position: relative;
-}
-
-.timeline-week li:before {
-  content: "•";
-  color: var(--accent);
-  position: absolute;
-  left: 0;
-  font-weight: bold;
-}
-
-/* Metrics Grid */
-.metrics-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 32px;
-  margin: 60px 0;
-}
-
-.metric-card {
-  background: var(--white);
-  padding: 32px;
-  text-align: center;
-  border: 1px solid var(--border);
-}
-
-.metric-number {
-  display: block;
-  font-family: var(--font-heading);
-  font-size: 48px;
-  color: var(--accent);
-  line-height: 1;
-  margin-bottom: 16px;
-}
-
-.metric-label {
-  display: block;
-  font-size: 16px;
-  color: var(--text-primary);
-  margin-bottom: 8px;
-}
-
-.metric-context {
-  display: block;
-  font-size: 12px;
-  color: var(--text-secondary);
-}
-
-/* User Feedback Quote */
-.user-feedback-quote {
-  max-width: 800px;
-  margin: 60px auto;
-  padding: 40px;
-  text-align: center;
-  position: relative;
-}
-
-.user-feedback-quote blockquote {
-  font-size: 24px;
-  font-style: italic;
-  color: var(--text-primary);
-  line-height: 1.6;
-  margin-bottom: 24px;
-}
-
-.user-feedback-quote cite {
-  font-size: 14px;
-  color: var(--text-secondary);
-  font-style: normal;
-}
-
-/* Learnings Section */
-.learnings-section {
-  padding: var(--section-gap) 0;
-  background: var(--white);
-}
-
-.learnings-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 40px;
-  margin-top: 60px;
-}
-
-.learning-card {
-  padding: 32px;
-  background: var(--white);
-  border-left: 4px solid var(--accent);
-}
-
-.learning-card h4 {
-  font-family: var(--font-heading);
-  font-size: 20px;
-  margin-bottom: 16px;
-  color: var(--text-primary);
-}
-
-.learning-card p {
-  font-size: 16px;
-  line-height: 1.6;
-  color: var(--text-secondary);
-  margin-bottom: 16px;
-}
-
-.learning-caption {
-  display: block;
-  font-size: 14px;
-  color: var(--accent);
-  font-style: italic;
-}
-
-/* Final Quote */
-.final-quote-section {
-  padding: var(--section-gap) 0;
-  background: var(--accent);
-}
-
-.final-quote-section blockquote {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 40px;
-  text-align: center;
-}
-
-.final-quote-section p {
-  font-family: var(--font-heading);
-  font-size: 24px;
-  line-height: 1.6;
-  color: var(--white);
-  margin-bottom: 24px;
-}
-
-.final-quote-section cite {
-  display: block;
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.7);
-  font-style: italic;
-}
-
-/* Footer Navigation */
-.case-study-footer-nav {
-  padding: var(--section-gap) 0;
-  border-top: 1px solid var(--border);
-}
-
-.footer-nav-links {
-  display: flex;
-  justify-content: space-between;
-  gap: 32px;
-}
-
-.footer-nav-back, .footer-nav-next {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  text-decoration: none;
-  padding: 24px 32px;
-  background: var(--white);
-  border: 1px solid var(--border);
-  transition: all 0.2s;
-}
-
-.footer-nav-back:hover, .footer-nav-next:hover {
-  border-color: var(--accent);
-  transform: translateY(-2px);
-}
-
-.footer-nav-back span, .footer-nav-next span {
-  font-size: 16px;
-  color: var(--text-primary);
-}
-
-.footer-nav-back small, .footer-nav-next small {
-  font-size: 14px;
-  color: var(--text-secondary);
-}
-
-/* Site Footer */
-.site-footer {
-  padding: 60px 0;
-  background: var(--white);
-  border-top: 1px solid var(--border);
-}
-
-.footer-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 24px;
-}
-
-.footer-logo a {
-  font-size: 24px;
-  font-weight: 600;
-  color: var(--text-primary);
-  text-decoration: none;
-}
-
-.footer-links {
-  display: flex;
-  gap: 32px;
-  list-style: none;
-  padding: 0;
-}
-
-.footer-links a {
-  font-size: 14px;
-  color: var(--text-secondary);
-  text-decoration: none;
-}
-
-.footer-links a:hover {
-  color: var(--accent);
-}
-
-.social-links {
-  display: flex;
-  gap: 16px;
-}
-
-.footer-info {
-  text-align: center;
-}
-
-.copyright, .built-with {
-  font-size: 12px;
-  color: var(--text-secondary);
-  margin: 4px 0;
-}
-
-/* Responsive Design */
-@media (max-width: 1024px) {
-  .container, .case-study-nav {
-    padding: 0 40px;
-  }
-  
-  .overview-two-col,
-  .discover-grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-  
-  .architecture-grid,
-  .learnings-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .metrics-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  :root {
-    --page-padding: 24px;
-    --section-gap: 80px;
-  }
-  
-  .container, .case-study-nav {
-    padding: 0 24px;
-  }
-  
-  .case-study-title {
-    font-size: 36px;
-  }
-  
-  .case-study-meta {
-    flex-direction: column;
-    gap: 16px;
-  }
-  
-  .tech-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .metrics-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .footer-nav-links {
-    flex-direction: column;
-  }
-}
-
-/* Dark Mode Overrides for Case Study */
-[data-theme="dark"] .case-study-page {
-  --background: #1a1a1a;
-  --text-primary: #e8e6e3;
-  --text-secondary: #b8b5b0;
-  --accent: #d4a574;
-  --accent-light: rgba(212, 165, 116, 0.1);
-  --border: rgba(255, 255, 255, 0.1);
-  --white: #2a2a2a;
-}
-
-[data-theme="dark"] .case-study-nav {
-  background: rgba(26, 26, 26, 0.95);
-}
-
-[data-theme="dark"] .project-navigation a {
-  color: var(--text-secondary);
-}
-
-[data-theme="dark"] .project-navigation a:hover {
-  color: var(--accent);
-}
-
-.project-navigation a {
-  color: var(--text-secondary);
-}
-
-.project-navigation a:hover {
-  color: var(--accent);
-}
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scan It Know It — Case Study | Chandana Konduru</title>
+<meta name="description" content="Zero-to-one AI product case study: Scan It Know It — scan any product label and instantly know what's in it. Privacy-first, no signup, no ads, no recommendations. Built in 3 weeks.">
+<script>(function(){const t=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t)})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/rhode.css">
+<style>
+:root{
+  --B:#378ADD;--Bb:#E6F1FB;--Bd:#0C447C;
+  --T:#1D9E75;--Tb:#E1F5EE;--Td:#085041;
+  --P:#534AB7;--Pb:#EEEDFE;--Pd:#26215C;
+  --A:#BA7517;--Ab:#FAEEDA;--Ad:#412402;
+  --G:#3B6D11;--Gb:#EAF3DE;--Gd:#173404;
+  --C:#993C1D;--Cb:#FAECE7;--Cd:#4A1B0C;
+  --N:#888780;--Nb:#F1EFE8;--Nd:#2C2C2A;
+  --SI:#00875A;--SIb:#E3F9F0;--SId:#003D29;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--bg-primary);color:var(--text-primary)}
+a{text-decoration:none;color:inherit}
+
+.W{max-width:1040px;margin:0 auto;padding:0 2rem 6rem;margin-left:0}
+@media(min-width:1200px){.W{margin-left:240px;max-width:calc(100% - 240px)}}
+@media(max-width:1199px){.sn{display:none}.W{margin-left:0}}
+
+/* sidebar nav */
+.sn{position:fixed;left:0;top:var(--nav-height,64px);width:240px;height:calc(100vh - var(--nav-height,64px));background:var(--bg-primary);border-right:1px solid var(--border);overflow-y:auto;padding:1.5rem 0;z-index:80;scrollbar-width:thin;scrollbar-color:var(--border) transparent}
+.sn::-webkit-scrollbar{width:6px}
+.sn::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+.sn a{display:block;padding:.75rem 1.25rem;font-size:.8125rem;font-weight:500;color:var(--text-muted);border-left:3px solid transparent;transition:color 150ms,border-color 150ms,background 150ms}
+.sn a:hover{color:var(--accent);background:var(--bg-secondary)}
+.sn a.on{color:var(--accent);border-left-color:var(--accent);background:var(--bg-secondary);font-weight:600}
+
+/* phase header */
+.ph{display:flex;align-items:center;gap:.875rem;padding:1rem 1.25rem;border-radius:12px;margin:3rem 0 1.5rem;scroll-margin-top:calc(var(--nav-height,64px)+60px)}
+.ph-n{font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.3rem .65rem;border-radius:6px;flex-shrink:0}
+.ph-t{font-size:1.125rem;font-weight:600;letter-spacing:-.015em;color:var(--text-primary);line-height:1.4}
+.ph-d{margin-left:auto;font-size:.7rem;color:var(--text-muted);font-weight:600;white-space:nowrap}
+
+/* keyword badges */
+.K{display:inline-flex;align-items:center;padding:.1rem .425rem;border-radius:4px;font-size:.75em;font-weight:600;font-family:'DM Mono',monospace;line-height:1.45;white-space:nowrap;vertical-align:middle}
+.Kp{background:var(--Pb);color:var(--Pd)} .Kb{background:var(--Bb);color:var(--Bd)}
+.Kt{background:var(--Tb);color:var(--Td)} .Ka{background:var(--Ab);color:var(--Ad)}
+.Kg{background:var(--Gb);color:var(--Gd)} .Kc{background:var(--Cb);color:var(--Cd)}
+.Kn{background:var(--Nb);color:var(--Nd)} .Ks{background:var(--SIb);color:var(--SId)}
+
+.kc{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.25rem}
+
+/* grids */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.5rem}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:.875rem;margin-bottom:1.5rem}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;margin-bottom:1.5rem}
+.g6{display:grid;grid-template-columns:repeat(6,1fr);gap:.625rem;margin-bottom:1.5rem}
+@media(max-width:768px){.g2,.g3{grid-template-columns:1fr}.g4{grid-template-columns:repeat(2,1fr)}.g6{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:500px){.g4,.g6{grid-template-columns:1fr}}
+
+/* cards — no hover box-shadow, just a subtle border transition */
+.C{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:1.125rem 1.375rem}
+.C-t{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.625rem}
+.MC{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:.875rem 1.125rem}
+.MC-l{font-size:.6rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.3rem}
+.MC-v{font-size:1.75rem;font-weight:700;line-height:1;margin-bottom:.15rem}
+.MC-s{font-size:.65rem;color:var(--text-muted);line-height:1.4}
+
+/* stat bars */
+.sb{display:flex;align-items:center;gap:.75rem;margin-bottom:.55rem}
+.sb-l{font-size:.8rem;font-weight:500;color:var(--text-primary);min-width:180px}
+.sb-t{flex:1;height:8px;background:var(--bg-secondary);border-radius:4px;overflow:hidden}
+.sb-f{height:100%;border-radius:4px}
+.sb-v{font-size:.8rem;font-weight:700;min-width:40px;text-align:right}
+@media(max-width:600px){.sb-l{min-width:100px;font-size:.7rem}}
+
+/* chart container */
+.ch{position:relative;width:100%}
+.h150{height:150px}.h170{height:170px}.h190{height:190px}.h210{height:210px}.h230{height:230px}
+
+/* flow pipeline */
+.fp{display:flex;flex-wrap:wrap;align-items:center;gap:.35rem;padding:.875rem 1rem;background:var(--bg-secondary);border-radius:10px;margin:.5rem 0}
+.fp-n{border-radius:8px;padding:.375rem .65rem;font-size:.7rem;font-weight:600;flex-shrink:0}
+.fp-n sub{font-size:.55rem;font-weight:400;opacity:.65;display:block;line-height:1.2}
+.fp-a{color:var(--text-muted);font-size:.75rem;flex-shrink:0}
+
+/* before/after */
+.ba{display:grid;grid-template-columns:1fr 38px 1fr;gap:.5rem;align-items:center}
+.ba-b{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:.875rem}
+.ba-b.aft{border-color:var(--T)}
+.ba-b h5{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.5rem}
+.ba-l{font-size:.75rem;color:var(--text-secondary);padding:.2rem 0;border-bottom:1px solid var(--border);line-height:1.4}
+.ba-l:last-child{border:none}
+.ba-l b{color:var(--text-primary)}
+.ba-a{text-align:center;font-size:1.25rem;color:var(--accent)}
+.ba-al{font-size:.55rem;color:var(--text-muted);text-align:center;margin-top:.15rem}
+@media(max-width:580px){.ba{grid-template-columns:1fr}.ba-a{transform:rotate(90deg)}}
+
+/* visual timeline bar */
+.vtl{display:flex;border-radius:10px;overflow:hidden;height:56px}
+.vtl-s{display:flex;flex-direction:column;justify-content:center;padding:0 .75rem;border-right:1px solid rgba(255,255,255,.18)}
+.vtl-s:last-child{border:none}
+.vtl-mo{font-size:.52rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;opacity:.7;margin-bottom:.15rem}
+.vtl-n{font-size:.7rem;font-weight:600;line-height:1.2}
+
+/* data row */
+.dr{font-size:.78rem;color:var(--text-secondary);line-height:1.7}
+.dr .row{display:flex;justify-content:space-between;padding:.225rem 0;border-bottom:1px solid var(--border)}
+.dr .row:last-child{border:none}
+.dr .row b{color:var(--text-primary);font-weight:600}
+
+/* OKR table */
+.okr{width:100%;border-collapse:collapse;font-size:.85rem}
+.okr thead{background:var(--bg-secondary)}
+.okr th{padding:.5rem .85rem;text-align:left;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--text-muted);border-bottom:1px solid var(--border)}
+.okr td{padding:.6rem .85rem;border-bottom:1px solid var(--border);color:var(--text-secondary);vertical-align:middle}
+.okr tr:last-child td{border-bottom:none}
+.okr .kn{color:var(--text-primary);font-weight:500}
+.hit{padding:.1rem .5rem;border-radius:100px;font-size:.62rem;font-weight:700;background:var(--Tb);color:var(--Td)}
+.beat{padding:.1rem .5rem;border-radius:100px;font-size:.62rem;font-weight:700;background:var(--Gb);color:var(--Gd)}
+
+/* tool grid */
+.tg{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:.375rem}
+.ti{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:.35rem .5rem;text-align:center}
+.ti-c{font-size:.52rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.03em;margin-bottom:.1rem}
+.ti-n{font-size:.7rem;font-weight:600;color:var(--text-primary)}
+
+/* colour shorthands */
+.vB{color:var(--B)}.vT{color:var(--T)}.vP{color:var(--P)}
+.vA{color:var(--A)}.vG{color:var(--G)}.vC{color:var(--C)}.vX{color:var(--accent)}.vS{color:var(--SI)}
+
+/* section label */
+.sl{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text-muted);margin-bottom:.75rem;margin-top:1.75rem}
+
+hr{border:none;border-top:1px solid var(--border)}
+
+/* hero */
+.hero-h1{font-size:clamp(1.5rem,4vw,2.375rem);font-weight:700;letter-spacing:-.03em;line-height:1.2;margin-bottom:1rem}
+.hook{font-size:1rem;color:var(--text-secondary);max-width:680px;line-height:1.75;margin-bottom:1.5rem}
+.hook b{color:var(--text-primary);font-weight:500}
+.tags{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:1.25rem}
+.tag{padding:.2rem .675rem;border-radius:100px;font-size:.7rem;font-weight:600}
+
+/* TL;DR in green */
+.tldr{background:var(--SIb);border-left:3px solid var(--SI);border-radius:0 10px 10px 0;padding:1rem 1.25rem;margin-bottom:1.5rem}
+.tldr-l{font-size:.6rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--SId);margin-bottom:.5rem}
+.tldr-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:.3rem}
+.tldr-i{font-size:.8rem;color:var(--SId);line-height:1.5}
+.tldr-i::before{content:'→ ';font-weight:700;margin-right:.25rem}
+
+/* quote */
+.qt{border-left:3px solid var(--accent);padding:.875rem 1.25rem;background:var(--Ab);border-radius:0 10px 10px 0;margin:1.25rem 0}
+.qt p{font-size:.875rem;font-style:italic;color:var(--Ad);margin:0 0 .25rem;line-height:1.6}
+.qt .qs{font-size:.65rem;font-style:normal;color:var(--Ad);opacity:.75}
+
+/* reference box — small gray callout */
+.ref{display:inline-flex;align-items:center;gap:.375rem;background:var(--bg-secondary);border:1px solid var(--border);border-radius:6px;padding:.25rem .625rem;font-size:.65rem;color:var(--text-muted);margin-top:.375rem}
+.ref a{color:var(--accent)}
+
+/* artifact link row */
+.artifact-row{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem}
+.art-btn{display:inline-flex;align-items:center;gap:.375rem;padding:.375rem .875rem;border-radius:100px;border:1px solid var(--border);background:var(--bg-card);font-size:.78rem;font-weight:500;color:var(--text-secondary);transition:border-color 150ms,color 150ms}
+.art-btn:hover{border-color:var(--accent);color:var(--accent)}
+
+/* sources */
+.src{font-size:.67rem;color:var(--text-muted);border-top:1px solid var(--border);padding-top:.75rem;margin-top:1.5rem;line-height:2}
+.src a{color:var(--accent)}
+
+/* prev/next */
+.pn{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 0;border-top:1px solid var(--border);margin-top:2rem;gap:1rem}
+.pn a{font-size:.9rem;font-weight:500;color:var(--text-secondary);display:flex;align-items:center;gap:.5rem;transition:color 150ms}
+.pn a:hover{color:var(--accent)}
+@media(max-width:600px){.pn{flex-direction:column;align-items:stretch;text-align:center}.pn a{justify-content:center}}
+
+/* learnings */
+.lg{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem}
+@media(max-width:600px){.lg{grid-template-columns:1fr}}
+.lc{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:1rem 1.25rem}
+.lc-t{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.5rem}
+.lc p{font-size:.825rem;color:var(--text-secondary);line-height:1.65;margin:0}
+
+/* breadcrumb */
+.bc{font-size:.7rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:1.25rem}
+.bc a{color:var(--accent)}
+
+/* phone mockup */
+.phone-wrap{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.pm{background:var(--bg-card);border:2px solid var(--border);border-radius:22px;overflow:hidden;box-shadow:0 4px 14px rgba(0,0,0,.1);width:148px}
+.pm-notch{width:36px;height:8px;background:var(--border);border-radius:0 0 6px 6px;margin:0 auto}
+.pm-screen{padding:.625rem .5rem;min-height:230px}
+.pm-scan{background:var(--bg-secondary);border-radius:8px;padding:.375rem;margin-bottom:.375rem;text-align:center;font-size:.62rem;color:var(--text-muted)}
+.pm-safe{background:var(--SIb);border-radius:6px;padding:.375rem .5rem;margin-bottom:.25rem}
+.pm-safe b{display:block;font-size:.62rem;font-weight:700;color:var(--SId)}
+.pm-safe span{font-size:.55rem;color:var(--SId);opacity:.8}
+.pm-warn{background:var(--Cb);border-radius:6px;padding:.375rem .5rem;margin-bottom:.25rem}
+.pm-warn b{display:block;font-size:.62rem;font-weight:700;color:var(--Cd)}
+.pm-warn span{font-size:.55rem;color:var(--Cd);opacity:.8}
+.pm-detail{background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:.25rem .375rem;margin-bottom:.25rem;font-size:.52rem;color:var(--text-secondary);line-height:1.5}
+.pm-chat{background:var(--bg-secondary);border-radius:6px;padding:.25rem .375rem;font-size:.52rem;color:var(--text-muted)}
+.pm-lbl{font-size:.55rem;color:var(--text-muted);text-align:center;margin-top:.375rem}
+
+/* mobile */
+@media(max-width:768px){.W{padding:0 1.5rem 6rem}.hero-h1{font-size:clamp(1.375rem,5vw,2rem)}.hook{font-size:.95rem}.ph{margin:2.5rem 0 1rem}.sl{margin-top:1.5rem}}
+@media(max-width:500px){.W{padding:0 1rem 6rem}.hero-h1{font-size:clamp(1.25rem,6vw,1.75rem)}.MC-v{font-size:1.5rem}}
+</style>
 </head>
-<body class="case-study-page">
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-    
-    <!-- Header/Navigation -->
-    <header class="site-header">
-      <div class="header-inner">
-        <a href="../index.html" class="logo">Chandana<span>.</span></a>
-        
-        <nav class="nav-main" id="navMain">
-          <a href="../work.html" class="nav-link">Work</a>
-          <a href="../experience.html" class="nav-link">Experience</a>
-          <a href="../about.html" class="nav-link">About</a>
-        </nav>
-        
-        <div class="header-actions">
-          <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-            <span id="themeIcon">🌙</span>
-          </button>
-		  <a href="../resume.pdf" class="btn btn-primary btn-sm" download>Resume</a>
-          <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
-        </div>
-      </div>
-    </header>
+<body>
 
-    <main id="main-content">
-        
-        <!-- HERO SECTION -->
-        <section class="hero" style="padding-top: 120px; text-align: center; padding-bottom: 4rem;">
-            <div class="container">
-                <h1 style="font-family: 'Times New Roman', Times, serif; font-size: 48px; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 1rem; color: var(--text-primary);">SCAN IT KNOW IT</h1>
-                <p style="font-size: 1.125rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto 2rem;">AI Document Intelligence Platform</p>
-                
-                <div class="hero-tags">
-                    <span style="padding: 0.4rem 1rem; background: var(--accent-light); color: var(--accent); border-radius: 20px; font-size: 0.875rem; font-weight: 500;">Agentic AI</span>
-                    <span style="padding: 0.4rem 1rem; background: var(--accent-light); color: var(--accent); border-radius: 20px; font-size: 0.875rem; font-weight: 500;">Agentic coding</span>
-                    <span style="padding: 0.4rem 1rem; background: var(--accent-light); color: var(--accent); border-radius: 20px; font-size: 0.875rem; font-weight: 500;">Document Processing</span>
-                </div>
-            </div>
-        </section>
+<header class="site-header" data-page="work"></header>
 
-        <!-- OVERVIEW -->
-        <section style="padding: 80px 0; border-top: 1px solid var(--border);">
-            <div class="container">
-                <div style="max-width: 720px; margin: 0 auto;">
-                    <h2 style="font-family: 'Times New Roman', Times, serif; font-size: 32px; line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 2rem; color: var(--text-primary);">Overview</h2>
-                    
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 3rem;">
-                        <div>
-                            <h3 style="font-size: 0.875rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1rem;">THE CHALLENGE</h3>
-                            <p style="font-size: 1rem; line-height: 1.7; color: var(--text-secondary);">Small businesses spend 15+ hours weekly on manual document processing. Existing OCR solutions cost $50+/month with limited customization. The gap was clear: affordable, instant, accurate document intelligence.</p>
-                        </div>
-                        <div>
-                            <h3 style="font-size: 0.875rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1rem;">THE SOLUTION</h3>
-                            <p style="font-size: 1rem; line-height: 1.7; color: var(--text-secondary);">An AI-orchestrated document intelligence platform leveraging Gemini API for structured data extraction. Delivered a production-ready MVP in 4 weeks with $0 infrastructure overhead, achieving 92% accuracy through strategic human-in-the-loop validation patterns.</p>
-                        </div>
-                    </div>
+<nav class="sn">
+  <a href="#hero">Overview</a>
+  <a href="#p1">① Problem</a>
+  <a href="#p2">② Research</a>
+  <a href="#p3">③ Prioritise</a>
+  <a href="#p4">④ AI Design</a>
+  <a href="#p5">⑤ Build</a>
+  <a href="#p6">⑥ Launch</a>
+  <a href="#p7">⑦ Results</a>
+  <a href="#p8">⑧ Learnings</a>
+</nav>
 
-                    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; margin-bottom: 3rem;">
-                        <div style="text-align: center; padding: 1.5rem; background: var(--bg-card); border-radius: var(--radius); border: 1px solid var(--border);">
-                            <div style="font-size: 2rem; font-weight: 600; color: var(--accent); margin-bottom: 0.5rem;">92%</div>
-                            <div style="font-size: 0.875rem; color: var(--text-secondary);">Accuracy Rate</div>
-                        </div>
-                        <div style="text-align: center; padding: 1.5rem; background: var(--bg-card); border-radius: var(--radius); border: 1px solid var(--border);">
-                            <div style="font-size: 2rem; font-weight: 600; color: var(--accent); margin-bottom: 0.5rem;">$0</div>
-                            <div style="font-size: 0.875rem; color: var(--text-secondary);">Infrastructure Cost</div>
-                        </div>
-                        <div style="text-align: center; padding: 1.5rem; background: var(--bg-card); border-radius: var(--radius); border: 1px solid var(--border);">
-                            <div style="font-size: 2rem; font-weight: 600; color: var(--accent); margin-bottom: 0.5rem;">4</div>
-                            <div style="font-size: 0.875rem; color: var(--text-secondary);">Week Build Time</div>
-                        </div>
-                        <div style="text-align: center; padding: 1.5rem; background: var(--bg-card); border-radius: var(--radius); border: 1px solid var(--border);">
-                            <div style="font-size: 2rem; font-weight: 600; color: var(--accent); margin-bottom: 0.5rem;">500+</div>
-                            <div style="font-size: 0.875rem; color: var(--text-secondary);">Documents Processed</div>
-                        </div>
-                    </div>
+<div class="W">
 
-                    <div style="background: var(--bg-card); padding: 2rem; border-radius: var(--radius); border: 1px solid var(--border); margin: 2rem 0;">
-                        <h3 style="font-size: 1.125rem; font-weight: 600; color: var(--text-primary); margin-bottom: 1rem;">User Persona</h3>
-                        <div style="display: flex; align-items: center; gap: 1.5rem;">
-                            <div style="width: 120px; height: 120px; background: var(--accent-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 3rem;">👤</div>
-                            <div>
-                                <h4 style="font-size: 1.25rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.5rem;">Sarah Chen</h4>
-                                <p style="color: var(--text-secondary); margin-bottom: 0.5rem;"><strong>Coffee Shop Owner • 3 Locations • 12 Employees</strong></p>
-                                <p style="color: var(--text-secondary);">Spends 10+ hours weekly on invoices, receipts, and tax documents. Values efficiency and accuracy over cost. Early adopter of productivity tools.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+<!-- ══════════════ HERO ══════════════ -->
+<section id="hero" style="padding:2.25rem 0 1.5rem;border-bottom:1px solid var(--border);margin-bottom:1.5rem">
+  <p class="bc"><a href="../work.html">← work</a> · case study 02</p>
+  <h1 class="hero-h1">Scan It Know It — Scan a product. Know what's in it. That's it.</h1>
+  <p class="hook">
+    A <b>free, no-signup, no-ads, privacy-first product information tool</b> — you scan a label,
+    you get <span class="K Ks">plain-language ingredient analysis</span>, <span class="K Kp">AI-powered nutritional breakdown</span>,
+    and <span class="K Kb">a local chatbot to ask follow-up questions</span>.
+    No shopping recommendations. No cloud uploads. No account. <b>Just information.</b>
+    Built from scratch in <b>3 weeks</b> as a community project in Omaha, NE.
+  </p>
 
-        <!-- DISCOVER -->
-        <section style="padding: 80px 0; border-top: 1px solid var(--border);">
-            <div class="container">
-                <div style="max-width: 720px; margin: 0 auto;">
-                    <h2 style="font-family: 'Times New Roman', Times, serif; font-size: 32px; line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 2rem; color: var(--text-primary);">Discover</h2>
-                    
-                    <p style="font-size: 1.125rem; line-height: 1.7; color: var(--text-secondary); margin-bottom: 2rem;">Quantified the document processing burden across 50+ small businesses. Average 15 hours weekly on manual data entry, with 8% error rate in transcription. Existing solutions ranged from $50-200/month with limited customization.</p>
-                    
-                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-bottom: 2rem;">
-                        <div style="background: var(--bg-card); padding: 1.5rem; border-radius: var(--radius); border: 1px solid var(--border);">
-                            <h4 style="font-weight: 600; color: var(--text-primary); margin-bottom: 1rem;">Research Methodology</h4>
-                            <ul style="color: var(--text-secondary); line-height: 1.6;">
-                                <li>• 50 interviews with small business owners</li>
-                                <li>• Time tracking studies</li>
-                                <li>• Competitive analysis of 12 solutions</li>
-                                <li>• Pain point prioritization</li>
-                            </ul>
-                        </div>
-                        <div style="background: var(--bg-card); padding: 1.5rem; border-radius: var(--radius); border: 1px solid var(--border);">
-                            <h4 style="font-weight: 600; color: var(--text-primary); margin-bottom: 1rem;">Key Insights</h4>
-                            <ul style="color: var(--text-secondary); line-height: 1.6;">
-                                <li>• Accuracy matters more than speed</li>
-                                <li>• Integration simplicity is crucial</li>
-                                <li>• Human validation reduces anxiety</li>
-                                <li>• Cost sensitivity is extreme</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+  <div class="tags">
+    <span class="tag" style="background:var(--SIb);color:var(--SId)">Zero-to-One Product</span>
+    <span class="tag" style="background:var(--Pb);color:var(--Pd)">Gemini API · RAG · Local AI</span>
+    <span class="tag" style="background:var(--Bb);color:var(--Bd)">Mobile-First PWA</span>
+    <span class="tag" style="background:var(--Tb);color:var(--Td)">Senior-Friendly · Large-Font UI</span>
+    <span class="tag" style="background:var(--Ab);color:var(--Ad)">3-Week Sprint · Agentic Coding</span>
+    <span class="tag" style="background:var(--Nb);color:var(--Nd)">$0 Infrastructure · No Signup</span>
+  </div>
 
-        <!-- DEFINE -->
-        <section style="padding: 80px 0; border-top: 1px solid var(--border);">
-            <div class="container">
-                <div style="max-width: 720px; margin: 0 auto;">
-                    <h2 style="font-family: 'Times New Roman', Times, serif; font-size: 32px; line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 2rem; color: var(--text-primary);">Define</h2>
-                    
-                    <p style="font-size: 1.125rem; line-height: 1.7; color: var(--text-secondary); margin-bottom: 2rem;">I architected a serverless, agentic workflow that prioritizes data integrity. By implementing a Confidence Threshold Logic, the system automatically routes low-confidence extractions (below 95%) to a manual validation drawer, ensuring 100% reliability for critical financial fields while maintaining high-speed processing for standard data.</p>
-                    
-                    <div style="background: var(--bg-card); padding: 2rem; border-radius: var(--radius); border: 1px solid var(--border); margin: 2rem 0;">
-                        <h3 style="text-align: center; margin-bottom: 1.5rem; color: var(--text-primary);">Architecture Decision</h3>
-                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;">
-                            <div style="text-align: center;">
-                                <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🖥️</div>
-                                <div style="font-size: 0.875rem; color: var(--text-secondary);">Serverless</div>
-                            </div>
-                            <div style="text-align: center;">
-                                <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🧠</div>
-                                <div style="font-size: 0.875rem; color: var(--text-secondary);">Gemini API</div>
-                            </div>
-                            <div style="text-align: center;">
-                                <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🔄</div>
-                                <div style="font-size: 0.875rem; color: var(--text-secondary);">Validation Loop</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- DEVELOP -->
-        <section style="padding: 80px 0; border-top: 1px solid var(--border);">
-            <div class="container">
-                <div style="max-width: 720px; margin: 0 auto;">
-                    <h2 style="font-family: 'Times New Roman', Times, serif; font-size: 32px; line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 2rem; color: var(--text-primary);">Develop</h2>
-                    
-                    <p style="font-size: 1.125rem; line-height: 1.7; color: var(--text-secondary); margin-bottom: 2rem;">Agentic coding the entire platform in 4 weeks using AI-assisted development. Achieved 92% accuracy with human validation for critical fields. This approach reduced development time by 75% while maintaining production-grade quality.</p>
-                    
-                    <div style="background: var(--bg-card); padding: 2rem; border-radius: var(--radius); border: 1px solid var(--border); margin: 2rem 0;">
-                        <h3 style="margin-bottom: 1.5rem; color: var(--text-primary);">The Core Challenge: AI-to-User Translation</h3>
-                        <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Raw JSON outputs from LLMs are technically accurate but cognitively heavy for business owners. I designed a Semantic Translation Layer that converts structured AI responses into natural language insights. This reduced user cognitive load and increased the speed of invoice reconciliation by 60%.</p>
-                        
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1.5rem;">
-                            <div style="background: var(--bg); padding: 1rem; border-radius: var(--radius); border: 1px solid var(--border);">
-                                <h4 style="font-size: 0.875rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.5rem;">BEFORE</h4>
-                                <p style="font-size: 0.75rem; color: var(--text-secondary); line-height: 1.4;">{"invoice_number": "INV-2024-001", "date": "2024-01-15", "amount": 1245.67, "vendor": "Office Supplies Inc"}</p>
-                            </div>
-                            <div style="background: var(--bg); padding: 1rem; border-radius: var(--radius); border: 1px solid var(--border);">
-                                <h4 style="font-size: 0.875rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.5rem;">AFTER</h4>
-                                <p style="font-size: 0.75rem; color: var(--text-secondary); line-height: 1.4;">Invoice #INV-2024-001 from Office Supplies Inc for $1,245.67 dated Jan 15, 2024</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- DELIVER -->
-        <section style="padding: 80px 0; border-top: 1px solid var(--border);">
-            <div class="container">
-                <div style="max-width: 720px; margin: 0 auto;">
-                    <h2 style="font-family: 'Times New Roman', Times, serif; font-size: 32px; line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 2rem; color: var(--text-primary);">Deliver</h2>
-                    
-                    <p style="font-size: 1.125rem; line-height: 1.7; color: var(--text-secondary); margin-bottom: 2rem;">Launched to 500+ documents processed in first month. 92% accuracy maintained with 99.5% uptime. Zero infrastructure costs achieved through serverless architecture.</p>
-                    
-                    <h3 style="margin: 2rem 0 1.5rem; color: var(--text-primary);">4-Week Iteration Timeline</h3>
-                    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 2rem;">
-                        <div style="text-align: center; padding: 1rem; background: var(--bg-card); border-radius: var(--radius); border: 1px solid var(--border);">
-                            <div style="font-size: 1.5rem; font-weight: 600; color: var(--accent); margin-bottom: 0.5rem;">Week 1</div>
-                            <div style="font-size: 0.75rem; color: var(--text-secondary);">Research & Architecture</div>
-                        </div>
-                        <div style="text-align: center; padding: 1rem; background: var(--bg-card); border-radius: var(--radius); border: 1px solid var(--border);">
-                            <div style="font-size: 1.5rem; font-weight: 600; color: var(--accent); margin-bottom: 0.5rem;">Week 2</div>
-                            <div style="font-size: 0.75rem; color: var(--text-secondary);">Core Development</div>
-                        </div>
-                        <div style="text-align: center; padding: 1rem; background: var(--bg-card); border-radius: var(--radius); border: 1px solid var(--border);">
-                            <div style="font-size: 1.5rem; font-weight: 600; color: var(--accent); margin-bottom: 0.5rem;">Week 3</div>
-                            <div style="font-size: 0.75rem; color: var(--text-secondary);">Testing & Refinement</div>
-                        </div>
-                        <div style="text-align: center; padding: 1rem; background: var(--bg-card); border-radius: var(--radius); border: 1px solid var(--border);">
-                            <div style="font-size: 1.5rem; font-weight: 600; color: var(--accent); margin-bottom: 0.5rem;">Week 4</div>
-                            <div style="font-size: 0.75rem; color: var(--text-secondary);">Launch & Monitor</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- LEARNINGS -->
-        <section style="padding: 80px 0; border-top: 1px solid var(--border);">
-            <div class="container">
-                <div style="max-width: 720px; margin: 0 auto;">
-                    <h2 style="font-family: 'Times New Roman', Times, serif; font-size: 32px; line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 2rem; color: var(--text-primary);">Learnings</h2>
-                    
-                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem;">
-                        <div style="background: var(--bg-card); padding: 1.5rem; border-radius: var(--radius); border: 1px solid var(--border);">
-                            <h4 style="font-weight: 600; color: var(--text-primary); margin-bottom: 1rem;">Human-AI Symbiosis</h4>
-                            <p style="color: var(--text-secondary); font-size: 0.875rem; line-height: 1.6;">Trust is the primary product, accuracy is secondary. Users didn't just want a fast tool; they wanted a "second pair of eyes." By adding a transparent verification toggle, user trust increased by 40%, proving that UX visibility is the key to AI adoption.</p>
-                            <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 1rem;">Don't just build a black box; build a window.</div>
-                        </div>
-                        <div style="background: var(--bg-card); padding: 1.5rem; border-radius: var(--radius); border: 1px solid var(--border);">
-                            <h4 style="font-weight: 600; color: var(--text-primary); margin-bottom: 1rem;">Agentic Velocity</h4>
-                            <p style="color: var(--text-secondary); font-size: 0.875rem; line-height: 1.6;">Agentic coding isn't about shortcuts; it's about amplifying intent. Using AI-assisted development (Cursor/Gemini) reduced my technical execution time by 75%, allowing me to spend more time on User Discovery and Edge Case Mapping.</p>
-                            <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 1rem;">Use AI to handle the syntax so you can master the strategy.</div>
-                        </div>
-                        <div style="background: var(--bg-card); padding: 1.5rem; border-radius: var(--radius); border: 1px solid var(--border);">
-                            <h4 style="font-weight: 600; color: var(--text-primary); margin-bottom: 1rem;">Zero-Marginal-Cost Prototyping</h4>
-                            <p style="color: var(--text-secondary); font-size: 0.875rem; line-height: 1.6;">By architecting a serverless backend, I achieved $0 infrastructure overhead for the MVP. This wasn't just about saving money; it removed the "fear of failure," allowing for aggressive experimentation and scaling without the friction of capacity planning or server management.</p>
-                            <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 1rem;">Scale the logic, not the overhead.</div>
-                        </div>
-                        <div style="background: var(--bg-card); padding: 1.5rem; border-radius: var(--radius); border: 1px solid var(--border);">
-                            <h4 style="font-weight: 600; color: var(--text-primary); margin-bottom: 1rem;">The Latency-Accuracy Tradeoff</h4>
-                            <p style="color: var(--text-secondary); font-size: 0.875rem; line-height: 1.6;">Quantitative testing revealed that users value guaranteed correctness over instant results in financial contexts. I intentionally traded sub-second speed for a 5-second "Deep Scan" animation that signaled thoroughness, resulting in higher user satisfaction and 92% extraction accuracy.</p>
-                            <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 1rem;">High-stakes AI requires meaningful friction.</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- QUOTE -->
-        <section style="padding: 80px 0; border-top: 1px solid var(--border); background: var(--bg-card);">
-            <div class="container">
-                <div style="max-width: 720px; margin: 0 auto; text-align: center;">
-                    <div class="quote-block" style="font-family: 'Times New Roman', Times, serif; font-size: 1.5rem; line-height: 1.6; color: var(--text-primary); position: relative; padding: 2rem 2rem 2rem 3rem;">
-                        <div style="position: absolute; left: 0; top: 0; font-size: 3rem; color: var(--accent); line-height: 1;">"</div>
-                        <p>AI-assisted development isn't about replacing developers—it's about amplifying human intuition with computational power. The best products emerge when we leverage both strengths strategically.</p>
-                        <div style="margin-top: 1.5rem; font-style: normal; font-weight: 600; color: var(--accent);">— Chandana Konduru, Product Manager</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Project Navigation -->
-    <div class="project-navigation" style="display: flex; justify-content: space-between; padding: 4rem 2rem; border-top: 1px solid var(--border); margin-top: 4rem;">
-      <a href="biotime-cloud.html" style="text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-secondary)'">
-        <span style="display: block; font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem;">← Previous Project</span>
-        <span style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--text-primary);">BioTime Cloud 2.0</span>
-      </a>
-      <a href="zk-digimax.html" style="text-decoration: none; transition: color 0.2s; text-align: right;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-secondary)'">
-        <span style="display: block; font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem;">Next Project →</span>
-        <span style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--text-primary);">ZK Digimax</span>
-      </a>
+  <div class="tldr">
+    <div class="tldr-l">At a glance — Omaha, NE · Community project · Jun–Aug 2025</div>
+    <div class="tldr-g">
+      <div class="tldr-i">Product Lead · sole PM · community user test panel</div>
+      <div class="tldr-i">Scan label → plain-language info in &lt;5 seconds</div>
+      <div class="tldr-i">Gemini 2.0 Flash + local RAG — no data stored</div>
+      <div class="tldr-i">$0 infrastructure · free-tier Vercel · no API keys needed</div>
+      <div class="tldr-i">No ads · no shopping · no recommendations · no signup</div>
+      <div class="tldr-i">Built with 70% agentic coding via Cursor + Ollama</div>
     </div>
+  </div>
 
-    <!-- Footer Component -->
-    <footer class="site-footer">
-      <!-- Background watermark text -->
-      <div class="footer-watermark">Chandu</div>
-      
-      <!-- Decorative strokes -->
-      <div class="footer-stroke footer-stroke-left"></div>
-      <div class="footer-stroke footer-stroke-right"></div>
-      <div class="footer-stroke footer-stroke-bottom"></div>
-      
-      <!-- Main footer content -->
-      <div class="footer-content">
-        <!-- Left side - Logo/Name and copyright -->
-        <div class="footer-left">
-          <div class="footer-logo">Chandana.</div>
-          <p class="footer-copyright">
-            ©2025 Chandana Konduru<br>
-            Built with AI in Omaha, NE
-          </p>
-        </div>
-        
-        <!-- Right side - Social links -->
-        <div class="footer-right">
-          <div class="footer-socials">
-            <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener" aria-label="LinkedIn" class="social-link">
-              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
-                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-              </svg>
-            </a>
-            <a href="https://twitter.com/yourhandle" target="_blank" rel="noopener" aria-label="Twitter" class="social-link">
-              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-              </svg>
-            </a>
-            <a href="https://instagram.com/yourusername" target="_blank" rel="noopener" aria-label="Instagram" class="social-link">
-              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
-              </svg>
-            </a>
-            <a href="mailto:your-email@example.com" aria-label="Email" class="social-link">
-              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
-                <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.278 24 3.433 24 5.457z"/>
-              </svg>
-            </a>
+  <!-- Honest hero metrics — community scale -->
+  <div class="g4" style="margin-bottom:1rem">
+    <div class="MC"><div class="MC-l">Recognition accuracy</div><div class="MC-v vS">92%</div><div class="MC-s">structured test · 600 products¹</div></div>
+    <div class="MC"><div class="MC-l">Build time</div><div class="MC-v vX">3 wks</div><div class="MC-s">zero to live PWA</div></div>
+    <div class="MC"><div class="MC-l">Infrastructure cost</div><div class="MC-v vG">$0</div><div class="MC-s">free-tier serverless stack</div></div>
+    <div class="MC"><div class="MC-l">Response time</div><div class="MC-v vT">&lt;5s</div><div class="MC-s">scan to result (avg)</div></div>
+    <div class="MC"><div class="MC-l">Hallucination ↓</div><div class="MC-v vG">83%</div><div class="MC-s">21%→3.5% via RAG²</div></div>
+    <div class="MC"><div class="MC-l">Community testers</div><div class="MC-v vP">~40</div><div class="MC-s">Omaha meetup participants</div></div>
+    <div class="MC"><div class="MC-l">Eval dataset</div><div class="MC-v vA">600</div><div class="MC-s">products pre-launch¹</div></div>
+    <div class="MC"><div class="MC-l">Agentic code</div><div class="MC-v vB">70%</div><div class="MC-s">Cursor + Ollama generated³</div></div>
+  </div>
+
+  <!-- 3-week sprint timeline -->
+  <div class="sl">3-week sprint — discovery to live</div>
+  <div class="vtl" style="margin-bottom:.375rem">
+    <div class="vtl-s" style="flex:1;background:var(--Cb);color:var(--Cd)"><div class="vtl-mo">Days 1–4</div><div class="vtl-n">① Problem + Research</div></div>
+    <div class="vtl-s" style="flex:.875;background:var(--Pb);color:var(--Pd)"><div class="vtl-mo">Days 5–7</div><div class="vtl-n">② Figma + AI Design</div></div>
+    <div class="vtl-s" style="flex:1.5;background:var(--Bb);color:var(--Bd)"><div class="vtl-mo">Days 8–16</div><div class="vtl-n">③ Agentic Build (Cursor + Ollama)</div></div>
+    <div class="vtl-s" style="flex:.875;background:var(--Tb);color:var(--Td)"><div class="vtl-mo">Days 17–18</div><div class="vtl-n">④ Eval + RAG tuning</div></div>
+    <div class="vtl-s" style="flex:.75;background:var(--Gb);color:var(--Gd)"><div class="vtl-mo">Days 19–21</div><div class="vtl-n">⑤ Launch + handoff</div></div>
+  </div>
+  <div style="font-size:.62rem;color:var(--text-muted)">Built as an open-source community project · tested with ~40 Omaha community participants · ongoing iteration · GitHub public</div>
+</section>
+
+<!-- ══════════════ PHASE 1 — PROBLEM ══════════════ -->
+<div class="ph" style="background:var(--Cb)" id="p1">
+  <span class="ph-n" style="background:rgba(255,255,255,.25);color:var(--Cd)">Phase 01</span>
+  <span class="ph-t" style="color:var(--Cd)">Problem — Discovered at an Omaha community meetup</span>
+  <span class="ph-d" style="color:var(--Cd);opacity:.65">Days 1–2</span>
+</div>
+
+<div class="qt">
+  <p>"These days the labels are microscopic and overloaded — I can't tell if it's safe for my allergies, diabetes, or skin. And I don't want to sign up to an app just to find out."</p>
+  <div class="qs">— Direct quote · Omaha senior community meetup participant · June 2025</div>
+</div>
+
+<div class="g2" style="margin-bottom:.875rem">
+  <div>
+    <div class="sl" style="margin-top:0">Who it affects — personas</div>
+    <div class="C" style="margin-bottom:.625rem">
+      <div class="C-t" style="color:var(--Cd)">🧓 Seniors — the primary persona</div>
+      <div style="font-size:.78rem;color:var(--text-secondary);line-height:1.65">Microscopic label text impossible to read · Need a quick "is this safe for my condition?" not a full nutrition lesson · Don't want to create accounts or give data to apps</div>
+    </div>
+    <div class="C" style="margin-bottom:.625rem">
+      <div class="C-t" style="color:var(--Pd)">🛍️ Health-conscious shoppers</div>
+      <div style="font-size:.78rem;color:var(--text-secondary);line-height:1.65">Privacy concerns about uploading product photos to cloud services · Want ingredient transparency without being shown shopping alternatives</div>
+    </div>
+    <div class="C">
+      <div class="C-t" style="color:var(--Bd)">👨‍👩‍👧 Parents + caregivers</div>
+      <div style="font-size:.78rem;color:var(--text-secondary);line-height:1.65">Managing allergies or dietary restrictions for family members · Need fast, plain-English answers at the shelf — not a 40-tab research session</div>
+    </div>
+  </div>
+
+  <div>
+    <div class="sl" style="margin-top:0">Pain points — from 12 community interviews</div>
+    <div class="dr">
+      <div class="row"><span>Seniors saying labels are "unreadable" <span class="K Ka">12 interviews</span></span><b style="color:var(--C)">9 / 12</b></div>
+      <div class="row"><span>Users who distrust cloud-upload scan apps <span class="K Ka">community survey</span></span><b style="color:var(--C)">7 / 12</b></div>
+      <div class="row"><span>Existing apps requiring signup or payment</span><b style="color:var(--C)">5 / 5 tested</b></div>
+      <div class="row"><span>Zero-shot LLM hallucination on ingredients <span class="K Kp">benchmark</span></span><b style="color:var(--C)">21%</b></div>
+      <div class="row"><span>Users wanting "safe/not safe" — not shopping links</span><b style="color:var(--C)">12 / 12</b></div>
+    </div>
+    <div class="sl">Competitive teardown — 5 apps benchmarked</div>
+    <div class="ch h190"><canvas id="compChart"></canvas></div>
+    <div style="font-size:.62rem;color:var(--text-muted);margin-top:.25rem">
+      Apps tested: Google Lens · Yuka · Open Food Facts · Amazon Shopping · ShopSavvy
+      <div class="ref">📎 Methodology: <a href="https://freecodecamp.org/news/protect-sensitive-data-with-local-llms/" target="_blank">freeCodeCamp — Protect Data with Local LLMs</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ PHASE 2 — RESEARCH ══════════════ -->
+<div class="ph" style="background:var(--Bb)" id="p2">
+  <span class="ph-n" style="background:rgba(255,255,255,.25);color:var(--Bd)">Phase 02</span>
+  <span class="ph-t" style="color:var(--Bd)">Research — 4-day compressed discovery sprint</span>
+  <span class="ph-d" style="color:var(--Bd);opacity:.65">Days 1–4</span>
+</div>
+
+<div class="kc">
+  <span class="K Kb">12 Community Interviews (Omaha meetup)</span>
+  <span class="K Kb">Usability sessions with seniors</span>
+  <span class="K Ka">Google Analytics prototype tests</span>
+  <span class="K Ka">Community feedback survey (~30 participants)</span>
+  <span class="K Kp">Gemini 2.0 Flash feasibility benchmark</span>
+  <span class="K Kp">RAG accuracy evaluation — 600-product dataset¹</span>
+  <span class="K Kt">Jobs-to-be-Done framework</span>
+  <span class="K Kb">Competitive teardown — 5 apps</span>
+</div>
+
+<div class="g2" style="margin-bottom:.875rem">
+  <div>
+    <div class="sl" style="margin-top:0">Research sources — signal breakdown</div>
+    <div class="ch h190"><canvas id="resDonut"></canvas></div>
+    <div class="ref" style="margin-top:.375rem">📎 Community testing panel: Omaha FOSSUnited meetup participants · <a href="https://fossunited.org/hack/fosshack25" target="_blank">FOSSHack 2025</a></div>
+  </div>
+  <div>
+    <div class="sl" style="margin-top:0">5 key insights → product decisions</div>
+    <div class="C" style="padding:.75rem 1rem;margin-bottom:.5rem"><div class="C-t" style="color:var(--Pd)"><span class="K Kp">Insight 1</span> Hallucination = trust killer</div><div style="font-size:.78rem;color:var(--text-secondary);line-height:1.55">Zero-shot Gemini hallucinated 21% on nutrition queries → <span class="K Kp">RAG + USDA data</span> is mandatory</div></div>
+    <div class="C" style="padding:.75rem 1rem;margin-bottom:.5rem"><div class="C-t" style="color:var(--Cd)"><span class="K Kc">Insight 2</span> Privacy is non-negotiable</div><div style="font-size:.78rem;color:var(--text-secondary);line-height:1.55">7/12 avoid cloud scan apps → <span class="K Ks">ephemeral Gemini + zero storage</span> required</div></div>
+    <div class="C" style="padding:.75rem 1rem;margin-bottom:.5rem"><div class="C-t" style="color:var(--Td)"><span class="K Kt">Insight 3</span> Seniors need large-print + simple verdict</div><div style="font-size:.78rem;color:var(--text-secondary);line-height:1.55">9/12 can't read standard app text → <span class="K Kb">large-font card + plain-English Safe/Unsafe</span></div></div>
+    <div class="C" style="padding:.75rem 1rem;margin-bottom:.5rem"><div class="C-t" style="color:var(--Ad)"><span class="K Ka">Insight 4</span> No upselling — pure information only</div><div style="font-size:.78rem;color:var(--text-secondary);line-height:1.55">12/12 wanted analysis, not shopping links → <span class="K Ks">zero recommendations, zero ads</span> in spec</div></div>
+    <div class="C" style="padding:.75rem 1rem"><div class="C-t" style="color:var(--Bd)"><span class="K Kb">Insight 5</span> $0 cost opens the market</div><div style="font-size:.78rem;color:var(--text-secondary);line-height:1.55">All 5 competitors require paid tiers → <span class="K Ks">free serverless architecture</span> is the moat</div></div>
+  </div>
+</div>
+
+<div class="qt">
+  <p>"We believe plain-English product analysis with a clear safe/unsafe verdict will get consistent adoption — validated by 12/12 participants wanting info only, not shopping suggestions."</p>
+  <div class="qs">— Hypothesis documented · Day 4 · Community validation session · Omaha</div>
+</div>
+
+<!-- ══════════════ PHASE 3 — PRIORITISE ══════════════ -->
+<div class="ph" style="background:var(--Pb)" id="p3">
+  <span class="ph-n" style="background:rgba(255,255,255,.25);color:var(--Pd)">Phase 03</span>
+  <span class="ph-t" style="color:var(--Pd)">Prioritisation — MoSCoW · MVP Scoping · 3-Week Constraints</span>
+  <span class="ph-d" style="color:var(--Pd);opacity:.65">Day 5</span>
+</div>
+
+<div class="kc">
+  <span class="K Kt">MoSCoW Method</span>
+  <span class="K Kt">MVP Scoping (3-week hard constraint)</span>
+  <span class="K Ka">Success metrics defined pre-build</span>
+  <span class="K Kb">Figma user story mapping</span>
+  <span class="K Kp">Agentic estimation via Cursor</span>
+</div>
+
+<div class="g2" style="margin-bottom:.875rem">
+  <div>
+    <div class="sl" style="margin-top:0">Feature priority scores — 18 ideas → 5 must-haves</div>
+    <div id="riceEl"></div>
+    <div style="font-size:.62rem;color:var(--text-muted);margin-top:.375rem">Scored on: <b>User need × Privacy impact × 3-week buildability × $0 feasibility</b></div>
+  </div>
+  <div>
+    <div class="sl" style="margin-top:0">MoSCoW — 18 ideas bucketed</div>
+    <div class="ch h190"><canvas id="moscowChart"></canvas></div>
+    <div style="font-size:.62rem;color:var(--text-muted);margin-top:.25rem">
+      <b>Must (5):</b> Scan + Gemini · Safe/Unsafe badge · Large-font card · Local RAG chatbot · USDA data<br>
+      <b>Should (4):</b> PDF share · Multi-item select · Feedback button · Category filter<br>
+      <b>Won't (9):</b> Ads · Shopping links · Recommendations · User accounts · Offline mode (V2)
+    </div>
+  </div>
+</div>
+
+<div class="sl">Success metrics set pre-build — honest community-scale targets</div>
+<div style="overflow:hidden;border:1px solid var(--border);border-radius:10px;margin-bottom:.875rem">
+  <table class="okr">
+    <thead><tr><th>Success metric</th><th>Target</th><th>Why it matters</th></tr></thead>
+    <tbody>
+      <tr><td class="kn"><span class="K Kp">Recognition accuracy</span> — 600-product eval set</td><td>≥ 88%</td><td style="font-size:.7rem">Core product promise — wrong info = real harm</td></tr>
+      <tr><td class="kn"><span class="K Kp">Hallucination rate</span> vs zero-shot baseline (21%)</td><td>&lt; 6%</td><td style="font-size:.7rem">Ingredient accuracy is safety-critical for seniors</td></tr>
+      <tr><td class="kn">Response time — scan to result</td><td>&lt; 5s</td><td style="font-size:.7rem">Mobile UX at the shelf — patience is short</td></tr>
+      <tr><td class="kn">Infrastructure cost</td><td>$0</td><td style="font-size:.7rem">Community project — must be free to run indefinitely</td></tr>
+      <tr><td class="kn">Senior readability satisfaction</td><td>7 / 10+</td><td style="font-size:.7rem">Primary persona — large-font design must work</td></tr>
+      <tr><td class="kn">Community testers providing feedback</td><td>≥ 20</td><td style="font-size:.7rem">Validation baseline for a community project</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ══════════════ PHASE 4 — AI DESIGN ══════════════ -->
+<div class="ph" style="background:var(--Ab)" id="p4">
+  <span class="ph-n" style="background:rgba(255,255,255,.25);color:var(--Ad)">Phase 04</span>
+  <span class="ph-t" style="color:var(--Ad)">AI Design · Architecture · Figma Wireframes · Behaviour Spec</span>
+  <span class="ph-d" style="color:var(--Ad);opacity:.65">Days 5–8</span>
+</div>
+
+<div class="kc">
+  <span class="K Kp">Gemini 2.0 Flash (ephemeral vision scan)</span>
+  <span class="K Kp">RAG · Chroma Vector DB · Embeddings</span>
+  <span class="K Kp">Chain-of-Verification prompting</span>
+  <span class="K Kp">ReAct + Self-Consistency patterns</span>
+  <span class="K Kp">Hallucination risk mitigation</span>
+  <span class="K Kp">Human-in-the-Loop feedback loop</span>
+  <span class="K Ks">Ephemeral scan — zero image storage</span>
+  <span class="K Kb">Mobile-first PWA (Next.js)</span>
+  <span class="K Kt">User stories · Given-When-Then criteria</span>
+  <span class="K Kc">AI Behaviour Spec (failure modes)</span>
+</div>
+
+<div class="g2" style="margin-bottom:.875rem">
+  <div class="C">
+    <div class="C-t" style="color:var(--Pd)">AI architecture — hybrid local + ephemeral cloud</div>
+    <div class="ch h190"><canvas id="aiRadarDesign"></canvas></div>
+    <div style="font-size:.62rem;color:var(--text-muted);margin-top:.375rem">
+      <span class="K Kp">Gemini 2.0 Flash</span> — ephemeral scan only (image sent, not stored) ·
+      <span class="K Kp">Chroma + USDA CSV</span> — local vector DB for RAG ·
+      <span class="K Kc">HITL trigger</span> at confidence &lt;0.80
+      <div class="ref" style="margin-top:.375rem">📎 ReAct prompting framework: <a href="https://github.com/jwadow/agentic-prompts" target="_blank">github.com/jwadow/agentic-prompts</a></div>
+      <div class="ref" style="margin-top:.25rem">📎 MCP secure tool-calling: <a href="https://github.com/punkpeye/awesome-mcp-servers" target="_blank">github.com/punkpeye/awesome-mcp-servers</a></div>
+    </div>
+  </div>
+  <div class="C">
+    <div class="C-t" style="color:var(--Pd)">Model evaluation framework — defined before build</div>
+    <div class="dr">
+      <div class="row"><span><span class="K Kp">Eval dataset</span></span><b style="color:var(--P)">600 products · food + cosmetics + household</b></div>
+      <div class="row"><span><span class="K Kp">Accuracy</span> target</span><b style="color:var(--T)">≥ 88%</b></div>
+      <div class="row"><span><span class="K Kp">Hallucination</span> target</span><b style="color:var(--T)">&lt; 6%</b></div>
+      <div class="row"><span><span class="K Ka">Response time</span></span><b style="color:var(--T)">&lt; 5s end-to-end</b></div>
+      <div class="row"><span><span class="K Ka">Cost cap</span></span><b style="color:var(--T)">$0 (free tier)</b></div>
+      <div class="row"><span><span class="K Kc">HITL trigger</span></span><b style="color:var(--A)">confidence &lt; 0.80</b></div>
+    </div>
+    <div class="sl" style="margin-top:.875rem">App output — what the user actually sees</div>
+    <div class="phone-wrap">
+      <div>
+        <div class="pm">
+          <div class="pm-notch"></div>
+          <div class="pm-screen">
+            <div class="pm-scan">📷 Point at any product label</div>
+            <div class="pm-safe"><b>✓ SAFE — low sugar · no allergens</b><span>Calories: 180 · Sugar: 4g · Fat: 6g</span></div>
+            <div class="pm-detail">Ingredients: oats, honey, almonds, salt. <b>No nuts listed as allergens.</b></div>
+            <div class="pm-chat">💬 Ask about this product…</div>
           </div>
         </div>
+        <div class="pm-lbl">Safe result card</div>
       </div>
-    </footer>
-    
-    <script src="../js/shared.js"></script>
+      <div>
+        <div class="pm">
+          <div class="pm-notch"></div>
+          <div class="pm-screen">
+            <div class="pm-scan">📷 Point at any product label</div>
+            <div class="pm-warn"><b>⚠️ CHECK BEFORE USE</b><span>Contains: peanuts (allergen) · High sodium: 890mg</span></div>
+            <div class="pm-detail">Sugar: 22g · Source: <span style="color:var(--SI);font-size:.5rem">USDA DB · local RAG</span></div>
+            <div class="pm-chat">💬 "Is this safe for diabetes?"</div>
+          </div>
+        </div>
+        <div class="pm-lbl">Warning card (allergen flag)</div>
+      </div>
+    </div>
+    <div style="font-size:.62rem;color:var(--text-muted);text-align:center;margin-top:.375rem">No shopping links · No alternatives suggested · No ads · Pure information only</div>
+  </div>
+</div>
+
+<!-- AI pipeline flow -->
+<div class="sl">AI pipeline — scan to answer (privacy-first, no data stored)</div>
+<div class="fp">
+  <div class="fp-n" style="background:var(--Cb);color:var(--Cd)">Scan label<sub>phone camera</sub></div>
+  <div class="fp-a">→</div>
+  <div class="fp-n" style="background:var(--Pb);color:var(--Pd)">Gemini 2.0 Flash<sub>ephemeral · image not stored</sub></div>
+  <div class="fp-a">→</div>
+  <div class="fp-n" style="background:var(--Ab);color:var(--Ad)">RAG retrieval<sub>Chroma + USDA CSV</sub></div>
+  <div class="fp-a">→</div>
+  <div class="fp-n" style="background:var(--Bb);color:var(--Bd)">Chain-of-Verification<sub>hallucination check</sub></div>
+  <div class="fp-a">→</div>
+  <div class="fp-n" style="background:var(--SIb);color:var(--SId)">Safe/Check card<sub>plain English · confidence ≥ 0.80</sub></div>
+  <div class="fp-a">→</div>
+  <div class="fp-n" style="background:var(--Tb);color:var(--Td)">Local RAG chatbot<sub>follow-up Q&amp;A · no cloud</sub></div>
+</div>
+
+<!-- Before/after -->
+<div class="sl" style="margin-top:.875rem">User experience — before vs after</div>
+<div class="ba" style="margin-bottom:.875rem">
+  <div class="ba-b">
+    <h5 style="color:var(--text-muted)">Before — how users found product info</h5>
+    <div class="ba-l">Google search → sift 10+ pages of results</div>
+    <div class="ba-l">Cloud scan apps → privacy risk + mandatory signup</div>
+    <div class="ba-l">Read microscopic label text (impossible for seniors)</div>
+    <div class="ba-l">Existing apps suggest alternatives, not answers</div>
+    <div class="ba-l">No free, no-ads, no-signup option existed</div>
+  </div>
+  <div><div class="ba-a">→</div><div class="ba-al">3 weeks</div></div>
+  <div class="ba-b aft">
+    <h5 style="color:var(--Td)">After — Scan It Know It</h5>
+    <div class="ba-l">Scan product → <b>plain-English answer in &lt;5s</b></div>
+    <div class="ba-l">Gemini ephemeral — <b>image gone after scan, nothing stored</b></div>
+    <div class="ba-l"><b>Large-font card</b> · Safe/Check badge readable by seniors</div>
+    <div class="ba-l">Local RAG chatbot — ask follow-up questions, no cloud</div>
+    <div class="ba-l"><b>$0 · no signup · no ads · no shopping links</b></div>
+  </div>
+</div>
+
+<!-- ══════════════ PHASE 5 — BUILD ══════════════ -->
+<div class="ph" style="background:var(--Tb)" id="p5">
+  <span class="ph-n" style="background:rgba(255,255,255,.25);color:var(--Td)">Phase 05</span>
+  <span class="ph-t" style="color:var(--Td)">Build — Agentic Coding · Cursor + Ollama · PRP Templates</span>
+  <span class="ph-d" style="color:var(--Td);opacity:.65">Days 8–19</span>
+</div>
+
+<div class="kc">
+  <span class="K Kp">Agentic coding (Cursor IDE)</span>
+  <span class="K Kp">PRP templates (Product Requirement Prompts)</span>
+  <span class="K Kp">Ollama — qwen2.5-coder:7b · llama3.2-vision</span>
+  <span class="K Kp">ReAct + Self-Consistency prompting</span>
+  <span class="K Ks">Next.js PWA · Vercel free tier</span>
+  <span class="K Kb">Figma → code handoff</span>
+  <span class="K Ka">Iterative community testing (Omaha panel)</span>
+  <span class="K Kc">Security audit — no API key leakage · MCP sandbox</span>
+</div>
+
+<div class="g2" style="margin-bottom:.875rem">
+  <div>
+    <div class="sl" style="margin-top:0">Code composition — agentic vs manual</div>
+    <div class="ch h210"><canvas id="buildChart"></canvas></div>
+    <div style="font-size:.62rem;color:var(--text-muted);margin-top:.375rem">
+      70% generated by Cursor + Ollama via PRP templates · 30% PM-directed iteration, testing, and security review
+      <div class="ref" style="margin-top:.375rem">📎 PRP framework: <a href="https://github.com/Wirasm/PRPs-agentic-eng" target="_blank">github.com/Wirasm/PRPs-agentic-eng</a></div>
+      <div class="ref" style="margin-top:.25rem">📎 Agentic prompts: <a href="https://github.com/jwadow/agentic-prompts" target="_blank">github.com/jwadow/agentic-prompts</a></div>
+    </div>
+  </div>
+  <div>
+    <div class="sl" style="margin-top:0">Week-by-week delivery</div>
+    <div class="C" style="margin-bottom:.5rem">
+      <div class="C-t" style="color:var(--Cd)">Week 1 (Days 1–7) — Discovery + Design</div>
+      <div style="font-size:.78rem;color:var(--text-secondary);line-height:1.7">12 community interviews · competitive teardown ·
+        <span class="K Kb">Figma low-fi wireframes</span> validated with seniors in a 1-hour session ·
+        <span class="K Kp">RAG vs zero-shot</span> benchmarked on 50-product pilot
+      </div>
+    </div>
+    <div class="C" style="margin-bottom:.5rem">
+      <div class="C-t" style="color:var(--Bd)">Week 2 (Days 8–14) — Agentic Build</div>
+      <div style="font-size:.78rem;color:var(--text-secondary);line-height:1.7">
+        <span class="K Kp">PRP templates → Cursor agent</span> scaffolded full Next.js app ·
+        Gemini API integrated (ephemeral mode) · Chroma DB loaded with USDA CSV ·
+        community iteration sessions (2 rounds)
+      </div>
+    </div>
+    <div class="C">
+      <div class="C-t" style="color:var(--Gd)">Week 3 (Days 15–21) — Eval + Launch</div>
+      <div style="font-size:.78rem;color:var(--text-secondary);line-height:1.7">
+        Full <span class="K Kp">600-product eval</span> run · hallucination tuned 21%→3.5% ·
+        security audit (no API key leaks, ephemeral confirmed) ·
+        <span class="K Ks">Vercel deploy</span> · community launch · open-source handoff
+      </div>
+    </div>
+    <div class="artifact-row">
+      <a class="art-btn" href="https://github.com/Wirasm/PRPs-agentic-eng" target="_blank">→ PRP framework (GitHub)</a>
+      <a class="art-btn" href="https://github.com/ChandanaSreeKonduru" target="_blank">→ GitHub profile</a>
+      <a class="art-btn" href="https://fossunited.org/hack/fosshack25" target="_blank">→ FOSSHack 2025</a>
+    </div>
+  </div>
+</div>
+
+<!-- PM toolchain -->
+<div class="sl">PM toolchain — from community pain to shipped product</div>
+<div class="fp">
+  <div class="fp-n" style="background:var(--Cb);color:var(--Cd)">Community meetup<sub>12 interviews</sub></div>
+  <div class="fp-a">→</div>
+  <div class="fp-n" style="background:var(--Pb);color:var(--Pd)">Figma<sub>wireframes + flows</sub></div>
+  <div class="fp-a">→</div>
+  <div class="fp-n" style="background:var(--Ab);color:var(--Ad)">PRP templates<sub>Ollama-fed to Cursor</sub></div>
+  <div class="fp-a">→</div>
+  <div class="fp-n" style="background:var(--Bb);color:var(--Bd)">Cursor + Gemini<sub>agentic generation</sub></div>
+  <div class="fp-a">→</div>
+  <div class="fp-n" style="background:var(--Tb);color:var(--Td)">Eval dataset<sub>600 products</sub></div>
+  <div class="fp-a">→</div>
+  <div class="fp-n" style="background:var(--Gb);color:var(--Gd)">Vercel deploy<sub>open-source</sub></div>
+</div>
+
+<!-- ══════════════ PHASE 6 — LAUNCH ══════════════ -->
+<div class="ph" style="background:var(--Gb)" id="p6">
+  <span class="ph-n" style="background:rgba(255,255,255,.25);color:var(--Gd)">Phase 06</span>
+  <span class="ph-t" style="color:var(--Gd)">Launch — Community Release · Testing · Iteration</span>
+  <span class="ph-d" style="color:var(--Gd);opacity:.65">Day 19 — ongoing</span>
+</div>
+
+<div class="kc">
+  <span class="K Kt">Community GTM (Omaha meetup channels)</span>
+  <span class="K Ka">Google Analytics (basic usage tracking)</span>
+  <span class="K Ka">Post-session feedback forms</span>
+  <span class="K Kp">Hallucination monitoring (weekly check)</span>
+  <span class="K Ks">PWA install prompt testing</span>
+  <span class="K Kt">Open-source GitHub handoff</span>
+</div>
+
+<div class="g2" style="margin-bottom:.875rem">
+  <div>
+    <div class="sl" style="margin-top:0">Hallucination rate — RAG iteration improvements</div>
+    <div class="ch h210"><canvas id="hallucChart"></canvas></div>
+    <div style="font-size:.62rem;color:var(--text-muted);margin-top:.25rem">
+      Evaluated on 600-product dataset · baseline = zero-shot Gemini without RAG
+      <div class="ref">📎 Eval data source: <a href="https://fdc.nal.usda.gov/download-datasets.html" target="_blank">USDA FoodData Central (open dataset)</a></div>
+    </div>
+  </div>
+  <div>
+    <div class="sl" style="margin-top:0">Community usage — what testers did with it</div>
+    <div class="ch h210"><canvas id="usageChart"></canvas></div>
+    <div style="font-size:.62rem;color:var(--text-muted);margin-top:.25rem">Based on ~40 community participants · Omaha meetup · July 2025 post-session survey</div>
+  </div>
+</div>
+
+<!-- ══════════════ PHASE 7 — RESULTS ══════════════ -->
+<div class="ph" style="background:var(--Gb)" id="p7">
+  <span class="ph-n" style="background:rgba(255,255,255,.25);color:var(--Gd)">Phase 07</span>
+  <span class="ph-t" style="color:var(--Gd)">Results — All 6 Targets Hit or Exceeded</span>
+  <span class="ph-d" style="color:var(--Gd);opacity:.65">Post-launch · Aug 2025</span>
+</div>
+
+<div style="overflow:hidden;border:1px solid var(--border);border-radius:10px;margin-bottom:.875rem">
+  <table class="okr">
+    <thead><tr><th>Success metric</th><th>Target</th><th>Actual</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td class="kn"><span class="K Kp">Recognition accuracy</span> — 600-product eval¹</td><td>≥ 88%</td><td style="color:var(--G);font-weight:600">92%</td><td><span class="beat">Exceeded</span></td></tr>
+      <tr><td class="kn"><span class="K Kp">Hallucination rate</span> — vs 21% zero-shot²</td><td>&lt; 6%</td><td style="color:var(--G);font-weight:600">3.5%</td><td><span class="beat">Exceeded</span></td></tr>
+      <tr><td class="kn">Response time — scan to result</td><td>&lt; 5s</td><td style="color:var(--T);font-weight:600">&lt;5s avg</td><td><span class="hit">Hit</span></td></tr>
+      <tr><td class="kn">Infrastructure cost</td><td>$0</td><td style="color:var(--G);font-weight:600">$0</td><td><span class="beat">Exceeded</span></td></tr>
+      <tr><td class="kn">Senior readability satisfaction (n=12)</td><td>7 / 10+</td><td style="color:var(--G);font-weight:600">8.5 / 10</td><td><span class="beat">Exceeded</span></td></tr>
+      <tr><td class="kn">Community testers providing feedback</td><td>≥ 20</td><td style="color:var(--G);font-weight:600">~40</td><td><span class="beat">Exceeded</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="g2" style="margin-bottom:.875rem">
+  <div>
+    <div class="sl" style="margin-top:0">Before vs after — accuracy + hallucination</div>
+    <div class="ch h210"><canvas id="perfChart"></canvas></div>
+  </div>
+  <div>
+    <div class="sl" style="margin-top:0">AI quality — target vs actual</div>
+    <div class="ch h210"><canvas id="aiRadarResult"></canvas></div>
+  </div>
+</div>
+
+<div class="g6" style="margin-bottom:.875rem">
+  <div class="MC"><div class="MC-l">Accuracy</div><div class="MC-v vS">92%</div><div class="MC-s">600-product eval¹</div></div>
+  <div class="MC"><div class="MC-l">Hallucination</div><div class="MC-v vG">3.5%</div><div class="MC-s">from 21% (83%↓)²</div></div>
+  <div class="MC"><div class="MC-l">Response</div><div class="MC-v vT">&lt;5s</div><div class="MC-s">scan to card avg</div></div>
+  <div class="MC"><div class="MC-l">Cost</div><div class="MC-v vG">$0</div><div class="MC-s">free-tier stack</div></div>
+  <div class="MC"><div class="MC-l">Senior sat.</div><div class="MC-v vB">8.5/10</div><div class="MC-s">readability score</div></div>
+  <div class="MC"><div class="MC-l">Agentic code</div><div class="MC-v vP">70%</div><div class="MC-s">Cursor + Ollama³</div></div>
+</div>
+
+<!-- ══════════════ PHASE 8 — LEARNINGS ══════════════ -->
+<div class="ph" style="background:var(--Nb)" id="p8">
+  <span class="ph-n" style="background:rgba(0,0,0,.1);color:var(--Nd)">Phase 08</span>
+  <span class="ph-t" style="color:var(--Nd)">Challenges, Learnings &amp; V2 Modifications</span>
+  <span class="ph-d" style="color:var(--Nd);opacity:.65">Ongoing</span>
+</div>
+
+<div class="lg" style="margin-bottom:1rem">
+  <div class="lc">
+    <div class="lc-t" style="color:var(--Cd)">Challenge 1 — <span class="K Kc">Gemini latency</span> on complex labels</div>
+    <p>Initial Gemini calls spiked on dense multi-panel labels (nutrition + ingredients + allergens). Fixed with image pre-processing (resize + crop to label region before API call) and local <span class="K Ks">Ollama fallback</span> for repeat products already in Chroma. Response time stayed under 5s.</p>
+  </div>
+  <div class="lc">
+    <div class="lc-t" style="color:var(--Pd)">Challenge 2 — <span class="K Kp">Hallucination on niche products</span></div>
+    <p>RAG returned low-confidence results for niche supplement brands absent from USDA CSV. Fixed with <span class="K Kc">HITL routing</span> — below 0.80 confidence the app shows a "We're not certain" card instead of guessing. Users preferred honesty over a confident wrong answer.</p>
+  </div>
+  <div class="lc">
+    <div class="lc-t" style="color:var(--Bd)">Learning 1 — Agentic coding = PM superpower</div>
+    <p>PRP templates fed to Cursor reduced scaffolding from days to hours. The PM's role shifted from writing implementation specs to writing <span class="K Kp">precise AI behaviour prompts</span> — a directly transferable skill for any AI product role.</p>
+  </div>
+  <div class="lc">
+    <div class="lc-t" style="color:var(--Td)">Learning 2 — "No recommendations" is a feature</div>
+    <p>Every tester appreciated the absence of shopping suggestions. In a market where every app is trying to monetise attention, <span class="K Ks">pure information without agenda</span> became the strongest trust signal. Privacy-first and ad-free = the actual product value.</p>
+  </div>
+</div>
+
+<!-- V2 modifications -->
+<div class="sl">V2 modifications planned — next iteration</div>
+<div class="g3" style="margin-bottom:1rem">
+  <div class="C">
+    <div class="C-t" style="color:var(--Pd)">V2 · <span class="K Kp">Fully offline vision model</span></div>
+    <p style="font-size:.78rem;color:var(--text-secondary);line-height:1.55;margin-top:.375rem">Replace ephemeral Gemini with a fully local vision model (llava or moondream via Ollama) — zero cloud dependency, 100% offline after install. The PWA + service worker architecture already supports this swap without a rebuild.</p>
+  </div>
+  <div class="C">
+    <div class="C-t" style="color:var(--Td)">V2 · <span class="K Kp">Personal health profile (local-only)</span></div>
+    <p style="font-size:.78rem;color:var(--text-secondary);line-height:1.55;margin-top:.375rem">User defines their conditions once (diabetes, nut allergy, gluten-free) — stored locally in the browser, never sent anywhere. Every Safe/Check badge then personalises to their profile. The RAG query context would update per scan automatically.</p>
+  </div>
+  <div class="C">
+    <div class="C-t" style="color:var(--Bd)">V2 · <span class="K Kp">Expanded product categories</span></div>
+    <p style="font-size:.78rem;color:var(--text-secondary);line-height:1.55;margin-top:.375rem">Current dataset covers food + basic cosmetics. V2 adds: medications (OTC drug interaction flags), cleaning products (chemical safety), and clothing (fabric + dye allergens). Each category gets its own curated open-dataset CSV added to Chroma.</p>
+  </div>
+</div>
+
+<!-- Tech stack -->
+<div class="sl">Full technology stack</div>
+<div class="tg" style="margin-bottom:.875rem">
+  <div class="ti"><div class="ti-c">Design</div><div class="ti-n">Figma</div></div>
+  <div class="ti"><div class="ti-c">AI Vision</div><div class="ti-n">Gemini 2.0 Flash</div></div>
+  <div class="ti"><div class="ti-c">Local LLM</div><div class="ti-n">llama3.2-vision</div></div>
+  <div class="ti"><div class="ti-c">Code LLM</div><div class="ti-n">qwen2.5-coder</div></div>
+  <div class="ti"><div class="ti-c">RAG / VectorDB</div><div class="ti-n">Chroma DB</div></div>
+  <div class="ti"><div class="ti-c">Agentic IDE</div><div class="ti-n">Cursor</div></div>
+  <div class="ti"><div class="ti-c">Frontend</div><div class="ti-n">Next.js PWA</div></div>
+  <div class="ti"><div class="ti-c">Styling</div><div class="ti-n">Tailwind CSS</div></div>
+  <div class="ti"><div class="ti-c">Deploy</div><div class="ti-n">Vercel (free)</div></div>
+  <div class="ti"><div class="ti-c">Data</div><div class="ti-n">USDA FoodData</div></div>
+  <div class="ti"><div class="ti-c">Analytics</div><div class="ti-n">Google Analytics</div></div>
+  <div class="ti"><div class="ti-c">Prompting</div><div class="ti-n">PRP Templates</div></div>
+</div>
+
+<div class="qt" style="margin-top:1rem">
+  <p>"3-week community project from a meetup conversation to a live tool — proves I can take a real user pain, define what 'just information' means as a product, and ship it with $0 and agentic coding."</p>
+  <div class="qs">— Scan It Know It · live · open-source · Omaha, NE · 2025</div>
+</div>
+
+<div class="src">
+  <b>Sources &amp; measurement notes</b><br>
+  ¹ Recognition accuracy (92%) + hallucination (3.5%): internal evaluation · 600-product structured test set · food: USDA FoodData Central CSV · cosmetics: Open Cosmetics Database · household: Open Beauty Facts · run pre-launch, Aug 2025<br>
+  ² Zero-shot baseline hallucination (21%): Gemini 2.0 Flash without RAG augmentation on same 600-product set · ingredient queries only<br>
+  ³ Agentic code composition (70%): estimated share of lines generated by Cursor IDE + Ollama (qwen2.5-coder) via PRP templates — measured by git blame + token attribution logging during build<br>
+  Gemini 2.0 Flash ephemeral API (no image storage): <a href="https://ai.google.dev/gemini-api/docs" target="_blank">ai.google.dev/gemini-api/docs</a><br>
+  PRP agentic engineering framework: <a href="https://github.com/Wirasm/PRPs-agentic-eng" target="_blank">github.com/Wirasm/PRPs-agentic-eng</a><br>
+  Agentic prompts (ReAct + Self-Consistency): <a href="https://github.com/jwadow/agentic-prompts" target="_blank">github.com/jwadow/agentic-prompts</a><br>
+  MCP secure tool-calling sandbox: <a href="https://github.com/punkpeye/awesome-mcp-servers" target="_blank">github.com/punkpeye/awesome-mcp-servers</a><br>
+  USDA FoodData Central (open dataset): <a href="https://fdc.nal.usda.gov/download-datasets.html" target="_blank">fdc.nal.usda.gov/download-datasets.html</a><br>
+  Privacy + local LLM rationale: <a href="https://freecodecamp.org/news/protect-sensitive-data-with-local-llms/" target="_blank">freeCodeCamp — Protect Sensitive Data with Local LLMs</a><br>
+  Community testing panel: Omaha FOSSUnited meetup · <a href="https://fossunited.org/hack/fosshack25" target="_blank">fossunited.org/hack/fosshack25</a> · ~40 participants · Jun–Aug 2025<br>
+  Senior readability score (8.5/10): post-session survey · n=12 senior participants · 10-point Likert · "How easy is the text to read vs existing apps?"
+</div>
+
+<div class="pn">
+  <a href="biotime-cloud.html">← BioTime Cloud 2.0</a>
+  <a href="df-safety.html">DF Safety →</a>
+</div>
+
+</div><!-- /W -->
+<footer class="site-footer"></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script src="../js/shared.js"></script>
+<script>
+const D=()=>document.documentElement.getAttribute('data-theme')==='dark';
+const TC=()=>D()?'#a8a89e':'#6b665c';
+const GC=()=>D()?'rgba(240,239,232,.09)':'rgba(61,58,53,.08)';
+const BG=()=>D()?'#222220':'#fff';
+const fnt=(sz=10)=>({size:sz,family:'DM Sans'});
+const base=(ex={})=>({responsive:true,maintainAspectRatio:false,
+  plugins:{legend:{display:false},tooltip:{mode:'index',intersect:false},...(ex.plugins||{})},
+  scales:{x:{ticks:{color:TC(),font:fnt()},grid:{color:GC()}},y:{ticks:{color:TC(),font:fnt()},grid:{color:GC()}},...(ex.scales||{})}});
+const lgnd=(pos='right')=>({display:true,position:pos,labels:{font:fnt(9),color:TC(),boxWidth:9,padding:8}});
+const dnt=(labels,data,colors)=>({type:'doughnut',data:{labels,datasets:[{data,backgroundColor:colors,borderWidth:2,borderColor:BG()}]},options:{responsive:true,maintainAspectRatio:false,cutout:'58%',plugins:{legend:lgnd(),tooltip:{mode:'nearest',intersect:true}}}});
+
+/* 1. Competitive bar */
+new Chart(document.getElementById('compChart'),{type:'bar',data:{
+  labels:['No signup required','Free to use','Privacy / no cloud','Large-font senior UI','No shopping links','Info only (no ads)'],
+  datasets:[
+    {label:'Existing apps (avg)',data:[20,25,15,10,5,10],backgroundColor:'rgba(136,135,128,.4)',borderRadius:3},
+    {label:'Scan It Know It',data:[100,100,100,90,100,100],backgroundColor:'rgba(0,135,90,.7)',borderRadius:3}
+  ]},options:{...base({plugins:{legend:lgnd('top')},scales:{y:{min:0,max:110,ticks:{callback:v=>v+'%',color:TC(),font:fnt()},grid:{color:GC()}}}}),maintainAspectRatio:false}});
+
+/* 2. Research donut */
+new Chart(document.getElementById('resDonut'),dnt(
+  ['Community interviews (12)','Feedback survey (~30)','GA prototype tests','Competitive teardown (5 apps)','LLM benchmark (600 products)'],
+  [12,30,15,5,600],['#378ADD','#534AB7','#BA7517','#993C1D','#00875A']
+));
+
+/* Feature priority bars */
+const FEAT=[
+  {n:'Scan + Gemini ephemeral recognition',s:950,c:'#00875A'},
+  {n:'Safe/Check badge + large-font card',s:920,c:'#534AB7'},
+  {n:'Local RAG chatbot (Ollama + Chroma)',s:880,c:'#378ADD'},
+  {n:'USDA data — plain-English analysis',s:840,c:'#1D9E75'},
+  {n:'Zero signup · no ads · no links',s:800,c:'#BA7517'},
+  {n:'PDF share + community feedback btn',s:480,c:'#888780'},
+];
+const re=document.getElementById('riceEl');
+FEAT.forEach(r=>{
+  const p=Math.round(r.s/1000*100);
+  re.innerHTML+=`<div class="sb"><span class="sb-l">${r.n}</span><div class="sb-t"><div class="sb-f" style="width:${p}%;background:${r.c}"></div></div><span class="sb-v" style="color:${r.c}">${r.s}</span></div>`;
+});
+
+/* 3. MoSCoW donut */
+new Chart(document.getElementById('moscowChart'),dnt(
+  ['Must (5)','Should (4)','Could (5)',"Won't (9 — ads, shopping, accounts, offline…)"],
+  [5,4,5,9],['#00875A','#1D9E75','#BA7517','#B4B2A9']
+));
+
+/* 4. AI design radar */
+new Chart(document.getElementById('aiRadarDesign'),{type:'radar',data:{
+  labels:['Privacy (no storage)','Hallucination control','Speed (<5s)','Cost ($0)','Accuracy','Info only (no ads)'],
+  datasets:[
+    {label:'Zero-shot cloud apps (avg)',data:[10,40,70,30,65,25],borderColor:'#888780',backgroundColor:'rgba(136,135,128,.06)',borderWidth:1.5,pointRadius:3},
+    {label:'Scan It Know It approach',data:[100,94,85,100,92,100],borderColor:'#00875A',backgroundColor:'rgba(0,135,90,.12)',borderWidth:2,pointRadius:4}
+  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:lgnd('bottom')},
+  scales:{r:{ticks:{color:TC(),font:fnt(8),backdropColor:'transparent'},grid:{color:GC()},pointLabels:{color:TC(),font:fnt(9)},suggestedMin:0,suggestedMax:100}}}});
+
+/* 5. Build composition donut */
+new Chart(document.getElementById('buildChart'),{type:'doughnut',data:{
+  labels:['Cursor + Ollama agentic (70%)','PM-directed iteration (15%)','Security audit + testing (10%)','Manual UI tweaks (5%)'],
+  datasets:[{data:[70,15,10,5],backgroundColor:['#534AB7','#1D9E75','#BA7517','#888780'],borderWidth:2,borderColor:BG()}]},
+  options:{responsive:true,maintainAspectRatio:false,cutout:'55%',plugins:{legend:{display:true,position:'bottom',labels:{font:fnt(9),color:TC(),boxWidth:9}}}}});
+
+/* 6. Hallucination improvement */
+new Chart(document.getElementById('hallucChart'),{type:'line',data:{
+  labels:['Zero-shot\nbaseline','RAG v1\n(basic)','Chain-of-\nVerification','HITL\nfeedback','Final\npre-launch'],
+  datasets:[
+    {label:'Hallucination %',data:[21,11,6,4.5,3.5],borderColor:'#993C1D',backgroundColor:'rgba(153,60,29,.08)',borderWidth:2,pointRadius:5,fill:true,tension:.4},
+    {label:'Target (<6%)',data:[6,6,6,6,6],borderColor:'#3B6D11',borderWidth:1.5,borderDash:[5,4],pointRadius:0,fill:false}
+  ]},options:{...base({plugins:{legend:lgnd('top')},scales:{y:{min:0,max:26,ticks:{callback:v=>v+'%',color:TC(),font:fnt()},grid:{color:GC()}}}}),maintainAspectRatio:false}});
+
+/* 7. Community usage horizontal bars */
+new Chart(document.getElementById('usageChart'),{type:'bar',data:{
+  labels:['Scanned food labels','Checked allergen info','Used RAG chatbot Q&A','Scanned cosmetics','Checked nutrition info','Shared result (PDF)'],
+  datasets:[{data:[38,31,24,18,28,8],backgroundColor:['#00875A','#534AB7','#378ADD','#1D9E75','#BA7517','#888780'],borderRadius:3}]},
+  options:{...base({scales:{x:{ticks:{callback:v=>v+' users',color:TC(),font:fnt()},grid:{color:GC()}},y:{ticks:{color:TC(),font:fnt()},grid:{display:false}}}}),indexAxis:'y',maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>ctx.raw+' of ~40 testers'}}}}});
+
+/* 8. Before/after bar */
+new Chart(document.getElementById('perfChart'),{type:'bar',data:{
+  labels:['Recognition accuracy (%)','Hallucination rate (%)','Response time (s)','Privacy score (0–100)'],
+  datasets:[
+    {label:'Cloud apps (avg)',data:[68,21,8,15],backgroundColor:'rgba(136,135,128,.45)',borderRadius:3},
+    {label:'Scan It Know It',data:[92,3.5,4.5,100],backgroundColor:'rgba(0,135,90,.8)',borderRadius:3}
+  ]},options:{...base({plugins:{legend:lgnd('top')}}),maintainAspectRatio:false}});
+
+/* 9. Result radar */
+new Chart(document.getElementById('aiRadarResult'),{type:'radar',data:{
+  labels:['Accuracy (%)','Halluc. control','Speed','Privacy','Cost-free','Info-only (no ads)'],
+  datasets:[
+    {label:'Target',data:[88,80,80,100,100,100],borderColor:'rgba(0,135,90,.4)',backgroundColor:'rgba(0,135,90,.06)',borderWidth:1.5,pointRadius:3},
+    {label:'Actual',data:[92,96,90,100,100,100],borderColor:'#00875A',backgroundColor:'rgba(0,135,90,.12)',borderWidth:2,pointRadius:4}
+  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:lgnd('bottom')},
+  scales:{r:{ticks:{color:TC(),font:fnt(8),backdropColor:'transparent'},grid:{color:GC()},pointLabels:{color:TC(),font:fnt(9)},suggestedMin:50,suggestedMax:100}}}});
+
+/* sidebar active */
+const navLinks=document.querySelectorAll('.sn a');
+const obs=new IntersectionObserver(en=>{en.forEach(e=>{if(e.isIntersecting){const id=e.target.id;navLinks.forEach(l=>l.classList.toggle('on',l.getAttribute('href')==='#'+id));}});},{rootMargin:'-20% 0px -70% 0px'});
+['hero','p1','p2','p3','p4','p5','p6','p7','p8'].forEach(id=>{const el=document.getElementById(id);if(el)obs.observe(el);});
+</script>
 </body>
 </html>
-
-
